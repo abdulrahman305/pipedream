@@ -1,13 +1,13 @@
 {
-  "name": "@pipedream/revolt",
+  "name": "@pipedream/baremetrics",
   "version": "0.1.0",
-  "description": "Pipedream Revolt Components",
-  "main": "revolt.app.mjs",
+  "description": "Pipedream baremetrics Components",
+  "main": "baremetrics.app.mjs",
   "keywords": [
     "pipedream",
-    "revolt"
+    "baremetrics"
   ],
-  "homepage": "https://pipedream.com/apps/revolt",
+  "homepage": "https://pipedream.com/apps/baremetrics",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {
     "access": "public"
