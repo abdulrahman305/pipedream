@@ -992,8 +992,14 @@ importers:
     dependencies:
       '@pipedream/platform': 1.5.1
 
-  components/botpenguin:
+  components/botmaker:
     specifiers: {}
+
+  components/botpenguin:
+    specifiers:
+      '@pipedream/platform': ^2.0.0
+    dependencies:
+      '@pipedream/platform': 2.0.0
 
   components/botpress:
     specifiers:
@@ -1785,7 +1791,10 @@ importers:
     specifiers: {}
 
   components/connectwise_psa:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': ^2.0.0
+    dependencies:
+      '@pipedream/platform': 2.0.0
 
   components/constant_contact:
     specifiers:
@@ -2333,7 +2342,10 @@ importers:
       '@pipedream/platform': 1.5.1
 
   components/documenterra:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': 2.0.0
+    dependencies:
+      '@pipedream/platform': 2.0.0
 
   components/documint:
     specifiers:
@@ -2441,6 +2453,9 @@ importers:
       '@pipedream/platform': ^1.2.1
     dependencies:
       '@pipedream/platform': 1.5.1
+
+  components/dripcel:
+    specifiers: {}
 
   components/dromo:
     specifiers:
@@ -2575,6 +2590,9 @@ importers:
       '@pipedream/platform': 1.5.1
       form-data: 4.0.0
 
+  components/educateme:
+    specifiers: {}
+
   components/edusign:
     specifiers: {}
 
@@ -2615,6 +2633,9 @@ importers:
       '@pipedream/platform': ^1.5.1
     dependencies:
       '@pipedream/platform': 1.5.1
+
+  components/emaillistverify:
+    specifiers: {}
 
   components/emailoctopus:
     specifiers:
@@ -2975,7 +2996,10 @@ importers:
       form-data: 4.0.0
 
   components/flippingbook:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': ^2.0.0
+    dependencies:
+      '@pipedream/platform': 2.0.0
 
   components/float:
     specifiers: {}
@@ -2996,6 +3020,9 @@ importers:
       '@pipedream/platform': ^1.6.0
     dependencies:
       '@pipedream/platform': 1.6.0
+
+  components/flowla:
+    specifiers: {}
 
   components/fluent_support:
     specifiers: {}
@@ -3741,6 +3768,9 @@ importers:
   components/grab_your_reviews:
     specifiers: {}
 
+  components/graceblocks:
+    specifiers: {}
+
   components/grade_us:
     specifiers: {}
 
@@ -3873,6 +3903,9 @@ importers:
       '@pipedream/platform': ^1.6.0
     dependencies:
       '@pipedream/platform': 1.6.0
+
+  components/height:
+    specifiers: {}
 
   components/helcim:
     specifiers: {}
@@ -4132,7 +4165,10 @@ importers:
     specifiers: {}
 
   components/identitycheck:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': ^2.0.0
+    dependencies:
+      '@pipedream/platform': 2.0.0
 
   components/idx_broker:
     specifiers: {}
@@ -4308,6 +4344,9 @@ importers:
   components/intuiface:
     specifiers: {}
 
+  components/invoicing_plus:
+    specifiers: {}
+
   components/ip2location:
     specifiers:
       '@pipedream/platform': ^0.9.0
@@ -4351,7 +4390,10 @@ importers:
     specifiers: {}
 
   components/ispring_learn:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': ^1.6.5
+    dependencies:
+      '@pipedream/platform': 1.6.5
 
   components/iterate:
     specifiers:
@@ -5525,6 +5567,9 @@ importers:
   components/mx_toolbox:
     specifiers: {}
 
+  components/myotp_app:
+    specifiers: {}
+
   components/mysql:
     specifiers:
       '@pipedream/platform': ^2.0.0
@@ -6047,6 +6092,9 @@ importers:
   components/ortto:
     specifiers: {}
 
+  components/ottertext:
+    specifiers: {}
+
   components/outgrow:
     specifiers:
       '@pipedream/platform': ^1.2.0
@@ -6251,6 +6299,9 @@ importers:
       '@pdfless/pdfless-js': 1.0.510
 
   components/pdfmonkey:
+    specifiers: {}
+
+  components/peaka:
     specifiers: {}
 
   components/pendo:
@@ -6742,6 +6793,9 @@ importers:
     dependencies:
       '@pipedream/platform': 1.5.1
 
+  components/promptmate_io:
+    specifiers: {}
+
   components/proofly:
     specifiers:
       '@pipedream/platform': ^1.6.0
@@ -6762,6 +6816,9 @@ importers:
       '@pipedream/platform': ^1.2.1
     dependencies:
       '@pipedream/platform': 1.5.1
+
+  components/proxiedmail:
+    specifiers: {}
 
   components/proxy_spider:
     specifiers: {}
@@ -6825,7 +6882,10 @@ importers:
       '@pipedream/platform': 1.5.1
 
   components/qdrant:
-    specifiers: {}
+    specifiers:
+      '@qdrant/js-client-rest': ^1.9.0
+    dependencies:
+      '@qdrant/js-client-rest': 1.9.0_typescript@5.3.3
 
   components/qntrl:
     specifiers:
@@ -6853,6 +6913,9 @@ importers:
       '@pipedream/platform': ^1.6.0
     dependencies:
       '@pipedream/platform': 1.6.0
+
+  components/qualiobee:
+    specifiers: {}
 
   components/quentn:
     specifiers:
@@ -7135,7 +7198,10 @@ importers:
     specifiers: {}
 
   components/rentcast:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': ^2.0.0
+    dependencies:
+      '@pipedream/platform': 2.0.0
 
   components/repairshopr:
     specifiers:
@@ -7148,6 +7214,9 @@ importers:
       '@pipedream/platform': ^1.5.1
     dependencies:
       '@pipedream/platform': 1.5.1
+
+  components/repliq:
+    specifiers: {}
 
   components/reply_io:
     specifiers:
@@ -7466,6 +7535,9 @@ importers:
     specifiers: {}
 
   components/samcart:
+    specifiers: {}
+
+  components/samsara:
     specifiers: {}
 
   components/sapling:
@@ -8149,7 +8221,10 @@ importers:
       '@pipedream/platform': 1.5.1
 
   components/sms_everyone:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': ^2.0.0
+    dependencies:
+      '@pipedream/platform': 2.0.0
 
   components/sms_it:
     specifiers: {}
@@ -8275,7 +8350,12 @@ importers:
     specifiers: {}
 
   components/speechace:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': ^2.0.0
+      form-data: ^4.0.0
+    dependencies:
+      '@pipedream/platform': 2.0.0
+      form-data: 4.0.0
 
   components/splitwise:
     specifiers:
@@ -8575,6 +8655,9 @@ importers:
       lodash.pickby: 4.6.0
 
   components/survicate:
+    specifiers: {}
+
+  components/survser:
     specifiers: {}
 
   components/svix:
@@ -8908,6 +8991,9 @@ importers:
       '@pipedream/platform': ^1.5.1
     dependencies:
       '@pipedream/platform': 1.5.1
+
+  components/tiledesk:
+    specifiers: {}
 
   components/time_doctor:
     specifiers: {}
@@ -9272,7 +9358,10 @@ importers:
       '@pipedream/platform': 1.6.5
 
   components/upbooks:
-    specifiers: {}
+    specifiers:
+      '@pipedream/platform': ^1.6.5
+    dependencies:
+      '@pipedream/platform': 1.6.5
 
   components/updown_io:
     specifiers:
@@ -13868,6 +13957,11 @@ packages:
       text-decoding: 1.0.0
     dev: false
 
+  /@fastify/busboy/2.1.1:
+    resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
+    engines: {node: '>=14'}
+    dev: false
+
   /@ffmpeg-installer/darwin-arm64/4.1.5:
     resolution: {integrity: sha512-hYqTiP63mXz7wSQfuqfFwfLOfwwFChUedeCVKkBtl/cliaTM7/ePI9bVzfZ2c+dWu3TqCwLDRWNSJ5pqZl8otA==}
     cpu: [arm64]
@@ -16703,6 +16797,23 @@ packages:
       - supports-color
     dev: true
 
+  /@qdrant/js-client-rest/1.9.0_typescript@5.3.3:
+    resolution: {integrity: sha512-YiX/IskbRCoAY2ujyPDI6FBcO0ygAS4pgkGaJ7DcrJFh4SZV2XHs+u0KM7mO72RWJn1eJQFF2PQwxG+401xxJg==}
+    engines: {node: '>=18.0.0', pnpm: '>=8'}
+    peerDependencies:
+      typescript: '>=4.7'
+    dependencies:
+      '@qdrant/openapi-typescript-fetch': 1.2.6
+      '@sevinf/maybe': 0.5.0
+      typescript: 5.3.3
+      undici: 5.28.4
+    dev: false
+
+  /@qdrant/openapi-typescript-fetch/1.2.6:
+    resolution: {integrity: sha512-oQG/FejNpItrxRHoyctYvT3rwGZOnK4jr3JdppO/c78ktDvkWiPXPHNsrDf33K9sZdRb6PR7gi4noIapu5q4HA==}
+    engines: {node: '>=18.0.0', pnpm: '>=8'}
+    dev: false
+
   /@qiwi/npm-registry-client/8.9.1:
     resolution: {integrity: sha512-rZF+mG+NfijR0SHphhTLHRr4aM4gtfdwoAMY6we2VGQam8vkN1cxGG1Lg/Llrj8Dd0Mu6VjdFQRyMMRZxtZR2A==}
     dependencies:
@@ -16868,6 +16979,10 @@ packages:
     dependencies:
       '@sentry/types': 7.73.0
       tslib: 2.6.2
+    dev: false
+
+  /@sevinf/maybe/0.5.0:
+    resolution: {integrity: sha512-ARhyoYDnY1LES3vYI0fiG6e9esWfTNcXcO6+MPJJXcnyMV3bim4lnFt45VXouV7y82F4x3YH8nOQ6VztuvUiWg==}
     dev: false
 
   /@sideway/address/4.1.4:
@@ -31376,6 +31491,13 @@ packages:
 
   /undici-types/5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+
+  /undici/5.28.4:
+    resolution: {integrity: sha512-72RFADWFqKmUb2hmmvNODKL3p9hcB6Gt2DOQMis1SEBaV6a4MH8soBvzg+95CYhCKPFedut2JY9bMfrDl9D23g==}
+    engines: {node: '>=14.0'}
+    dependencies:
+      '@fastify/busboy': 2.1.1
+    dev: false
 
   /unfetch/4.2.0:
     resolution: {integrity: sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==}
