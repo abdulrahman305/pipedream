@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4.1.6
+    - uses: actions/checkout@v4.1.7
       name: Checkout
     - uses: Ana06/get-changed-files@v2.3.0
       id: changed_files
@@ -35,7 +35,7 @@ jobs:
         done
 
         echo "files=${files}" >> $GITHUB_ENV
-    - uses: rojopolis/spellcheck-github-actions@0.37.0
+    - uses: rojopolis/spellcheck-github-actions@0.40.0
       name: Spellcheck
       if: ${{ env.files }}
       with:
@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
         with:
           # Full git history is needed to get a proper list of changed files
           # within `super-linter`
@@ -70,7 +70,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install -r
       - name: Setup Node Env
-        uses: actions/setup-node@v4.0.2
+        uses: actions/setup-node@v4.0.3
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
