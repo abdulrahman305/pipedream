@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@kontent-ai/delivery-sdk": "^14.4.0",
+    "@kontent-ai/delivery-sdk": "^16.1.0",
     "@kontent-ai/management-sdk": "^5.2.0",
     "@kontent-ai/webhook-helper": "^2.1.0",
     "crypto": "^1.0.1"
