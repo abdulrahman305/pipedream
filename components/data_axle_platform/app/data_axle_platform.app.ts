@@ -13,7 +13,8 @@ export default defineApp({
     packages: {
       type: "string",
       label: "Packages",
-      description: "Packages of fields that provide which fields will be returned. By default, every field on a package is returned.",
+      description:
+        "Packages of fields that provide which fields will be returned. By default, every field on a package is returned.",
     },
     personId: {
       type: "string",
@@ -30,9 +31,7 @@ export default defineApp({
         "X-AUTH-TOKEN": this.$auth.api_token,
       };
     },
-    async _makeRequest({
-      $ = this, path, ...opts
-    }) {
+    async _makeRequest({ $ = this, path, ...opts }) {
       const config = {
         url: `${this._apiUrl()}/${path}`,
         headers: this._getHeaders(),
@@ -41,9 +40,7 @@ export default defineApp({
 
       return axios($, config);
     },
-    getPersonById({
-      personId, ...opts
-    }) {
+    getPersonById({ personId, ...opts }) {
       return this._makeRequest({
         path: `people/${personId}`,
         ...opts,

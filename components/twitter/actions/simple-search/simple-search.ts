@@ -1,9 +1,7 @@
 import common from "../../common/appValidation";
 import { ACTION_ERROR_MESSAGE } from "../../common/errorMessage";
 import { defineAction } from "@pipedream/types";
-import {
-  getMultiItemSummary, getTweetFields,
-} from "../../common/methods";
+import { getMultiItemSummary, getTweetFields } from "../../common/methods";
 import { SearchTweetsParams } from "../../common/types/requestParams";
 import {
   PaginatedResponseObject,
@@ -26,16 +24,10 @@ export default defineAction({
   props: {
     ...common.props,
     query: {
-      propDefinition: [
-        common.props.app,
-        "query",
-      ],
+      propDefinition: [common.props.app, "query"],
     },
     maxResults: {
-      propDefinition: [
-        common.props.app,
-        "maxResults",
-      ],
+      propDefinition: [common.props.app, "maxResults"],
       min: MIN_RESULTS,
       description: `Maximum amount of items to return. Each request can return up to ${MAX_RESULTS_PER_PAGE} items.`,
       default: DEFAULT_RESULTS,

@@ -1,7 +1,9 @@
 import { ResourceGeneratorParams } from "../common/types";
 
 export default {
-  async *getResourcesStream({ resourceFn }: ResourceGeneratorParams): AsyncGenerator<any> {
+  async *getResourcesStream({
+    resourceFn,
+  }: ResourceGeneratorParams): AsyncGenerator<any> {
     let page = 1;
     while (true) {
       const nextResources = await resourceFn({

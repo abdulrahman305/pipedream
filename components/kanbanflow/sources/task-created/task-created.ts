@@ -17,9 +17,7 @@ export default defineSource({
     getHookType() {
       return "taskCreated";
     },
-    getSummary({
-      task: { name }, userFullName,
-    }: WebhookData) {
+    getSummary({ task: { name }, userFullName }: WebhookData) {
       return `"${name}" created by ${userFullName}`;
     },
   },

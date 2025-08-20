@@ -5,62 +5,36 @@ export default defineAction({
   name: "List Customers",
   version: "0.0.1",
   key: "waitwhile-list-customers",
-  description: "List of customers. [See the doc here](https://developers.waitwhile.com/reference/listcustomers)",
+  description:
+    "List of customers. [See the doc here](https://developers.waitwhile.com/reference/listcustomers)",
   props: {
     waitwhile,
     limit: {
-      propDefinition: [
-        waitwhile,
-        "limit",
-      ],
+      propDefinition: [waitwhile, "limit"],
     },
     startAfter: {
-      propDefinition: [
-        waitwhile,
-        "startAfter",
-      ],
+      propDefinition: [waitwhile, "startAfter"],
     },
     desc: {
-      propDefinition: [
-        waitwhile,
-        "desc",
-      ],
+      propDefinition: [waitwhile, "desc"],
     },
     locationId: {
-      propDefinition: [
-        waitwhile,
-        "locationId",
-      ],
+      propDefinition: [waitwhile, "locationId"],
     },
     externalId: {
-      propDefinition: [
-        waitwhile,
-        "externalId",
-      ],
+      propDefinition: [waitwhile, "externalId"],
     },
     fromDate: {
-      propDefinition: [
-        waitwhile,
-        "fromDate",
-      ],
+      propDefinition: [waitwhile, "fromDate"],
     },
     toDate: {
-      propDefinition: [
-        waitwhile,
-        "toDate",
-      ],
+      propDefinition: [waitwhile, "toDate"],
     },
     fromTime: {
-      propDefinition: [
-        waitwhile,
-        "fromTime",
-      ],
+      propDefinition: [waitwhile, "fromTime"],
     },
     toTime: {
-      propDefinition: [
-        waitwhile,
-        "toTime",
-      ],
+      propDefinition: [waitwhile, "toTime"],
     },
   },
   type: "action",
@@ -83,8 +57,11 @@ export default defineAction({
       return data;
     } catch (error) {
       const statusCode = error[Object.getOwnPropertySymbols(error)[1]].status;
-      const statusText = error[Object.getOwnPropertySymbols(error)[1]].statusText;
-      throw new Error(`Error status code: ${statusCode}. Error status response: ${statusText}`);
+      const statusText =
+        error[Object.getOwnPropertySymbols(error)[1]].statusText;
+      throw new Error(
+        `Error status code: ${statusCode}. Error status response: ${statusText}`,
+      );
     }
   },
 });

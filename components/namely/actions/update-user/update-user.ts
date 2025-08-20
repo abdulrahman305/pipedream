@@ -6,66 +6,42 @@ export default defineAction({
   key: "namely-update-user",
   version: "0.0.1",
   name: "Update User",
-  description: "Updates a user. [See docs here](https://developers.namely.com/docs/namely-api/2bfe77e091d74-update-a-profile)",
+  description:
+    "Updates a user. [See docs here](https://developers.namely.com/docs/namely-api/2bfe77e091d74-update-a-profile)",
   type: "action",
   props: {
     namely,
     userId: {
-      propDefinition: [
-        namely,
-        "userId",
-      ],
+      propDefinition: [namely, "userId"],
     },
     firstName: {
-      propDefinition: [
-        namely,
-        "firstName",
-      ],
+      propDefinition: [namely, "firstName"],
       optional: true,
     },
     lastName: {
-      propDefinition: [
-        namely,
-        "lastName",
-      ],
+      propDefinition: [namely, "lastName"],
       optional: true,
     },
     personalEmail: {
-      propDefinition: [
-        namely,
-        "personalEmail",
-      ],
+      propDefinition: [namely, "personalEmail"],
       optional: true,
     },
     workEmail: {
-      propDefinition: [
-        namely,
-        "workEmail",
-      ],
+      propDefinition: [namely, "workEmail"],
       optional: true,
     },
     userStatus: {
-      propDefinition: [
-        namely,
-        "userStatus",
-      ],
+      propDefinition: [namely, "userStatus"],
       optional: true,
     },
     salaryAmount: {
-      propDefinition: [
-        namely,
-        "salaryAmount",
-      ],
+      propDefinition: [namely, "salaryAmount"],
       optional: true,
     },
     salaryCurrency: {
-      propDefinition: [
-        namely,
-        "salaryCurrency",
-      ],
+      propDefinition: [namely, "salaryCurrency"],
       optional: true,
     },
-
   },
   async run({ $ }) {
     const body: any = {
@@ -91,7 +67,10 @@ export default defineAction({
       data: body,
     });
 
-    $.export("$summary", `Successfully updated user with id ${response.profiles[0].id}`);
+    $.export(
+      "$summary",
+      `Successfully updated user with id ${response.profiles[0].id}`,
+    );
 
     return response;
   },

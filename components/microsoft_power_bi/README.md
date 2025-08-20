@@ -9,4 +9,4 @@ The Microsoft Power BI API allows you to interact with your Power BI assets prog
 - **Real-Time Dashboard Updates**: Push data to a Power BI streaming dataset from various sources like IoT devices, payment gateways, or CRMs such as Salesforce. Every time a new event occurs, the workflow pushes the data to Power BI, allowing for real-time dashboard updates and analytics.
 
 - **Dynamic Report Generation**: Generate and distribute custom Power BI reports automatically based on user actions or time-based triggers. For instance, on the completion of a project, trigger a workflow that fetches relevant data from a project management tool like Asana, generates a report in Power BI, and then emails it to stakeholders.
-.
+  .

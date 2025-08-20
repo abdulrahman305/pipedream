@@ -5,10 +5,10 @@ The Oyster API allows you to streamline your global employment processes by prov
 # Example Use Cases
 
 - **Employee Onboarding Automation**  
-When a new employee is added in Oyster, trigger a Pipedream workflow that creates accounts for them in other tools like Slack, Google Workspace, or GitHub, assigns to-dos in a project management tool like Trello or Asana, and sends a welcome email via SendGrid or Mailgun.
+  When a new employee is added in Oyster, trigger a Pipedream workflow that creates accounts for them in other tools like Slack, Google Workspace, or GitHub, assigns to-dos in a project management tool like Trello or Asana, and sends a welcome email via SendGrid or Mailgun.
 
 - **Payroll Processing Notification**  
-Set up a workflow that listens for payroll processing events in Oyster. When payroll is processed, the workflow can notify finance or the employee's manager in Slack or Microsoft Teams, log the event in a Google Sheet for record-keeping, and even trigger an email summary via Amazon SES or another email service.
+  Set up a workflow that listens for payroll processing events in Oyster. When payroll is processed, the workflow can notify finance or the employee's manager in Slack or Microsoft Teams, log the event in a Google Sheet for record-keeping, and even trigger an email summary via Amazon SES or another email service.
 
 - **Time Off Sync and Alert**  
-Create a pipeline that monitors time-off requests in Oyster. Once approved, the workflow can block out time on the employee’s calendar in Google Calendar or Outlook, send a message to their team’s Slack channel to inform of the absence, and update any relevant task deadlines in project management tools like Asana or Jira.
+  Create a pipeline that monitors time-off requests in Oyster. Once approved, the workflow can block out time on the employee’s calendar in Google Calendar or Outlook, send a message to their team’s Slack channel to inform of the absence, and update any relevant task deadlines in project management tools like Asana or Jira.

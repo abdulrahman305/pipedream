@@ -25,9 +25,7 @@ module.exports = {
         resource,
       };
     },
-    getMeta({
-      id, event_type, timestamp, resource,
-    }) {
+    getMeta({ id, event_type, timestamp, resource }) {
       const { title } = resource;
       const eventType = event_type;
       const ts = new Date(timestamp).getTime();

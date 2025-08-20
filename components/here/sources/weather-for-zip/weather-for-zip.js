@@ -1,5 +1,7 @@
 const here = require("../../here.app.js");
-const { DEFAULT_POLLING_SOURCE_TIMER_INTERVAL } = require("@pipedream/platform");
+const {
+  DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
+} = require("@pipedream/platform");
 
 module.exports = {
   name: "Weather for ZIP Code",
@@ -10,10 +12,7 @@ module.exports = {
   props: {
     here,
     zipCode: {
-      propDefinition: [
-        here,
-        "zipCode",
-      ],
+      propDefinition: [here, "zipCode"],
     },
     timer: {
       type: "$.interface.timer",

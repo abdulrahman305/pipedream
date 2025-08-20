@@ -1,8 +1,6 @@
 import neverbounce from "../../app/neverbounce.app";
 import { defineAction } from "@pipedream/types";
-import {
-  VerifyEmailParams, VerifyEmailResponse,
-} from "../../common/types";
+import { VerifyEmailParams, VerifyEmailResponse } from "../../common/types";
 
 export default defineAction({
   name: "Verify Email Address",
@@ -27,7 +25,8 @@ export default defineAction({
         email,
       },
     };
-    const data: VerifyEmailResponse = await this.neverbounce.verifyEmailAddress(params);
+    const data: VerifyEmailResponse =
+      await this.neverbounce.verifyEmailAddress(params);
 
     $.export("$summary", `Verified email ${email} (${data.result})`);
 

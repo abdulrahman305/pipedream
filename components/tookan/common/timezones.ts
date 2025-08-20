@@ -17,9 +17,7 @@ let initialValue = -9 * 60;
 
 function getTimezoneString() {
   const value = (initialValue += 60);
-  return value > 0
-    ? `+${value}`
-    : value.toString();
+  return value > 0 ? `+${value}` : value.toString();
 }
 
 const timezoneOptions = timezoneNames.map((name) => ({

@@ -3,29 +3,22 @@ import app from "../../app/currencyscoop.app";
 
 export default defineAction({
   name: "Get Latest Exchanges Rates",
-  description: "Get the latest exchange rates for a currency [See the documentation](https://currencybeacon.com/api-documentation)",
+  description:
+    "Get the latest exchange rates for a currency [See the documentation](https://currencybeacon.com/api-documentation)",
   key: "currencyscoop-get-latest-exchange-rates",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     base: {
-      propDefinition: [
-        app,
-        "currency",
-      ],
+      propDefinition: [app, "currency"],
     },
     symbols: {
-      propDefinition: [
-        app,
-        "targetCurrencies",
-      ],
+      propDefinition: [app, "targetCurrencies"],
     },
   },
   async run({ $ }) {
-    const {
-      base, symbols,
-    } = this;
+    const { base, symbols } = this;
 
     const params = {
       $,

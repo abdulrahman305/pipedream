@@ -7,7 +7,9 @@
     "pipedream",
     "circl_hash_lookup"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/circl_hash_lookup",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

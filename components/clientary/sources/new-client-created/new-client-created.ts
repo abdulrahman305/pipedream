@@ -5,7 +5,8 @@ export default defineSource({
   ...common,
   key: "clientary-new-client-created",
   name: "New Client Created",
-  description: "Emit new events when a new client was created. [See the docs](https://www.clientary.com/api/clients)",
+  description:
+    "Emit new events when a new client was created. [See the docs](https://www.clientary.com/api/clients)",
   version: "0.0.1",
   type: "source",
   dedupe: "unique",

@@ -441,14 +441,23 @@ The \`axios\` constructor takes two arguments:
 ${pipedreamPlatformAxiosTypeDefs}`;
 
   const desiredLanguage = "language: Node.js v14";
-  const outputInstructions = "output: Node.js code and ONLY Node.js code. You produce Pipedream component code and ONLY Pipedream component code. You MUST NOT include English before or after code, and MUST NOT include Markdown (like ```javascript) surrounding the code. I just want the code!";
-  const propsText = "The object _may_ contain an optional a `props` property, which in this example defines an example string prop. The props object is not required. Include it only if the function / method in the example requires input. Props lets the user pass data to the step via a form in the Pipedream UI, so they can fill in the values of the variables. Include any required parameters as properties of the `props` object. Props must include a human-readable `label` and a `type` (one of string|boolean|integer|object) that corresponds to the Node.js type of the required param. string, boolean, and integer props allow for arrays of input, and the array types are \"string[]\", \"boolean[]\", and \"integer[]\" respectively. Complex props (like arrays of objects) can be passed as string[] props, and each item of the array can be parsed as JSON. If the user asks you to provide an array of object, ALWAYS provide a `type` of string[]. Optionally, props can have a human-readable `description` describing the param. Optional parameters that correspond to the test code should be declared with `optional: true`. Recall that props may contain an `options` method. You MUST define an async options method when the input can be listed from the API (like a list of boards). The options method must return an array of objects with a `label` and `value` property.";
-  const alwaysWriteFilestoTmpDir = "If you produce any output files, or if a library produces output files, you MUST write files to the /tmp directory. You MUST NOT write files to `./` or any relative directory. Always write to `/tmp`.";
+  const outputInstructions =
+    "output: Node.js code and ONLY Node.js code. You produce Pipedream component code and ONLY Pipedream component code. You MUST NOT include English before or after code, and MUST NOT include Markdown (like ```javascript) surrounding the code. I just want the code!";
+  const propsText =
+    'The object _may_ contain an optional a `props` property, which in this example defines an example string prop. The props object is not required. Include it only if the function / method in the example requires input. Props lets the user pass data to the step via a form in the Pipedream UI, so they can fill in the values of the variables. Include any required parameters as properties of the `props` object. Props must include a human-readable `label` and a `type` (one of string|boolean|integer|object) that corresponds to the Node.js type of the required param. string, boolean, and integer props allow for arrays of input, and the array types are "string[]", "boolean[]", and "integer[]" respectively. Complex props (like arrays of objects) can be passed as string[] props, and each item of the array can be parsed as JSON. If the user asks you to provide an array of object, ALWAYS provide a `type` of string[]. Optionally, props can have a human-readable `description` describing the param. Optional parameters that correspond to the test code should be declared with `optional: true`. Recall that props may contain an `options` method. You MUST define an async options method when the input can be listed from the API (like a list of boards). The options method must return an array of objects with a `label` and `value` property.';
+  const alwaysWriteFilestoTmpDir =
+    "If you produce any output files, or if a library produces output files, you MUST write files to the /tmp directory. You MUST NOT write files to `./` or any relative directory. Always write to `/tmp`.";
 
   // Query for an app
   if (appData && Object.keys(appData).length > 0) {
     const {
-      name: app, name_slug, auth_type, description, custom_fields_json, component_code_scaffold_raw, test_request_json,
+      name: app,
+      name_slug,
+      auth_type,
+      description,
+      custom_fields_json,
+      component_code_scaffold_raw,
+      test_request_json,
     } = appData;
 
     let testRequestURL;
@@ -471,7 +480,9 @@ ${pipedreamPlatformAxiosTypeDefs}`;
     }
     if (auth_type === "keys") {
       const customFields = JSON.parse(custom_fields_json);
-      const customFieldsText = customFields.map((o: CustomFieldsJSON) => o["name"]).join(", ");
+      const customFieldsText = customFields
+        .map((o: CustomFieldsJSON) => o["name"])
+        .join(", ");
       authText += `${app} is a key-based app. For integrations where users provide static API keys / tokens, \`this.${name_slug}.$auth\` contains properties for each key / token the user enters. Users are asked to enter the following custom fields: ${customFieldsText}. These are each exposed as properties in the object \`this.${name_slug}.$auth\`. When you make the API request, use the format from the ${app} docs. Different apps pass credentials in different places in the HTTP request, e.g. headers, url params, etc. Consult the docs`;
     } else if (auth_type === "oauth") {
       authText += `${app} is an OAuth app. For OAuth integrations, this object exposes the OAuth access token in the variable \`this.${name_slug}.$auth.oauth_access_token\`. When you make the API request, make sure to use the format from the ${app} docs, e.g. you may need to pass the OAuth access token as a Bearer token in the Authorization header. Consult the docs`;

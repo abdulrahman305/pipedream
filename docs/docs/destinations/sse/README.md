@@ -1,6 +1,6 @@
 # Server-Sent Events (SSE)
 
-Pipedream supports [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) (SSE) as a destination, enabling you to send events from a workflow directly to a client subscribed to the event stream. 
+Pipedream supports [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) (SSE) as a destination, enabling you to send events from a workflow directly to a client subscribed to the event stream.
 
 [[toc]]
 
@@ -30,7 +30,7 @@ export default defineComponent({
     $.send.sse({
       channel: "events", // Required, corresponds to the event in the SSE spec
       payload: { // Required, the event payload
-        name: "Luke Skywalker" 
+        name: "Luke Skywalker"
       }
     });
   })
@@ -114,33 +114,30 @@ If you've already sent events to your SSE destination, you should see those even
 
 It's easy to setup a simple webpage to `console.log()` all events from an event stream. You can find a lot more examples of how to work with SSE on the web, but this should help you understand the basic concepts.
 
-You'll need to create two files in the same directory on your machine: an `index.html` file for the HTML. 
+You'll need to create two files in the same directory on your machine: an `index.html` file for the HTML.
 
 **index.html**
 
 ```html
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SSE test</title>
+    <script type="text/javascript">
+      const eventSource = new EventSource(
+        "http://sdk.m.pipedream.net/pipelines/p_wOCOJD8/sse",
+      );
 
-<head>
-  <meta charset="utf-8" />
-  <title>SSE test</title>
-  <script type="text/javascript">
-    const eventSource = new EventSource(
-      "http://sdk.m.pipedream.net/pipelines/p_wOCOJD8/sse"
-    );
+      eventSource.addEventListener("events", function (e) {
+        console.log("New event from cron test event stream: ", e);
+      });
+    </script>
+  </head>
 
-    eventSource.addEventListener("events", function (e) {
-      console.log("New event from cron test event stream: ", e);
-    });
-
-  </script>
-</head>
-
-<body>
-  <div id="app"></div>
-</body>
-
+  <body>
+    <div id="app"></div>
+  </body>
 </html>
 ```
 

@@ -1,8 +1,12 @@
 import { ConfigurationError } from "@pipedream/platform";
 
-const formatArrayStrings = (objectArray: string[], ALLOWED_KEYS: string[], fieldName: string): string[] => {
-  const updatedArray : string[] = [];
-  const errors : string[]  = [];
+const formatArrayStrings = (
+  objectArray: string[],
+  ALLOWED_KEYS: string[],
+  fieldName: string,
+): string[] => {
+  const updatedArray: string[] = [];
+  const errors: string[] = [];
   if (Array.isArray(objectArray) && objectArray?.length) {
     for (let i = 0; i < objectArray.length; i++) {
       if (objectArray[i]) {
@@ -32,7 +36,6 @@ const formatArrayStrings = (objectArray: string[], ALLOWED_KEYS: string[], field
 };
 
 const formatString = (key: string, ALLOWED_KEYS: string[]): string => {
-
   if (!ALLOWED_KEYS.includes(key)) {
     return `${key} error: ${key} not present or allowed in object`;
   }
@@ -40,7 +43,4 @@ const formatString = (key: string, ALLOWED_KEYS: string[]): string => {
   return key;
 };
 
-export {
-  formatArrayStrings,
-  formatString,
-};
+export { formatArrayStrings, formatString };

@@ -5,15 +5,13 @@ export default defineAction({
   name: "Create Record",
   version: "0.0.1",
   key: "ninox-create-record",
-  description: "Creates a record. [See docs here](https://docs.ninox.com/en/api/private-cloud-apis#create-update-multiple-records-with-post)",
+  description:
+    "Creates a record. [See docs here](https://docs.ninox.com/en/api/private-cloud-apis#create-update-multiple-records-with-post)",
   type: "action",
   props: {
     ninox,
     teamId: {
-      propDefinition: [
-        ninox,
-        "teamId",
-      ],
+      propDefinition: [ninox, "teamId"],
     },
     databaseId: {
       propDefinition: [
@@ -36,7 +34,8 @@ export default defineAction({
     },
     fields: {
       label: "Fields",
-      description: "Object to create an row in the table. E.g. `{ \"name\": \"Lucas Caresia\", \"age\": 23 }`",
+      description:
+        'Object to create an row in the table. E.g. `{ "name": "Lucas Caresia", "age": 23 }`',
       type: "object",
     },
   },
@@ -48,15 +47,19 @@ export default defineAction({
       tableId: this.tableId,
       data: [
         {
-          fields: typeof this.fields === "string"
-            ? JSON.parse(this.fields)
-            : this.fields,
+          fields:
+            typeof this.fields === "string"
+              ? JSON.parse(this.fields)
+              : this.fields,
         },
       ],
     });
 
     if (response) {
-      $.export("$summary", `Successfully created record with id ${response[0].id}`);
+      $.export(
+        "$summary",
+        `Successfully created record with id ${response[0].id}`,
+      );
     }
 
     return response;

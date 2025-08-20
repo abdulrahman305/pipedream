@@ -6,52 +6,41 @@ import { getValidDate } from "../../common/methods";
 
 export default defineAction({
   name: "Get Session Reports",
-  description: "Fetch the reports of previously conducted sessions. [See the documentation](https://www.zoho.com/assist/api/getsessionreports.html)",
+  description:
+    "Fetch the reports of previously conducted sessions. [See the documentation](https://www.zoho.com/assist/api/getsessionreports.html)",
   key: "zoho_assist-get-session-reports",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     type: {
-      propDefinition: [
-        app,
-        "type",
-      ],
+      propDefinition: [app, "type"],
       options: GET_SESSION_REPORTS_TYPE_OPTIONS,
     },
     fromDate: {
-      propDefinition: [
-        app,
-        "date",
-      ],
+      propDefinition: [app, "date"],
       label: "From Date",
     },
     toDate: {
-      propDefinition: [
-        app,
-        "date",
-      ],
+      propDefinition: [app, "date"],
       label: "To Date",
     },
     email: {
       type: "string",
       label: "Email",
-      description:
-        "To fetch reports conducted by specific technician.",
+      description: "To fetch reports conducted by specific technician.",
       optional: true,
     },
     index: {
       type: "string",
       label: "Index",
-      description:
-        "Index of the record.",
+      description: "Index of the record.",
       optional: true,
     },
     count: {
       type: "integer",
       label: "Count",
-      description:
-        "Number of rows per page.",
+      description: "Number of rows per page.",
       optional: true,
     },
   },
@@ -59,14 +48,7 @@ export default defineAction({
     getValidDate,
   },
   async run({ $ }) {
-    const {
-      type,
-      fromDate,
-      toDate,
-      email,
-      index,
-      count,
-    } = this;
+    const { type, fromDate, toDate, email, index, count } = this;
 
     const params: GetSessionReportsParams = {
       $,
@@ -82,7 +64,10 @@ export default defineAction({
 
     const { representation } = await this.app.getSessionReports(params);
 
-    $.export("$summary", `Successfully fetched ${representation.length} session reports`);
+    $.export(
+      "$summary",
+      `Successfully fetched ${representation.length} session reports`,
+    );
 
     return representation;
   },

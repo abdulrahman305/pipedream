@@ -10,7 +10,6 @@ Fauna API offers a powerful serverless database solution for modern applications
 
 - **Automated Email Notifications on Data Events**: Set up a workflow that sends out email notifications using a service like SendGrid whenever specific data changes occur in your Fauna database. For example, you might notify a user when their order status changes or when a new piece of content is available that fits their preferences.
 
-
 # FaunaDB Event Sources
 
 FaunaDB Event Sources collect data from FaunaDB (for example, changes to a collection) and emits them as individual events. These events can trigger [Pipedream workflows](https://docs.pipedream.com/workflows/), and are accessible as a [real-time, private SSE stream](https://docs.pipedream.com/api/sse/), and via [REST API](https://docs.pipedream.com/api/rest/).

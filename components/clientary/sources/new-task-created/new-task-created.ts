@@ -5,7 +5,8 @@ export default defineSource({
   ...common,
   key: "clientary-new-task-created",
   name: "New Task Created",
-  description: "Emit new events when a new task was created. [See the docs](https://www.clientary.com/api/tasks)",
+  description:
+    "Emit new events when a new task was created. [See the docs](https://www.clientary.com/api/tasks)",
   version: "0.0.1",
   type: "source",
   dedupe: "unique",

@@ -12,9 +12,7 @@ export default defineApp({
       async options() {
         const data = await this.listCategories();
 
-        return data.map(({
-          id: value, title: label,
-        }) => ({
+        return data.map(({ id: value, title: label }) => ({
           label,
           value,
         }));
@@ -27,9 +25,7 @@ export default defineApp({
       async options() {
         const data = await this.listStudents();
 
-        return data.map(({
-          id: value, username: label,
-        }) => ({
+        return data.map(({ id: value, username: label }) => ({
           label,
           value,
         }));
@@ -42,9 +38,7 @@ export default defineApp({
       async options() {
         const data = await this.listCourses();
 
-        return data.map(({
-          id: value, title, code,
-        }) => ({
+        return data.map(({ id: value, title, code }) => ({
           label: `${title} (${code})`,
           value,
         }));
@@ -57,12 +51,10 @@ export default defineApp({
     },
     _getHeaders() {
       return {
-        "Authorization": `COASSEMBLE-V1-SHA256 UserId=${this.$auth.user_id}, UserToken=${this.$auth.api_key}`,
+        Authorization: `COASSEMBLE-V1-SHA256 UserId=${this.$auth.user_id}, UserToken=${this.$auth.api_key}`,
       };
     },
-    async _makeRequest({
-      $ = this, path, ...opts
-    }) {
+    async _makeRequest({ $ = this, path, ...opts }) {
       const config = {
         url: `${this._apiUrl()}/${path}`,
         headers: this._getHeaders(),
@@ -121,9 +113,7 @@ export default defineApp({
         path: "members",
       });
     },
-    async *paginate({
-      fn, maxResults = null,
-    }) {
+    async *paginate({ fn, maxResults = null }) {
       let length = 0;
       let count = 0;
       let page = 0;

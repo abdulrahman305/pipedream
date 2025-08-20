@@ -7,7 +7,9 @@
     "pipedream",
     "labs64_netlicensing"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/labs64_netlicensing",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

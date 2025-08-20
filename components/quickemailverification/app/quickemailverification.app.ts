@@ -2,7 +2,8 @@ import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
   HttpRequestParams,
-  VerifyEmailParams, VerifyEmailResponse,
+  VerifyEmailParams,
+  VerifyEmailResponse,
 } from "../common/types";
 
 export default defineApp({
@@ -25,13 +26,16 @@ export default defineApp({
         },
       });
     },
-    async verifyEmailAddress(args: VerifyEmailParams): Promise<VerifyEmailResponse> {
+    async verifyEmailAddress(
+      args: VerifyEmailParams,
+    ): Promise<VerifyEmailResponse> {
       const response: VerifyEmailResponse = await this._httpRequest({
         endpoint: "/verify",
         ...args,
       });
 
-      if (response.success !== "true") throw new Error(`QuickEmailVerification response: ${response.reason}`);
+      if (response.success !== "true")
+        throw new Error(`QuickEmailVerification response: ${response.reason}`);
 
       return response;
     },

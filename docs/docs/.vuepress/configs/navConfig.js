@@ -20,8 +20,11 @@ module.exports = {
         { text: "CLI", link: "/cli/install/" },
         { text: "REST API", link: "/api/" },
         { text: "Limits", link: "/limits/" },
-        { text: "Security & Privacy", link: "/privacy-and-security/"},
-        { text: "Handling Cold Starts", link: "/workflows/settings/#eliminate-cold-starts"},
+        { text: "Security & Privacy", link: "/privacy-and-security/" },
+        {
+          text: "Handling Cold Starts",
+          link: "/workflows/settings/#eliminate-cold-starts",
+        },
       ],
     },
   ],
@@ -54,5 +57,5 @@ module.exports = {
         },
       ],
     },
-  ]
+  ],
 };

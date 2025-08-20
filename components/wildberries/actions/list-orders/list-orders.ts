@@ -3,7 +3,8 @@ import { defineAction } from "@pipedream/types";
 
 export default defineAction({
   name: "List Orders",
-  description: "Returns a list of orders. [See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/get_api_v2_orders)",
+  description:
+    "Returns a list of orders. [See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/get_api_v2_orders)",
   key: "wildberries-list-orders",
   version: "0.0.1",
   type: "action",
@@ -12,19 +13,18 @@ export default defineAction({
     dateStart: {
       type: "string",
       label: "Starting date",
-      description: "Starting date for querying in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) format.",
+      description:
+        "Starting date for querying in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) format.",
     },
     dateEnd: {
       type: "string",
       label: "Ending date",
-      description: "Ending date for querying in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) format.",
+      description:
+        "Ending date for querying in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) format.",
       optional: true,
     },
     status: {
-      propDefinition: [
-        app,
-        "status",
-      ],
+      propDefinition: [app, "status"],
       optional: true,
       description: "Select by status",
     },
@@ -41,10 +41,7 @@ export default defineAction({
       default: 0,
     },
     orderId: {
-      propDefinition: [
-        app,
-        "orderId",
-      ],
+      propDefinition: [app, "orderId"],
       description: "Select by order id",
       optional: true,
     },
@@ -53,15 +50,16 @@ export default defineAction({
     const params = {
       date_start: this.dateStart,
       date_end: this.dateEnd,
-      status: typeof (this.status) !== "undefined" ?
-        parseInt(this.status) :
-        null,
+      status: typeof this.status !== "undefined" ? parseInt(this.status) : null,
       take: this.take,
       skip: this.skip,
       id: this.orderId,
     };
     const response = await this.app.listOrders($, params);
-    $.export("$summary", `Successfully fetched ${response.orders.length} orders`);
+    $.export(
+      "$summary",
+      `Successfully fetched ${response.orders.length} orders`,
+    );
     return response;
   },
 });

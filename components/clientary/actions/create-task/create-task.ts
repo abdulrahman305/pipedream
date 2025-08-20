@@ -5,7 +5,8 @@ export default defineAction({
   key: "clientary-create-task",
   version: "0.0.1",
   name: "Create Task",
-  description: "Creates a new task. [See docs here](https://www.clientary.com/api/tasks)",
+  description:
+    "Creates a new task. [See docs here](https://www.clientary.com/api/tasks)",
   type: "action",
   props: {
     app,
@@ -26,26 +27,17 @@ export default defineAction({
       optional: true,
     },
     assignee: {
-      propDefinition: [
-        app,
-        "assigneeId",
-      ],
+      propDefinition: [app, "assigneeId"],
       description: "Assignee ID whom given the task",
       optional: true,
     },
     project: {
-      propDefinition: [
-        app,
-        "projectId",
-      ],
+      propDefinition: [app, "projectId"],
       description: "Project ID related to the task",
       optional: true,
     },
     client: {
-      propDefinition: [
-        app,
-        "clientId",
-      ],
+      propDefinition: [app, "clientId"],
       description: "Client ID related to the task",
       optional: true,
     },

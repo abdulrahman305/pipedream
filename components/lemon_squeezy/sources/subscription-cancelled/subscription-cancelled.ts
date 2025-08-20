@@ -34,9 +34,9 @@ export default defineSource({
       for await (const item of items) {
         const newLastEnd = item.attributes.ends_at;
         if (
-          item.attributes.ends_at
-          && moment(newLastEnd).isAfter(lastEnd)
-          && item.attributes.cancelled
+          item.attributes.ends_at &&
+          moment(newLastEnd).isAfter(lastEnd) &&
+          item.attributes.cancelled
         ) {
           responseArray.push(item);
           if (moment(newLastEnd).isAfter(tempLastEnd)) {
@@ -47,18 +47,14 @@ export default defineSource({
         }
       }
 
-      if (!moment(lastEnd).isSame(tempLastEnd))
-        this.setLastEnd(tempLastEnd);
+      if (!moment(lastEnd).isSame(tempLastEnd)) this.setLastEnd(tempLastEnd);
 
       for (const responseItem of responseArray.reverse()) {
-        this.$emit(
-          responseItem,
-          {
-            id: responseItem.id,
-            summary: `A new subscription with id ${responseItem.id} was cancelled!`,
-            ts: responseItem.createdAt,
-          },
-        );
+        this.$emit(responseItem, {
+          id: responseItem.id,
+          summary: `A new subscription with id ${responseItem.id} was cancelled!`,
+          ts: responseItem.createdAt,
+        });
       }
     },
   },

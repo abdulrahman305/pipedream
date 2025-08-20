@@ -5,7 +5,8 @@ import { CREATE_SESSION_TYPE_OPTIONS } from "../../common/constants";
 
 export default defineAction({
   name: "Create Session",
-  description: "Create a remote support or screen sharing session. [See the documentation](https://www.zoho.com/assist/api/createasession.html)",
+  description:
+    "Create a remote support or screen sharing session. [See the documentation](https://www.zoho.com/assist/api/createasession.html)",
   key: "zoho_assist-create-session",
   version: "0.0.1",
   type: "action",
@@ -14,17 +15,12 @@ export default defineAction({
     customerEmail: {
       type: "string",
       label: "Customer Email",
-      description:
-        "Customer Email to whom the join invitation is to be sent.",
+      description: "Customer Email to whom the join invitation is to be sent.",
       optional: true,
     },
     type: {
-      propDefinition: [
-        app,
-        "type",
-      ],
-      description:
-        "Session type, defaulting to Remote Support.",
+      propDefinition: [app, "type"],
+      description: "Session type, defaulting to Remote Support.",
       optional: true,
       options: CREATE_SESSION_TYPE_OPTIONS,
       default: "rs",
@@ -38,11 +34,7 @@ export default defineAction({
     },
   },
   async run({ $ }) {
-    const {
-      customerEmail,
-      type,
-      computerId,
-    } = this;
+    const { customerEmail, type, computerId } = this;
 
     const params: CreateSessionParams = {
       $,
@@ -55,7 +47,10 @@ export default defineAction({
 
     const { representation } = await this.app.createSession(params);
 
-    $.export("$summary", `Successfully created session (ID: ${representation.session_id})`);
+    $.export(
+      "$summary",
+      `Successfully created session (ID: ${representation.session_id})`,
+    );
 
     return representation;
   },

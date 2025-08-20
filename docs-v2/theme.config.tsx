@@ -12,8 +12,8 @@ const config: DocsThemeConfig = {
   head: null,
   // Custom components that replace the default MDX components
   components: {
-    "a": PipedreamLink,
-    "code": PipedreamCode,
+    a: PipedreamLink,
+    code: PipedreamCode,
   },
   logo: PipedreamTextLogo,
   logoLink: "https://pipedream.com",
@@ -24,18 +24,15 @@ const config: DocsThemeConfig = {
     link: "https://pipedream.com/support",
     icon: SlackLogo,
   },
-  docsRepositoryBase: "https://github.com/PipedreamHQ/pipedream/blob/master/docs-v2",
+  docsRepositoryBase:
+    "https://github.com/PipedreamHQ/pipedream/blob/master/docs-v2",
   footer: {
-    text: (
-      <span>
-        Pipedream, Inc. {new Date().getFullYear()} {" "}
-      </span>
-    ),
+    text: <span>Pipedream, Inc. {new Date().getFullYear()} </span>,
   },
   primaryHue: 153, // Pipedream green
   primarySaturation: 100,
   feedback: {
-    content: null,  // By default this showed a Discord support icon, this was the recommended way to disable it
+    content: null, // By default this showed a Discord support icon, this was the recommended way to disable it
   },
   sidebar: {
     autoCollapse: true,
@@ -46,7 +43,7 @@ const config: DocsThemeConfig = {
     return {
       titleTemplate: "%s - Pipedream",
       description: "Workflow automation for developers",
-      canonical: `https://pipedream.com/docs${ route === '/' ? '' : route}`,
+      canonical: `https://pipedream.com/docs${route === "/" ? "" : route}`,
       additionalLinkTags: [
         {
           href: "/docs/favicon.ico",

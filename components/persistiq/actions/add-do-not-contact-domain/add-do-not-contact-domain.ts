@@ -5,7 +5,8 @@ export default defineAction({
   key: "persistiq-add-do-not-contact-domain",
   version: "0.0.1",
   name: "Add Do Not Contact Domain",
-  description: "Creates a new DNC domain. [See docs here](https://apidocs.persistiq.com/#create-dnc-domain)",
+  description:
+    "Creates a new DNC domain. [See docs here](https://apidocs.persistiq.com/#create-dnc-domain)",
   type: "action",
   props: {
     app,
@@ -22,7 +23,10 @@ export default defineAction({
         name: this.name,
       },
     });
-    $.export("$summary", `Successfully created a DNC domain (ID: ${response?.dnc_domain?.id})`);
+    $.export(
+      "$summary",
+      `Successfully created a DNC domain (ID: ${response?.dnc_domain?.id})`,
+    );
     return response;
   },
 });
