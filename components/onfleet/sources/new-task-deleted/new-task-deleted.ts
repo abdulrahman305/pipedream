@@ -14,9 +14,7 @@ export default {
     getTrigger() {
       return 8;
     },
-    generateMeta({
-      id, taskId, time, timeCreated,
-    }) {
+    generateMeta({ id, taskId, time, timeCreated }) {
       return {
         id: taskId || id,
         summary: `New Task Deleted: ${taskId || id}`,

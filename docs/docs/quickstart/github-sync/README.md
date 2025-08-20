@@ -1,10 +1,10 @@
 # Quickstart - Github Sync
 
-The purpose of this guide is to help you start building projects on Pipedream using **GitHub Sync**. 
+The purpose of this guide is to help you start building projects on Pipedream using **GitHub Sync**.
 
 This guide assumes you:
 
-- Have a Pipedream account 
+- Have a Pipedream account
 - Have a GitHub account
 - Understand the basics of workflow development on Pipedream
 - Are familiar with git-concepts (branches, commits, merges, etc)
@@ -18,7 +18,7 @@ If you are new to Pipedream, we recommend starting with the [basics of workflow 
 
 ::: tip
 
-Users on the Free and Basic plan may preview GitHub Sync by enabling the feature **when creating a new project.**  You will not be able to merge to production without upgrading. When you upgrade, you may enable or disable GitHub sync for projects at any time.
+Users on the Free and Basic plan may preview GitHub Sync by enabling the feature **when creating a new project.** You will not be able to merge to production without upgrading. When you upgrade, you may enable or disable GitHub sync for projects at any time.
 
 :::
 
@@ -31,26 +31,25 @@ Follow the steps below to create a new project and configure GitHub Sync.
 ::: tip
 
 This example uses Pipedream's OAuth integration with GitHub which will automaticallly create a a new, empty repo in GitHub. The OAuth integration requires the granting of extensive scopes so Pipedream can create and manage the integration. If you prefer not to use OAuth and configure the integration manually, follow the steps in Pipedream's docs to configure the integration using deploy keys. Deploy keys allow you to restrict Pipedream's access to a specific repo.
- 
+
 :::
 
 Go to `https://pipedream.com/projects` and click on **Create Project**.
 ![github](./images/create_project.png)
 
-Enter a project name or click the icon to generate a random name and check the box to **Configure GitHub Sync**. 
+Enter a project name or click the icon to generate a random name and check the box to **Configure GitHub Sync**.
 ![github](./images/configure_project_1.png)
 
 Select or connect a GitHub account, username and repo name and click **Create Project**.
 ![github](./images/configure_project_2.png)
 
-
 ## Create a branch to make edits
 
-Once your project is ready, click on the **Edit** button. 
+Once your project is ready, click on the **Edit** button.
 
 ![github](./images/edit_1.png)
 
-Since this is a new project, you will prompted to create a branch. You may accept the default branch name or customize it. 
+Since this is a new project, you will prompted to create a branch. You may accept the default branch name or customize it.
 
 ![github](./images/edit_2.png)
 
@@ -72,12 +71,11 @@ For this example, name the workflow and click **Create Workflow** to use the def
 
 ![github](./images/configure_workflow.png)
 
-Build a simple workflow with an HTTP trigger and Node code step. 
+Build a simple workflow with an HTTP trigger and Node code step.
 
 ![github](./images/basic_workflow.png)
 
-
-At this point, your workflow is saved, but changes have not been commited to GitHub. To do that, click on the dropdown menu and select **Commit**. 
+At this point, your workflow is saved, but changes have not been commited to GitHub. To do that, click on the dropdown menu and select **Commit**.
 
 ![github](./images/commit_changes_1.png)
 
@@ -91,23 +89,23 @@ Next, make an edit to the code (e.g., add a comment). Commit your changes again.
 
 ## View your project on GitHub
 
-Open the git actions menu and select **View branch on GitHub**. 
+Open the git actions menu and select **View branch on GitHub**.
 
 ![github](./images/view_branch_on_github_1.png)
 
-You can explore the files created, including the YAML file with the workflow definition and the javascript file with the code for the Node step. 
+You can explore the files created, including the YAML file with the workflow definition and the javascript file with the code for the Node step.
 
 ![github](./images/view_branch_on_github_2.png)
 
 ::: tip
 
-Optionally navigate to the file with the code step and make an edit to the file and commit your changes to the branch (e.g., add another comment). When you return to Pipedream, you'll notice the git actions button will prompt you to pull changes. Pipedream's integration with GitHub is bi-directional, so you can make edits outside of Pipedream (including locally) and sync them via GitHub. Note: there are currently restrictions on local development (e.g., you can only edit existing resources -- you can't create new workflows locally). 
+Optionally navigate to the file with the code step and make an edit to the file and commit your changes to the branch (e.g., add another comment). When you return to Pipedream, you'll notice the git actions button will prompt you to pull changes. Pipedream's integration with GitHub is bi-directional, so you can make edits outside of Pipedream (including locally) and sync them via GitHub. Note: there are currently restrictions on local development (e.g., you can only edit existing resources -- you can't create new workflows locally).
 
 :::
 
 ## Merge your changes to production
 
-Merge to production to deploy the workflow to Pipedream. 
+Merge to production to deploy the workflow to Pipedream.
 
 ![github](./images/merge_to_production_1.png)
 
@@ -123,27 +121,27 @@ To edit a previously merged branch, you may create a new branch or click **Edit*
 
 ![github](./images/edit_production.png)
 
-Open the workflow in Pipedream's editor and add an HTTP request action to the end of the workflow. Configure the action to `GET` the URL `https://example.com`. 
+Open the workflow in Pipedream's editor and add an HTTP request action to the end of the workflow. Configure the action to `GET` the URL `https://example.com`.
 
 ![github](./images/add_action.png)
 
-This time, we'll merge directly to production without commiting separately. Click **Merge to Production** to view the diff, commit and merge.  
+This time, we'll merge directly to production without commiting separately. Click **Merge to Production** to view the diff, commit and merge.
 
 ![github](./images/action_diff.png)
 
 You may also view the repo on GitHub to see how the action configuration is represented in the YAML of the workflow definition. Try other actions, including actions that use connected accounts and explore how they're represented in the GitHub code.
 
-## Make an edit and merge from GitHub 
+## Make an edit and merge from GitHub
 
-As the final step of this quickstart, view the repository on GitHub and navigate to the code step. Click the edit icon and made a simple change (e.g., add a comment). 
+As the final step of this quickstart, view the repository on GitHub and navigate to the code step. Click the edit icon and made a simple change (e.g., add a comment).
 
 ![github](./images/edit_in_github.png)
 
-Commit and create a PR. 
+Commit and create a PR.
 
 ![github](./images/create_pr.png)
 
-Then open the PR, review the changes and merge. 
+Then open the PR, review the changes and merge.
 
 ![github](./images/merge_pr.png)
 
@@ -159,4 +157,4 @@ If you have any issues, including errors when merging or deploying, check the ch
 
 ## More resources
 
-We hope that helps you get started with GitHub. Next, we suggest reading the docs and exploring the feature in more depth.  If you have any issues or feedback, please reach out to Support, on public Slack or on Discourse.
+We hope that helps you get started with GitHub. Next, we suggest reading the docs and exploring the feature in more depth. If you have any issues or feedback, please reach out to Support, on public Slack or on Discourse.

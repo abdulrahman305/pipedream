@@ -3,9 +3,7 @@ import { ACTION_ERROR_MESSAGE } from "../../common/errorMessage";
 import { defineAction } from "@pipedream/types";
 import { GetTweetParams } from "../../common/types/requestParams";
 import { getTweetFields } from "../../common/methods";
-import {
-  ResponseObject, Tweet,
-} from "../../common/types/responseSchemas";
+import { ResponseObject, Tweet } from "../../common/types/responseSchemas";
 
 const DOCS_LINK =
   "https://developer.twitter.com/en/docs/twitter-api/tweets/lookup/api-reference/get-tweets-id";
@@ -20,10 +18,7 @@ export default defineAction({
   props: {
     ...common.props,
     tweetId: {
-      propDefinition: [
-        common.props.app,
-        "tweetId",
-      ],
+      propDefinition: [common.props.app, "tweetId"],
     },
   },
   methods: {

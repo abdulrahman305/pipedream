@@ -5,32 +5,21 @@ export default defineAction({
   name: "List User Invites",
   version: "0.0.1",
   key: "waitwhile-list-user-invites",
-  description: "List of user invites. [See the doc here](https://developers.waitwhile.com/reference/listinvites)",
+  description:
+    "List of user invites. [See the doc here](https://developers.waitwhile.com/reference/listinvites)",
   props: {
     waitwhile,
     limit: {
-      propDefinition: [
-        waitwhile,
-        "limit",
-      ],
+      propDefinition: [waitwhile, "limit"],
     },
     startAfter: {
-      propDefinition: [
-        waitwhile,
-        "startAfter",
-      ],
+      propDefinition: [waitwhile, "startAfter"],
     },
     desc: {
-      propDefinition: [
-        waitwhile,
-        "desc",
-      ],
+      propDefinition: [waitwhile, "desc"],
     },
     locationId: {
-      propDefinition: [
-        waitwhile,
-        "locationId",
-      ],
+      propDefinition: [waitwhile, "locationId"],
     },
   },
   type: "action",
@@ -48,8 +37,11 @@ export default defineAction({
       return data;
     } catch (error) {
       const statusCode = error[Object.getOwnPropertySymbols(error)[1]].status;
-      const statusText = error[Object.getOwnPropertySymbols(error)[1]].statusText;
-      throw new Error(`Error status code: ${statusCode}. Error status response: ${statusText}`);
+      const statusText =
+        error[Object.getOwnPropertySymbols(error)[1]].statusText;
+      throw new Error(
+        `Error status code: ${statusCode}. Error status response: ${statusText}`,
+      );
     }
   },
 });

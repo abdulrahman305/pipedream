@@ -37,9 +37,7 @@ export default defineApp({
       label: "Table ID",
       description: "The ID of the table",
       type: "string",
-      async options({
-        teamId, databaseId,
-      }) {
+      async options({ teamId, databaseId }) {
         const tables = await this.getTables({
           teamId,
           databaseId,
@@ -56,9 +54,7 @@ export default defineApp({
     _apiUrl() {
       return "https://api.ninox.com/v1";
     },
-    async _makeRequest({
-      $ = this, path, ...args
-    }) {
+    async _makeRequest({ $ = this, path, ...args }) {
       return axios($, {
         url: `${this._apiUrl()}${path}`,
         headers: {
@@ -73,17 +69,13 @@ export default defineApp({
         ...args,
       });
     },
-    async getDatabases({
-      teamId, ...args
-    }) {
+    async getDatabases({ teamId, ...args }) {
       return this._makeRequest({
         path: `/teams/${teamId}/databases`,
         ...args,
       });
     },
-    async getTables({
-      teamId, databaseId, ...args
-    }) {
+    async getTables({ teamId, databaseId, ...args }) {
       const response = await this._makeRequest({
         path: `/teams/${teamId}/databases/${databaseId}`,
         ...args,
@@ -95,17 +87,13 @@ export default defineApp({
         return [];
       }
     },
-    async getRecords({
-      teamId, databaseId, tableId, ...args
-    }) {
+    async getRecords({ teamId, databaseId, tableId, ...args }) {
       return this._makeRequest({
         path: `/teams/${teamId}/databases/${databaseId}/tables/${tableId}/records`,
         ...args,
       });
     },
-    async createRecord({
-      teamId, databaseId, tableId, ...args
-    }) {
+    async createRecord({ teamId, databaseId, tableId, ...args }) {
       return this._makeRequest({
         path: `/teams/${teamId}/databases/${databaseId}/tables/${tableId}/records`,
         method: "post",

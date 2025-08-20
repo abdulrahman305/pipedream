@@ -4,17 +4,15 @@ import { ConfigurationError } from "@pipedream/platform";
 
 export default defineAction({
   name: "Remove Tag From Student",
-  description: "Remove a tag from a student. [See docs](https://howto.xperiencify.com/article.php?article=123#7)",
+  description:
+    "Remove a tag from a student. [See docs](https://howto.xperiencify.com/article.php?article=123#7)",
   key: "xperiencify-remove-tag-from-student",
   version: "0.0.1",
   type: "action",
   props: {
     xperiencify,
     student: {
-      propDefinition: [
-        xperiencify,
-        "student",
-      ],
+      propDefinition: [xperiencify, "student"],
     },
     tags: {
       propDefinition: [

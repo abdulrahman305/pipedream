@@ -6,7 +6,7 @@ Sign up for a [free Pipedream account (no credit card required)](https://pipedre
 
 ## Create a project
 
-Workflows must be created in **Projects**. Projects make it easy to organize your workflows and collaborate with your team. 
+Workflows must be created in **Projects**. Projects make it easy to organize your workflows and collaborate with your team.
 
 Go to [https://pipedream.com/projects](https://pipedream.com/projects) and click on **Create Project**.
 
@@ -34,7 +34,7 @@ Name the workflow and click **Create Workflow** to use the default settings. For
 
 ## Add an HTTP / Webhook trigger
 
-Next, Pipedream will launch the workflow builder and prompt you to add a trigger. For this example, select **HTTP / Webhook Requests**. 
+Next, Pipedream will launch the workflow builder and prompt you to add a trigger. For this example, select **HTTP / Webhook Requests**.
 
 ![Add HTTP trigger](./images/add-trigger.png)
 
@@ -48,7 +48,7 @@ Pipedream will generate a unique URL to trigger this workflow. Once your workflo
 
 ## Generate a test event
 
-Next, generate a test event to help you build the workflow. 
+Next, generate a test event to help you build the workflow.
 
 ::: tip
 
@@ -68,7 +68,7 @@ Pipedream makes it easy to generate test events for your HTTP trigger. Click on 
 
 ![Generate Test Event](./images/generate-test-event.png)
 
-Pipedream will automatically select and display the contents of the selected event. Validate that the `message` was received as part the event `body`. 
+Pipedream will automatically select and display the contents of the selected event. Validate that the `message` was received as part the event `body`.
 
 ![Inspect trigger event](./images/inspect-trigger-event.png)
 
@@ -81,6 +81,7 @@ curl -d '{
   "message": "Pipedream is awesome!"
 }'   -H "Content-Type: application/json"   YOUR-TRIGGER-URL-GOES-HERE
 ```
+
 :::
 
 ## Enrich trigger data using Node.js and npm
@@ -91,26 +92,26 @@ Before we send data to Google Sheets, let's use the npm [`sentiment`](https://ww
 
 That will open the **Add a step** menu. Select **Run custom code**.
 
-![Add step](./images/step-selector-code.png) 
+![Add step](./images/step-selector-code.png)
 
 Pipedream will add a Node.js code step. Rename the step to **sentiment**.
 
-![Rename step to sentiment](./images/rename-code-step.png) 
+![Rename step to sentiment](./images/rename-code-step.png)
 
 Next, add the following code to the code step:
 
 ```javascript
-import Sentiment from "sentiment"
+import Sentiment from "sentiment";
 
 export default defineComponent({
   async run({ steps, $ }) {
-    let sentiment = new Sentiment()
-    return sentiment.analyze(steps.trigger.event.body.message)
+    let sentiment = new Sentiment();
+    return sentiment.analyze(steps.trigger.event.body.message);
   },
-})
+});
 ```
 
-This code imports the npm package, passes the message we sent to our trigger to the `analyze()` function by referencing `steps.trigger.event.body.message` and then returns the result. 
+This code imports the npm package, passes the message we sent to our trigger to the `analyze()` function by referencing `steps.trigger.event.body.message` and then returns the result.
 
 ::: tip
 To use any npm package on Pipedream, just `import` it. There's no `npm install` or `package.json` required.
@@ -118,7 +119,7 @@ To use any npm package on Pipedream, just `import` it. There's no `npm install` 
 
 ::: tip
 Any data you `return` from a step is exported so it can be inspected and referenced it in future steps via the `steps` object. In this example, return values will be exported to `steps.sentiment.$return_value` because we renamed the step to **sentiment** .
-::: 
+:::
 
 Your code step should now look like the screenshot below. To run the step and test the code, click the **Test** button.
 
@@ -132,11 +133,11 @@ You should see the results of the sentiment analysis when the test is complete.
 
 When you **Test** a step, only the current step is executed. Use the caret to test different ranges of steps including the entire workflow.
 
-::: 
+:::
 
 ## Save data to Google Sheets
 
-Next, create a Google Sheet and add **Timestamp**, **Message** and **Sentiment Score** to the first row. These labels act as our column headers amd will help us configure the Google Sheets step of the workflow. 
+Next, create a Google Sheet and add **Timestamp**, **Message** and **Sentiment Score** to the first row. These labels act as our column headers amd will help us configure the Google Sheets step of the workflow.
 
 ![Empty Sheet](./images/empty-sheet.png)
 
@@ -164,7 +165,7 @@ If prompted, you must check the box for Pipedream to **See, edit, create and del
 
 Learn more about Pipedream's [privacy and security policy](/privacy-and-security/).
 
-::: 
+:::
 
 When you complete connecting your Google account, the window should close and you should return to Pipedream. Your connected account should automatically be selected. Next, select your spreadsheet from the dropdown menu:
 
@@ -182,7 +183,7 @@ Pipedream will retrieve the headers and generate a form to enter data in your sh
 
 ![Additional props](./images/additional-props.png)
 
-First, let's use the object explorer to pass the timestamp for the workflow event as the value for the first column. This data can be found in the context object on the trigger. 
+First, let's use the object explorer to pass the timestamp for the workflow event as the value for the first column. This data can be found in the context object on the trigger.
 
 When you click into the **Timestamp** field, Pipedream will display an object explorer to make it easy to find data. Scroll or search to find the `ts` key under `steps.trigger.context`.
 
@@ -192,9 +193,9 @@ Click **select path** to insert a reference to <code v-pre>{{steps.trigger.conte
 
 ![Timestamp added](./images/timestamp-added.png)
 
-Next, let's use autocomplete to enter a value for the **Message** column. First, add double braces `{{` — Pipedream will automatically add the closing braces `}}`. 
+Next, let's use autocomplete to enter a value for the **Message** column. First, add double braces `{{` — Pipedream will automatically add the closing braces `}}`.
 
-Then, type `steps.trigger.event.body.message` between the pairs of braces. Pipedream will provide autocomplete suggestions as you type. Press **Tab**  to use a suggestion and then click `.` to get suggestions for the next key. The final value in the **Message** field should be <code v-pre>{{steps.trigger.event.body.message}}</code>.
+Then, type `steps.trigger.event.body.message` between the pairs of braces. Pipedream will provide autocomplete suggestions as you type. Press **Tab** to use a suggestion and then click `.` to get suggestions for the next key. The final value in the **Message** field should be <code v-pre>{{steps.trigger.event.body.message}}</code>.
 
 ![Add reference to message](./images/autocomplete-message.png)
 
@@ -202,9 +203,9 @@ Finally, let's copy a reference from a previous step. Scroll up to the `sentimen
 
 ![Expand sentiment results](./images/expand-sentiment-results.png)
 
-Next,  click the **Copy Path** link next to the score.
+Next, click the **Copy Path** link next to the score.
 
-![Copy path to sentiment score](./images/copy-path.png) 
+![Copy path to sentiment score](./images/copy-path.png)
 
 Paste the value into the **Sentiment Score** field — Pipedream will automatically wrap the reference in double braces <code v-pre>{{ }}</code>.
 
@@ -222,7 +223,7 @@ Next, return to your workflow and click **Deploy** to run your workflow on every
 
 ![Deploy Workflow](./images/deploy-workflow.png)
 
-When your workflow deploys, you will be redirected to the **Inspector**. Your workflow is now live. 
+When your workflow deploys, you will be redirected to the **Inspector**. Your workflow is now live.
 
 ![Deployed workflow](./images/deployed-workflow.png)
 
@@ -240,7 +241,7 @@ The event will instantly appear in the event list. Select it to inspect the work
 
 Finally, you can return to Google Sheets to validate that the new data was automatically inserted.
 
-![Live data inserted into sheets](./images/live-test.png) 
+![Live data inserted into sheets](./images/live-test.png)
 
 ## Next Steps
 

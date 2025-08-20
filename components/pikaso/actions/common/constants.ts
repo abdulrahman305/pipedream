@@ -39,9 +39,5 @@ export default {
     "spanish_yellow",
     "random",
   ],
-  SIZE_OPTS: [
-    "auto",
-    "ig_post",
-    "ig_story",
-  ],
+  SIZE_OPTS: ["auto", "ig_post", "ig_story"],
 };

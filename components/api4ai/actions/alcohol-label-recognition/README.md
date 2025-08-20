@@ -9,7 +9,7 @@ This solution analyzes an image containing one or several alcohol labels and pro
 ✅ **All-in-One.** This API is more than just a wine recognition tool! It supports a diverse range of beverages, including beer, wine, vodka, whiskey, bourbon, brandy, cognac, rum, tequila, and liqueur.  
 ✅ **Multiple labels.** The advanced alcohol label recognition algorithm can accurately analyze multiple labels, individually corresponding to different drinks, within a single image.  
 ✅ **Characteristics.** The algorithm provides unique attributes for each drink type, such as winery, country, variety, vintage, and region for wines, and brand, country, and malt for whiskey, improving searchability.  
-✅ **Databaseless.** The solution operates efficiently without the need for pre-populating a label database, offering an immediate, out-of-the-box solution that works seamlessly for users.  
+✅ **Databaseless.** The solution operates efficiently without the need for pre-populating a label database, offering an immediate, out-of-the-box solution that works seamlessly for users.
 
 <table>
   <tr>
@@ -62,12 +62,9 @@ This solution analyzes an image containing one or several alcohol labels and pro
   </tr>
 </table>
 
-
 ## 🤖 Demo
 
 Explore the Alcohol Label Recognition Web demo for free before delving into the details (no registration is required): https://api4.ai/apis/household-stuff#demo-wrapper
-
-
 
 # Getting started
 
@@ -79,7 +76,6 @@ To use Alcohol Label Recognition, start at [RapidAPI](https://rapidapi.com/), a 
 2. Navigate to the [Alcohol Label Recognition API endpoints](https://rapidapi.com/api4ai-api4ai-default/api/alcohol-label-recognition) list.
 3. In the "Header Parameters" section, your API Key will be shown in the `X-RapidAPI-Key` field.
 
-
 ## 🛠 Parameters
 
 ### API Key
@@ -89,36 +85,36 @@ An API Key is required. Register and subscribe on RapidAPI to receive one.
 ### Image
 
 Input image. Various types are accepted:
-  * a **path** to a file
-    ```
-    /tmp/myfile.jpg
-    ```
-  * a **URL** to a file
-    ```
-    https://storage.googleapis.com/api4ai-static/samples/nsfw-1.jpg
-    ```
-  * a file's content encoded as a **base64** string
-    ```
-    iVBORw0KGgoAAAANSUhEUgAABdwAAAPoCAYAAADEDjzlAAEAAElEQVR4nO...
-    ```
-  * a file's content as a **Buffer** encoded in JSON
-    ```json
-    {
-        "type": "Buffer",
-        "data": [255,216,255,224,0,16,74,70,73,70,0,1,1,0,...]
-    }
-    ```
-  * a file's content as an **Array** of bytes
-    ```json
-    [255,216,255,224,0,16,74,70,73,70,0,1,1,0,0,1,0,1,0,0,,...]
-    ```
 
+- a **path** to a file
+  ```
+  /tmp/myfile.jpg
+  ```
+- a **URL** to a file
+  ```
+  https://storage.googleapis.com/api4ai-static/samples/nsfw-1.jpg
+  ```
+- a file's content encoded as a **base64** string
+  ```
+  iVBORw0KGgoAAAANSUhEUgAABdwAAAPoCAYAAADEDjzlAAEAAElEQVR4nO...
+  ```
+- a file's content as a **Buffer** encoded in JSON
+  ```json
+  {
+      "type": "Buffer",
+      "data": [255,216,255,224,0,16,74,70,73,70,0,1,1,0,...]
+  }
+  ```
+- a file's content as an **Array** of bytes
+  ```json
+  [255,216,255,224,0,16,74,70,73,70,0,1,1,0,0,1,0,1,0,0,,...]
+  ```
 
 ## ↩️ Returned values
 
 The "Alcohol Label Recognition" action returns the following value:
 
-* `labels` (array) – An array of labels identified in an input image.
+- `labels` (array) – An array of labels identified in an input image.
 
 Labels are objects. Each label always has property drink which defines the kind of the drink. Possible values: `beer`, `wine`, `vodka`, `whiskey`, `bourbon`, `brandy`, `cognac`, `rum`, `tekila`, `liqueur`.
 

@@ -1,9 +1,6 @@
 import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
-import {
-  MakeRequestParams,
-  ProfileEnrichmentResult,
-} from "../common/types";
+import { MakeRequestParams, ProfileEnrichmentResult } from "../common/types";
 
 export default defineApp({
   type: "app",
@@ -15,15 +12,18 @@ export default defineApp({
     },
     _getHeaders(headers: object = {}): object {
       return {
-        "Authorization": `Bearer ${this.$auth.access_token}`,
+        Authorization: `Bearer ${this.$auth.access_token}`,
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         "User-Agent": "@PipedreamHQ/pipedream v0.1",
         ...headers,
       };
     },
     async _makeRequest({
-      $ = this, path, headers, ...otherConfig
+      $ = this,
+      path,
+      headers,
+      ...otherConfig
     }: MakeRequestParams): Promise<object> {
       return axios($, {
         url: this._getUrl(path),
@@ -34,7 +34,7 @@ export default defineApp({
     async enrichProfile({
       params,
       ...args
-    }: { params?: object; } = {}): Promise<ProfileEnrichmentResult> {
+    }: { params?: object } = {}): Promise<ProfileEnrichmentResult> {
       return this._makeRequest({
         path: "/enrichment",
         params: {

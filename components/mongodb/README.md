@@ -20,17 +20,17 @@ First, [log in to Mongo Atlas](https://account.mongodb.com/account/login) to com
 
 First, create a dedicated user for connecting MongoDB to Pipedream.
 
-Select the MongoDB project where your cluster resides, then select the *Database Access* tab. Here, you'll see a list of users who can connect to your MongoDB cluster.
+Select the MongoDB project where your cluster resides, then select the _Database Access_ tab. Here, you'll see a list of users who can connect to your MongoDB cluster.
 
-Click *Create new database user* to get started.
+Click _Create new database user_ to get started.
 
 ![Open the MongoDB project from within MongoDB Atlas and select the Database Access panel, then create the user](https://res.cloudinary.com/pipedreamin/image/upload/v1715025845/marketplace/apps/mongodb/CleanShot_2024-05-06_at_16.02.42_apamii.png)
 
-In the new pop-up, choose the *Password* authentication method first. Name the user `pipedream` so it’s easy to remember which service this user account is used for.
+In the new pop-up, choose the _Password_ authentication method first. Name the user `pipedream` so it’s easy to remember which service this user account is used for.
 
 Generate a password and select a pre-built or custom role. Pre-built roles offer options like read-only or read and write access to all databases in the cluster. For more fine-tuned control, like restricting Pipedream to reading a single database, use a custom role.
 
-Finally click *Add user* to create this new user account.
+Finally click _Add user_ to create this new user account.
 
 ![Filling out the details of the new user account in MongoDB Atlas for connecting this new user to Pipedream](https://res.cloudinary.com/pipedreamin/image/upload/v1715026023/marketplace/apps/mongodb/CleanShot_2024-05-06_at_16.06.22_rfz4ur.png)
 
@@ -38,7 +38,7 @@ Finally click *Add user* to create this new user account.
 
 Now, with a dedicated MongoDB user, connect to Pipedream. Return to Pipedream to set up a new MongoDB action in a workflow or to add your MongoDB account in the Connected Accounts area.
 
-Copy and paste the *Username* and *Password* fields from the previous step, when you created the `pipedream` user in Mongo Atlas.
+Copy and paste the _Username_ and _Password_ fields from the previous step, when you created the `pipedream` user in Mongo Atlas.
 
 To find your database hostname, go to the **Databases** view in Mongo Atlas and click the **Connect** button for your chosen database.
 

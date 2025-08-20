@@ -6,29 +6,22 @@ import { FACE_ANALYTICS_MODE_OPTIONS } from "../../common/constants";
 export default defineAction({
   key: "zoho_catalyst-perform-face-detection-and-analysis",
   name: "Perform Face Detection and Analysis",
-  description: "Perform face detection and analysis on an image. [See the documentation](https://catalyst.zoho.com/help/api/zia/face-analytics.html)",
+  description:
+    "Perform face detection and analysis on an image. [See the documentation](https://catalyst.zoho.com/help/api/zia/face-analytics.html)",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     projectId: {
-      propDefinition: [
-        app,
-        "projectId",
-      ],
+      propDefinition: [app, "projectId"],
     },
     imagePath: {
-      propDefinition: [
-        app,
-        "imagePath",
-      ],
+      propDefinition: [app, "imagePath"],
     },
     mode: {
-      propDefinition: [
-        app,
-        "mode",
-      ],
-      description: "Denotes the number of facial landmarks to be detected in a face.",
+      propDefinition: [app, "mode"],
+      description:
+        "Denotes the number of facial landmarks to be detected in a face.",
       options: FACE_ANALYTICS_MODE_OPTIONS,
     },
     emotion: {
@@ -54,17 +47,10 @@ export default defineAction({
     },
   },
   async run({ $ }): Promise<object> {
-    const {
-      imagePath, projectId,
-    } = this;
+    const { imagePath, projectId } = this;
 
     const data = getImageFormData(imagePath);
-    for (const prop of [
-      "mode",
-      "emotion",
-      "age",
-      "gender",
-    ]) {
+    for (const prop of ["mode", "emotion", "age", "gender"]) {
       if (this[prop]) {
         data.append(prop, this[prop].toString());
       }

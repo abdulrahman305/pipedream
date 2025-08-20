@@ -12,10 +12,7 @@ export default defineSource({
   props: {
     ...common.props,
     userKey: {
-      propDefinition: [
-        common.props.googleWorkspace,
-        "userKey",
-      ],
+      propDefinition: [common.props.googleWorkspace, "userKey"],
     },
   },
   methods: {
@@ -32,4 +29,3 @@ export default defineSource({
     },
   },
 });
-

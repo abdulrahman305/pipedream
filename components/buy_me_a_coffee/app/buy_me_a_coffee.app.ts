@@ -12,15 +12,18 @@ export default defineApp({
     },
     _getHeaders(headers: object = {}): object {
       return {
-        "Authorization": `Bearer ${this.$auth.access_token}`,
+        Authorization: `Bearer ${this.$auth.access_token}`,
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         "User-Agent": "@PipedreamHQ/pipedream v0.1",
         ...headers,
       };
     },
     async _makeRequest({
-      $ = this, path, headers, ...otherConfig
+      $ = this,
+      path,
+      headers,
+      ...otherConfig
     }: MakeRequestParams): Promise<object> {
       return axios($, {
         url: this._getUrl(path),

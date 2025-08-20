@@ -1,6 +1,6 @@
 export default {
   listCompanies: {
-    "displayingFields": [
+    displayingFields: [
       "company.createdAt",
       "company.type",
       "company.phone",
@@ -27,30 +27,30 @@ export default {
       "company.photo",
       "company.id",
     ],
-    "filterQuery": {
-      "group": {
-        "rules": [
+    filterQuery: {
+      group: {
+        rules: [
           {
-            "condition": "IS_AFTER",
-            "moduleName": "Company",
-            "field": {
-              "fieldName": "company.createdAt",
-              "displayName": "Created At",
-              "type": "DateTime",
+            condition: "IS_AFTER",
+            moduleName: "Company",
+            field: {
+              fieldName: "company.createdAt",
+              displayName: "Created At",
+              type: "DateTime",
             },
-            "data": "Jan 01, 1970 05:30 AM",
-            "eventType": "DateTime",
+            data: "Jan 01, 1970 05:30 AM",
+            eventType: "DateTime",
           },
         ],
       },
     },
-    "sort": {
-      "fieldName": "company.name",
-      "order": "asc",
+    sort: {
+      fieldName: "company.name",
+      order: "asc",
     },
   },
   listContacts: {
-    "displayingFields": [
+    displayingFields: [
       "contact.company.name",
       "contact.company.id",
       "contact.company.photo",
@@ -93,30 +93,30 @@ export default {
       "contact.id",
       "contact.createdAt",
     ],
-    "filterQuery": {
-      "group": {
-        "rules": [
+    filterQuery: {
+      group: {
+        rules: [
           {
-            "condition": "IS_AFTER",
-            "moduleName": "Contact",
-            "field": {
-              "fieldName": "contact.createdAt",
-              "displayName": "Created At",
-              "type": "DateTime",
+            condition: "IS_AFTER",
+            moduleName: "Contact",
+            field: {
+              fieldName: "contact.createdAt",
+              displayName: "Created At",
+              type: "DateTime",
             },
-            "data": "Jan 01, 1970 05:30 AM",
-            "eventType": "DateTime",
+            data: "Jan 01, 1970 05:30 AM",
+            eventType: "DateTime",
           },
         ],
       },
     },
-    "sort": {
-      "fieldName": "contact.createdAt",
-      "order": "desc",
+    sort: {
+      fieldName: "contact.createdAt",
+      order: "desc",
     },
   },
   listDeals: {
-    "displayingFields": [
+    displayingFields: [
       "deal.id",
       "deal.title",
       "deal.primaryContact.totalActivities",
@@ -151,66 +151,66 @@ export default {
       "deal.primaryContact.firstName",
       "deal.primaryContact.lastName",
     ],
-    "filterQuery": {
-      "group": {
-        "operator": "AND",
-        "rules": [
+    filterQuery: {
+      group: {
+        operator: "AND",
+        rules: [
           {
-            "condition": "IS_AFTER",
-            "moduleName": "Deal",
-            "field": {
-              "fieldName": "deal.createdAt",
-              "displayName": "Created At",
-              "type": "DateTime",
+            condition: "IS_AFTER",
+            moduleName: "Deal",
+            field: {
+              fieldName: "deal.createdAt",
+              displayName: "Created At",
+              type: "DateTime",
             },
-            "data": "Jan 01, 1970 05:30 AM",
-            "eventType": "DateTime",
+            data: "Jan 01, 1970 05:30 AM",
+            eventType: "DateTime",
           },
         ],
       },
     },
-    "sort": {
-      "fieldName": "deal.createdAt",
-      "order": "desc",
+    sort: {
+      fieldName: "deal.createdAt",
+      order: "desc",
     },
-    "moduleId": 4,
+    moduleId: 4,
   },
   listStages: (group) => ({
-    "query": {
-      "group": {
-        "operator": "AND",
-        "rules": [
+    query: {
+      group: {
+        operator: "AND",
+        rules: [
           {
-            "condition": "EQUALS",
-            "data": {
-              "group": group,
-              "value": "",
+            condition: "EQUALS",
+            data: {
+              group: group,
+              value: "",
             },
-            "field": {
-              "fieldName": "deal.pipeline",
-              "displayName": "Pipeline",
-              "type": "Select",
+            field: {
+              fieldName: "deal.pipeline",
+              displayName: "Pipeline",
+              type: "Select",
             },
           },
           {
-            "group": {
-              "operator": "AND",
-              "rules": [
+            group: {
+              operator: "AND",
+              rules: [
                 {
-                  "condition": "EQUALS",
-                  "data": "$MYSELF$",
-                  "field": {
-                    "fieldName": "deal.owner",
+                  condition: "EQUALS",
+                  data: "$MYSELF$",
+                  field: {
+                    fieldName: "deal.owner",
                   },
-                  "moduleName": "Deal",
+                  moduleName: "Deal",
                 },
                 {
-                  "condition": "EQUALS",
-                  "data": "Open",
-                  "field": {
-                    "fieldName": "deal.status",
+                  condition: "EQUALS",
+                  data: "Open",
+                  field: {
+                    fieldName: "deal.status",
                   },
-                  "moduleName": "Deal",
+                  moduleName: "Deal",
                 },
               ],
             },

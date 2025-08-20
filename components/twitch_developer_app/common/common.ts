@@ -4,8 +4,10 @@ import { Condition } from "./types";
 
 // Notification request headers
 const TWITCH_MESSAGE_ID = "Twitch-Eventsub-Message-Id".toLowerCase();
-const TWITCH_MESSAGE_TIMESTAMP = "Twitch-Eventsub-Message-Timestamp".toLowerCase();
-const TWITCH_MESSAGE_SIGNATURE = "Twitch-Eventsub-Message-Signature".toLowerCase();
+const TWITCH_MESSAGE_TIMESTAMP =
+  "Twitch-Eventsub-Message-Timestamp".toLowerCase();
+const TWITCH_MESSAGE_SIGNATURE =
+  "Twitch-Eventsub-Message-Signature".toLowerCase();
 const MESSAGE_TYPE = "Twitch-Eventsub-Message-Type".toLowerCase();
 
 // Notification message types
@@ -53,22 +55,22 @@ export default {
     },
   },
   async run(event) {
-    const {
-      body,
-      bodyRaw,
-      headers,
-    } = event;
+    const { body, bodyRaw, headers } = event;
 
     if (!body) return;
 
     const secretToken = this.db.get("secretToken");
-    const message = (headers[TWITCH_MESSAGE_ID] +
-      headers[TWITCH_MESSAGE_TIMESTAMP] +
-      bodyRaw);
+    const message =
+      headers[TWITCH_MESSAGE_ID] + headers[TWITCH_MESSAGE_TIMESTAMP] + bodyRaw;
 
-    if (true ===
-      this.twitch.verifyWebhookRequest(message, secretToken, headers[TWITCH_MESSAGE_SIGNATURE])) {
-
+    if (
+      true ===
+      this.twitch.verifyWebhookRequest(
+        message,
+        secretToken,
+        headers[TWITCH_MESSAGE_SIGNATURE],
+      )
+    ) {
       const notification = body;
 
       if (MESSAGE_TYPE_NOTIFICATION === headers[MESSAGE_TYPE]) {
@@ -90,7 +92,9 @@ export default {
         });
         console.log(`${notification.subscription.type} notifications revoked!`);
         console.log(`reason: ${notification.subscription.status}`);
-        console.log(`condition: ${JSON.stringify(notification.subscription.condition, null, 4)}`);
+        console.log(
+          `condition: ${JSON.stringify(notification.subscription.condition, null, 4)}`,
+        );
       } else {
         this.http.respond({
           status: 204,
@@ -103,6 +107,5 @@ export default {
         status: 403,
       });
     }
-
   },
 };

@@ -1,7 +1,5 @@
 import { Pipedream } from "@pipedream/types";
-import {
-  ListFields, MessageFields, TweetFields, UserFields,
-} from "./fields";
+import { ListFields, MessageFields, TweetFields, UserFields } from "./fields";
 import FormData from "form-data";
 
 interface FallbackError {
@@ -17,7 +15,7 @@ interface PaginationParams {
   maxResults?: number;
 }
 
-interface PaginatedRequest extends PdAxiosRequest, PaginationParams { }
+interface PaginatedRequest extends PdAxiosRequest, PaginationParams {}
 
 export interface HttpRequestParams extends PdAxiosRequest, FallbackError {
   url: string;
@@ -32,7 +30,7 @@ export interface HttpRequestParams extends PdAxiosRequest, FallbackError {
 
 export interface PaginatedRequestParams
   extends HttpRequestParams,
-  PaginationParams { }
+    PaginationParams {}
 
 export interface AddUserToListParams extends PdAxiosRequest, FallbackError {
   listId: string;
@@ -68,7 +66,10 @@ interface TweetId {
   tweetId: string;
 }
 
-export interface DeleteTweetParams extends PdAxiosRequest, TweetId, FallbackError { }
+export interface DeleteTweetParams
+  extends PdAxiosRequest,
+    TweetId,
+    FallbackError {}
 
 export interface FollowUserParams extends PdAxiosRequest, FallbackError {
   data: {
@@ -76,49 +77,77 @@ export interface FollowUserParams extends PdAxiosRequest, FallbackError {
   };
 }
 
-export interface GetDirectMessagesParams extends PaginatedRequest, FallbackError {
+export interface GetDirectMessagesParams
+  extends PaginatedRequest,
+    FallbackError {
   params?: MessageFields & {
     event_types: "MessageCreate";
   };
 }
 
-export interface GetUserLikedTweetParams extends PaginatedRequest, UserId, FallbackError {
+export interface GetUserLikedTweetParams
+  extends PaginatedRequest,
+    UserId,
+    FallbackError {
   params?: TweetFields;
 }
 
-export interface GetListTweetsParams extends PaginatedRequest, ListId, FallbackError {
+export interface GetListTweetsParams
+  extends PaginatedRequest,
+    ListId,
+    FallbackError {
   params?: TweetFields;
 }
 
-export interface GetUserOwnedListsParams extends PaginatedRequest, UserId, FallbackError {
+export interface GetUserOwnedListsParams
+  extends PaginatedRequest,
+    UserId,
+    FallbackError {
   params?: ListFields;
 }
 
-export interface GetUserMentionsParams extends PaginatedRequest, UserId, FallbackError {
+export interface GetUserMentionsParams
+  extends PaginatedRequest,
+    UserId,
+    FallbackError {
   params?: TweetFields;
 }
 
-export interface GetUserTweetsParams extends PaginatedRequest, UserId, FallbackError {
+export interface GetUserTweetsParams
+  extends PaginatedRequest,
+    UserId,
+    FallbackError {
   params?: TweetFields & {
     since_id?: string;
   };
 }
 
-export interface GetUserFollowedListsParams extends PaginatedRequest, UserId, FallbackError {
+export interface GetUserFollowedListsParams
+  extends PaginatedRequest,
+    UserId,
+    FallbackError {
   params?: ListFields;
 }
 
-export interface GetAuthenticatedUserParams extends PdAxiosRequest, FallbackError {
+export interface GetAuthenticatedUserParams
+  extends PdAxiosRequest,
+    FallbackError {
   params?: UserFields;
 }
 
-export interface GetUserParams extends GetAuthenticatedUserParams, UserId, FallbackError { }
+export interface GetUserParams
+  extends GetAuthenticatedUserParams,
+    UserId,
+    FallbackError {}
 
 export interface GetTweetParams extends PdAxiosRequest, TweetId, FallbackError {
   params?: TweetFields;
 }
 
-export interface GetUserFollowersParams extends PaginatedRequest, UserId, FallbackError {
+export interface GetUserFollowersParams
+  extends PaginatedRequest,
+    UserId,
+    FallbackError {
   params?: UserFields;
 }
 
@@ -132,18 +161,27 @@ export interface LikeTweetParams extends PdAxiosRequest, FallbackError {
 export type RetweetParams = LikeTweetParams;
 
 export interface SearchTweetsParams extends PaginatedRequest, FallbackError {
-  params: { query: string; };
+  params: { query: string };
 }
 
-export interface SendMessageParams extends PdAxiosRequest, UserId, FallbackError {
+export interface SendMessageParams
+  extends PdAxiosRequest,
+    UserId,
+    FallbackError {
   data: {
     text: string;
   };
 }
 
-export interface UnfollowUserParams extends PdAxiosRequest, UserId, FallbackError { }
+export interface UnfollowUserParams
+  extends PdAxiosRequest,
+    UserId,
+    FallbackError {}
 
-export interface UnlikeTweetParams extends PdAxiosRequest, TweetId, FallbackError { }
+export interface UnlikeTweetParams
+  extends PdAxiosRequest,
+    TweetId,
+    FallbackError {}
 
 export interface UploadMediaParams extends PdAxiosRequest, FallbackError {
   data: FormData;

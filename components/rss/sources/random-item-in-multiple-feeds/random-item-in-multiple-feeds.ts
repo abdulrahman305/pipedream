@@ -12,10 +12,7 @@ export default defineSource({
   props: {
     ...rssCommon.props,
     urls: {
-      propDefinition: [
-        rss,
-        "urls",
-      ],
+      propDefinition: [rss, "urls"],
     },
   },
   dedupe: "unique",

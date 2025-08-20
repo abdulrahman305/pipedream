@@ -5,7 +5,8 @@ export default defineAction({
   key: "clientary-create-expense",
   version: "0.0.1",
   name: "Create Expense",
-  description: "Creates a new expense. [See docs here](https://www.clientary.com/api/expenses)",
+  description:
+    "Creates a new expense. [See docs here](https://www.clientary.com/api/expenses)",
   type: "action",
   props: {
     app,
@@ -27,18 +28,12 @@ export default defineAction({
       optional: true,
     },
     client: {
-      propDefinition: [
-        app,
-        "clientId",
-      ],
+      propDefinition: [app, "clientId"],
       description: "Client ID related to the expense",
       optional: true,
     },
     project: {
-      propDefinition: [
-        app,
-        "projectId",
-      ],
+      propDefinition: [app, "projectId"],
       description: "Project ID related to the expense",
       optional: true,
     },
@@ -54,7 +49,10 @@ export default defineAction({
         incurred_on: this.incurredOn,
       },
     });
-    $.export("$summary", `Successfully created an expense (ID: ${response.id})`);
+    $.export(
+      "$summary",
+      `Successfully created an expense (ID: ${response.id})`,
+    );
     return response;
   },
 });

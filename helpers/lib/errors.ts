@@ -20,21 +20,26 @@ export class HTTPError extends Error {
 export class NoProtocolError extends Error {
   name: string;
 
-  constructor (message: string) {
+  constructor(message: string) {
     super(message);
     this.name = this.constructor.name;
     Error.captureStackTrace(this, this.constructor);
   }
 }
 
-export function createHTTPError(code: number, name: string): (message: string) => HTTPError {
+export function createHTTPError(
+  code: number,
+  name: string,
+): (message: string) => HTTPError {
   return function (message: string): HTTPError {
     return new HTTPError(code, name, message);
   };
 }
 
-export function generateHTTPErrorClasses(): { [code: number]: (message: string) => HTTPError; } {
-  const errorClasses: { [code: number]: (message: string) => HTTPError; } = {};
+export function generateHTTPErrorClasses(): {
+  [code: number]: (message: string) => HTTPError;
+} {
+  const errorClasses: { [code: number]: (message: string) => HTTPError } = {};
   const badStatusCodes = Object.keys(STATUS_CODES)
     .map((code) => Number(code))
     .filter((code) => code >= 400);

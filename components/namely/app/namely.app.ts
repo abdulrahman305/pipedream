@@ -16,9 +16,7 @@ export default defineApp({
         });
 
         return users.map((user) => ({
-          label: user.first_name + (user.last_name
-            ? " " + user.last_name
-            : ""),
+          label: user.first_name + (user.last_name ? " " + user.last_name : ""),
           value: user.id,
         }));
       },
@@ -74,9 +72,7 @@ export default defineApp({
     _apiUrl() {
       return `https://${this._subdomain()}.namely.com/api/v1`;
     },
-    async _makeRequest({
-      $ = this, path, ...args
-    }) {
+    async _makeRequest({ $ = this, path, ...args }) {
       return axios($, {
         url: `${this._apiUrl()}/${path}`,
         headers: {
@@ -85,9 +81,7 @@ export default defineApp({
         ...args,
       });
     },
-    async getUsers({
-      $, page, perPage,
-    }) {
+    async getUsers({ $, page, perPage }) {
       const response = await this._makeRequest({
         $,
         path: "profiles",
@@ -99,9 +93,7 @@ export default defineApp({
 
       return response.profiles;
     },
-    async getUser({
-      $, userId,
-    }) {
+    async getUser({ $, userId }) {
       const response = await this._makeRequest({
         $,
         path: `profiles/${userId}`,
@@ -109,33 +101,28 @@ export default defineApp({
 
       return response;
     },
-    async createUser({
-      $, data,
-    }) {
+    async createUser({ $, data }) {
       return this._makeRequest({
         $,
         path: "profiles",
         method: "post",
         data: {
-          profiles: [
-            data,
-          ],
+          profiles: [data],
         },
       });
     },
-    async updateUser({
-      $, userId, data,
-    }) {
-      return this._makeRequest({
-        $,
-        path: `profiles/${userId}`,
-        method: "put",
-        data: {
-          profiles: [
-            data,
-          ],
+    async updateUser({ $, userId, data }) {
+      return this._makeRequest(
+        {
+          $,
+          path: `profiles/${userId}`,
+          method: "put",
+          data: {
+            profiles: [data],
+          },
         },
-      }, $);
+        $,
+      );
     },
   },
 });

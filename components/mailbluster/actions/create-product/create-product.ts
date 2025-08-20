@@ -3,7 +3,8 @@ import mailbluster from "../../app/mailbluster.app";
 export default {
   key: "mailbluster-create-product",
   name: "Create New Product",
-  description: "Create a new product. [See the documentation](https://app.mailbluster.com/api-doc/products)",
+  description:
+    "Create a new product. [See the documentation](https://app.mailbluster.com/api-doc/products)",
   type: "action",
   version: "0.0.2",
   props: {
@@ -20,10 +21,7 @@ export default {
     },
   },
   async run({ $ }) {
-    const {
-      mailbluster,
-      ...data
-    } = this;
+    const { mailbluster, ...data } = this;
 
     const response = await mailbluster.createProduct({
       $,

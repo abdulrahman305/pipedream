@@ -5,7 +5,8 @@ export default defineAction({
   name: "Find Users",
   version: "0.0.1",
   key: "rise-find-users",
-  description: "Find a list of users. [See docs here](https://help.rise.com/en/articles/4177145-users-api)",
+  description:
+    "Find a list of users. [See docs here](https://help.rise.com/en/articles/4177145-users-api)",
   type: "action",
   props: {
     rise,

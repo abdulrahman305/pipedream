@@ -54,6 +54,7 @@ To demote an admin back to a member, click the 3 dots to the right of their emai
 Visit your [workspace settings](https://pipedream.com/settings/account) and scroll down to the **API** section. You'll see your workspace ID here.
 
 ### Requiring Two-Factor Authentication
+
 As a workspace admin or owner on the [Business plan](https://pipedream.com/pricing), you're able to **require** that all members in your workspace must enable 2FA on their account.
 
 1. Open the Authentication tab in your [workspace settings](https://pipedream.com/settings/authentication) (you must be an admin or owner to make changes here)
@@ -63,12 +64,11 @@ As a workspace admin or owner on the [Business plan](https://pipedream.com/prici
 
 ![Require 2FA Toggle](https://res.cloudinary.com/pipedreamin/image/upload/v1695147277/require_2fa_xha6yc.png)
 
-::: warning  Anyone who is currently logged in to Pipedream will be temporarily signed out until they set up 2FA
+::: warning Anyone who is currently logged in to Pipedream will be temporarily signed out until they set up 2FA
 
 If anyone is actively making changes to a workflow, their session may be interrupted. We recommend enabling the 2FA requirement in off hours.
 
 :::
-
 
 ### Configuring Single Sign-On (SSO)
 

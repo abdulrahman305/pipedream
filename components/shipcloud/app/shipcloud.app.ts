@@ -5,14 +5,16 @@ import {
   CreateShipmentParams,
   CreateShipmentQuoteParams,
   DeleteHookParams,
-  GetShipmentParams, HttpRequestParams,
+  GetShipmentParams,
+  HttpRequestParams,
 } from "../common/requestParams";
 import {
-  Address, Shipment, ShipmentQuote, Webhook,
+  Address,
+  Shipment,
+  ShipmentQuote,
+  Webhook,
 } from "../common/responseSchemas";
-import {
-  CARRIER_OPTIONS, SERVICE_OPTIONS,
-} from "../common/constants";
+import { CARRIER_OPTIONS, SERVICE_OPTIONS } from "../common/constants";
 import { OptionsObject } from "../common/types";
 
 export default defineApp({
@@ -63,22 +65,20 @@ export default defineApp({
 
       return response.shipments ?? [];
     },
-    async getShipment({
-      id, ...params
-    }: GetShipmentParams): Promise<Shipment> {
+    async getShipment({ id, ...params }: GetShipmentParams): Promise<Shipment> {
       return this._httpRequest({
         endpoint: `/shipments/${id}`,
         ...params,
       });
     },
-    getShipmentLabel({
-      packages, price, to,
-    }: Shipment) {
+    getShipmentLabel({ packages, price, to }: Shipment) {
       return `${packages.length} packages ($${price}) to ${this.getAddressLabel(
         to,
       )}`;
     },
-    async createShipmentQuote(params: CreateShipmentQuoteParams): Promise<ShipmentQuote> {
+    async createShipmentQuote(
+      params: CreateShipmentQuoteParams,
+    ): Promise<ShipmentQuote> {
       return this._httpRequest({
         method: "POST",
         endpoint: "/shipment_quotes",
@@ -156,8 +156,7 @@ export default defineApp({
     package: {
       type: "object",
       label: "Package",
-      description:
-        `Object describing the package. Required fields are \`height\`, \`length\`, \`weight\` and \`width\`.
+      description: `Object describing the package. Required fields are \`height\`, \`length\`, \`weight\` and \`width\`.
         \\
         [(See more info on the Shipcloud Docs)](https://developers.shipcloud.io/reference/#creating-a-shipment)`,
     },

@@ -269,7 +269,9 @@ class ServerClient {
    * @returns The authorization header as a string.
    */
   private _authorizationHeader(): string {
-    const encoded = Buffer.from(`${this.publicKey}:${this.secretKey}`).toString("base64");
+    const encoded = Buffer.from(`${this.publicKey}:${this.secretKey}`).toString(
+      "base64",
+    );
     return `Basic ${encoded}`;
   }
 
@@ -296,18 +298,19 @@ class ServerClient {
     const url = new URL(`${this.baseURL}/connect${path}`);
 
     if (params) {
-      Object.entries(params).forEach(([
-        key,
-        value,
-      ]) => {
-        if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+      Object.entries(params).forEach(([key, value]) => {
+        if (
+          typeof value === "string" ||
+          typeof value === "number" ||
+          typeof value === "boolean"
+        ) {
           url.searchParams.append(key, value.toString());
         }
       });
     }
 
     const headers = {
-      "Authorization": this._authorizationHeader(),
+      Authorization: this._authorizationHeader(),
       "Content-Type": "application/json",
       ...customHeaders,
     };
@@ -318,11 +321,7 @@ class ServerClient {
       ...fetchOpts,
     };
 
-    if ([
-      "POST",
-      "PUT",
-      "PATCH",
-    ].includes(method.toUpperCase()) && body) {
+    if (["POST", "PUT", "PATCH"].includes(method.toUpperCase()) && body) {
       requestOptions.body = body;
     }
 
@@ -332,7 +331,7 @@ class ServerClient {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const result = await response.json() as unknown as T;
+    const result = (await response.json()) as unknown as T;
     return result;
   }
 
@@ -351,7 +350,9 @@ class ServerClient {
    * console.log(tokenResponse.token);
    * ```
    */
-  async connectTokenCreate(opts: ConnectTokenCreateOpts): Promise<ConnectTokenResponse> {
+  async connectTokenCreate(
+    opts: ConnectTokenCreateOpts,
+  ): Promise<ConnectTokenResponse> {
     const body = {
       // Named external_id in the API, but from the developer's perspective, it's the user's ID
       external_id: opts.external_user_id,
@@ -394,7 +395,10 @@ class ServerClient {
    * console.log(account);
    * ```
    */
-  async getAccount(accountId: string, params: ConnectParams = {}): Promise<Account> {
+  async getAccount(
+    accountId: string,
+    params: ConnectParams = {},
+  ): Promise<Account> {
     return this._makeConnectRequest<Account>(`/accounts/${accountId}`, {
       params,
     });
@@ -413,7 +417,10 @@ class ServerClient {
    * console.log(accounts);
    * ```
    */
-  async getAccountsByApp(appId: string, params: ConnectParams = {}): Promise<Account[]> {
+  async getAccountsByApp(
+    appId: string,
+    params: ConnectParams = {},
+  ): Promise<Account[]> {
     return this._makeConnectRequest<Account[]>(`/accounts/app/${appId}`, {
       params,
     });
@@ -432,10 +439,16 @@ class ServerClient {
    * console.log(accounts);
    * ```
    */
-  async getAccountsByExternalId(externalId: string, params: ConnectParams = {}): Promise<Account[]> {
-    return this._makeConnectRequest<Account[]>(`/accounts/external_id/${externalId}`, {
-      params,
-    });
+  async getAccountsByExternalId(
+    externalId: string,
+    params: ConnectParams = {},
+  ): Promise<Account[]> {
+    return this._makeConnectRequest<Account[]>(
+      `/accounts/external_id/${externalId}`,
+      {
+        params,
+      },
+    );
   }
 
   /**

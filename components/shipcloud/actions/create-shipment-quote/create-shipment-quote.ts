@@ -13,35 +13,20 @@ export default defineAction({
   props: {
     shipcloud,
     carrier: {
-      propDefinition: [
-        shipcloud,
-        "carrier",
-      ],
+      propDefinition: [shipcloud, "carrier"],
     },
     service: {
-      propDefinition: [
-        shipcloud,
-        "service",
-      ],
+      propDefinition: [shipcloud, "service"],
     },
     toAddress: {
-      propDefinition: [
-        shipcloud,
-        "address",
-      ],
+      propDefinition: [shipcloud, "address"],
     },
     fromAddress: {
-      propDefinition: [
-        shipcloud,
-        "address",
-      ],
+      propDefinition: [shipcloud, "address"],
       label: "Sender Address",
     },
     package: {
-      propDefinition: [
-        shipcloud,
-        "package",
-      ],
+      propDefinition: [shipcloud, "package"],
     },
   },
   async run({ $ }): Promise<ShipmentQuote> {
@@ -55,7 +40,8 @@ export default defineAction({
         package: this.package,
       },
     };
-    const data: ShipmentQuote = await this.shipcloud.createShipmentQuote(params);
+    const data: ShipmentQuote =
+      await this.shipcloud.createShipmentQuote(params);
 
     $.export("$summary", "Created shipment quote successfully");
 

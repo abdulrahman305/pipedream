@@ -9,23 +9,15 @@ module.exports = {
   props: {
     ongage,
     email: {
-      propDefinition: [
-        ongage,
-        "email",
-      ],
+      propDefinition: [ongage, "email"],
     },
     haltOnError: {
-      propDefinition: [
-        ongage,
-        "haltOnError",
-      ],
+      propDefinition: [ongage, "haltOnError"],
     },
   },
-  async run () {
+  async run() {
     try {
-      return await this.ongage.findSubscriber(
-        this.email,
-      );
+      return await this.ongage.findSubscriber(this.email);
     } catch (err) {
       if (this.haltOnError) {
         throw err;

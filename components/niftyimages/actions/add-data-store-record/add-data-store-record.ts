@@ -1,9 +1,7 @@
 import niftyimages from "../../app/niftyimages.app";
 import { defineAction } from "@pipedream/types";
 import { ConfigurationError } from "@pipedream/platform";
-import {
-  AddRecordParams, DataStoreField,
-} from "../../common/types";
+import { AddRecordParams, DataStoreField } from "../../common/types";
 
 export default defineAction({
   name: "Add Data Store Record",
@@ -16,8 +14,7 @@ export default defineAction({
     niftyimages,
     dataStoreApiKey: {
       label: "Data Store API Key",
-      description:
-        `The API Key for the Data Store you want to create/update a record on.
+      description: `The API Key for the Data Store you want to create/update a record on.
         \\
         To find this, go to **Data Sources**, choose a Data Store, and click on **"Use Our API"**.
         \\
@@ -34,14 +31,14 @@ export default defineAction({
     try {
       fields = await this.niftyimages.getDataStoreFields(apiKey);
     } catch (err) {
-      throw new ConfigurationError("Error fetching data - please check the **API Key**.");
+      throw new ConfigurationError(
+        "Error fetching data - please check the **API Key**.",
+      );
     }
     const newPropNames = [];
 
     fields.forEach((field) => {
-      const {
-        name, type, date_input_format,
-      } = field;
+      const { name, type, date_input_format } = field;
       newProps[name] = {
         label: this.niftyimages.getFieldLabel(field),
         description: date_input_format
@@ -54,7 +51,8 @@ export default defineAction({
 
     newProps["$fieldNames"] = {
       label: "Fields to Update",
-      description: "Comma-separated list of the fields to be updated (defaults to all).",
+      description:
+        "Comma-separated list of the fields to be updated (defaults to all).",
       type: "string",
       optional: true,
       default: newPropNames.join(),

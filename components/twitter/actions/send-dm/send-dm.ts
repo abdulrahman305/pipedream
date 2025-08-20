@@ -17,10 +17,7 @@ export default defineAction({
   props: {
     ...common.props,
     userNameOrId: {
-      propDefinition: [
-        common.props.app,
-        "userNameOrId",
-      ],
+      propDefinition: [common.props.app, "userNameOrId"],
       label: "Recipient Name or ID",
       optional: false,
     },

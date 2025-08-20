@@ -9,4 +9,4 @@ The Kakao API offers a variety of functionalities that tie into Kakao's diverse 
 - **Social Media Content Sync**: Whenever you post new content on your blog or website, use a Pipedream workflow to share that content automatically on Kakao Story, broadening your reach and engaging with your audience on multiple platforms.
 
 - **User Authentication and Data Collection**: Leverage Pipedream's ability to handle webhook triggers to implement Kakao's social login on your app. Once a user logs in with Kakao, capture their data and store it in a secure database like Google Sheets for further analysis or personalized marketing.
-.
+  .

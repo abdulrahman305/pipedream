@@ -5,7 +5,8 @@ export default defineSource({
   ...common,
   key: "clientary-new-invoice-created",
   name: "New Invoice Created",
-  description: "Emit new events when a new invoice was created. [See the docs](https://www.clientary.com/api/invoices)",
+  description:
+    "Emit new events when a new invoice was created. [See the docs](https://www.clientary.com/api/invoices)",
   version: "0.0.1",
   type: "source",
   dedupe: "unique",

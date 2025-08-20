@@ -10,11 +10,12 @@ The PayPal API on Pipedream allows you to automate payment processing, manage tr
 
 - **Sales Monitoring and Analytics**: Monitor your PayPal transactions to gain insights into sales trends. With each sale, trigger a Pipedream workflow to insert transaction data into a Google Sheet or send it to a BI tool like Tableau for analysis. Set up alerts for large transactions and generate daily or weekly sales reports to keep the team informed.
 
-
 # Troubleshooting
+
 **Why can't I connect my PayPal account in Pipedream?**
 <br>
 The most common issue users run into when trying to connect their account is related to one of the below inputs:
+
 - **Client ID**
 - **Client Secret**
 - **Environment**
