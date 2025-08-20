@@ -4,16 +4,14 @@ import nectar_crm from "../../app/nectar_crm.app";
 export default defineAction({
   key: "nectar_crm-create-appointment",
   name: "Create Appointment",
-  description: "Created a new appointment. [See docs here](https://nectarcrm.docs.apiary.io/#reference/0/compromissos/criar)",
+  description:
+    "Created a new appointment. [See docs here](https://nectarcrm.docs.apiary.io/#reference/0/compromissos/criar)",
   version: "0.0.1",
   type: "action",
   props: {
     nectar_crm,
     contactId: {
-      propDefinition: [
-        nectar_crm,
-        "contactId",
-      ],
+      propDefinition: [nectar_crm, "contactId"],
     },
     subject: {
       label: "Subject",
@@ -22,12 +20,14 @@ export default defineAction({
     },
     beginDate: {
       label: "Begin Date",
-      description: "The begin date of the appointment. E.g. `2022-07-20T00:00:00-03:00`",
+      description:
+        "The begin date of the appointment. E.g. `2022-07-20T00:00:00-03:00`",
       type: "string",
     },
     finishDate: {
       label: "Finish Date",
-      description: "The finish date of the appointment. E.g. `2022-07-20T00:00:00-03:00`",
+      description:
+        "The finish date of the appointment. E.g. `2022-07-20T00:00:00-03:00`",
       type: "string",
     },
     description: {
@@ -51,7 +51,10 @@ export default defineAction({
       },
     });
 
-    $.export("$summary", `Successfully created appointment with id ${response.id}`);
+    $.export(
+      "$summary",
+      `Successfully created appointment with id ${response.id}`,
+    );
 
     return response;
   },

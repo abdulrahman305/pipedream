@@ -4,19 +4,15 @@ API4AI offers a range of artificial intelligence solutions and APIs for diverse 
 
 All [API4AI](https://api4.ai) APIs are subscription-based and managed through [RapidAPI](https://rapidapi.com/api4ai-api4ai-default).
 
-
 👉️️ Website: https://api4.ai  
 📩 Email: hello@api4.ai  
-💬 Chat: https://t.me/a4a_support_bot  
-
-
+💬 Chat: https://t.me/a4a_support_bot
 
 # Getting Started
 
 ## 🚀 Register and Subscribe to API4AI APIs on RapidAPI
 
 To access our APIs, begin at RapidAPI, a renowned API marketplace. Here, you'll find solutions by [API4AI](https://rapidapi.com/api4ai-api4ai-default) and other vendors, available through a subscription model, including free plans. Simply register on RapidAPI and subscribe to preferred API4AI API to start.
-
 
 ## 📖 Detailed documentation for specific actions
 
@@ -27,8 +23,6 @@ To access our APIs, begin at RapidAPI, a renowned API marketplace. Here, you'll 
 - [Furniture & Household Item Recognition](actions/furniture-and-household-item-recognition)
 - [Image Anonymization](actions/image-anonymization)
 - [NSFW Image Recognition](actions/nsfw-image-recognition)
-
-
 
 # Example Use Cases
 

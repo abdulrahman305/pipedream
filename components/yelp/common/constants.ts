@@ -23,15 +23,18 @@ export const ATTRIBUTE_OPTIONS = [
     value: "hot_and_new",
   },
   {
-    label: "Request a Quote - businesses which actively reply to Request a Quote inquiries",
+    label:
+      "Request a Quote - businesses which actively reply to Request a Quote inquiries",
     value: "request_a_quote",
   },
   {
-    label: "Reservation - businesses with Yelp Reservations bookings enabled on their profile page",
+    label:
+      "Reservation - businesses with Yelp Reservations bookings enabled on their profile page",
     value: "reservation",
   },
   {
-    label: "Wait List Reservation - businesses with Yelp Wait List bookings enabled on their profile screen (iOS/Android)",
+    label:
+      "Wait List Reservation - businesses with Yelp Wait List bookings enabled on their profile screen (iOS/Android)",
     value: "waitlist_reservation",
   },
   {
@@ -39,7 +42,8 @@ export const ATTRIBUTE_OPTIONS = [
     value: "deals",
   },
   {
-    label: "Gender Neutral Restrooms - businesses which provide gender neutral restrooms",
+    label:
+      "Gender Neutral Restrooms - businesses which provide gender neutral restrooms",
     value: "gender_neutral_restrooms",
   },
   {
@@ -70,8 +74,12 @@ export const DEVICE_OPTIONS = [
 export const DOCS = {
   categories: "https://docs.developer.yelp.com/docs/resources-categories",
   locales: "https://docs.developer.yelp.com/docs/resources-supported-locales",
-  getBusinessDetails: "https://docs.developer.yelp.com/reference/v3_business_info",
-  listBusinessReviews: "https://docs.developer.yelp.com/reference/v3_business_reviews",
-  searchBusinesses: "https://docs.developer.yelp.com/reference/v3_business_search",
-  searchByPhone: "https://docs.developer.yelp.com/reference/v3_business_phone_search",
+  getBusinessDetails:
+    "https://docs.developer.yelp.com/reference/v3_business_info",
+  listBusinessReviews:
+    "https://docs.developer.yelp.com/reference/v3_business_reviews",
+  searchBusinesses:
+    "https://docs.developer.yelp.com/reference/v3_business_search",
+  searchByPhone:
+    "https://docs.developer.yelp.com/reference/v3_business_phone_search",
 };

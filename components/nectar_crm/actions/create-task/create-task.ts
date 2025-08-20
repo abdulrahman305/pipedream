@@ -5,16 +5,14 @@ import constants from "../common/constants";
 export default defineAction({
   key: "nectar_crm-create-task",
   name: "Create Task",
-  description: "Created a new task. [See docs here](https://nectarcrm.docs.apiary.io/#reference/0/tarefas/criar)",
+  description:
+    "Created a new task. [See docs here](https://nectarcrm.docs.apiary.io/#reference/0/tarefas/criar)",
   version: "0.0.1",
   type: "action",
   props: {
     nectar_crm,
     contactId: {
-      propDefinition: [
-        nectar_crm,
-        "contactId",
-      ],
+      propDefinition: [nectar_crm, "contactId"],
     },
     title: {
       label: "Title",
@@ -23,7 +21,8 @@ export default defineAction({
     },
     dueDate: {
       label: "Due Date",
-      description: "The due date to finish the task. E.g. `2022-07-20T00:00:00-03:00`",
+      description:
+        "The due date to finish the task. E.g. `2022-07-20T00:00:00-03:00`",
       type: "string",
     },
     description: {

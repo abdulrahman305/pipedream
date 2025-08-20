@@ -8,6 +8,7 @@
   }
 }
 
-:not(pre,h1,h2,h3,h4,h5,h6,td) > code::before, :not(pre,h1,h2,h3,h4,h5,h6,td) > code::after {
-  content: '`';
+:not(pre, h1, h2, h3, h4, h5, h6, td) > code::before,
+:not(pre, h1, h2, h3, h4, h5, h6, td) > code::after {
+  content: "`";
 }

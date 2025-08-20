@@ -30,7 +30,7 @@ export default defineApp({
     _getHeaders() {
       return {
         "content-type": "application/json",
-        "Authorization": `Bearer ${this.$auth.api_key}`,
+        Authorization: `Bearer ${this.$auth.api_key}`,
       };
     },
     _getRequestParams(opts) {
@@ -41,21 +41,25 @@ export default defineApp({
       };
     },
     async listOrders($ = this, params) {
-      const response = await axios($, this._getRequestParams({
-        method: "GET",
-        path: "/orders",
-        params: this.filterEmptyValues(params),
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "GET",
+          path: "/orders",
+          params: this.filterEmptyValues(params),
+        }),
+      );
       return response;
     },
     async updateOrderStatus($ = this, params) {
-      const response = await axios($, this._getRequestParams({
-        method: "PUT",
-        path: "/orders",
-        data: [
-          this.filterEmptyValues(params),
-        ],
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "PUT",
+          path: "/orders",
+          data: [this.filterEmptyValues(params)],
+        }),
+      );
       return response;
     },
     async listOrderStickers($ = this, params, asPdf) {
@@ -63,28 +67,26 @@ export default defineApp({
       if (asPdf) {
         path += "/pdf";
       }
-      const response = await axios($, this._getRequestParams({
-        method: "POST",
-        path,
-        data: this.filterEmptyValues(params),
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "POST",
+          path,
+          data: this.filterEmptyValues(params),
+        }),
+      );
       return response;
     },
     filterEmptyValues(obj) {
-      return Object.entries(obj)
-        .reduce((reduction,
-          [
-            key,
-            value,
-          ]) => {
-          if (value === undefined || value === null) {
-            return reduction;
-          }
-          return {
-            ...reduction,
-            [key]: value,
-          };
-        }, {});
+      return Object.entries(obj).reduce((reduction, [key, value]) => {
+        if (value === undefined || value === null) {
+          return reduction;
+        }
+        return {
+          ...reduction,
+          [key]: value,
+        };
+      }, {});
     },
   },
 });

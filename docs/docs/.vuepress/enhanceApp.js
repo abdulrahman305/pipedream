@@ -3,32 +3,34 @@ import VueGtm from "vue-gtm";
 // fork from vue-router@3.0.2
 // src/util/scroll.js
 function getElementPosition(el) {
-  const docEl = document.documentElement
-  const docRect = docEl.getBoundingClientRect()
-  const elRect = el.getBoundingClientRect()
+  const docEl = document.documentElement;
+  const docRect = docEl.getBoundingClientRect();
+  const elRect = el.getBoundingClientRect();
   return {
     x: elRect.left - docRect.left,
     y: elRect.top - docRect.top,
-  }
+  };
 }
 
 /**
  * Fix broken Vuepress scrolling to internal #links
- * 
- * @param {String} to 
+ *
+ * @param {String} to
  * @returns void
  */
 function scrollToAnchor(to) {
-  const targetAnchor = to.hash.slice(1)
-  const targetElement = document.getElementById(targetAnchor) || document.querySelector(`[name='${targetAnchor}']`)
+  const targetAnchor = to.hash.slice(1);
+  const targetElement =
+    document.getElementById(targetAnchor) ||
+    document.querySelector(`[name='${targetAnchor}']`);
 
   if (targetElement) {
     return window.scrollTo({
       top: getElementPosition(targetElement).y,
-      behavior: 'smooth',
-    })
+      behavior: "smooth",
+    });
   } else {
-    return false
+    return false;
   }
 }
 
@@ -50,35 +52,35 @@ export default ({
   // Adapted from https://github.com/vuepress/vuepress-community/blob/7feb5c514090b6901cd7d9998f4dd858e0055b7a/packages/vuepress-plugin-smooth-scroll/src/enhanceApp.ts#L21
   // With a bug fix for handling long pages
   router.options.scrollBehavior = (to, from, savedPosition) => {
-    if (typeof window === "undefined") { 
-      return; 
+    if (typeof window === "undefined") {
+      return;
     }
-    
+
     if (savedPosition) {
       return window.scrollTo({
         top: savedPosition.y,
-        behavior: 'smooth',
-      })
+        behavior: "smooth",
+      });
     } else if (to.hash) {
-      if (Vue.$vuepress.$get('disableScrollBehavior')) {
-        return false
+      if (Vue.$vuepress.$get("disableScrollBehavior")) {
+        return false;
       }
-      const scrollResult = scrollToAnchor(to)
+      const scrollResult = scrollToAnchor(to);
 
       if (scrollResult) {
-        return scrollResult
+        return scrollResult;
       } else {
         window.onload = () => {
-          scrollToAnchor(to)
-        }
+          scrollToAnchor(to);
+        };
       }
     } else {
       return window.scrollTo({
         top: 0,
-        behavior: 'smooth',
-      })
+        behavior: "smooth",
+      });
     }
-  }
+  };
 
   router.addRoutes([
     { path: "/cron", redirect: "/workflows/steps/triggers" },
@@ -108,7 +110,6 @@ export default ({
       path: "/docs/apps/all-apps",
       redirect: "https://pipedream.com/apps",
     },
-    { path: "/workflows/steps/code/", redirect: '/code/nodejs/'}
-    
+    { path: "/workflows/steps/code/", redirect: "/code/nodejs/" },
   ]);
 };

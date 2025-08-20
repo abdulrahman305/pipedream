@@ -16,10 +16,7 @@ export default defineSource({
   props: {
     ...common.props,
     tweetId: {
-      propDefinition: [
-        common.props.app,
-        "tweetId",
-      ],
+      propDefinition: [common.props.app, "tweetId"],
     },
     metricsFields: {
       type: "string[]",

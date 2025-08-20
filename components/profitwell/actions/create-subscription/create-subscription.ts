@@ -42,16 +42,10 @@ export default defineAction({
         "The email address of the user. This will be the display text that is used on the Customers tab.",
     },
     planId: {
-      propDefinition: [
-        profitwell,
-        "planId",
-      ],
+      propDefinition: [profitwell, "planId"],
     },
     planInterval: {
-      propDefinition: [
-        profitwell,
-        "planInterval",
-      ],
+      propDefinition: [profitwell, "planInterval"],
     },
     planCurrency: {
       type: "string",
@@ -65,23 +59,14 @@ export default defineAction({
       type: "string",
       label: "Status",
       optional: true,
-      options: [
-        "active",
-        "trialing",
-      ],
+      options: ["active", "trialing"],
       default: "active",
     },
     value: {
-      propDefinition: [
-        profitwell,
-        "value",
-      ],
+      propDefinition: [profitwell, "value"],
     },
     effectiveDate: {
-      propDefinition: [
-        profitwell,
-        "effectiveDate",
-      ],
+      propDefinition: [profitwell, "effectiveDate"],
       description: EffectiveDateDescription("the subscription starts"),
     },
   },

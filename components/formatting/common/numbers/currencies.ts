@@ -766,9 +766,7 @@ const CURRENCIES = [
   },
 ];
 
-export const CURRENCY_OPTIONS = CURRENCIES.map(({
-  name, symbol, iso,
-}) => ({
+export const CURRENCY_OPTIONS = CURRENCIES.map(({ name, symbol, iso }) => ({
   label: name,
   value: `${iso} - ${symbol} - ${name}`,
 }));

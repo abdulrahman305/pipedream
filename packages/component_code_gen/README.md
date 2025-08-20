@@ -23,13 +23,11 @@ Generate components using OpenAI GPT.
 #### Modify the `.env` file to use your own keys:
 
 1. Add these API Keys to your new `.env` file:
-
    - BROWSERLESS_API_KEY=api_key # required when parsing URL links
    - SUPABASE_URL=https://your-project-url.supabase.co # get this from Supabase Project Settings -> API
    - SUPABASE_API_KEY=service_role_key # get this from Supabase Project Settings -> API
 
 2. Add Azure OpenAI API keys (gpt-4-32k)
-
    - OPENAI_API_TYPE=azure
    - OPENAI_DEPLOYMENT_NAME=deployment-name
    - OPENAI_EMBEDDINGS_DEPLOYMENT_NAME=embeddings-deployment-name

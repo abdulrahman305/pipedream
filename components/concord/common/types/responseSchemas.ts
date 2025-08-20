@@ -1,7 +1,4 @@
-import {
-  Agreement,
-  Organization,
-} from "./entities";
+import { Agreement, Organization } from "./entities";
 
 export interface ListOrganizationsResponse {
   organizations: Organization[];

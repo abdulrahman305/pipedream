@@ -9,4 +9,4 @@ The Google Tag Manager API allows you to manage your tags, triggers, variables, 
 - **Sync Configurations Across Environments**: Set up a Pipedream workflow that syncs tag configurations between staging and production environments in Google Tag Manager. Whenever a tag is updated or published in staging, the same changes can be applied to production automatically.
 
 - **User Access Management**: Create a workflow that automates the process of managing user permissions in Google Tag Manager. When a new team member is added to your project management tool, like Jira or Asana, the workflow can grant them the appropriate level of access in Google Tag Manager.
-.
+  .

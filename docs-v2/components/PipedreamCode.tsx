@@ -6,17 +6,14 @@ interface PipedreamCodeProps {
 }
 
 const fira = Fira_Code({
-  weight: [
-    "400",
-    "600",
-  ],
-  subsets: [
-    "latin",
-  ],
+  weight: ["400", "600"],
+  subsets: ["latin"],
 });
 
-const PipedreamCode = ({ children }: PipedreamCodeProps) => <>
-  <code className={`${fira.className} dark:text-white`}>{children}</code>
-</>;
+const PipedreamCode = ({ children }: PipedreamCodeProps) => (
+  <>
+    <code className={`${fira.className} dark:text-white`}>{children}</code>
+  </>
+);
 
 export default PipedreamCode;

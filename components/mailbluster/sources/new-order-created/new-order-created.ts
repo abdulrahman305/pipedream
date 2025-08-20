@@ -18,7 +18,7 @@ export default defineSource({
     getField() {
       return "orders";
     },
-    validateKeys(key1: string|number, key2: string|number) {
+    validateKeys(key1: string | number, key2: string | number) {
       return moment(key1).isAfter(key2);
     },
   },

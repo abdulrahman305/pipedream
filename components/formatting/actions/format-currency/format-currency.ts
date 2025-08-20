@@ -33,53 +33,40 @@ export default defineAction({
     },
   },
   async run({ $ }): Promise<string> {
-    const {
-      currency, currencyFormat,
-    } = this;
+    const { currency, currencyFormat } = this;
     const input = this.input.toString();
 
-    const [
-      isoCode,
-      currencySymbol,
-      currencyName,
-    ] = currency.split(" - ");
+    const [isoCode, currencySymbol, currencyName] = currency.split(" - ");
 
     let result = (currencyFormat.startsWith("¤") && currencySymbol) || "";
 
-    const [
-      integer,
-      decimal,
-    ] = input.split(input.includes(".")
-      ? "."
-      : ",");
+    const [integer, decimal] = input.split(input.includes(".") ? "." : ",");
     if (isNaN(Number(integer))) {
-      throw new ConfigurationError("**Invalid number** - please check your input.");
+      throw new ConfigurationError(
+        "**Invalid number** - please check your input.",
+      );
     }
 
     const numberString = formatNumber(
       integer,
-      (decimal?.length > 1
-        ? decimal
-        : (decimal ?? "0") + "0"),
-      currencyFormat.includes(",")
-        ? ","
-        : "",
+      decimal?.length > 1 ? decimal : (decimal ?? "0") + "0",
+      currencyFormat.includes(",") ? "," : "",
     );
     result += numberString;
 
     switch (currencyFormat.match(/¤+$/g)?.[0].length) {
-    default:
-      break;
+      default:
+        break;
 
       // ¤¤ - ISO currency symbol: USD, BRL, etc.
-    case 2:
-      result += ` ${isoCode}`;
-      break;
+      case 2:
+        result += ` ${isoCode}`;
+        break;
 
       // ¤¤¤ - Currency display name: United States dollar, Brazilian real, etc.
-    case 3:
-      result += ` ${currencyName}`;
-      break;
+      case 3:
+        result += ` ${currencyName}`;
+        break;
     }
 
     $.export("$summary", "Successfully formatted as currency");

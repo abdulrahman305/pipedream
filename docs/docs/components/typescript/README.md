@@ -36,7 +36,7 @@ If you've never developed Pipedream components before, [start here](/components/
 
 ```bash
 npm run build
-``` 
+```
 
 The build process should print the compiled JS files to your console and produce them at the `/dist` directory.
 
@@ -75,10 +75,10 @@ yarn add --dev @pipedream/types
 
 You'll need a minimal configuration to compile TypeScript components in your application. In the Pipedream registry, we use this setup:
 
-- The `tsconfig.json` in the root of the repo contains [references](https://www.typescriptlang.org/docs/handbook/project-references.html) to component app directories. For example, the root config provides a reference to the `components/rss` directory, which contains its own `tsconfig.json` file. 
+- The `tsconfig.json` in the root of the repo contains [references](https://www.typescriptlang.org/docs/handbook/project-references.html) to component app directories. For example, the root config provides a reference to the `components/rss` directory, which contains its own `tsconfig.json` file.
 - `npm run build` compiles the TypeScript in all directories in `references`.
 - The `tsconfig.json` in each component app directory contains the app-specific TypeScript configuration.
-- The GitHub actions in `.github/workflows` compile and publish our components. 
+- The GitHub actions in `.github/workflows` compile and publish our components.
 
 See [the RSS sources and actions](https://github.com/PipedreamHQ/pipedream/tree/master/components/rss) for an example app configuration.
 

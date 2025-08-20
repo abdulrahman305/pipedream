@@ -1,8 +1,5 @@
 export default {
-  STICKERS_REQUEST_TYPE: [
-    "code128",
-    "qr",
-  ],
+  STICKERS_REQUEST_TYPE: ["code128", "qr"],
   ORDER_STATUSES: [
     {
       label: "New order",
@@ -29,7 +26,8 @@ export default {
       value: "6",
     },
     {
-      label: "The client did not accept the goods (courier delivery and pickup)",
+      label:
+        "The client did not accept the goods (courier delivery and pickup)",
       value: "7",
     },
     {

@@ -27,15 +27,11 @@ export default defineAction({
     getRegExp(): string | RegExp {
       const { regExpString } = this;
       return regExpString.startsWith("/")
-        ? buildRegExp(regExpString, [
-          "g",
-        ])
+        ? buildRegExp(regExpString, ["g"])
         : regExpString;
     },
     getResult(input: string) {
-      return [
-        ...input.matchAll(this.getRegExp()),
-      ].map((match) => ({
+      return [...input.matchAll(this.getRegExp())].map((match) => ({
         match: match[0],
         startPosition: match.index,
         endPosition: match.index + match[0].length,

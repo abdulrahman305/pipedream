@@ -5,7 +5,8 @@ export default defineAction({
   key: "reversecontact-enrich-profile",
   version: "0.0.1",
   name: "Enrich Profile",
-  description: "Returns enriched profile information with the given email. [See docs here](https://docs.reversecontact.com/enriched_profile_check)",
+  description:
+    "Returns enriched profile information with the given email. [See docs here](https://docs.reversecontact.com/enriched_profile_check)",
   type: "action",
   props: {
     app,
@@ -22,9 +23,14 @@ export default defineAction({
         mail: this.email,
       },
     });
-    $.export("$summary", `${response.person ?
-      "Successfully enriched profile." :
-      "Profile cannot be enriched."} You have ${response.credits_left} credit(s) left.`);
+    $.export(
+      "$summary",
+      `${
+        response.person
+          ? "Successfully enriched profile."
+          : "Profile cannot be enriched."
+      } You have ${response.credits_left} credit(s) left.`,
+    );
     return response;
   },
 });

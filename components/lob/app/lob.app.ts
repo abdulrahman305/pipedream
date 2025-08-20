@@ -21,9 +21,7 @@ export default defineApp({
       label: "Address",
       async options() {
         const addresses = await this.listAllAddresses();
-        return addresses.map(({
-          id, name,
-        }) => ({
+        return addresses.map(({ id, name }) => ({
           label: name,
           value: id,
         }));
@@ -34,9 +32,7 @@ export default defineApp({
       label: "Postcard",
       async options() {
         const postcards = await this.listAllPostcards();
-        return postcards.map(({
-          id, description,
-        }) => ({
+        return postcards.map(({ id, description }) => ({
           label: description,
           value: id,
         }));
@@ -91,7 +87,11 @@ export default defineApp({
       let nextPageToken: string;
       const list = [];
       do {
-        const response = await api.list(constants.MAX_LIMIT, undefined, nextPageToken);
+        const response = await api.list(
+          constants.MAX_LIMIT,
+          undefined,
+          nextPageToken,
+        );
         list.push(...response.data);
         nextPageToken = response.nextPageToken;
       } while (nextPageToken);

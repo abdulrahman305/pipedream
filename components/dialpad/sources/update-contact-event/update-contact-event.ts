@@ -18,13 +18,11 @@ export default defineSource({
     contactId: {
       type: "string",
       label: "Contact subscription ID",
-      description: "The event subscription's ID, which is generated after creating an event subscription successfully.",
+      description:
+        "The event subscription's ID, which is generated after creating an event subscription successfully.",
     },
     contactType: {
-      propDefinition: [
-        dialpad,
-        "contactType",
-      ],
+      propDefinition: [dialpad, "contactType"],
     },
   },
   methods: {

@@ -17,10 +17,7 @@ export default defineAction({
   props: {
     ...common.props,
     userNameOrId: {
-      propDefinition: [
-        common.props.app,
-        "userNameOrId",
-      ],
+      propDefinition: [common.props.app, "userNameOrId"],
     },
   },
   methods: {
@@ -42,9 +39,8 @@ export default defineAction({
 
     $.export(
       "$summary",
-      `Successfully ${response.data?.following
-        ? "followed"
-        : "requested to follow"
+      `Successfully ${
+        response.data?.following ? "followed" : "requested to follow"
       } user`,
     );
 

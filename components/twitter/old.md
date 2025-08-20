@@ -4,7 +4,6 @@
 </p>
 <h1 align="center"><strong>Twitter Workflow Automation</strong></h1>
 
-
 <p align="center">Patterns for processing streams of tweets and interacting with the Twitter API</p>
 
 <p align="center">
@@ -16,9 +15,10 @@
 &nbsp;&nbsp;
 
 ## Example Workflows
+
 Workflows are linear sequences of steps — just Node.js code —hosted and run by Pipedream.
 
-**You can copy the workflows below and run them in your Pipedream account** [**for free**](https://docs.pipedream.com/pricing/ ). They run code on new tweets and interact with the Twitter API in creative ways. You can modify or extend them in any way you'd like, [**running your own Node code**](https://docs.pipedream.com/workflows/steps/code/) or using [**pre-built functions**](https://docs.pipedream.com/workflows/steps/actions/) to connect to [**200+ integrated apps**](https://docs.pipedream.com/apps/all-apps/).
+**You can copy the workflows below and run them in your Pipedream account** [**for free**](https://docs.pipedream.com/pricing/). They run code on new tweets and interact with the Twitter API in creative ways. You can modify or extend them in any way you'd like, [**running your own Node code**](https://docs.pipedream.com/workflows/steps/code/) or using [**pre-built functions**](https://docs.pipedream.com/workflows/steps/actions/) to connect to [**200+ integrated apps**](https://docs.pipedream.com/apps/all-apps/).
 
 On copy, you'll be asked to create a [**Twitter event source**](#twitter-event-sources) that triggers your workflow on new tweets matching your target search.
 
@@ -79,7 +79,7 @@ When you create a Twitter bot, you typically have to sign up for a Twitter devel
 ```js
 // Don't care how I get tweets
 for (const tweet of tweets) {
-    // Just want to run code
+  // Just want to run code
 }
 ```
 
@@ -93,11 +93,11 @@ Pipedream runs the code to poll for new tweets matching your search terms, emitt
 
 Then, you can immediately process those tweets in a few different ways:
 
-+ Trigger a Pipedream workflow for each tweet, running hosted Node.js code in real time
-+ Subscribe to a private SSE stream, which also publishes tweets in real time
-+ Access tweets in batch using Pipedream's REST API
+- Trigger a Pipedream workflow for each tweet, running hosted Node.js code in real time
+- Subscribe to a private SSE stream, which also publishes tweets in real time
+- Access tweets in batch using Pipedream's REST API
 
-To get started, [**create a new Twitter search source in the Pipedream UI**](https://pipedream.com/sources?action=create&amp;url=https%3A%2F%2Fgithub.com%2FPipedreamHQ%2Fpipedream%2Fblob%2Fmaster%2Fcomponents%2Ftwitter%2Fsearch-twitter.js&amp;app=twitter&amp;src=twitter.pipedream.com). Name the source, connect your Twitter account, and add your search term:
+To get started, [**create a new Twitter search source in the Pipedream UI**](https://pipedream.com/sources?action=create&url=https%3A%2F%2Fgithub.com%2FPipedreamHQ%2Fpipedream%2Fblob%2Fmaster%2Fcomponents%2Ftwitter%2Fsearch-twitter.js&app=twitter&src=twitter.pipedream.com). Name the source, connect your Twitter account, and add your search term:
 
 <p align="center">
     <kbd><img alt="Twitter Source in Pipedream UI" width="700" src="/images/twitter/twitter-source-in-ui.png"></kbd>
@@ -111,9 +111,7 @@ Then, you can trigger a [**Pipedream workflow**](https://pipedream.com/new) — 
     <kbd><img alt="New workflow source" width="550" src="/images/twitter/new-workflow-source.png"></kbd>
 </p>
 
-
 They should work as is, but you can modify them in any way. For example, you can add a step to [**run any Node.js code**](https://docs.pipedream.com/workflows/steps/code/) or use [**pre-built functions**](https://docs.pipedream.com/workflows/steps/actions/) to send data to other destinations.
-
 
 &nbsp;&nbsp;
 
@@ -121,8 +119,8 @@ They should work as is, but you can modify them in any way. For example, you can
 
 Pipedream provides two other interfaces for accessing events produced by sources:
 
-+ A private SSE stream specific to your source
-+ A REST API
+- A private SSE stream specific to your source
+- A REST API
 
 This way, you can run an event source in Pipedream but access its events in your own application.
 
@@ -153,10 +151,10 @@ $ curl -H "Authorization: Bearer API_KEY" \
 Note the?limit=1query string. You can vary the number of events returned (most recent first) by setting this param.
 
 Please [**reach out**](https://docs.pipedream.com/support/) with any questions or feedback. We're happy to add other Twitter-specific developer resources to this list, and we'd love to hear what can be improved about event sources or the example workflows.
-    
+
 &nbsp;&nbsp;
 
-___
+---
 
 <p align="center">
 Pipedream, Inc. — San Francisco, CA
@@ -166,4 +164,4 @@ Pipedream, Inc. — San Francisco, CA
     <a href="https://pipedream.com/privacy">Privacy</a>
 </p>
 
-___
+---
