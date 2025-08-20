@@ -26,8 +26,8 @@ import fs from "fs";
 
 export default defineComponent({
   async run({ steps, $ }) {
-    return (await fs.promises.readFile('/tmp/your-file')).toString()
-  }
+    return (await fs.promises.readFile("/tmp/your-file")).toString();
+  },
 });
 ```
 
@@ -36,15 +36,15 @@ export default defineComponent({
 Use the [`fs` module](https://nodejs.org/api/fs.html) to write data to `/tmp`:
 
 ```javascript
-import fs from "fs"
-import { file } from 'tmp-promise'
+import fs from "fs";
+import { file } from "tmp-promise";
 
 export default defineComponent({
   async run({ steps, $ }) {
     const { path, cleanup } = await file();
-    await fs.promises.appendFile(path, Buffer.from("hello, world"))
+    await fs.promises.appendFile(path, Buffer.from("hello, world"));
     await cleanup();
-  }
+  },
 });
 ```
 
@@ -58,7 +58,7 @@ import fs from "fs";
 export default defineComponent({
   async run({ steps, $ }) {
     return fs.readdirSync("/tmp");
-  }
+  },
 });
 ```
 
@@ -69,8 +69,8 @@ import fs from "fs";
 
 export default defineComponent({
   async run({ steps, $ }) {
-    return await fs.promises.unlink('/tmp/your-file');
-  }
+    return await fs.promises.unlink("/tmp/your-file");
+  },
 });
 ```
 

@@ -1,7 +1,9 @@
 import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
-  HttpRequestParams, VerifyEmailParams, VerifyEmailResponse,
+  HttpRequestParams,
+  VerifyEmailParams,
+  VerifyEmailResponse,
 } from "../common/types";
 
 export default defineApp({
@@ -24,14 +26,17 @@ export default defineApp({
         },
       });
     },
-    async verifyEmailAddress(args: VerifyEmailParams): Promise<VerifyEmailResponse> {
+    async verifyEmailAddress(
+      args: VerifyEmailParams,
+    ): Promise<VerifyEmailResponse> {
       const response: VerifyEmailResponse = await this._httpRequest({
         endpoint: "/single/check",
         ...args,
       });
 
       const { status } = response;
-      if (status !== "success") throw new Error(`NeverBounce response status: ${status}`);
+      if (status !== "success")
+        throw new Error(`NeverBounce response status: ${status}`);
 
       return response;
     },

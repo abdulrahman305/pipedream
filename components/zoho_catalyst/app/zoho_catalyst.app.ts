@@ -3,7 +3,10 @@ import { axios } from "@pipedream/platform";
 import {
   DetectObjectsParams,
   ExtractTextParams,
-  HttpRequestParams, PerformFaceDetectionParams, PerformModerationParams, Project,
+  HttpRequestParams,
+  PerformFaceDetectionParams,
+  PerformModerationParams,
+  Project,
 } from "../common/types";
 
 export default defineApp({
@@ -16,9 +19,7 @@ export default defineApp({
       description: "Select a **Project** or provide a custom *Project ID*.",
       async options() {
         const projects: Project[] = await this.listProjects();
-        return projects.map(({
-          project_name: label, id: value,
-        }) => ({
+        return projects.map(({ project_name: label, id: value }) => ({
           label,
           value,
         }));
@@ -47,7 +48,7 @@ export default defineApp({
         baseURL: `https://${this.$auth.base_api_uri}/baas/v1`,
         headers: {
           ...headers,
-          "Authorization": `Zoho-oauthtoken ${this.$auth.oauth_access_token}`,
+          Authorization: `Zoho-oauthtoken ${this.$auth.oauth_access_token}`,
         },
         ...args,
       });
@@ -59,7 +60,8 @@ export default defineApp({
       return projects.data;
     },
     async detectObjectsInImage({
-      projectId, ...args
+      projectId,
+      ...args
     }: DetectObjectsParams): Promise<object> {
       return this._httpRequest({
         url: `/project/${projectId}/ml/detect-object`,
@@ -68,7 +70,8 @@ export default defineApp({
       });
     },
     async extractTextFromImage({
-      projectId, ...args
+      projectId,
+      ...args
     }: ExtractTextParams): Promise<object> {
       return this._httpRequest({
         url: `/project/${projectId}/ml/ocr`,
@@ -77,7 +80,8 @@ export default defineApp({
       });
     },
     async performImageModeration({
-      projectId, ...args
+      projectId,
+      ...args
     }: PerformModerationParams): Promise<object> {
       return this._httpRequest({
         url: `/project/${projectId}/ml/imagemoderation`,
@@ -86,7 +90,8 @@ export default defineApp({
       });
     },
     async performImageFaceDetection({
-      projectId, ...args
+      projectId,
+      ...args
     }: PerformFaceDetectionParams): Promise<object> {
       return this._httpRequest({
         url: `/project/${projectId}/ml/faceanalytics`,

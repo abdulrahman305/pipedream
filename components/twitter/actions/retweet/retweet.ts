@@ -16,10 +16,7 @@ export default defineAction({
   props: {
     ...common.props,
     tweetId: {
-      propDefinition: [
-        common.props.app,
-        "tweetId",
-      ],
+      propDefinition: [common.props.app, "tweetId"],
       description: "The ID of the tweet you'd like to retweet",
     },
   },

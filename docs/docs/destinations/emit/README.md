@@ -1,7 +1,6 @@
-
 # Emit events
 
-Like [event sources](/sources/), workflows can emit events. These events can trigger other workflows, or be consumed using Pipedream's [REST API](/api/rest/#get-workflow-emits). 
+Like [event sources](/sources/), workflows can emit events. These events can trigger other workflows, or be consumed using Pipedream's [REST API](/api/rest/#get-workflow-emits).
 
 [[toc]]
 
@@ -15,7 +14,7 @@ export default defineComponent({
     $.send.emit({
       name: "Yoda",
     });
-  }
+  },
 });
 ```
 
@@ -41,9 +40,9 @@ export default defineComponent({
       {
         name: "Yoda",
       },
-      'channel_name'
+      "channel_name",
     );
-  }
+  },
 });
 ```
 
@@ -59,8 +58,8 @@ export default defineComponent({
     $.send.emit({
       name: "Yoda",
     });
-  }
-})
+  },
+});
 ```
 
 **Destination delivery is asynchronous**: emits are sent after your workflow finishes.
@@ -76,7 +75,7 @@ export default defineComponent({
         name,
       });
     }
-  }
+  },
 });
 ```
 
@@ -109,7 +108,7 @@ export default defineComponent({
     $.send.emit({
       name: "Yoda",
     });
-  }
+  },
 });
 ```
 

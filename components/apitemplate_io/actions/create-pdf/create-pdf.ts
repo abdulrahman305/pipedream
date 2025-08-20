@@ -3,17 +3,15 @@ import { defineAction } from "@pipedream/types";
 
 export default defineAction({
   name: "Create a PDF",
-  description: "Create a PDF file with JSON data and your template. [See the docs](https://apitemplate.io/apiv2/#tag/API-Integration/operation/create-pdf) for more information",
+  description:
+    "Create a PDF file with JSON data and your template. [See the docs](https://apitemplate.io/apiv2/#tag/API-Integration/operation/create-pdf) for more information",
   key: "apitemplate_io-create-pdf",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     apiEndpoints: {
-      propDefinition: [
-        app,
-        "apiEndpoints",
-      ],
+      propDefinition: [app, "apiEndpoints"],
     },
     templateId: {
       propDefinition: [
@@ -25,75 +23,42 @@ export default defineAction({
       ],
     },
     data: {
-      propDefinition: [
-        app,
-        "data",
-      ],
+      propDefinition: [app, "data"],
     },
     expiration: {
-      propDefinition: [
-        app,
-        "expiration",
-      ],
+      propDefinition: [app, "expiration"],
     },
     meta: {
-      propDefinition: [
-        app,
-        "meta",
-      ],
+      propDefinition: [app, "meta"],
     },
     exportType: {
-      propDefinition: [
-        app,
-        "exportType",
-      ],
+      propDefinition: [app, "exportType"],
     },
     outputHtml: {
-      propDefinition: [
-        app,
-        "outputHtml",
-      ],
+      propDefinition: [app, "outputHtml"],
     },
     outputFormat: {
-      propDefinition: [
-        app,
-        "outputFormat",
-      ],
+      propDefinition: [app, "outputFormat"],
     },
     filename: {
-      propDefinition: [
-        app,
-        "filename",
-      ],
+      propDefinition: [app, "filename"],
     },
     imageResampleRes: {
-      propDefinition: [
-        app,
-        "imageResampleRes",
-      ],
+      propDefinition: [app, "imageResampleRes"],
     },
     isCmyk: {
-      propDefinition: [
-        app,
-        "isCmyk",
-      ],
+      propDefinition: [app, "isCmyk"],
     },
     async: {
-      propDefinition: [
-        app,
-        "async",
-      ],
+      propDefinition: [app, "async"],
     },
     webhookUrl: {
-      propDefinition: [
-        app,
-        "webhookUrl",
-      ],
+      propDefinition: [app, "webhookUrl"],
     },
   },
   methods: {
     boolToInt(prop) {
-      if (typeof (prop) === "boolean") {
+      if (typeof prop === "boolean") {
         if (prop) {
           return 1;
         }
@@ -117,8 +82,16 @@ export default defineAction({
       webhook_url: this.webhookUrl,
     };
 
-    const response = await this.app.createImage($, this.apiEndpoints, params, this.data);
-    $.export("$summary", `Successfully created a new PDF: ${response.transaction_ref}`);
+    const response = await this.app.createImage(
+      $,
+      this.apiEndpoints,
+      params,
+      this.data,
+    );
+    $.export(
+      "$summary",
+      `Successfully created a new PDF: ${response.transaction_ref}`,
+    );
     return response;
   },
 });

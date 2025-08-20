@@ -14,10 +14,7 @@ export default defineSource({
   props: {
     ...common.props,
     domain: {
-      propDefinition: [
-        common.props.app,
-        "domain",
-      ],
+      propDefinition: [common.props.app, "domain"],
       description: "The domain to watch for new keywords.",
     },
   },

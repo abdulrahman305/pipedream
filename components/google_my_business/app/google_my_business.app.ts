@@ -2,10 +2,17 @@ import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
   CreatePostParams,
-  HttpRequestParams, ListPostsParams, ListReviewsParams, PaginatedRequestParams, UpdateReplyParams,
+  HttpRequestParams,
+  ListPostsParams,
+  ListReviewsParams,
+  PaginatedRequestParams,
+  UpdateReplyParams,
 } from "../common/requestParams";
 import {
-  Account, LocalPost, Location, Review,
+  Account,
+  LocalPost,
+  Location,
+  Review,
 } from "../common/responseSchemas";
 
 export default defineApp({
@@ -18,9 +25,7 @@ export default defineApp({
       description: "Select an **Account** or provide a custom *Account Name*.",
       async options() {
         const accounts: Account[] = await this.listAccounts();
-        return accounts.map(({
-          name, accountName, type,
-        }) => ({
+        return accounts.map(({ name, accountName, type }) => ({
           label: `${accountName ?? name} (${type})`,
           value: this.getCleanName(name) as string,
         }));
@@ -29,43 +34,38 @@ export default defineApp({
     location: {
       type: "string",
       label: "Location",
-      description: "The location whose local posts will be listed. [See the documentation](https://developers.google.com/my-business/content/location-data#filter_results_when_you_list_locations) on how to filter locations.",
+      description:
+        "The location whose local posts will be listed. [See the documentation](https://developers.google.com/my-business/content/location-data#filter_results_when_you_list_locations) on how to filter locations.",
       useQuery: true,
-      async options({
-        account, query,
-      }: Record<string, string>) {
+      async options({ account, query }: Record<string, string>) {
         const filter = query
-          ? (query.match(/[=:]/)
-            ? query
-            : `title="${query}"`).replace(/ /g, "+").replace(/"/g, "%22")
+          ? (query.match(/[=:]/) ? query : `title="${query}"`)
+              .replace(/ /g, "+")
+              .replace(/"/g, "%22")
           : undefined;
 
         const locations: Location[] = await this.listLocations({
           account,
           filter,
         });
-        return locations?.map?.(({
-          name, title,
-        }: Location) => ({
-          label: title,
-          value: this.getCleanName(name) as string,
-        })) ?? [];
+        return (
+          locations?.map?.(({ name, title }: Location) => ({
+            label: title,
+            value: this.getCleanName(name) as string,
+          })) ?? []
+        );
       },
     },
     review: {
       type: "string",
       label: "Review",
       description: "Select a **Review** or provide a custom *Review Name*.",
-      async options({
-        account, location,
-      }: Record<string, string>) {
+      async options({ account, location }: Record<string, string>) {
         const reviews: Review[] = await this.listReviews({
           account,
           location,
         });
-        return reviews?.map?.(({
-          name, title,
-        }: Location) => ({
+        return reviews?.map?.(({ name, title }: Location) => ({
           label: title,
           value: this.getCleanName(name) as string,
         }));
@@ -104,17 +104,15 @@ export default defineApp({
       do {
         const pageSize = Math.min(maxResults - resultCount, maxPerPage);
 
-        const {
-          [resourceName]: resources,
-          nextPageToken,
-        } = await this._httpRequest({
-          params: {
-            ...params,
-            pageSize,
-            pageToken,
-          },
-          ...args,
-        });
+        const { [resourceName]: resources, nextPageToken } =
+          await this._httpRequest({
+            params: {
+              ...params,
+              pageSize,
+              pageToken,
+            },
+            ...args,
+          });
 
         if (resources) result.push(...resources);
         pageToken = nextPageToken;
@@ -130,7 +128,8 @@ export default defineApp({
       return response?.accounts ?? [];
     },
     async listLocations({
-      account, filter,
+      account,
+      filter,
     }: Record<string, string>): Promise<Location[]> {
       const response = await this._httpRequest({
         url: `https://mybusinessbusinessinformation.googleapis.com/v1/accounts/${account}/locations`,
@@ -143,7 +142,8 @@ export default defineApp({
       return response?.locations ?? [];
     },
     async listReviews({
-      account, location,
+      account,
+      location,
     }: ListReviewsParams): Promise<Review[]> {
       const response = await this._httpRequest({
         url: `https://mybusiness.googleapis.com/v4/accounts/${account}/locations/${location}/reviews`,
@@ -151,9 +151,10 @@ export default defineApp({
       });
       return response?.reviews ?? [];
     },
-    async listPosts({
-      account, location, ...args
-    }: ListPostsParams, paginate = true): Promise<LocalPost[]> {
+    async listPosts(
+      { account, location, ...args }: ListPostsParams,
+      paginate = true,
+    ): Promise<LocalPost[]> {
       const url = `https://mybusiness.googleapis.com/v4/accounts/${account}/locations/${location}/localPosts`;
       if (paginate) {
         return this._paginatedRequest({
@@ -162,7 +163,7 @@ export default defineApp({
           ...args,
         });
       } else {
-        const response: { localPosts?: LocalPost[]; } = await this._httpRequest({
+        const response: { localPosts?: LocalPost[] } = await this._httpRequest({
           url,
           pageSize: 100,
         });
@@ -170,7 +171,9 @@ export default defineApp({
       }
     },
     async createPost({
-      account, location, ...args
+      account,
+      location,
+      ...args
     }: CreatePostParams): Promise<object> {
       return this._httpRequest({
         method: "POST",
@@ -179,7 +182,10 @@ export default defineApp({
       });
     },
     async updateReviewReply({
-      account, location, review, ...args
+      account,
+      location,
+      review,
+      ...args
     }: UpdateReplyParams): Promise<object> {
       return this._httpRequest({
         method: "PUT",

@@ -1,7 +1,5 @@
 import { Pipedream } from "@pipedream/types";
-import {
-  Agreement, Folder, Organization,
-} from "./entities";
+import { Agreement, Folder, Organization } from "./entities";
 
 interface PdAxiosRequest {
   $: Pipedream;
@@ -32,7 +30,9 @@ export interface CreateTemplateParams extends PdAxiosRequest, OrganizationId {
   };
 }
 
-export interface CreateDraftFromTemplateParams extends PdAxiosRequest, OrganizationId {
+export interface CreateDraftFromTemplateParams
+  extends PdAxiosRequest,
+    OrganizationId {
   data: OrganizationId & {
     folderId?: Folder["id"];
     title?: string;

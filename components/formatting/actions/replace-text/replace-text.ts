@@ -32,15 +32,9 @@ export default defineAction({
     },
   },
   async run({ $ }) {
-    const {
-      input, findText, replaceText,
-    } = this;
+    const { input, findText, replaceText } = this;
     const isRegExp = findText.startsWith("/");
-    const expression = isRegExp
-      ? buildRegExp(findText, [
-        "g",
-      ])
-      : findText;
+    const expression = isRegExp ? buildRegExp(findText, ["g"]) : findText;
 
     const replaceValue = replaceText ?? "";
 
@@ -59,9 +53,7 @@ export default defineAction({
     }
 
     const matchText = isRegExp
-      ? [
-        ...input.matchAll(expression),
-      ].length
+      ? [...input.matchAll(expression)].length
       : input.includes(findText) && "text";
 
     $.export(

@@ -5,26 +5,18 @@ export default defineAction({
   name: "Create User Invite",
   version: "0.0.1",
   key: "waitwhile-create-user-invite",
-  description: "Create a user invite. [See the doc here](https://developers.waitwhile.com/reference/postinvites)",
+  description:
+    "Create a user invite. [See the doc here](https://developers.waitwhile.com/reference/postinvites)",
   props: {
     waitwhile,
     name: {
-      propDefinition: [
-        waitwhile,
-        "name",
-      ],
+      propDefinition: [waitwhile, "name"],
     },
     email: {
-      propDefinition: [
-        waitwhile,
-        "email",
-      ],
+      propDefinition: [waitwhile, "email"],
     },
     phone: {
-      propDefinition: [
-        waitwhile,
-        "phone",
-      ],
+      propDefinition: [waitwhile, "phone"],
     },
     defaultLocationId: {
       label: "Default Location ID",
@@ -35,12 +27,10 @@ export default defineAction({
     locationIds: {
       label: "Location IDs",
       type: "string[]",
-      description: "Identifier of customer, automatically derived from visitor contact information if not provided.",
+      description:
+        "Identifier of customer, automatically derived from visitor contact information if not provided.",
       optional: true,
-      propDefinition: [
-        waitwhile,
-        "locationId",
-      ],
+      propDefinition: [waitwhile, "locationId"],
     },
     roles: {
       label: "Roles",
@@ -49,10 +39,7 @@ export default defineAction({
       description: "User roles",
     },
     resourceId: {
-      propDefinition: [
-        waitwhile,
-        "resourceId",
-      ],
+      propDefinition: [waitwhile, "resourceId"],
     },
   },
   type: "action",
@@ -70,13 +57,19 @@ export default defineAction({
 
     try {
       const data = await this.waitwhile.createUserInvite(params);
-      $.export("summary", `Successfully created a user invite with ID: ${data.id}`);
+      $.export(
+        "summary",
+        `Successfully created a user invite with ID: ${data.id}`,
+      );
 
       return data;
     } catch (error) {
       const statusCode = error[Object.getOwnPropertySymbols(error)[1]].status;
-      const statusText = error[Object.getOwnPropertySymbols(error)[1]].statusText;
-      throw new Error(`Error status code: ${statusCode}. Error status response: ${statusText}`);
+      const statusText =
+        error[Object.getOwnPropertySymbols(error)[1]].statusText;
+      throw new Error(
+        `Error status code: ${statusCode}. Error status response: ${statusText}`,
+      );
     }
   },
 });

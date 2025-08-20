@@ -2,8 +2,9 @@ export default {
   props: {
     fromEmail: {
       type: "string",
-      label: "\"From\" email address",
-      description: "The sender email address. To include a name, use the format 'Full Name &lt;sender@domain.com&gt;' for the address.",
+      label: '"From" email address',
+      description:
+        "The sender email address. To include a name, use the format 'Full Name &lt;sender@domain.com&gt;' for the address.",
     },
     toEmail: {
       type: "string[]",
@@ -24,8 +25,9 @@ export default {
     },
     replyTo: {
       type: "string",
-      label: "\"Reply To\" email address",
-      description: "Reply To override email address. Defaults to the Reply To set in the sender signature.",
+      label: '"Reply To" email address',
+      description:
+        "Reply To override email address. Defaults to the Reply To set in the sender signature.",
       optional: true,
     },
     customHeaders: {
@@ -95,34 +97,34 @@ export default {
         const params = str.split("|");
         return params.length === 3
           ? {
-            filename: params[0],
-            fileblob: params[1],
-            mimetype: params[2],
-          }
+              filename: params[0],
+              fileblob: params[1],
+              mimetype: params[2],
+            }
           : JSON.parse(str);
       });
     },
     getReplyToHeaders(replyToEmail: string) {
       return replyToEmail
         ? [
-          {
-            header: "Reply-To",
-            value: replyToEmail,
-          },
-        ]
+            {
+              header: "Reply-To",
+              value: replyToEmail,
+            },
+          ]
         : [];
     },
     getCustomHeaderData(headers: any[]) {
       return headers
         ? headers?.map((str) => {
-          const params = str.split("|");
-          return params.length === 2
-            ? {
-              header: params[0],
-              value: params[1],
-            }
-            : JSON.parse(str);
-        })
+            const params = str.split("|");
+            return params.length === 2
+              ? {
+                  header: params[0],
+                  value: params[1],
+                }
+              : JSON.parse(str);
+          })
         : [];
     },
   },

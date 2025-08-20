@@ -12,10 +12,7 @@ export default {
       },
     },
     teamId: {
-      propDefinition: [
-        ninox,
-        "teamId",
-      ],
+      propDefinition: [ninox, "teamId"],
     },
     databaseId: {
       propDefinition: [
@@ -62,14 +59,14 @@ export default {
       });
 
       if (this.getTimestampField() == "modifiedAt") {
-        records.filter((record) => record.createdAt !== record.modifiedAt).slice(-20)
+        records
+          .filter((record) => record.createdAt !== record.modifiedAt)
+          .slice(-20)
           .reverse()
           .forEach(this.emitEvent);
       } else {
-        records.slice(-20).reverse()
-          .forEach(this.emitEvent);
+        records.slice(-20).reverse().forEach(this.emitEvent);
       }
-
     },
   },
   async run() {
@@ -87,7 +84,12 @@ export default {
         },
       });
 
-      records.filter((record) => Date.parse(record[this.getTimestampField()]) >= lastTimestamp).forEach(this.emitEvent);
+      records
+        .filter(
+          (record) =>
+            Date.parse(record[this.getTimestampField()]) >= lastTimestamp,
+        )
+        .forEach(this.emitEvent);
 
       if (records.length < 100) {
         return;

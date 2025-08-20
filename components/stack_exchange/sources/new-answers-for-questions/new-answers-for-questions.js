@@ -1,10 +1,13 @@
 const stack_exchange = require("../../stack_exchange.app");
-const { DEFAULT_POLLING_SOURCE_TIMER_INTERVAL } = require("@pipedream/platform");
+const {
+  DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
+} = require("@pipedream/platform");
 
 module.exports = {
   key: "stack_exchange-new-answers-for-questions",
   name: "New Answers for Specific Questions",
-  description: "Emits an event when a new answer is posted in one of the specified questions",
+  description:
+    "Emits an event when a new answer is posted in one of the specified questions",
   version: "0.0.3",
   dedupe: "unique",
   type: "source",
@@ -12,10 +15,7 @@ module.exports = {
     stack_exchange,
     db: "$.service.db",
     siteId: {
-      propDefinition: [
-        stack_exchange,
-        "siteId",
-      ],
+      propDefinition: [stack_exchange, "siteId"],
     },
     questionIds: {
       propDefinition: [
@@ -71,7 +71,10 @@ module.exports = {
       site: this.siteId,
     };
 
-    const items = this.stack_exchange.answersForQuestions(this.questionIds, searchParams);
+    const items = this.stack_exchange.answersForQuestions(
+      this.questionIds,
+      searchParams,
+    );
     for await (const item of items) {
       const meta = this.generateMeta(item);
       this.$emit(item, meta);

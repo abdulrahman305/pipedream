@@ -10,9 +10,8 @@ export default {
       description: "The ID of the pre-defined template in SMTP2GO.",
       async options({ prevContext }) {
         const { token } = prevContext;
-        const {
-          continue_token: continueToken, templates,
-        } = await this.listTemplates(token);
+        const { continue_token: continueToken, templates } =
+          await this.listTemplates(token);
         const options = templates.map((template) => ({
           label: template.name,
           value: template.id,
@@ -36,11 +35,7 @@ export default {
       };
     },
     async sharedRequest($, params) {
-      const {
-        endpoint,
-        method,
-        data,
-      } = params;
+      const { endpoint, method, data } = params;
 
       return axios($, {
         url: endpoint.includes("http")
@@ -63,16 +58,46 @@ export default {
     },
     verifiedSent(result) {
       if (result.data.failed > 0) {
-        throw new Error(`Mail sender responded with the following error(s): ${result.data.failures.join(",")}`);
+        throw new Error(
+          `Mail sender responded with the following error(s): ${result.data.failures.join(",")}`,
+        );
       }
       return result;
     },
-    async sendSingleEmail($, data: { sender: string; to: string[]; cc: string[]; bcc: string[]; subject: string; text_body: string; html_body: string; attachments: any[]; custom_headers: any[]; }, ignoreFailures: boolean) {
+    async sendSingleEmail(
+      $,
+      data: {
+        sender: string;
+        to: string[];
+        cc: string[];
+        bcc: string[];
+        subject: string;
+        text_body: string;
+        html_body: string;
+        attachments: any[];
+        custom_headers: any[];
+      },
+      ignoreFailures: boolean,
+    ) {
       const result = await this.sharedActionRequest($, "email/send", data);
       if (ignoreFailures) return result;
       return this.verifiedSent(result);
     },
-    async sendSingleEmailWithTemplate($, data: { sender: string; to: string[]; cc: string[]; bcc: string[]; subject: string; template_id: string; template_data: any; attachments: any[]; custom_headers: any[]; }, ignoreFailures: boolean) {
+    async sendSingleEmailWithTemplate(
+      $,
+      data: {
+        sender: string;
+        to: string[];
+        cc: string[];
+        bcc: string[];
+        subject: string;
+        template_id: string;
+        template_data: any;
+        attachments: any[];
+        custom_headers: any[];
+      },
+      ignoreFailures: boolean,
+    ) {
       const result = await this.sharedActionRequest($, "email/send", data);
       if (ignoreFailures) return result;
       return this.verifiedSent(result);

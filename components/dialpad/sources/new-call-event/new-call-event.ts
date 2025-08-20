@@ -16,10 +16,7 @@ export default defineSource({
   props: {
     ...common.props,
     callStates: {
-      propDefinition: [
-        dialpad,
-        "callStates",
-      ],
+      propDefinition: [dialpad, "callStates"],
     },
   },
   methods: {

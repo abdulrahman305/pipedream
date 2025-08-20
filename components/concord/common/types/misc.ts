@@ -1,6 +1,4 @@
-import {
-  Agreement, Folder,
-} from "./entities";
+import { Agreement, Folder } from "./entities";
 import { OrganizationId } from "./requestParams";
 
 export interface FolderOption {

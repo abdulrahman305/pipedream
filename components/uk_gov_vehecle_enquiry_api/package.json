@@ -7,7 +7,9 @@
     "pipedream",
     "uk_gov_vehecle_enquiry_api"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/uk_gov_vehecle_enquiry_api",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

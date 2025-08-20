@@ -8,7 +8,7 @@ export interface MakeRequestParams {
 }
 
 export interface ResourceFn {
-  (params:object): Promise<any>;
+  (params: object): Promise<any>;
 }
 
 export interface ResourceGeneratorParams {

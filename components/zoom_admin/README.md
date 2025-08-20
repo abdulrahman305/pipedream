@@ -11,6 +11,7 @@ The Zoom Admin API lets you harness the extensive capabilities of Zoom for autom
 - **Webinar Attendee Follow-Up**: Link Zoom webinars with email platforms such as SendGrid. After a webinar ends, send a customized follow-up email to all attendees with a survey or additional resources, and update your CRM (like Salesforce) with attendee engagement data.
 
 # Getting Started
+
 ## Zoom vs Zoom Admin app
 
 Zoom users can be classified into two groups: non-admins and admins. Admins have account-level permissions that users do not, and Zoom has corresponding admin-level scopes that aren't relevant for normal users. Therefore, Pipedream exposes two apps — **Zoom** and **Zoom Admin** — to serve the two groups.

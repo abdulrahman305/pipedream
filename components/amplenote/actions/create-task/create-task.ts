@@ -6,19 +6,18 @@ export default defineAction({
   name: "Create Task",
   version: "0.0.1",
   key: "amplenote-create-task",
-  description: "Creates a new task. [See docs here](https://www.amplenote.com/api_documentation#post-/notes/-uuid-/actions)",
+  description:
+    "Creates a new task. [See docs here](https://www.amplenote.com/api_documentation#post-/notes/-uuid-/actions)",
   type: "action",
   props: {
     amplenote,
     noteId: {
-      propDefinition: [
-        amplenote,
-        "noteId",
-      ],
+      propDefinition: [amplenote, "noteId"],
     },
     nodes: {
       label: "Nodes",
-      description: "Nodes to create the task. [Read more about nodes here] (https://www.amplenote.com/api_documentation#post-/notes/-uuid-/actions). E.g `{ \"type\": \"check_list_item\", \"content\": [ { \"type\": \"paragraph\", \"content\": [ { \"type\": \"text\", \"text\": \"Item 1\" } ] } ] }`",
+      description:
+        'Nodes to create the task. [Read more about nodes here] (https://www.amplenote.com/api_documentation#post-/notes/-uuid-/actions). E.g `{ "type": "check_list_item", "content": [ { "type": "paragraph", "content": [ { "type": "text", "text": "Item 1" } ] } ] }`',
       type: "string[]",
     },
   },
@@ -28,9 +27,7 @@ export default defineAction({
     }
 
     this.nodes = this.nodes.map((node) => {
-      return typeof node === "string"
-        ? JSON.parse(node)
-        : node;
+      return typeof node === "string" ? JSON.parse(node) : node;
     });
 
     const response = await this.amplenote.createTask({

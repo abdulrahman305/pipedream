@@ -1,7 +1,5 @@
 import mattermost from "../../app/mattermost.app";
-import {
-  SourceHttpRunOptions, defineSource,
-} from "@pipedream/types";
+import { SourceHttpRunOptions, defineSource } from "@pipedream/types";
 
 export default defineSource({
   name: "New Message Sent in Channel (Instant)",
@@ -16,10 +14,7 @@ export default defineSource({
     db: "$.service.db",
     http: "$.interface.http",
     teamId: {
-      propDefinition: [
-        mattermost,
-        "teamId",
-      ],
+      propDefinition: [mattermost, "teamId"],
     },
     channelId: {
       propDefinition: [
@@ -76,9 +71,7 @@ export default defineSource({
         description: `Pipedream - New Message Sent in Channel ${this.channelId}`,
         trigger_words: this.triggerWords,
         trigger_when: this.triggerWhen,
-        callback_urls: [
-          this.http.endpoint,
-        ],
+        callback_urls: [this.http.endpoint],
         content_type: "application/json",
       };
 
@@ -94,9 +87,7 @@ export default defineSource({
     if (body) {
       const ts = Date.now();
       this.$emit(body, {
-        id: typeof body.id === "string"
-          ? body.id
-          : ts,
+        id: typeof body.id === "string" ? body.id : ts,
         summary: "New message",
         ts,
       });

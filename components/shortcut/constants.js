@@ -1,7 +1,3 @@
 module.exports = {
-  STORY_TYPES: [
-    "bug",
-    "chore",
-    "feature",
-  ],
+  STORY_TYPES: ["bug", "chore", "feature"],
 };

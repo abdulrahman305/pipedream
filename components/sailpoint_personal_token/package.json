@@ -7,7 +7,9 @@
     "pipedream",
     "sailpoint_personal_token"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/sailpoint_personal_token",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

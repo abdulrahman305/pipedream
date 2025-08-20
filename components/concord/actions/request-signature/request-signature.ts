@@ -12,26 +12,20 @@ export default defineAction({
   props: {
     app,
     organizationId: {
-      propDefinition: [
-        app,
-        "organizationId",
-      ],
+      propDefinition: [app, "organizationId"],
     },
     agreementUid: {
       propDefinition: [
         app,
         "agreementUid",
-        ({ organizationId }: { organizationId: number; }) => ({
+        ({ organizationId }: { organizationId: number }) => ({
           organizationId,
         }),
       ],
     },
   },
   async run({ $ }) {
-    const {
-      organizationId,
-      agreementUid,
-    } = this;
+    const { organizationId, agreementUid } = this;
 
     const params: RequestSignatureParams = {
       $,

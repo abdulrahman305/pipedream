@@ -178,7 +178,7 @@ This action deletes the keys that were successfully exported. It is advisable to
 :::
 
 ```javascript
-import { axios } from "@pipedream/platform"
+import { axios } from "@pipedream/platform";
 
 export default defineComponent({
   props: {
@@ -196,28 +196,28 @@ export default defineComponent({
       label: "Delete keys after export",
       description: "Whether the data store keys will be deleted after export",
       default: true,
-    }
+    },
   },
   methods: {
     async *chunkAsyncIterator(asyncIterator, chunkSize) {
-      let chunk = []
+      let chunk = [];
 
       for await (const item of asyncIterator) {
-        chunk.push(item)
+        chunk.push(item);
 
         if (chunk.length === chunkSize) {
-          yield chunk
-          chunk = []
+          yield chunk;
+          chunk = [];
         }
       }
 
       if (chunk.length > 0) {
-        yield chunk
+        yield chunk;
       }
     },
   },
   async run({ steps, $ }) {
-    const iterator = this.chunkAsyncIterator(this.dataStore, this.chunkSize)
+    const iterator = this.chunkAsyncIterator(this.dataStore, this.chunkSize);
     for await (const chunk of iterator) {
       try {
         // export data to external service
@@ -226,19 +226,21 @@ export default defineComponent({
           method: "POST",
           data: chunk,
           // may need to add authentication
-        })
+        });
 
         // delete exported keys and values
         if (this.shouldDeleteKeys) {
-          await Promise.all(chunk.map(([key]) => this.dataStore.delete(key)))
+          await Promise.all(chunk.map(([key]) => this.dataStore.delete(key)));
         }
 
-        console.log(`number of remaining keys: ${(await this.dataStore.keys()).length}`)
+        console.log(
+          `number of remaining keys: ${(await this.dataStore.keys()).length}`,
+        );
       } catch (e) {
         // an error occurred, don't delete keys
-        console.log(`error exporting data: ${e}`)
+        console.log(`error exporting data: ${e}`);
       }
     }
   },
-})
+});
 ```

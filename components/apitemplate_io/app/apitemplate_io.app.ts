@@ -9,7 +9,8 @@ export default defineApp({
     apiEndpoints: {
       type: "string",
       label: "API Endpoints",
-      description: "A regional API endpoint is intended for customers in the same region. The data for the request and generated PDFs/images are processed and stored within the region. [see docs](https://apitemplate.io/apiv2/#section/Regional-API-endpoint(s))",
+      description:
+        "A regional API endpoint is intended for customers in the same region. The data for the request and generated PDFs/images are processed and stored within the region. [see docs](https://apitemplate.io/apiv2/#section/Regional-API-endpoint(s))",
       optional: true,
       options: constants.API_ENDPOINTS_OPTS,
     },
@@ -42,37 +43,43 @@ export default defineApp({
     async: {
       type: "boolean",
       label: "Async",
-      description: "To generate PDF asynchronously, set the value to `true` and the API call returns immediately. Once the PDF document is generated, we will make a HTTP/HTTPS GET to your webhook and will retry for 3 times before giving up.",
+      description:
+        "To generate PDF asynchronously, set the value to `true` and the API call returns immediately. Once the PDF document is generated, we will make a HTTP/HTTPS GET to your webhook and will retry for 3 times before giving up.",
       optional: true,
     },
     webhookUrl: {
       type: "string",
       label: "Webhook URL",
-      description: "It is the URL of your webhook URL, it starts with `http://` or `https://` and has to be urlencoded.",
+      description:
+        "It is the URL of your webhook URL, it starts with `http://` or `https://` and has to be urlencoded.",
       optional: true,
     },
     filename: {
       type: "string",
       label: "Filename",
-      description: "Default to UUID (e.g 0c93bd9e-9ebb-4634-a70f-de9131848416.pdf). Use this to specify custom file name, it should end with `.pdf`",
+      description:
+        "Default to UUID (e.g 0c93bd9e-9ebb-4634-a70f-de9131848416.pdf). Use this to specify custom file name, it should end with `.pdf`",
       optional: true,
     },
     imageResampleRes: {
       type: "integer",
       label: "Image Resample Res",
-      description: "We embed the original images by default, meaning large PDF file sizes. Specifying this option helps reduce the PDF file size. Common values are `72`, `96`, `150`, `300` and `600`.",
+      description:
+        "We embed the original images by default, meaning large PDF file sizes. Specifying this option helps reduce the PDF file size. Common values are `72`, `96`, `150`, `300` and `600`.",
       optional: true,
     },
     limit: {
       type: "integer",
       label: "Limit",
-      description: "Retrieve only the number of records specified. Default to 300.",
+      description:
+        "Retrieve only the number of records specified. Default to 300.",
       optional: true,
     },
     offset: {
       type: "integer",
       label: "Offset",
-      description: "Offset is used to skip the number of records from the results. Default to 0.",
+      description:
+        "Offset is used to skip the number of records from the results. Default to 0.",
       optional: true,
     },
     outputFormat: {
@@ -86,14 +93,11 @@ export default defineApp({
       type: "string",
       label: "Template Id",
       description: "The ID of the template that you want to use.",
-      async options({
-        prevContext,
-        format,
-      }) {
+      async options({ prevContext, format }) {
         const limit = constants.DEFAULT_LIMIT;
         let offset = 0;
         if (prevContext && Number.isInteger(prevContext.offset)) {
-          offset = ((prevContext.offset / limit) + 1) * limit;
+          offset = (prevContext.offset / limit + 1) * limit;
         }
         const params = {
           limit,
@@ -111,7 +115,7 @@ export default defineApp({
         const limit = constants.DEFAULT_LIMIT;
         let offset = 0;
         if (prevContext && Number.isInteger(prevContext.offset)) {
-          offset = ((prevContext.offset / limit) + 1) * limit;
+          offset = (prevContext.offset / limit + 1) * limit;
         }
         const params = {
           limit,
@@ -123,24 +127,28 @@ export default defineApp({
     expiration: {
       type: "integer",
       label: "Expiration",
-      description: "Expiration of the generated image in minutes(default to `0`, store permanently).",
+      description:
+        "Expiration of the generated image in minutes(default to `0`, store permanently).",
       optional: true,
     },
     meta: {
       type: "string",
       label: "Meta",
-      description: "Specify an external reference ID for your own reference. It appears in the `list-objects` API.",
+      description:
+        "Specify an external reference ID for your own reference. It appears in the `list-objects` API.",
       optional: true,
     },
     overrides: {
       type: "any",
       label: "Overrides",
-      description: "Array of objects with the property name and the replaced values on the template, as shown below:\n\n`[{\"name\": \"text_name\",\"text\": \"My Name\"}, {\"name\": \"text_quote\",\"text\": \"Lorem ipsum dolor sit...\"}]`",
+      description:
+        'Array of objects with the property name and the replaced values on the template, as shown below:\n\n`[{"name": "text_name","text": "My Name"}, {"name": "text_quote","text": "Lorem ipsum dolor sit..."}]`',
     },
     data: {
       type: "any",
       label: "Data",
-      description: "Object to replace values on the template, you can [check here](https://app.apitemplate.io/manage-templates/) for the JSON example for your template.",
+      description:
+        "Object to replace values on the template, you can [check here](https://app.apitemplate.io/manage-templates/) for the JSON example for your template.",
     },
   },
   methods: {
@@ -152,7 +160,7 @@ export default defineApp({
     },
     _getHeaders(headers = {}) {
       return {
-        "Authorization": this.$auth.api_key,
+        Authorization: this.$auth.api_key,
         "Content-Type": "application/json",
         ...headers,
       };
@@ -165,11 +173,14 @@ export default defineApp({
       };
     },
     async getTemplates($ = this, params) {
-      const response = await axios($, this._getRequestParams({
-        method: "GET",
-        path: "/list-templates",
-        params,
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "GET",
+          path: "/list-templates",
+          params,
+        }),
+      );
       return response;
     },
     async getTemplateOpts(params) {
@@ -186,33 +197,37 @@ export default defineApp({
       };
     },
     async createImage($ = this, api, params, data) {
-      const response = await axios($, this._getRequestParams({
-        method: "POST",
-        api,
-        path: "/create-image",
-        params,
-        data,
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "POST",
+          api,
+          path: "/create-image",
+          params,
+          data,
+        }),
+      );
       return response;
     },
     async listObjects($ = this, api, params) {
-      const response = await axios($, this._getRequestParams({
-        method: "GET",
-        api,
-        path: "/list-objects",
-        params,
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "GET",
+          api,
+          path: "/list-objects",
+          params,
+        }),
+      );
       return response;
     },
     async listObjectOpts(params) {
       const { objects } = await this.listObjects(this, null, params);
-      const options = objects.filter((obj) => obj.deletion_status === 0)
+      const options = objects
+        .filter((obj) => obj.deletion_status === 0)
         .map((obj) => ({
-          label: obj.meta || obj.primary_url
-            .split("/")
-            .pop()
-            .split("?")
-            .shift(),
+          label:
+            obj.meta || obj.primary_url.split("/").pop().split("?").shift(),
           value: obj.transaction_ref,
         }));
       return {
@@ -223,20 +238,26 @@ export default defineApp({
       };
     },
     async deleteObject($ = this, api, params) {
-      const response = await axios($, this._getRequestParams({
-        method: "GET",
-        api,
-        path: "/delete-object",
-        params,
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "GET",
+          api,
+          path: "/delete-object",
+          params,
+        }),
+      );
       return response;
     },
     async getAccountInformation($ = this, api) {
-      const response = await axios($, this._getRequestParams({
-        method: "GET",
-        api,
-        path: "/account-information",
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "GET",
+          api,
+          path: "/account-information",
+        }),
+      );
       return response;
     },
   },

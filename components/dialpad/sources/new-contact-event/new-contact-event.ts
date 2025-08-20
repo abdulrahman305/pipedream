@@ -16,10 +16,7 @@ export default defineSource({
   props: {
     ...common.props,
     contactType: {
-      propDefinition: [
-        dialpad,
-        "contactType",
-      ],
+      propDefinition: [dialpad, "contactType"],
     },
   },
   methods: {

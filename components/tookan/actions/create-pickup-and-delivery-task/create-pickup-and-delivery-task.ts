@@ -15,28 +15,16 @@ export default defineAction({
   props: {
     ...common.props,
     customerAddress: {
-      propDefinition: [
-        tookan,
-        "customerAddress",
-      ],
+      propDefinition: [tookan, "customerAddress"],
     },
     jobDeliveryDatetime: {
-      propDefinition: [
-        tookan,
-        "jobDeliveryDatetime",
-      ],
+      propDefinition: [tookan, "jobDeliveryDatetime"],
     },
     jobPickupAddress: {
-      propDefinition: [
-        tookan,
-        "jobPickupAddress",
-      ],
+      propDefinition: [tookan, "jobPickupAddress"],
     },
     jobPickupDatetime: {
-      propDefinition: [
-        tookan,
-        "jobPickupDatetime",
-      ],
+      propDefinition: [tookan, "jobPickupDatetime"],
     },
   },
   async run({ $ }) {
@@ -54,9 +42,8 @@ export default defineAction({
         ...this.additionalOptions,
       },
     };
-    const data: TaskData = await this.tookan.createPickupAndDeliveryTask(
-      params,
-    );
+    const data: TaskData =
+      await this.tookan.createPickupAndDeliveryTask(params);
 
     $.export(
       "$summary",

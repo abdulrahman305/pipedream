@@ -2,7 +2,8 @@ import { defineAction } from "@pipedream/types";
 import app from "../../app/google_my_business.app";
 import { ListPostsParams } from "../../common/requestParams";
 
-const DOCS_LINK = "https://developers.google.com/my-business/reference/rest/v4/accounts.locations.localPosts/list";
+const DOCS_LINK =
+  "https://developers.google.com/my-business/reference/rest/v4/accounts.locations.localPosts/list";
 const PAGE_SIZE = 100;
 
 export default defineAction({
@@ -14,16 +15,13 @@ export default defineAction({
   props: {
     app,
     account: {
-      propDefinition: [
-        app,
-        "account",
-      ],
+      propDefinition: [app, "account"],
     },
     location: {
       propDefinition: [
         app,
         "location",
-        ({ account }: { account: string; }) => ({
+        ({ account }: { account: string }) => ({
           account,
         }),
       ],
@@ -39,9 +37,7 @@ export default defineAction({
     },
   },
   async run({ $ }) {
-    const {
-      account, location, maxResults,
-    } = this;
+    const { account, location, maxResults } = this;
     const params: ListPostsParams = {
       $,
       account,
