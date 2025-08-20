@@ -1,7 +1,9 @@
 import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
-  AddInviteRequestParams, HttpRequestParams, InviteRequest,
+  AddInviteRequestParams,
+  HttpRequestParams,
+  InviteRequest,
 } from "../common/types";
 
 export default defineApp({

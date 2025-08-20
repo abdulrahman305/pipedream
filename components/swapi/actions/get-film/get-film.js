@@ -10,15 +10,14 @@ module.exports = {
   props: {
     swapi,
     film: {
-      propDefinition: [
-        swapi,
-        "film",
-      ],
+      propDefinition: [swapi, "film"],
     },
   },
   async run() {
-    return (await axios({
-      url: `https://swapi.dev/api/films/${this.film}`,
-    })).data;
+    return (
+      await axios({
+        url: `https://swapi.dev/api/films/${this.film}`,
+      })
+    ).data;
   },
 };

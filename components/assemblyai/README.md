@@ -9,4 +9,4 @@ The AssemblyAI API provides powerful speech recognition and natural language pro
 - **Sentiment Analysis for Customer Feedback**: Connect AssemblyAI with a customer support platform like Zendesk. Transcribe support calls, analyze the sentiment, and categorize tickets based on customer emotions. This can help prioritize urgent cases and improve service quality.
 
 - **Meeting Transcription and Summarization**: After a Zoom meeting, use Pipedream to send the recording to AssemblyAI for transcription. Process the text to extract key points and action items, then post them to a project management tool like Asana or Trello for easy follow-up.
-.
+  .

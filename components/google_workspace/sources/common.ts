@@ -14,7 +14,8 @@ export default {
     http: "$.interface.http",
     timer: {
       type: "$.interface.timer",
-      description: "How often you want to check if the Webhook has already expired",
+      description:
+        "How often you want to check if the Webhook has already expired",
       default: {
         intervalSeconds: DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
       },
@@ -117,11 +118,7 @@ export default {
     },
   },
   async run(event) {
-    const {
-      timestamp,
-      headers,
-      body,
-    } = event;
+    const { timestamp, headers, body } = event;
     const currentTSInMS = timestamp * 1000;
     const expirationTSInMS = this.getExpirationTS();
     const token = this.getToken();
@@ -138,10 +135,7 @@ export default {
       throw new ConfigurationError("Webhook token is not valid!");
     }
 
-    const {
-      events = [],
-      ...otherProps
-    } = body;
+    const { events = [], ...otherProps } = body;
 
     events.forEach((event) => {
       const data = {
@@ -152,4 +146,3 @@ export default {
     });
   },
 };
-

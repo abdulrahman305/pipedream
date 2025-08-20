@@ -65,7 +65,6 @@ Use (and create!) custom components in `components/`. You'll see a lot of refere
 
 If you need to add any custom redirects, e.g. when you move pages to a different directory, add then to the `vercel.json` file in this directory.
 
-
 ## Adding new versions
 
 Add a new version of docs by creating a new feature branch in the format of `docs-v{number}-pathing`.

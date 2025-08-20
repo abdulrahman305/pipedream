@@ -9,4 +9,4 @@ The MaintainX API lets you automate workflows related to work orders, assets, an
 - **Maintenance Alert Notifications**: Configure a Pipedream workflow to listen for status updates on work orders or maintenance requests in MaintainX, and automatically send alert notifications via Slack, SMS (Twilio), or email (SendGrid) to the responsible parties.
 
 - **Asset Management Sync**: Use Pipedream to create a workflow that syncs asset updates from MaintainX with an external inventory management system like Airtable or Google Sheets, keeping all records up-to-date across different platforms.
-.
+  .

@@ -2,7 +2,8 @@ import { defineAction } from "@pipedream/types";
 import { ConfigurationError } from "@pipedream/platform";
 import formatNumber from "../../common/numbers/formatNumber";
 import {
-  DECIMAL_MARK_OPTIONS, FINAL_FORMAT_OPTIONS,
+  DECIMAL_MARK_OPTIONS,
+  FINAL_FORMAT_OPTIONS,
 } from "../../common/numbers/numberFormattingOptions";
 import app from "../../app/formatting.app";
 
@@ -36,9 +37,7 @@ export default defineAction({
     },
   },
   async run({ $ }): Promise<string> {
-    const {
-      inputDecimalMark, toFormat,
-    } = this;
+    const { inputDecimalMark, toFormat } = this;
     const input = this.input.toString();
 
     const decimalMark = inputDecimalMark ?? ".";
@@ -49,14 +48,8 @@ export default defineAction({
       );
     }
 
-    const [
-      integer,
-      decimal,
-    ] = splitInput;
-    const [
-      groupChar,
-      decimalChar,
-    ] = toFormat.split("");
+    const [integer, decimal] = splitInput;
+    const [groupChar, decimalChar] = toFormat.split("");
 
     const result = formatNumber(integer, decimal, groupChar, decimalChar);
 

@@ -19,16 +19,11 @@ export default defineSource({
       },
     },
     courseId: {
-      propDefinition: [
-        xperiencify,
-        "courseId",
-      ],
+      propDefinition: [xperiencify, "courseId"],
     },
   },
   methods: {
-    getMeta({
-      email, firstName,
-    }) {
+    getMeta({ email, firstName }) {
       return {
         id: email,
         summary: `New student ${firstName}: ${email}`,

@@ -5,7 +5,8 @@ export default defineSource({
   ...common,
   key: "clientary-new-contact-created",
   name: "New Contact Created",
-  description: "Emit new events when a new contact was created. [See the docs](https://www.clientary.com/api/contacts)",
+  description:
+    "Emit new events when a new contact was created. [See the docs](https://www.clientary.com/api/contacts)",
   version: "0.0.1",
   type: "source",
   dedupe: "unique",

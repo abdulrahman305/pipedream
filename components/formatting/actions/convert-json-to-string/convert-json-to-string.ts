@@ -21,7 +21,9 @@ export default defineAction({
       $.export("$summary", "Successfully convert object to JSON string");
       return result;
     } catch (err) {
-      throw new Error("Error serializing object to JSON string: " + err.toString());
+      throw new Error(
+        "Error serializing object to JSON string: " + err.toString(),
+      );
     }
   },
 });

@@ -44,7 +44,6 @@ run the following commands at the root of the project:
    Keep in mind that not all issues can be automatically fixed by the linter
    since they could alter the behaviour of the code.
 
-
 ## General
 
 ### Components should be ES modules
@@ -199,16 +198,14 @@ New actions and sources should include `README.md` files within the same directo
 Here's an example `README.md` structure:
 
 ```markdown
-
 # Overview
 
 # Getting Started
 
 # Troubleshooting
-
 ```
 
-These sections will appear within the correponding app, source and action page, along with any subheadings and content. 
+These sections will appear within the correponding app, source and action page, along with any subheadings and content.
 
 Here's an example of an [app `README.md` within the `discord` component on the Pipedream registry](https://github.com/PipedreamHQ/pipedream/blob/master/components/discord/README.md). That same content is rendered within the [Pipedream integration page for the Discord app](https://pipedream.com/apps/discord).
 
@@ -232,7 +229,6 @@ Instructions on how to generate an API key from within the service's dashboard.
 ## Required OAuth scopes
 
 Please take note, you'll need to have sufficient privileges in order to complete authentication.
-
 ```
 
 ::: tip
@@ -264,7 +260,6 @@ logic should:
   same Microsoft OneDrive example, check the `processEvent` method [in this
   component](https://github.com/PipedreamHQ/pipedream/tree/master/components/microsoft_onedrive/sources/new-file/new-file.mjs)
   for an example.
-
 
 #### Capturing Sensitive Data
 
@@ -522,15 +517,18 @@ for a source.
 In order to provide users with source events that they can immediately reference when building their workflow, we should implement 2 strategies whenever possible:
 
 #### Emit Events on First Run:
+
 - Polling sources should always emit events on the first run (see the [Spotify: New Playlist](https://github.com/PipedreamHQ/pipedream/blob/master/components/spotify/sources/new-playlist/new-playlist.mjs) source as an example)
 - Webhook-based sources should attempt to fetch existing events in the `deploy()` hook during source creation (see the [Jotform: New Submission](https://github.com/PipedreamHQ/pipedream/blob/master/components/jotform/sources/new-submission/new-submission.mjs) source)
 
 _Note – make sure to emit the most recent events (considering pagination), and limit the count to no more than 50 events._
 
 #### Include a static sample event:
+
 There are times where there may not be any historical events available (think about sources that emit less frequently, like "New Customer" or "New Order", etc). In these cases, we should include a static sample event so users can see the event shape and reference it while building their workflow, even if it's using fake data.
 
 To do this,
+
 1. Copy the JSON output from the source's emit (what you get from `steps.trigger.event`) and **make sure to remove or scrub any sensitive or personal data** (you can also copy this from the app's API docs)
 2. Add a new file called `test-event.mjs` in the same directory as the component source and export the JSON event via `export default` ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/jotform/sources/new-submission/test-event.mjs))
 3. In the source component code, make sure to import that file as `sampleEmit` ([example](https://github.com/PipedreamHQ/pipedream/blob/master/components/jotform/sources/new-submission/new-submission.mjs#L2))
@@ -550,7 +548,7 @@ for the specific source. Users may also override the default value at any time.
 
 For polling sources in the Pipedream registry, the default polling interval is set as a global config. Individual sources can access that default within the props definition:
 
-``` javascript
+```javascript
 import { DEFAULT_POLLING_SOURCE_TIMER_INTERVAL } from "@pipedream/platform";
 
 export default {
@@ -563,7 +561,7 @@ export default {
     },
   },
   // rest of component
-}
+};
 ```
 
 #### Rate Limit Optimization

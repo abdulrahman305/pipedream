@@ -11,16 +11,10 @@ module.exports = {
   props: {
     ...common.props,
     resourceName: {
-      propDefinition: [
-        procore,
-        "resourceName",
-      ],
+      propDefinition: [procore, "resourceName"],
     },
     eventTypes: {
-      propDefinition: [
-        procore,
-        "eventTypes",
-      ],
+      propDefinition: [procore, "eventTypes"],
     },
   },
   methods: {

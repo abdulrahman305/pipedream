@@ -1,17 +1,17 @@
-from templates.common.suffix import suffix
-from templates.common.format_instructions import format_instructions
-from templates.common.docs_system_instructions import docs_system_instructions
-from langchain.schema import HumanMessage
-from langchain.agents.react.agent import create_react_agent
-from langchain_community.agent_toolkits import JsonToolkit, create_json_agent
-from langchain_community.tools.json.tool import JsonSpec
-
 import openai
-from langchain_openai.chat_models.base import ChatOpenAI
-from langchain.agents import ZeroShotAgent, AgentExecutor
-from langchain.chains import LLMChain
 from config.config import config
 from dotenv import load_dotenv
+from langchain.agents import AgentExecutor, ZeroShotAgent
+from langchain.agents.react.agent import create_react_agent
+from langchain.chains import LLMChain
+from langchain.schema import HumanMessage
+from langchain_community.agent_toolkits import JsonToolkit, create_json_agent
+from langchain_community.tools.json.tool import JsonSpec
+from langchain_openai.chat_models.base import ChatOpenAI
+from templates.common.docs_system_instructions import docs_system_instructions
+from templates.common.format_instructions import format_instructions
+from templates.common.suffix import suffix
+
 load_dotenv()
 
 
@@ -27,18 +27,18 @@ class OpenAPIExplorerTool:
 class PipedreamOpenAPIAgent:
     def __init__(self, docs, templates, auth_example, parsed_common_files):
         system_instructions = format_template(
-            f"{templates.system_instructions(auth_example, parsed_common_files)}\n{docs_system_instructions}")
+            f"{templates.system_instructions(auth_example, parsed_common_files)}\n{docs_system_instructions}"
+        )
 
-        model = ChatOpenAI(model_name=config['openai']['model'])
+        model = ChatOpenAI(model_name=config["openai"]["model"])
         tools = OpenAPIExplorerTool.create_tools(docs)
 
         # o1-preview doesn't support system instruction, so we just concatenate into the prompt
         prompt = f"{system_instructions}\n\n{format_instructions}"
 
         agent = create_react_agent(model, tools, prompt)
-        verbose = True if config['logging']['level'] == 'DEBUG' else False
-        self.agent_executor = AgentExecutor(
-            agent=agent, tools=tools, verbose=verbose)
+        verbose = True if config["logging"]["level"] == "DEBUG" else False
+        self.agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=verbose)
 
     def run(self, input):
         try:
@@ -47,7 +47,7 @@ class PipedreamOpenAPIAgent:
             result = str(e)
             if "I don't know" in result:
                 return "I don't know"
-            if '```' not in result:
+            if "```" not in result:
                 raise e
 
         return format_result(result)
@@ -58,11 +58,11 @@ def format_template(text):
 
 
 def format_result(result):
-    if '```' in result:
-        if '```javascript' in result:
-            result = result.split('```javascript')[1].split('```')[0].strip()
+    if "```" in result:
+        if "```javascript" in result:
+            result = result.split("```javascript")[1].split("```")[0].strip()
         else:
-            result = result.split('```')[1].split('```')[0].strip()
+            result = result.split("```")[1].split("```")[0].strip()
     return result
 
 
@@ -83,21 +83,35 @@ def get_llm():
 
 
 def ask_agent(prompt, docs, templates, auth_example, parsed_common_files, urls_content):
-    agent = PipedreamOpenAPIAgent(
-        docs, templates, auth_example, parsed_common_files)
+    agent = PipedreamOpenAPIAgent(docs, templates, auth_example, parsed_common_files)
     user_prompt = create_user_prompt(prompt, urls_content)
     result = agent.run(user_prompt)
     return result
 
 
-def no_docs(prompt, templates, auth_example, parsed_common_files, urls_content, normal_order=True):
+def no_docs(
+    prompt,
+    templates,
+    auth_example,
+    parsed_common_files,
+    urls_content,
+    normal_order=True,
+):
     user_prompt = create_user_prompt(prompt, urls_content)
     pd_instructions = format_template(
-        templates.system_instructions(auth_example, parsed_common_files))
+        templates.system_instructions(auth_example, parsed_common_files)
+    )
 
-    result = get_llm().invoke([
-        HumanMessage(content=user_prompt +
-                     pd_instructions if normal_order else pd_instructions+user_prompt),
-    ])
+    result = get_llm().invoke(
+        [
+            HumanMessage(
+                content=(
+                    user_prompt + pd_instructions
+                    if normal_order
+                    else pd_instructions + user_prompt
+                )
+            ),
+        ]
+    )
 
     return format_result(result.content)

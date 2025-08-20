@@ -3,28 +3,24 @@ import { defineAction } from "@pipedream/types";
 
 export default defineAction({
   name: "Update Order Status",
-  description: "Update a order status. [See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/put_api_v2_orders)",
+  description:
+    "Update a order status. [See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/put_api_v2_orders)",
   key: "wildberries-update-order-status",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     orderId: {
-      propDefinition: [
-        app,
-        "orderId",
-      ],
+      propDefinition: [app, "orderId"],
     },
     status: {
-      propDefinition: [
-        app,
-        "status",
-      ],
+      propDefinition: [app, "status"],
     },
     sgtin: {
       type: "any",
       label: "SGTIN",
-      description: "Array required only for pharmaceutical products when they are transferred to status `Customer received the goods`.\n\n**Example:** `[{ code: string, numerator: integer, denominator: integer, sid: integer }]`\n\n[See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/put_api_v2_orders)",
+      description:
+        "Array required only for pharmaceutical products when they are transferred to status `Customer received the goods`.\n\n**Example:** `[{ code: string, numerator: integer, denominator: integer, sid: integer }]`\n\n[See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/put_api_v2_orders)",
       optional: true,
     },
   },
@@ -35,12 +31,13 @@ export default defineAction({
       sgtin: this.sgtin,
     };
     if (this.sgtin && !Array.isArray(this.sgtin)) {
-      params.sgtin = [
-        this.sgtin,
-      ];
+      params.sgtin = [this.sgtin];
     }
     const response = await this.app.updateOrderStatus($, params);
-    $.export("$summary", `Successfully updated the status for order: ${this.orderId}`);
+    $.export(
+      "$summary",
+      `Successfully updated the status for order: ${this.orderId}`,
+    );
     return response;
   },
 });

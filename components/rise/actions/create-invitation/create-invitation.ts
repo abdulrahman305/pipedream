@@ -6,7 +6,8 @@ export default defineAction({
   name: "Create Invitation",
   version: "0.0.1",
   key: "rise-create-invitation",
-  description: "Creates a invitation. [See docs here](https://help.rise.com/en/articles/4177042-invitations-api)",
+  description:
+    "Creates a invitation. [See docs here](https://help.rise.com/en/articles/4177042-invitations-api)",
   type: "action",
   props: {
     rise,
@@ -46,7 +47,10 @@ export default defineAction({
     });
 
     if (response) {
-      $.export("$summary", `Successfully created invitation with id ${response.invitation.id}`);
+      $.export(
+        "$summary",
+        `Successfully created invitation with id ${response.invitation.id}`,
+      );
     }
 
     return response;

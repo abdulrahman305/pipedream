@@ -4,13 +4,12 @@ import { getUserSummary as getItemSummary } from "../common/getItemSummary";
 import { getUserFields } from "../../common/methods";
 import { GetUserFollowersParams } from "../../common/types/requestParams";
 import {
-  DOCS_LINK, MAX_RESULTS_PER_PAGE,
+  DOCS_LINK,
+  MAX_RESULTS_PER_PAGE,
 } from "../../actions/list-followers/list-followers";
 import { User } from "../../common/types/responseSchemas";
 import cacheUserId from "../common/cacheUserId";
-import {
-  getObjIncludes, getUserIncludeIds,
-} from "../../common/addObjIncludes";
+import { getObjIncludes, getUserIncludeIds } from "../../common/addObjIncludes";
 
 export default defineSource({
   ...common,
@@ -22,10 +21,7 @@ export default defineSource({
   props: {
     ...common.props,
     userNameOrId: {
-      propDefinition: [
-        common.props.app,
-        "userNameOrId",
-      ],
+      propDefinition: [common.props.app, "userNameOrId"],
     },
   },
   methods: {
@@ -46,10 +42,11 @@ export default defineSource({
         userId,
       };
 
-      const {
-        data, includes,
-      } = await this.app.getUserFollowers(params);
-      data.forEach((user) => user.includes = getObjIncludes(user, includes, getUserIncludeIds));
+      const { data, includes } = await this.app.getUserFollowers(params);
+      data.forEach(
+        (user) =>
+          (user.includes = getObjIncludes(user, includes, getUserIncludeIds)),
+      );
       return data;
     },
   },

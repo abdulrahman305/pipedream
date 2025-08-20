@@ -18,10 +18,7 @@ export default defineSource({
       },
     },
     listId: {
-      propDefinition: [
-        workast,
-        "listId",
-      ],
+      propDefinition: [workast, "listId"],
     },
   },
   hooks: {

@@ -22,7 +22,8 @@ export default defineApp({
       label: "Output Format",
       type: "string",
       options: DATE_FORMAT_OPTIONS,
-      description: "The format of the output date. If not provided, the input format will be used (default is ISO 8601).",
+      description:
+        "The format of the output date. If not provided, the input format will be used (default is ISO 8601).",
       optional: true,
     },
   },

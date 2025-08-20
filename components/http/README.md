@@ -14,7 +14,7 @@ Define the target URL, HTTP verb, headers, query parameters, and payload body wi
 
 ## Focus on integrating, not authenticating
 
-This action can also use your connected accounts with third-party APIs. Selecting an integrated app will automatically update the request’s headers to authenticate with the app properly, and even inject your token dynamically. 
+This action can also use your connected accounts with third-party APIs. Selecting an integrated app will automatically update the request’s headers to authenticate with the app properly, and even inject your token dynamically.
 
 ![This GIF depicts the process of selecting an application within Pipedream's HTTP Request Builder. A user hovers the cursor over the 'Auth' tab and clicks on a dropdown menu labeled 'Authorization Type', then scrolls through a list of applications to choose from for authorization purposes. The interface provides a streamlined and intuitive method for users to authenticate their HTTP requests by selecting the relevant app in the configuration settings.](https://res.cloudinary.com/pipedreamin/image/upload/v1712765587/marketplace/apps/http/CleanShot_2024-04-10_at_12.12.34_e6zrft.gif)
 
@@ -52,7 +52,6 @@ Then click **Test** to send the HTTP request:
 
 ![The image displays the Pipedream HTTP Request Configuration panel with a GET method selected and the request URL 'https://api.openai.com/v1/models' entered. Two headers are configured: 'User-Agent' with the value 'pipedream/1' and 'Authorization' with a dynamic variable 'Bearer {{openai_api_key}}' to automatically insert the OpenAI API key. A red arrow points towards the 'Authorization' header field, emphasizing the insertion of the API key. Below the headers, there's an option to 'Include Response Headers', and at the bottom, there's a 'Test' button to send the HTTP request.](https://res.cloudinary.com/pipedreamin/image/upload/v1712766296/marketplace/apps/http/CleanShot_2024-04-10_at_12.24.25_f9ne9h.png)
 
-
 In the **Exports** tab, you’ll see the data the API responds with. You can click Copy Path next to an attribute to copy the path to that specific variable to your clipboard for easy pasting in other steps.
 
 ![The image shows a section of the Pipedream workflow interface under the 'Exports' tab. It details the output of a custom HTTP request step labeled 'steps.custom_request1'. The output, named '$return_value', is an object represented as a list. The list is expanded to reveal 'data' with 30 entries. The first entry is further expanded, displaying details of a model with the ID 'whisper-1', indicating it's an object called 'model' that was created at the UNIX timestamp '1677532384' and is owned by 'openai-internal'.](https://res.cloudinary.com/pipedreamin/image/upload/v1712766450/marketplace/apps/http/CleanShot_2024-04-10_at_12.27.19_xr9kyp.gif)
@@ -82,11 +81,11 @@ curl https://api.openai.com/v1/chat/completions \
   }'
 ```
 
-Configure the HTTP request to match this cURL command by clicking *Import cURL*:
+Configure the HTTP request to match this cURL command by clicking _Import cURL_:
 
 ![The image shows a segment of the Pipedream HTTP Request Configuration interface, where the 'GET' method is selected as the type of HTTP request. A red arrow points towards the 'Import cURL' button located in the top right corner, indicating where users can click to import a cURL command into the workflow for configuration. The 'Enter request URL' field is highlighted, awaiting the user's input. Additionally, tabs for 'Auth', 'Params', 'Headers', and 'Body' are visible, with a notation that there is one header set. The 'Configure' label at the top indicates the setup process is 'Incomplete'.](https://res.cloudinary.com/pipedreamin/image/upload/v1712767353/marketplace/apps/http/CleanShot_2024-04-10_at_12.42.18_ula7yc.png)
 
-Then paste in the cURL command and click *Import*:
+Then paste in the cURL command and click _Import_:
 
 ![The image shows a dialog box titled "Import Curl" within Pipedream's interface, where a cURL command is ready to be imported. The cURL command includes the API endpoint 'https://api.openai.com/v1/chat/completions', headers for 'Content-Type' and 'Authorization', and a JSON payload specifying a model 'gpt-3.5-turbo' with a series of messages. A red arrow points towards the 'IMPORT' button, indicating that clicking this will import the cURL command into the Pipedream workflow. The 'CANCEL' button is also visible for opting not to proceed with the import.](https://res.cloudinary.com/pipedreamin/image/upload/v1712767458/marketplace/apps/http/CleanShot_2024-04-10_at_12.44.02_xjufrs.png)
 

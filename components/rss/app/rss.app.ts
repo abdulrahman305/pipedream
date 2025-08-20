@@ -1,5 +1,7 @@
 import {
-  axios, ConfigurationError, DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
+  axios,
+  ConfigurationError,
+  DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
 } from "@pipedream/platform";
 import { defineApp } from "@pipedream/types";
 import FeedParser, { Item } from "feedparser";
@@ -30,26 +32,20 @@ export default defineApp({
   },
   methods: {
     // in theory if alternate setting title and description or aren't unique this won't work
-    itemTs(item = {} as (Item | any)): number {
-      const {
-        pubdate, pubDate, date_published,
-      } = item;
+    itemTs(item = {} as Item | any): number {
+      const { pubdate, pubDate, date_published } = item;
       const itemPubDate = pubdate ?? pubDate ?? date_published;
       if (itemPubDate) {
         return +new Date(itemPubDate);
       }
       return +new Date();
     },
-    itemKey(item = {} as (Item | any)): string {
-      const {
-        id, guid, link, title,
-      } = item;
+    itemKey(item = {} as Item | any): string {
+      const { id, guid, link, title } = item;
       const itemId = id ?? guid ?? link ?? title;
       if (itemId) {
         // reduce itemId length for deduping
-        return itemId.length > 64
-          ? itemId.slice(-64)
-          : itemId;
+        return itemId.length > 64 ? itemId.slice(-64) : itemId;
       }
       return hash(item);
     },
@@ -58,7 +54,8 @@ export default defineApp({
         url,
         method: "GET",
         headers: {
-          "accept": "text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8, application/json, application/feed+json",
+          accept:
+            "text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8, application/json, application/feed+json",
         },
         validateStatus: () => true, // does not throw on any bad status code
         responseType: "stream", // stream is required for feedparser
@@ -66,11 +63,22 @@ export default defineApp({
       });
 
       // Handle status codes as error codes
-      if (res.status === 404) throw new ConfigurationError(`The URL ${url} does not exist. Please double-check the URL and try again.`);
-      if (res.status === 429) throw new ConfigurationError(`${url} isn't returning a valid feed because requests have been rate-limited. Please reach out to the site hosting the RSS feed to confirm or increase their rate limit.`);
-      if (res.status >= 500) throw new ConfigurationError(`${url} is returning a server error. Please try again later or reach out to the site hosting the RSS feed if you continue to see this error.`);
+      if (res.status === 404)
+        throw new ConfigurationError(
+          `The URL ${url} does not exist. Please double-check the URL and try again.`,
+        );
+      if (res.status === 429)
+        throw new ConfigurationError(
+          `${url} isn't returning a valid feed because requests have been rate-limited. Please reach out to the site hosting the RSS feed to confirm or increase their rate limit.`,
+        );
+      if (res.status >= 500)
+        throw new ConfigurationError(
+          `${url} is returning a server error. Please try again later or reach out to the site hosting the RSS feed if you continue to see this error.`,
+        );
       if (res.status >= 400) {
-        throw new ConfigurationError(`Error fetching URL ${url}. Please load the URL directly in your browser and try again.`);
+        throw new ConfigurationError(
+          `Error fetching URL ${url}. Please load the URL directly in your browser and try again.`,
+        );
       }
       return {
         data: res.data,
@@ -106,7 +114,11 @@ export default defineApp({
                 continue;
               }
               const o = item[k];
-              if (o == null || (typeof o === "object" && !Object.keys(o).length) || Array.isArray(o) && !o.length) {
+              if (
+                o == null ||
+                (typeof o === "object" && !Object.keys(o).length) ||
+                (Array.isArray(o) && !o.length)
+              ) {
                 delete item[k];
                 continue;
               }
@@ -124,7 +136,9 @@ export default defineApp({
         "application/feed+json",
         "application/json",
       ];
-      return acceptedJsonFeedMimes.includes(response?.contentType?.toLowerCase());
+      return acceptedJsonFeedMimes.includes(
+        response?.contentType?.toLowerCase(),
+      );
     },
     async parseJSONFeed(stream: ReadStream): Promise<Item[]> {
       const buffer = await new Promise<Buffer>((resolve, reject) => {
@@ -147,7 +161,10 @@ export default defineApp({
       }
     },
     validateAndFixFeedURL(u: string) {
-      if (!u) throw new ConfigurationError("No URL provided. Please enter an RSS URL to fetch");
+      if (!u)
+        throw new ConfigurationError(
+          "No URL provided. Please enter an RSS URL to fetch",
+        );
       let url = u;
       // If the URL doesn't begin with a protocol, the request will fail.
       if (!/^(?:(ht|f)tp(s?):\/\/)/.test(url)) {

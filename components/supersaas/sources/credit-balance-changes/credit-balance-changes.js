@@ -5,16 +5,14 @@ const supersaas = require("../supersaas.app.js");
 module.exports = {
   key: "supersaas-credit-balance-changes",
   name: "Credit balance changes",
-  description: "Emits an event for every user credit balance changes for the selected schedules.",
+  description:
+    "Emits an event for every user credit balance changes for the selected schedules.",
   version: "0.0.1",
   type: "source",
   props: {
     supersaas,
     schedules: {
-      propDefinition: [
-        supersaas,
-        "schedules",
-      ],
+      propDefinition: [supersaas, "schedules"],
     },
     db: "$.service.db",
     http: "$.interface.http",
@@ -22,27 +20,28 @@ module.exports = {
   hooks: {
     async activate() {
       const { $auth } = this.supersaas;
-      const {
-        http, schedules,
-      } = this;
+      const { http, schedules } = this;
 
-      this.db.set("activeHooks", await this.supersaas.createHooks([
-        {
-          event: "M", // modified_user
-          parent_id: $auth.account,
-          target_url: http.endpoint,
-        },
-        {
-          event: "P", // purchase
-          parent_id: $auth.account,
-          target_url: http.endpoint,
-        },
-        ...schedules.map((x) => ({
-          event: "C", // change_appointment
-          parent_id: Number(x),
-          target_url: http.endpoint,
-        })),
-      ]));
+      this.db.set(
+        "activeHooks",
+        await this.supersaas.createHooks([
+          {
+            event: "M", // modified_user
+            parent_id: $auth.account,
+            target_url: http.endpoint,
+          },
+          {
+            event: "P", // purchase
+            parent_id: $auth.account,
+            target_url: http.endpoint,
+          },
+          ...schedules.map((x) => ({
+            event: "C", // change_appointment
+            parent_id: Number(x),
+            target_url: http.endpoint,
+          })),
+        ]),
+      );
     },
 
     async deactivate() {

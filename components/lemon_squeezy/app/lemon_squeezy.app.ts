@@ -16,9 +16,7 @@ export default defineApp({
           },
         });
 
-        return data.map(({
-          id: value, attributes: { name: label },
-        }) => ({
+        return data.map(({ id: value, attributes: { name: label } }) => ({
           label,
           value,
         }));
@@ -40,14 +38,15 @@ export default defineApp({
           },
         });
 
-        return data.map(({
-          id: value, attributes: {
-            user_name, total_formatted, identifier,
-          },
-        }) => ({
-          label: `${user_name} (${total_formatted}) - ${identifier}`,
-          value,
-        }));
+        return data.map(
+          ({
+            id: value,
+            attributes: { user_name, total_formatted, identifier },
+          }) => ({
+            label: `${user_name} (${total_formatted}) - ${identifier}`,
+            value,
+          }),
+        );
       },
     },
     productId: {
@@ -61,9 +60,7 @@ export default defineApp({
           },
         });
 
-        return data.map(({
-          id: value, attributes: { name: label },
-        }) => ({
+        return data.map(({ id: value, attributes: { name: label } }) => ({
           label,
           value,
         }));
@@ -76,14 +73,12 @@ export default defineApp({
     },
     _getHeaders() {
       return {
-        "Authorization": `Bearer ${this.$auth.api_key}`,
-        "Accept": "application/vnd.api+json",
+        Authorization: `Bearer ${this.$auth.api_key}`,
+        Accept: "application/vnd.api+json",
         "Content-Type": "application/vnd.api+json",
       };
     },
-    async _makeRequest({
-      $ = this, path, ...opts
-    }) {
+    async _makeRequest({ $ = this, path, ...opts }) {
       const config = {
         url: `${this._apiUrl()}/${path}`,
         headers: this._getHeaders(),
@@ -115,33 +110,25 @@ export default defineApp({
         path: "subscriptions",
       });
     },
-    retrieveCustomer({
-      $, customerId,
-    }) {
+    retrieveCustomer({ $, customerId }) {
       return this._makeRequest({
         $,
         path: `customers/${customerId}`,
       });
     },
-    retrieveOrder({
-      $, orderId,
-    }) {
+    retrieveOrder({ $, orderId }) {
       return this._makeRequest({
         $,
         path: `orders/${orderId}`,
       });
     },
-    retrieveProduct({
-      $, productId,
-    }) {
+    retrieveProduct({ $, productId }) {
       return this._makeRequest({
         $,
         path: `products/${productId}`,
       });
     },
-    async *paginate({
-      fn, params = {}, maxResults = null,
-    }) {
+    async *paginate({ fn, params = {}, maxResults = null }) {
       let lastPage = false;
       let count = 0;
 
@@ -149,10 +136,7 @@ export default defineApp({
         const {
           data,
           meta: {
-            page: {
-              current_page,
-              last_page,
-            },
+            page: { current_page, last_page },
           },
         } = await fn({
           params,
@@ -167,7 +151,6 @@ export default defineApp({
         }
 
         lastPage = !(current_page == last_page);
-
       } while (lastPage);
     },
   },

@@ -9,4 +9,4 @@ IPinfo.io API offers a fast and simple way to gather IP address data, such as ge
 - **Customize Content Based on User Location**: Implement a serverless function on Pipedream that uses IPinfo.io to determine a user's location. Connect this to a CMS like WordPress to dynamically tailor content or ads shown to the user based on their geographic region.
 
 - **Security Alerts for Unusual Access**: Set up a Pipedream workflow that monitors your service's access logs. Use IPinfo.io API to analyze IP addresses and flag any from unexpected locations. Combine this with an alerting app like Slack to notify your team instantly about potential security threats.
-.
+  .

@@ -6,7 +6,7 @@ module.exports = {
   title: "",
   head: [
     ["link", { rel: "icon", href: "/favicon.ico" }],
-    ['meta', { name: 'version', content: 'latest' }]
+    ["meta", { name: "version", content: "latest" }],
   ],
   description: "Pipedream Documentation - Connect APIs, remarkably fast",
   base: "/docs/",
@@ -20,15 +20,18 @@ module.exports = {
     ],
     "check-md",
     "tabs",
-    ['vuepress-plugin-code-copy', {
-      color: '#34d28b',
-      backgroundColor: '#34d28b',
-      backgroundTransition: false,
-      successText: 'Copied'
-    }]
+    [
+      "vuepress-plugin-code-copy",
+      {
+        color: "#34d28b",
+        backgroundColor: "#34d28b",
+        backgroundTransition: false,
+        successText: "Copied",
+      },
+    ],
   ],
   themeConfig,
   postcss: {
     plugins: [require("autoprefixer"), require("tailwindcss")],
-  }
+  },
 };

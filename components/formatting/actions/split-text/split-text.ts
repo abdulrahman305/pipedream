@@ -1,7 +1,8 @@
 import { defineAction } from "@pipedream/types";
 import buildRegExp from "../../common/text/buildRegExp";
 import {
-  INDEX_ALL_SEGMENTS, SPLIT_TEXT_OPTIONS,
+  INDEX_ALL_SEGMENTS,
+  SPLIT_TEXT_OPTIONS,
 } from "../../common/text/splitTextOptions";
 import app from "../../app/formatting.app";
 
@@ -34,9 +35,7 @@ export default defineAction({
     },
   },
   async run({ $ }): Promise<string | string[]> {
-    const {
-      input, segmentIndex,
-    } = this;
+    const { input, segmentIndex } = this;
     let { separator } = this;
     if (separator.startsWith("/")) {
       const regExp = buildRegExp(separator);
@@ -52,22 +51,20 @@ export default defineAction({
       summary = `Successfully split text into ${length} segments`;
 
       switch (segmentIndex) {
-      case INDEX_ALL_SEGMENTS:
-        result = arrResults;
-        break;
+        case INDEX_ALL_SEGMENTS:
+          result = arrResults;
+          break;
 
         // this case would not be needed if 0 was accepted as an option
         // see issue #5429
-      case INDEX_ALL_SEGMENTS * -1:
-        result = arrResults[0];
-        break;
+        case INDEX_ALL_SEGMENTS * -1:
+          result = arrResults[0];
+          break;
 
-      default:
-        result =
-          arrResults[segmentIndex < 0
-            ? length + segmentIndex
-            : segmentIndex];
-        break;
+        default:
+          result =
+            arrResults[segmentIndex < 0 ? length + segmentIndex : segmentIndex];
+          break;
       }
     }
 

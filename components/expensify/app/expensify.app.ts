@@ -32,74 +32,76 @@ export default defineApp({
         }),
       });
     },
-    async createExpense({
-      $, data,
-    }) {
-      return this._makeRequest({
-        method: "post",
-        data: {
-          type: "create",
-          inputSettings: {
-            type: "expenses",
-            ...data,
-          },
-        },
-      }, $);
-    },
-    async updateCustomer({
-      $, data,
-    }) {
-      return this._makeRequest({
-        method: "update",
-        data: {
-          type: "create",
-          inputSettings: {
-            type: "expenses",
-            ...data,
-          },
-        },
-      }, $);
-    },
-    async exportReportToPDF({
-      $, reportId,
-    }) {
-      return this._makeRequest({
-        method: "post",
-        data: {
-          type: "file",
-          onReceive: {
-            immediateResponse: [
-              "returnRandomFileName",
-            ],
-          },
-          inputSettings: {
-            type: "combinedReportData",
-            filters: {
-              reportIDList: reportId,
+    async createExpense({ $, data }) {
+      return this._makeRequest(
+        {
+          method: "post",
+          data: {
+            type: "create",
+            inputSettings: {
+              type: "expenses",
+              ...data,
             },
           },
-          outputSettings: {
-            fileExtension: "pdf",
+        },
+        $,
+      );
+    },
+    async updateCustomer({ $, data }) {
+      return this._makeRequest(
+        {
+          method: "update",
+          data: {
+            type: "create",
+            inputSettings: {
+              type: "expenses",
+              ...data,
+            },
           },
         },
-        extraFormUrlencodedData: {
-          template: "default",
+        $,
+      );
+    },
+    async exportReportToPDF({ $, reportId }) {
+      return this._makeRequest(
+        {
+          method: "post",
+          data: {
+            type: "file",
+            onReceive: {
+              immediateResponse: ["returnRandomFileName"],
+            },
+            inputSettings: {
+              type: "combinedReportData",
+              filters: {
+                reportIDList: reportId,
+              },
+            },
+            outputSettings: {
+              fileExtension: "pdf",
+            },
+          },
+          extraFormUrlencodedData: {
+            template: "default",
+          },
         },
-      }, $);
+        $,
+      );
     },
 
-    async downloadFile({
-      $, fileName,
-    }) {
-      return this._makeRequest({
-        method: "post",
-        data: {
-          type: "download",
-          fileName,
-          fileSystem: "integrationServer",
+    async downloadFile({ $, fileName }) {
+      return this._makeRequest(
+        {
+          method: "post",
+          data: {
+            type: "download",
+            fileName,
+            fileSystem: "integrationServer",
+          },
+          responseType: "arraybuffer",
         },
-        responseType: "arraybuffer",
-      }, $);
+        $,
+      );
     },
   },
 });

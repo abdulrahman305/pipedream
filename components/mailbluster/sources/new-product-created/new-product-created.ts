@@ -17,8 +17,8 @@ export default defineSource({
     getField() {
       return "products";
     },
-    validateKeys(key1: string|number, key2: string|number) {
-      return (key1 > key2);
+    validateKeys(key1: string | number, key2: string | number) {
+      return key1 > key2;
     },
     getParams() {
       return {

@@ -7,7 +7,9 @@
     "pipedream",
     "fastfield_mobile_forms"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/fastfield_mobile_forms",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {
