@@ -1,9 +1,7 @@
 import common from "../../common/appValidation";
 import { ACTION_ERROR_MESSAGE } from "../../common/errorMessage";
 import { defineAction } from "@pipedream/types";
-import {
-  getMultiItemSummary, getTweetFields,
-} from "../../common/methods";
+import { getMultiItemSummary, getTweetFields } from "../../common/methods";
 import { GetListTweetsParams } from "../../common/types/requestParams";
 import {
   PaginatedResponseObject,
@@ -26,10 +24,7 @@ export default defineAction({
   props: {
     ...common.props,
     listId: {
-      propDefinition: [
-        common.props.app,
-        "listId",
-      ],
+      propDefinition: [common.props.app, "listId"],
     },
     searchTerms: {
       label: "Search Term(s)",
@@ -38,10 +33,7 @@ export default defineAction({
         "Text to filter tweets by. If you include more than one item in this array, only tweets that match all items will be returned. You can use the pipe character `|` to define multiple strings within an item, and it will be considered a match if the tweet contains any of them.",
     },
     maxResults: {
-      propDefinition: [
-        common.props.app,
-        "maxResults",
-      ],
+      propDefinition: [common.props.app, "maxResults"],
       min: MIN_RESULTS,
       description: `Maximum amount of items to return. Each request can return up to ${MAX_RESULTS_PER_PAGE} items.`,
       default: DEFAULT_RESULTS,
@@ -53,9 +45,7 @@ export default defineAction({
     getTweetFields,
   },
   async run({ $ }): Promise<PaginatedResponseObject<Tweet>> {
-    const {
-      listId, searchTerms,
-    } = this;
+    const { listId, searchTerms } = this;
     const params: GetListTweetsParams = {
       $,
       listId,
@@ -69,7 +59,9 @@ export default defineAction({
     const { data } = response;
     const filteredTweets = data.filter(({ text }) =>
       searchTerms.every((term) =>
-        term.split("|").some((splitTerm) => text.includes(splitTerm))));
+        term.split("|").some((splitTerm) => text.includes(splitTerm)),
+      ),
+    );
 
     $.export(
       "$summary",

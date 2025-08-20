@@ -1,9 +1,7 @@
 import infusionsoft from "../app/infusionsoft.app";
 import { SourceHttpRunOptions } from "@pipedream/types";
 import { CreateHookParams } from "../types/requestParams";
-import {
-  Webhook, WebhookObject,
-} from "../types/responseSchemas";
+import { Webhook, WebhookObject } from "../types/responseSchemas";
 
 export default {
   props: {
@@ -79,12 +77,8 @@ export default {
     }));
 
     const result = await Promise.all(promises);
-    result.forEach(({
-      obj, response,
-    }) => {
-      const data = response.noUrl
-        ? obj
-        : response;
+    result.forEach(({ obj, response }) => {
+      const data = response.noUrl ? obj : response;
       const summary = this.getSummary(data);
       this.$emit(data, {
         id: obj.id,

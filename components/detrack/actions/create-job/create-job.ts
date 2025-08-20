@@ -1,8 +1,6 @@
 import detrack from "../../app/detrack.app";
 import { defineAction } from "@pipedream/types";
-import {
-  CreateJobParams, JobResponse,
-} from "../../common/types";
+import { CreateJobParams, JobResponse } from "../../common/types";
 
 export default defineAction({
   name: "Create Job",
@@ -33,7 +31,8 @@ export default defineAction({
     additionalOptions: {
       type: "object",
       label: "Additional Options",
-      description: "Additional parameters to pass in the request body. [See the docs for more info.](https://detrackapiv2.docs.apiary.io/#reference/jobs/list-create/create)",
+      description:
+        "Additional parameters to pass in the request body. [See the docs for more info.](https://detrackapiv2.docs.apiary.io/#reference/jobs/list-create/create)",
       optional: true,
     },
   },
@@ -54,14 +53,8 @@ export default defineAction({
     const { data } = response;
 
     if (this.simplifyResponse) {
-      Object.entries(data).forEach(([
-        key,
-        value,
-      ]) => {
-        if ([
-          null,
-          "",
-        ].includes(value)) delete data[key];
+      Object.entries(data).forEach(([key, value]) => {
+        if ([null, ""].includes(value)) delete data[key];
       });
     }
 

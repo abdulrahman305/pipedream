@@ -33,49 +33,65 @@ After creating a new database, reconnect your account and select it to enable Pi
 ## HTTP errors
 
 ### 400 "invalid_json"
+
 Ensure the request body is formatted as valid JSON.
 
 ### 400 "invalid_request_url"
+
 The URL in your request is incorrect. Ensure the correct format and parameters.
 
 ### 400 "invalid_request"
+
 The request type isn't supported. Ensure the correct format and parameters.
 
 ### 400 "invalid_grant"
+
 Your authorization grant or refresh token is invalid, expired, or mismatched. Refer to OAuth 2.0 documentation.
 
 ### 400 "validation_error"
+
 The request body doesn't match the expected parameters schema. You're most likely missing a key parameter, or a parameter is malformed.
 
 ### 400 "missing_version"
+
 If your request lacks the required `Notion-Version` header, try adding a new Notion step in Pipedream, as it should handle this automatically.
 
 ### 401 "unauthorized"
+
 If your API token is invalid, reconnect your Notion account to Pipedream.
 
 ### 403 "restricted_resource"
+
 Your API token doesn't have permission to perform this operation. Try reconnecting your Notion account to Pipedream.
 
 ### 404 "object_not_found"
+
 The requested resource doesn't exist or isn't shared with your API token. Double check that the block, database or page exists.
 
 ### 409 "conflict_error"
+
 A conflict occurred, possibly due to outdated parameters. Try updating your parameters.
 
 ### 429 "rate_limited"
+
 You've exceeded the number of allowed requests. Slow down your request rate.
 
 ### 500 "internal_server_error"
+
 An unexpected error has occurred. Contact Notion support if it persists.
 
 ### 502 "bad_gateway"
+
 Notion had a problem processing your request, possibly due to an upstream server issue.
 
 ### 503 "service_unavailable"
+
 Notion is temporarily unavailable, possibly due to a long response time. Try again later.
 
 ### 503 "database_connection_unavailable"
+
 Notion's database cannot be queried at the moment. Try again later.
 
 ### 504 "gateway_timeout"
+
 Your request to Notion timed out. Try resending it after a while.

@@ -28,7 +28,7 @@ export type RequestMethod = (args: object) => Promise<any>;
 
 export interface ResourceFn {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (params:object): Promise<any>;
+  (params: object): Promise<any>;
 }
 
 export interface ResourceGeneratorParams {

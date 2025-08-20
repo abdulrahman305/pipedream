@@ -15,16 +15,10 @@ export default defineAction({
   props: {
     ...common.props,
     customerAddress: {
-      propDefinition: [
-        tookan,
-        "customerAddress",
-      ],
+      propDefinition: [tookan, "customerAddress"],
     },
     jobDeliveryDatetime: {
-      propDefinition: [
-        tookan,
-        "jobDeliveryDatetime",
-      ],
+      propDefinition: [tookan, "jobDeliveryDatetime"],
     },
   },
   async run({ $ }) {
@@ -42,7 +36,10 @@ export default defineAction({
     };
     const data: TaskData = await this.tookan.createDeliveryTask(params);
 
-    $.export("$summary", `Created delivery task successfully (id ${data.job_id})`);
+    $.export(
+      "$summary",
+      `Created delivery task successfully (id ${data.job_id})`,
+    );
 
     return data;
   },

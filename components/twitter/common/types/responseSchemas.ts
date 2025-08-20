@@ -4,7 +4,10 @@ export interface TwitterEntity {
 
 export type TwitterEntityMap = Record<string, object>;
 
-export interface DirectMessage extends TwitterEntity, HasMediaAttachments, HasReferencedTweets {
+export interface DirectMessage
+  extends TwitterEntity,
+    HasMediaAttachments,
+    HasReferencedTweets {
   event_type: "MessageCreate";
   text: string;
   sender_id?: string;

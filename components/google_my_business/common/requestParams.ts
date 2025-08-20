@@ -3,7 +3,7 @@ import { Pipedream } from "@pipedream/types";
 interface PdAxiosRequest {
   $?: Pipedream;
 }
-interface PaginatedRequest extends PdAxiosRequest, PaginationParams { }
+interface PaginatedRequest extends PdAxiosRequest, PaginationParams {}
 
 interface PaginationParams {
   maxPerPage?: number;
@@ -19,17 +19,17 @@ export interface HttpRequestParams extends PdAxiosRequest {
 
 export interface PaginatedRequestParams
   extends HttpRequestParams,
-  PaginationParams {
-    resourceName: string;
-  }
+    PaginationParams {
+  resourceName: string;
+}
 
 interface AccountLocation {
   account: string;
   location: string;
 }
 
-export interface ListPostsParams extends PaginatedRequest, AccountLocation { }
-export interface ListReviewsParams extends PaginatedRequest, AccountLocation { }
+export interface ListPostsParams extends PaginatedRequest, AccountLocation {}
+export interface ListReviewsParams extends PaginatedRequest, AccountLocation {}
 
 export interface CreatePostParams extends PdAxiosRequest, AccountLocation {
   data: {

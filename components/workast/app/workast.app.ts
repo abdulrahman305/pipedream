@@ -39,9 +39,7 @@ export default defineApp({
     _apiUrl() {
       return "https://api.todobot.io";
     },
-    async _makeRequest({
-      $ = this, path, ...args
-    }) {
+    async _makeRequest({ $ = this, path, ...args }) {
       return axios($, {
         url: `${this._apiUrl()}${path}`,
         headers: {
@@ -62,17 +60,13 @@ export default defineApp({
         ...args,
       });
     },
-    async getTasks({
-      listId, ...args
-    }) {
+    async getTasks({ listId, ...args }) {
       return this._makeRequest({
         path: `/list/${listId}/task`,
         ...args,
       });
     },
-    async createTask({
-      listId, ...args
-    }) {
+    async createTask({ listId, ...args }) {
       return this._makeRequest({
         path: `/list/${listId}/task`,
         method: "post",

@@ -5,15 +5,13 @@ export default defineAction({
   name: "Update Subscriber",
   version: "0.0.1",
   key: "smaily-update-subscriber",
-  description: "Updates a subscriber. [See docs here](https://smaily.com/help/api/subscribers-2/create-and-update-subscribers/)",
+  description:
+    "Updates a subscriber. [See docs here](https://smaily.com/help/api/subscribers-2/create-and-update-subscribers/)",
   type: "action",
   props: {
     smaily,
     segmentId: {
-      propDefinition: [
-        smaily,
-        "segmentId",
-      ],
+      propDefinition: [smaily, "segmentId"],
     },
     email: {
       label: "Subscriber Email",
@@ -29,15 +27,17 @@ export default defineAction({
     },
     customFields: {
       label: "Custom Fields",
-      description: "Custom fields to update the subscriber. E.g. { \"name\": \"Lucas\" }",
+      description:
+        'Custom fields to update the subscriber. E.g. { "name": "Lucas" }',
       type: "object",
       optional: true,
     },
   },
   async run({ $ }) {
-    const parsedCustomFields = typeof this.customFields === "string"
-      ? JSON.parse(this.customFields)
-      : this.customFields;
+    const parsedCustomFields =
+      typeof this.customFields === "string"
+        ? JSON.parse(this.customFields)
+        : this.customFields;
 
     const response = await this.smaily.updateSubscriber({
       $,

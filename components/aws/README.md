@@ -18,7 +18,8 @@ On the next page, you'll be prompted to name the user. We recommend naming the u
 
 ![Naming the new IAM user](https://res.cloudinary.com/pipedreamin/image/upload/v1715097913/marketplace/apps/aws/CleanShot_2024-05-07_at_12.04.30_acgthh.png)
 
-Next, you'll be prompted to define this user's *permissions*. You have three options:
+Next, you'll be prompted to define this user's _permissions_. You have three options:
+
 1. Attach the user to a group - the new user will inherit the group's permission policies.
 2. Copy permissions - copy the permission policies from another existing IAM user.
 3. Attach policies directly - attach a policy directly to the new user.
@@ -44,8 +45,6 @@ The most common issue when integrating Pipedream with AWS is permissions issues.
 The IAM user you create for Pipedream must have access to the AWS resources it’s attempting to use within your triggers, actions, Node.js, or Python code steps.
 
 You can use the AWS IAM console to attach additional policies to your IAM user associated with Pipedream.
-
-
 
 # Example Use Cases
 

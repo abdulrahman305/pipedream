@@ -1,8 +1,6 @@
 export function cloneSafe(o: any) {
   const str = jsonStringifySafe(o);
-  return str
-    ? JSON.parse(str)
-    : null;
+  return str ? JSON.parse(str) : null;
 }
 
 // this looks pretty terrible, but on axios return value,

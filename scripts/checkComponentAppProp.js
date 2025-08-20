@@ -1,13 +1,11 @@
 const path = require("path");
-const {
-  rootDir,
-  iterateComponentFiles,
-} = require("./findBadKeys.js");
+const { rootDir, iterateComponentFiles } = require("./findBadKeys.js");
 const tsconfig = require("../tsconfig.json");
 
 function checkComponentHasAppProp(component, appNameSlug) {
-  const matching = Object.values(component.props)
-    .filter((prop) => prop.type === "app" && prop.app === appNameSlug);
+  const matching = Object.values(component.props).filter(
+    (prop) => prop.type === "app" && prop.app === appNameSlug,
+  );
 
   if (!matching.length) {
     console.error(`[!] ${component.key} - missing app prop for ${appNameSlug}`);
@@ -22,8 +20,8 @@ function getComponentPath(filePath) {
 
   const componentPath = isTypeScript
     ? filePath
-      .replace(appNameSlug, path.join(appNameSlug, outDir))
-      .replace(/\.ts$/, ".mjs")
+        .replace(appNameSlug, path.join(appNameSlug, outDir))
+        .replace(/\.ts$/, ".mjs")
     : filePath;
 
   return path.join(rootDir, componentPath);
@@ -39,8 +37,10 @@ async function main() {
   }
 
   if (err) {
-    const core = require('@actions/core');
-    core.setFailed("There are errors in some components. See the messages above.");
+    const core = require("@actions/core");
+    core.setFailed(
+      "There are errors in some components. See the messages above.",
+    );
   }
 }
 

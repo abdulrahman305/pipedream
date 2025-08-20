@@ -1,7 +1,5 @@
 import { defineSource } from "@pipedream/types";
-import {
-  Board, WebhookData, WebhookDataTaskMoved,
-} from "../../common/types";
+import { Board, WebhookData, WebhookDataTaskMoved } from "../../common/types";
 import common from "../common";
 
 export default defineSource({
@@ -16,10 +14,7 @@ export default defineSource({
     getHookFilter() {
       return {
         filter: {
-          changedProperties: [
-            "columnId",
-            "swimlaneId",
-          ],
+          changedProperties: ["columnId", "swimlaneId"],
         },
       };
     },
@@ -29,9 +24,7 @@ export default defineSource({
     getHookType() {
       return "taskChanged";
     },
-    getSummary({
-      task: { name }, userFullName,
-    }: WebhookData) {
+    getSummary({ task: { name }, userFullName }: WebhookData) {
       return `"${name}" moved by ${userFullName}`;
     },
     async processHookData(data: WebhookData) {
@@ -41,9 +34,7 @@ export default defineSource({
         ...data,
       };
 
-      const {
-        columns, swimlanes,
-      }: Board = await this.kanbanflow.getBoard();
+      const { columns, swimlanes }: Board = await this.kanbanflow.getBoard();
 
       const columnChange = changedProperties.find(
         ({ property }) => property === "columnId",

@@ -1,8 +1,6 @@
 import kanbanflow from "../app/kanbanflow.app";
 import { SourceHttpRunOptions } from "@pipedream/types";
-import {
-  CreateHookParams, Webhook, WebhookData,
-} from "../common/types";
+import { CreateHookParams, Webhook, WebhookData } from "../common/types";
 
 export default {
   props: {
@@ -56,7 +54,7 @@ export default {
       status: 200,
     });
 
-    const body = await this.processHookData(data.body) as WebhookData;
+    const body = (await this.processHookData(data.body)) as WebhookData;
 
     const id = body.task._id;
     const summary = this.getSummary(body);

@@ -11,9 +11,7 @@ module.exports = function makeEventSummary(ev) {
   };
 
   const withStartDateTime = (x) => {
-    const start = ev.body.slot
-      ? ev.body.slot.start
-      : ev.body.start;
+    const start = ev.body.slot ? ev.body.slot.start : ev.body.start;
 
     if (!start) {
       return x;
@@ -23,39 +21,37 @@ module.exports = function makeEventSummary(ev) {
   };
 
   switch (ev.body.event) {
-  // User events:
-  case "new":
-    return withUserEmail("New user");
+    // User events:
+    case "new":
+      return withUserEmail("New user");
 
-  case "change":
-    if (ev.body.deleted) {
+    case "change":
+      if (ev.body.deleted) {
+        return withUserEmail("Deleted user");
+      }
+
+      return withUserEmail("Changed user");
+
+    case "delete":
       return withUserEmail("Deleted user");
-    }
 
-    return withUserEmail("Changed user");
-
-  case "delete":
-    return withUserEmail("Deleted user");
-
-  case "purchase":
-    return withUserEmail("Purchased credit");
+    case "purchase":
+      return withUserEmail("Purchased credit");
 
     // Appointment events:
-  case "create":
-    return withStartDateTime("Created an appointment");
+    case "create":
+      return withStartDateTime("Created an appointment");
 
-  case "edit":
-    return withStartDateTime(
-      ev.body.deleted
-        ? "Deleted an appointment"
-        : "Changed an appointment",
-    );
+    case "edit":
+      return withStartDateTime(
+        ev.body.deleted ? "Deleted an appointment" : "Changed an appointment",
+      );
 
-  case "destroy":
-    return withStartDateTime("Deleted an appointment");
+    case "destroy":
+      return withStartDateTime("Deleted an appointment");
 
-  default:
-    console.log("Unsupported event:", ev.body.event);
-    return null;
+    default:
+      console.log("Unsupported event:", ev.body.event);
+      return null;
   }
 };

@@ -146,6 +146,4 @@ const WEBHOOK_EVENT_TYPES: string[] = [
   "shipment.tracking.unknown",
 ];
 
-export {
-  CARRIER_OPTIONS, SERVICE_OPTIONS, WEBHOOK_EVENT_TYPES,
-};
+export { CARRIER_OPTIONS, SERVICE_OPTIONS, WEBHOOK_EVENT_TYPES };

@@ -7,12 +7,14 @@ module.exports = {
     messageTo: {
       type: "string",
       label: "To",
-      description: "The number the message will be sent to, in E164 format ex `+19195551234`",
+      description:
+        "The number the message will be sent to, in E164 format ex `+19195551234`",
     },
     from: {
       type: "string",
       label: "From",
-      description: "The number the call or message event will come from, in E164 format ex `+19195551234`",
+      description:
+        "The number the call or message event will come from, in E164 format ex `+19195551234`",
     },
     message: {
       type: "string",
@@ -22,12 +24,14 @@ module.exports = {
     messagingApplicationId: {
       type: "string",
       label: "Messaging Application ID",
-      description: "The ID from the messaging application created in the [Bandwidth Dashboard](https://dashboard.bandwidth.com).\n\nThe application must be associated with the location that the `from` number lives on.",
+      description:
+        "The ID from the messaging application created in the [Bandwidth Dashboard](https://dashboard.bandwidth.com).\n\nThe application must be associated with the location that the `from` number lives on.",
     },
     mediaUrl: {
       type: "string[]",
       label: "Media URL",
-      description: "Publicly addressible URL of the media you would like to send with the SMS",
+      description:
+        "Publicly addressible URL of the media you would like to send with the SMS",
     },
   },
   methods: {
@@ -38,12 +42,12 @@ module.exports = {
       });
     },
     async sendSms(to, from, message, messagingApplicationId) {
-      const controller = new bandwidthMessaging.ApiController(this.getMessagingClient());
+      const controller = new bandwidthMessaging.ApiController(
+        this.getMessagingClient(),
+      );
       const data = {
         applicationId: messagingApplicationId,
-        to: [
-          to,
-        ],
+        to: [to],
         from: from,
         text: message,
       };

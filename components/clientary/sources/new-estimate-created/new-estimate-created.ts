@@ -5,7 +5,8 @@ export default defineSource({
   ...common,
   key: "clientary-new-estimate-created",
   name: "New Estimate Created",
-  description: "Emit new events when a new estimate was created. [See the docs](https://www.clientary.com/api/estimates)",
+  description:
+    "Emit new events when a new estimate was created. [See the docs](https://www.clientary.com/api/estimates)",
   version: "0.0.1",
   type: "source",
   dedupe: "unique",

@@ -5,10 +5,12 @@ import { getTweetFields } from "../../common/methods";
 import { GetListTweetsParams } from "../../common/types/requestParams";
 import { Tweet } from "../../common/types/responseSchemas";
 import {
-  DOCS_LINK, MAX_RESULTS_PER_PAGE,
+  DOCS_LINK,
+  MAX_RESULTS_PER_PAGE,
 } from "../../actions/simple-search-in-list/simple-search-in-list";
 import {
-  getObjIncludes, getTweetIncludeIds,
+  getObjIncludes,
+  getTweetIncludeIds,
 } from "../../common/addObjIncludes";
 
 export default defineSource({
@@ -21,10 +23,7 @@ export default defineSource({
   props: {
     ...common.props,
     listId: {
-      propDefinition: [
-        common.props.app,
-        "listId",
-      ],
+      propDefinition: [common.props.app, "listId"],
     },
   },
   methods: {
@@ -43,10 +42,15 @@ export default defineSource({
         params: this.getTweetFields(),
       };
 
-      const {
-        data, includes,
-      } = await this.app.getListTweets(params);
-      data.forEach((tweet) => tweet.includes = getObjIncludes(tweet, includes, getTweetIncludeIds));
+      const { data, includes } = await this.app.getListTweets(params);
+      data.forEach(
+        (tweet) =>
+          (tweet.includes = getObjIncludes(
+            tweet,
+            includes,
+            getTweetIncludeIds,
+          )),
+      );
       return data;
     },
   },

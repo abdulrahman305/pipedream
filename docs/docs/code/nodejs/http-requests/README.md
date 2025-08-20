@@ -68,9 +68,10 @@ const { data } = resp;
 Make a request to retrieve Star Wars films from the Star Wars API:
 
 :::: tabs :options="{ useUrlFragment: false }"
- 
-::: tab Axios 
-``` javascript
+
+::: tab Axios
+
+```javascript
 import axios from "axios";
 
 export default defineComponent({
@@ -86,21 +87,21 @@ export default defineComponent({
   })
 });
 ```
+
 :::
- 
- 
+
 ::: tab "http-request prop"
 
-``` javascript
+```javascript
 export default defineComponent({
   props: {
-    httpRequest: { 
+    httpRequest: {
       type: "http_request",
       label: "Star Wars API request",
       default: {
         method: "GET",
-        url: "https://swapi.dev/api/films/"
-      }
+        url: "https://swapi.dev/api/films/",
+      },
     },
   },
   async run({ steps, $ }) {
@@ -110,15 +111,15 @@ export default defineComponent({
     // Retrieve just the data from the response
     const { data } = res;
   },
-})
+});
 ```
+
 **Produces**
 
 ![With the http-request prop](https://res.cloudinary.com/pipedreamin/image/upload/v1649961271/docs/components/CleanShot_2022-04-14_at_14.34.16_2x_c0urph.png)
 :::
- 
+
 ::::
- 
 
 [Copy this workflow to run this example on Pipedream](https://pipedream.com/@dylburger/make-an-http-get-request-to-the-star-wars-api-p_OKC2KA/edit).
 
@@ -127,9 +128,10 @@ export default defineComponent({
 POST sample JSON to [JSONPlaceholder](https://jsonplaceholder.typicode.com/), a free mock API service:
 
 :::: tabs :options="{ useUrlFragment: false }"
- 
-::: tab Axios 
-``` javascript
+
+::: tab Axios
+
+```javascript
 import axios from "axios";
 
 export default defineComponent({
@@ -148,14 +150,15 @@ export default defineComponent({
   })
 });
 ```
+
 :::
- 
- 
+
 ::: tab "http-request prop"
-``` javascript
+
+```javascript
 export default defineComponent({
   props: {
-    httpRequest: { 
+    httpRequest: {
       type: "http_request",
       label: "JSON Placeholder API request",
       default: {
@@ -163,9 +166,9 @@ export default defineComponent({
         url: "https://jsonplaceholder.typicode.com/posts",
         body: {
           contentType: "application/json",
-          fields: [{ name: "Luke" }]
-        }
-      }
+          fields: [{ name: "Luke" }],
+        },
+      },
     },
   },
   async run({ steps, $ }) {
@@ -175,10 +178,11 @@ export default defineComponent({
     // Retrieve just the data from the response
     const { data } = res;
   },
-})
+});
 ```
+
 :::
- 
+
 ::::
 
 When you make a `POST` request, you pass `POST` as the `method`, and include the data you'd like to send in the `data` object.
@@ -190,9 +194,10 @@ When you make a `POST` request, you pass `POST` as the `method`, and include the
 Retrieve fake comment data on a specific post using [JSONPlaceholder](https://jsonplaceholder.typicode.com/), a free mock API service. Here, you fetch data from the `/comments` resource, retrieving data for a specific post by query string parameter: `/comments?postId=1`.
 
 :::: tabs :options="{ useUrlFragment: false }"
- 
-::: tab Axios 
-``` javascript
+
+::: tab Axios
+
+```javascript
 import axios from "axios";
 
 export default defineComponent({
@@ -211,23 +216,24 @@ export default defineComponent({
   })
 });
 ```
+
 :::
- 
- 
+
 ::: tab "http-request prop"
-``` javascript
+
+```javascript
 export default defineComponent({
   props: {
-    httpRequest: { 
+    httpRequest: {
       type: "http_request",
       label: "JSON Placeholder API request",
       default: {
         method: "GET",
         url: "https://jsonplaceholder.typicode.com/comments",
         params: {
-          fields: [{ postId: 1 }]
-        }
-      }
+          fields: [{ postId: 1 }],
+        },
+      },
     },
   },
   async run({ steps, $ }) {
@@ -237,10 +243,11 @@ export default defineComponent({
     // Retrieve just the data from the response
     const { data } = res;
   },
-})
+});
 ```
+
 :::
- 
+
 ::::
 
 You should pass query string parameters using the `params` object, like above. When you do, `axios` automatically [URL-encodes](https://www.w3schools.com/tags/ref_urlencode.ASP) the parameters for you, which you'd otherwise have to do manually.
@@ -375,9 +382,10 @@ The Mozilla docs expand on the difference between these methods, and when you ma
 ## Send a `multipart/form-data` request
 
 :::: tabs :options="{ useUrlFragment: false }"
- 
-::: tab Axios 
-``` javascript
+
+::: tab Axios
+
+```javascript
 import axios from "axios";
 import FormData from "form-data";
 
@@ -401,14 +409,15 @@ export default defineComponent({
   })
 });
 ```
+
 :::
- 
- 
+
 ::: tab "http-request prop"
-``` javascript
+
+```javascript
 export default defineComponent({
   props: {
-    httpRequest: { 
+    httpRequest: {
       type: "http_request",
       label: "Example Multipart Form Request",
       default: {
@@ -416,9 +425,9 @@ export default defineComponent({
         url: "https://example.com",
         headers: {
           contentType: "multipart/form-data",
-          fields: [{ name: "Luke Skywalker" }]
-        }
-      }
+          fields: [{ name: "Luke Skywalker" }],
+        },
+      },
     },
   },
   async run({ steps, $ }) {
@@ -428,10 +437,11 @@ export default defineComponent({
     // Retrieve just the data from the response
     const { data } = res;
   },
-})
+});
 ```
+
 :::
- 
+
 ::::
 
 [Copy this workflow](https://pipedream.com/@dylburger/send-a-multipart-form-data-request-p_WxCQRyr/edit) to run this example.
@@ -450,10 +460,10 @@ export default defineComponent({
     // Download the webpage HTML file to /tmp
     return await pipeline(
       got.stream("https://example.com"),
-      fs.createWriteStream('/tmp/file.html')
+      fs.createWriteStream("/tmp/file.html"),
     );
-  }
-})
+  },
+});
 ```
 
 [Copy this workflow](https://pipedream.com/new?h=tch_wqKfoW) to run this example.
@@ -472,7 +482,7 @@ import FormData from "form-data";
 export default defineComponent({
   async run({ steps, $ }) {
     const formData = new FormData();
-    formData.append("file", fs.createReadStream('/tmp/file.pdf'));
+    formData.append("file", fs.createReadStream("/tmp/file.pdf"));
     const headers = formData.getHeaders();
 
     const config = {
@@ -482,7 +492,7 @@ export default defineComponent({
       data: formData,
     };
     return await axios(config);
-  }
+  },
 });
 ```
 
@@ -495,7 +505,6 @@ By default, [HTTP requests made from Pipedream can come from a large range of IP
 - [Use a Pipedream VPC](/workflows/vpc/) to route all outbound HTTP requests through a single IP address
 - If you don't need to access the HTTP response data, you can [use `$send.http()`](/destinations/http/) to send requests from a [limited set of IP addresses](/destinations/http/#ip-addresses-for-pipedream-http-requests).
 
-
 ## Use an HTTP proxy to proxy requests through another host
 
 By default, HTTP requests made from Pipedream can come from a range of IP addresses. **If you need to make requests from a single IP address, you can route traffic through an HTTP proxy**:
@@ -507,18 +516,18 @@ import httpsProxyAgent from "https-proxy-agent";
 export default defineComponent({
   props: {
     user: {
-      type: 'string',
-      label: 'Username',
-      description: 'The username for the HTTP proxy authentication',
+      type: "string",
+      label: "Username",
+      description: "The username for the HTTP proxy authentication",
     },
     pass: {
-      type: 'string',
-      label: 'Password',
+      type: "string",
+      label: "Password",
       secret: true,
-      description: 'The password for the HTTP proxy authentication',
+      description: "The password for the HTTP proxy authentication",
     },
     host: {
-      type: 'string',
+      type: "string",
       label: "HTTP Proxy Host",
       description: "The URL for the HTTP proxy",
     },
@@ -528,21 +537,21 @@ export default defineComponent({
       description: "The port the HTTP proxy is accepting requests at",
     },
     target_host: {
-      type: 'string',
+      type: "string",
       label: "Target Host",
       description: "The URL for the end target to reach through the proxy",
     },
     method: {
-      type: 'string',
-      default: 'GET',
+      type: "string",
+      default: "GET",
       label: "HTTP method",
-      description: "The HTTP method to use to reach the end target host"
+      description: "The HTTP method to use to reach the end target host",
     },
     body: {
-      type: 'object',
+      type: "object",
       label: "HTTP body",
-      description: "The HTTP body payload to send to the end target host"
-    }
+      description: "The HTTP body payload to send to the end target host",
+    },
   },
   async run({ steps, $ }) {
     const { user, pass, host, port, target_host, method } = this;
@@ -556,7 +565,7 @@ export default defineComponent({
     };
 
     return await axios.request(config);
-  }
+  },
 });
 ```
 
@@ -581,9 +590,9 @@ export default defineComponent({
 
     await pipeline(
       got.stream("https://example.com"),
-      got.stream.post("https://example2.com")
+      got.stream.post("https://example2.com"),
     );
-  }
+  },
 });
 ```
 
@@ -609,7 +618,7 @@ export default defineComponent({
       throw new Error(JSON.stringify(resp.data)); // This can be modified to throw any error you'd like
     }
     return resp;
-  }
+  },
 });
 ```
 
@@ -626,8 +635,8 @@ Different APIs paginate data in different ways. You'll need to consult the docs 
 Make a GraphQL request using the `graphql-request` NPM package:
 
 ```javascript
-import { graphql } from  'graphql'
-import { request, gql } from 'graphql-request'
+import { graphql } from "graphql";
+import { request, gql } from "graphql-request";
 
 export default defineComponent({
   async run({ steps, $ }) {
@@ -642,15 +651,15 @@ export default defineComponent({
           }
         }
       }
-    `
-    return await request('https://beta.pokeapi.co/graphql/v1beta', document)
+    `;
+    return await request("https://beta.pokeapi.co/graphql/v1beta", document);
   },
-})
+});
 ```
 
 :::tip The graphql package is required
 
-The `graphql` package is required for popular GraphQL clients to function, like `graphql-request` and `urql`. 
+The `graphql` package is required for popular GraphQL clients to function, like `graphql-request` and `urql`.
 
 Even though you will not need to use the `graphql` code itself in your code step, it's required to import it in order for `graphql-request` to function.
 
@@ -661,35 +670,34 @@ Even though you will not need to use the `graphql` code itself in your code step
 Authenticate your connected accounts in Pipedream with GraphQL requests using the `app` prop:
 
 ```javascript
-import { graphql } from  'graphql'
-import { GraphQLClient, gql } from 'graphql-request'
+import { graphql } from "graphql";
+import { GraphQLClient, gql } from "graphql-request";
 
 export default defineComponent({
   props: {
     github: {
-      type: 'app',
-      app: 'github'
-    }
+      type: "app",
+      app: "github",
+    },
   },
   async run({ steps, $ }) {
     const me = gql`
-      query { 
-        viewer { 
+      query {
+        viewer {
           login
         }
       }
-    `
+    `;
 
-    const client = new GraphQLClient('https://api.github.com/graphql', {
+    const client = new GraphQLClient("https://api.github.com/graphql", {
       headers: {
         authorization: `Bearer ${this.github.$auth.oauth_access_token}`,
       },
-    })
+    });
 
-    return await client.request(me)
+    return await client.request(me);
   },
-})
-
+});
 ```
 
 Alternatively, you can use Environment Variables as well for simple API key based GraphQL APIs.

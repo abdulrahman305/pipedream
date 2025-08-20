@@ -21,13 +21,15 @@ export default defineApp({
     reactivateExisting: {
       type: "boolean",
       label: "Reactivate Existing",
-      description: "Whether or not to reactivate the subscriber if they have already unsubscribed.  **This option should be used only if the subscriber is knowingly resubscribing**. default: `false`.",
+      description:
+        "Whether or not to reactivate the subscriber if they have already unsubscribed.  **This option should be used only if the subscriber is knowingly resubscribing**. default: `false`.",
       optional: true,
     },
     sendWelcomeEmail: {
       type: "boolean",
       label: "Send Welcome Email",
-      description: "Whether or not to send a welcome email to the subscriber. default: `false`.",
+      description:
+        "Whether or not to send a welcome email to the subscriber. default: `false`.",
       optional: true,
     },
     utmSource: {
@@ -47,7 +49,7 @@ export default defineApp({
     },
     _getHeaders(headers = {}) {
       return {
-        "Authorization": `Bearer ${this.$auth.api_key}`,
+        Authorization: `Bearer ${this.$auth.api_key}`,
         "Content-Type": "application/json",
         ...headers,
       };
@@ -60,19 +62,25 @@ export default defineApp({
       };
     },
     async createSubscriber($ = this, param) {
-      const response = await axios($, this._getRequestParams({
-        method: "POST",
-        path: "/publications/{publicationId}/subscriptions",
-        params: { publicationId: param.publication_id },
-        data: param,
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "POST",
+          path: "/publications/{publicationId}/subscriptions",
+          params: { publicationId: param.publication_id },
+          data: param,
+        }),
+      );
       return response;
     },
     async listPublications($ = this) {
-      const response = await axios($, this._getRequestParams({
-        method: "GET",
-        path: "/publications",
-      }));
+      const response = await axios(
+        $,
+        this._getRequestParams({
+          method: "GET",
+          path: "/publications",
+        }),
+      );
       return { publications: response.data };
     },
     async getPublicationOpts() {

@@ -1,10 +1,13 @@
 const stack_exchange = require("../../stack_exchange.app");
-const { DEFAULT_POLLING_SOURCE_TIMER_INTERVAL } = require("@pipedream/platform");
+const {
+  DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
+} = require("@pipedream/platform");
 
 module.exports = {
   key: "stack_exchange-new-answers-from-users",
   name: "New Answers from Specific Users",
-  description: "Emits an event when a new answer is posted by one of the specified users",
+  description:
+    "Emits an event when a new answer is posted by one of the specified users",
   version: "0.0.3",
   dedupe: "unique",
   type: "source",
@@ -12,10 +15,7 @@ module.exports = {
     stack_exchange,
     db: "$.service.db",
     siteId: {
-      propDefinition: [
-        stack_exchange,
-        "siteId",
-      ],
+      propDefinition: [stack_exchange, "siteId"],
     },
     userIds: {
       propDefinition: [
@@ -45,11 +45,7 @@ module.exports = {
       return Math.floor(Date.now() / 1000);
     },
     generateMeta(data) {
-      const {
-        answer_id: id,
-        owner: owner,
-        creation_date: ts,
-      } = data;
+      const { answer_id: id, owner: owner, creation_date: ts } = data;
       const { display_name: username } = owner;
       const summary = `New answer from ${username}`;
       return {
@@ -72,7 +68,10 @@ module.exports = {
       site: this.siteId,
     };
 
-    const items = this.stack_exchange.answersFromUsers(this.userIds, searchParams);
+    const items = this.stack_exchange.answersFromUsers(
+      this.userIds,
+      searchParams,
+    );
     for await (const item of items) {
       const meta = this.generateMeta(item);
       this.$emit(item, meta);

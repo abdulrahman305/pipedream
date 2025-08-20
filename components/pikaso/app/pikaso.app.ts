@@ -9,7 +9,8 @@ export default defineApp({
     tweetId: {
       type: "string",
       label: "Tweet Id",
-      description: "The id of the tweet to be saved, eg: `1526568680661786625`.\n\nAccepts the full url of the tweet, eg: `https://twitter.com/pipedream/status/1526568680661786625`",
+      description:
+        "The id of the tweet to be saved, eg: `1526568680661786625`.\n\nAccepts the full url of the tweet, eg: `https://twitter.com/pipedream/status/1526568680661786625`",
     },
     layout: {
       type: "string",
@@ -38,17 +39,16 @@ export default defineApp({
       return "https://pikaso.me/api/v1";
     },
     _getAuth() {
-      const {
-        token,
-        token_secret,
-      } = this.$auth;
-      const encodedToken = Buffer.from(`${token}:${token_secret}`).toString("base64");
+      const { token, token_secret } = this.$auth;
+      const encodedToken = Buffer.from(`${token}:${token_secret}`).toString(
+        "base64",
+      );
       return `Basic ${encodedToken}`;
     },
     _getHeaders() {
       return {
         "content-type": "application/json",
-        "Authorization": this._getAuth(),
+        Authorization: this._getAuth(),
       };
     },
     _getRequestParams(opts: any) {
@@ -59,12 +59,15 @@ export default defineApp({
       };
     },
     async screenshotTweet($ = this, params) {
-      const linkInfo = await axios($, this._getRequestParams({
-        method: "GET",
-        path: "/tweet",
-        params,
-        responseType: "arraybuffer",
-      }));
+      const linkInfo = await axios(
+        $,
+        this._getRequestParams({
+          method: "GET",
+          path: "/tweet",
+          params,
+          responseType: "arraybuffer",
+        }),
+      );
       return linkInfo;
     },
   },

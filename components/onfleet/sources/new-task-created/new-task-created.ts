@@ -20,9 +20,7 @@ export default {
     getTrigger() {
       return 6;
     },
-    generateMeta({
-      id, taskId, time, timeCreated,
-    }) {
+    generateMeta({ id, taskId, time, timeCreated }) {
       return {
         id: taskId || id,
         summary: `New Task Created: ${taskId || id}`,

@@ -5,14 +5,12 @@ export default defineAction({
   name: "Retrieve Customer",
   version: "0.0.1",
   key: "waitwhile-retrieve-customer",
-  description: "Retrieve a customer. [See the doc here](https://developers.waitwhile.com/reference/getcustomerscustomerid)",
+  description:
+    "Retrieve a customer. [See the doc here](https://developers.waitwhile.com/reference/getcustomerscustomerid)",
   props: {
     waitwhile,
     customerId: {
-      propDefinition: [
-        waitwhile,
-        "customerId",
-      ],
+      propDefinition: [waitwhile, "customerId"],
     },
   },
   type: "action",
@@ -24,8 +22,11 @@ export default defineAction({
       return data;
     } catch (error) {
       const statusCode = error[Object.getOwnPropertySymbols(error)[1]].status;
-      const statusText = error[Object.getOwnPropertySymbols(error)[1]].statusText;
-      throw new Error(`Error status code: ${statusCode}. Error status response: ${statusText}. You might need a Waitwhile Paid Plan to use this action`);
+      const statusText =
+        error[Object.getOwnPropertySymbols(error)[1]].statusText;
+      throw new Error(
+        `Error status code: ${statusCode}. Error status response: ${statusText}. You might need a Waitwhile Paid Plan to use this action`,
+      );
     }
   },
 });

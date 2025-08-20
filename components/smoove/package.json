@@ -4,8 +4,8 @@
   "description": "Pipedream Smoove Components",
   "main": "smoove.app.mjs",
   "keywords": [
-		"pipedream",
-		"smoove"
+    "pipedream",
+    "smoove"
   ],
   "homepage": "https://pipedream.com/apps/smoove",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",

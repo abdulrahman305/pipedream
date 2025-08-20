@@ -11,21 +11,17 @@ export default defineApp({
   type: "app",
   app: "niftyimages",
   methods: {
-    getFieldLabel({
-      name, unique,
-    }: DataStoreField) {
-      return name + (unique
-        ? " (unique)"
-        : "");
+    getFieldLabel({ name, unique }: DataStoreField) {
+      return name + (unique ? " (unique)" : "");
     },
     getFieldPropType(type: string) {
       switch (type) {
-      case "NUMBER":
-        return "integer";
-      case "BOOLEAN":
-        return "boolean";
-      default:
-        return "string";
+        case "NUMBER":
+          return "integer";
+        case "BOOLEAN":
+          return "boolean";
+        default:
+          return "string";
       }
     },
     _apiKey(): string {
@@ -43,7 +39,7 @@ export default defineApp({
       return axios($, {
         url: this._baseUrl() + endpoint,
         headers: {
-          "ApiKey": apiKey || this._apiKey(),
+          ApiKey: apiKey || this._apiKey(),
           "Content-Type": "application/json",
         },
         ...args,
@@ -62,7 +58,9 @@ export default defineApp({
         ...args,
       });
     },
-    async updateTimerTargetDate(args: UpdateTimerTargetDateParams): Promise<object> {
+    async updateTimerTargetDate(
+      args: UpdateTimerTargetDateParams,
+    ): Promise<object> {
       return this._httpRequest({
         endpoint: "/Timer/Update",
         method: "PUT",

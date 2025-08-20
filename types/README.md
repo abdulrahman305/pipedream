@@ -2,7 +2,7 @@
 
 TypeScript types for [Pipedream components](https://pipedream.com/docs/components/api/) (sources and actions).
 
-## Developing 
+## Developing
 
 ```bash
 npm install

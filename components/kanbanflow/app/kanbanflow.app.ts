@@ -1,7 +1,14 @@
 import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
-  Board, CreateHookParams, CreateTaskParams, HttpRequestParams, OptionsObject, Task, User, Webhook,
+  Board,
+  CreateHookParams,
+  CreateTaskParams,
+  HttpRequestParams,
+  OptionsObject,
+  Task,
+  User,
+  Webhook,
 } from "../common/types";
 import { getOptionsDescription } from "../common/utils";
 
@@ -33,12 +40,12 @@ export default defineApp({
       type: "string",
       async options() {
         const board: Board = await this.getBoard();
-        return board.colors?.map(({
-          name: label, value,
-        }) => ({
-          label,
-          value,
-        })) ?? [];
+        return (
+          board.colors?.map(({ name: label, value }) => ({
+            label,
+            value,
+          })) ?? []
+        );
       },
     },
     userId: {
@@ -47,12 +54,12 @@ export default defineApp({
       type: "string",
       async options() {
         const users: User[] = await this.getUsers();
-        return users?.map(({
-          _id, fullName, email,
-        }) => ({
-          label: `${fullName} (${email})`,
-          value: _id,
-        })) ?? [];
+        return (
+          users?.map(({ _id, fullName, email }) => ({
+            label: `${fullName} (${email})`,
+            value: _id,
+          })) ?? []
+        );
       },
     },
   },
@@ -92,12 +99,12 @@ export default defineApp({
     },
     async getBoardItems(itemType: "columns" | "swimlanes") {
       const board: Board = await this.getBoard();
-      return board[itemType]?.map(({
-        name: label, uniqueId: value,
-      }) => ({
-        label,
-        value,
-      })) ?? [];
+      return (
+        board[itemType]?.map(({ name: label, uniqueId: value }) => ({
+          label,
+          value,
+        })) ?? []
+      );
     },
     async createTask(args: CreateTaskParams): Promise<Task> {
       return this._httpRequest({

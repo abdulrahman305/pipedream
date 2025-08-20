@@ -1,5 +1,7 @@
 const stack_exchange = require("../../stack_exchange.app");
-const { DEFAULT_POLLING_SOURCE_TIMER_INTERVAL } = require("@pipedream/platform");
+const {
+  DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
+} = require("@pipedream/platform");
 
 module.exports = {
   key: "stack_exchange-new-question-for-keywords",
@@ -13,16 +15,10 @@ module.exports = {
     stack_exchange,
     db: "$.service.db",
     siteId: {
-      propDefinition: [
-        stack_exchange,
-        "siteId",
-      ],
+      propDefinition: [stack_exchange, "siteId"],
     },
     keywords: {
-      propDefinition: [
-        stack_exchange,
-        "keywords",
-      ],
+      propDefinition: [stack_exchange, "keywords"],
     },
     timer: {
       type: "$.interface.timer",
@@ -43,9 +39,7 @@ module.exports = {
       return Math.floor(Date.now() / 1000);
     },
     generateMeta(data) {
-      const {
-        question_id: id, creation_date: ts, title,
-      } = data;
+      const { question_id: id, creation_date: ts, title } = data;
       const summary = `New question: ${title}`;
       return {
         id,

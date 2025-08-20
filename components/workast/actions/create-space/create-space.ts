@@ -6,7 +6,8 @@ export default defineAction({
   name: "Create Space",
   version: "0.0.1",
   key: "workast-create-space",
-  description: "Creates a space. [See docs here](https://developers.workast.com/#/method/createSpace)",
+  description:
+    "Creates a space. [See docs here](https://developers.workast.com/#/method/createSpace)",
   type: "action",
   props: {
     workast,
@@ -25,10 +26,7 @@ export default defineAction({
       label: "Participants Ids",
       description: "The user ID to assigne to the task",
       type: "string[]",
-      propDefinition: [
-        workast,
-        "userId",
-      ],
+      propDefinition: [workast, "userId"],
       optional: true,
     },
     type: {
@@ -47,9 +45,10 @@ export default defineAction({
     },
   },
   async run({ $ }) {
-    const participantsParsed = typeof this.userIds === "string"
-      ? JSON.parse(this.userIds)
-      : this.userIds;
+    const participantsParsed =
+      typeof this.userIds === "string"
+        ? JSON.parse(this.userIds)
+        : this.userIds;
 
     const response = await this.workast.createSpace({
       $,
