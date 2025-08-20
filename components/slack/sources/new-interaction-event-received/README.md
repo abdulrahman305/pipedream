@@ -16,17 +16,17 @@ With this trigger, you can build workflows that perform some work with other API
 
 What this short video to learn how to use this in a workflow, or follow the guide below.
 
-First, if you haven’t already - send yourself a message containing one or more interactive elements. Use the ********\*\*********Sending the message with an interactive element********\*\********* guide below to send a message containing a button.
+First, if you haven’t already - send yourself a message containing one or more interactive elements. Use the **\*\*\*\***\*\***\*\*\*\***Sending the message with an interactive element**\*\*\*\***\*\***\*\*\*\*** guide below to send a message containing a button.
 
-If you have already sent a message containing an element, skip to **********************\*\***********************Configuring the source.**********************\*\***********************
+If you have already sent a message containing an element, skip to **********\*\***********\*\***********\*\***********Configuring the source.**********\*\***********\*\***********\*\***********
 
 ## Sending the message with an interactive element
 
-The easiest way is to send yourself a message using the ************\*\*\*\*************Slack - Send Message Using Block Kit************\*\*\*\************* action:
+The easiest way is to send yourself a message using the ****\*\*\*\*****\*\*\*\*****\*\*\*\*****Slack - Send Message Using Block Kit****\*\*\*\*****\*\*\*\*****\*\*\*\***** action:
 
 ![Selecting the Send Slack Message with Block Kit](https://res.cloudinary.com/pipedreamin/image/upload/v1668443844/docs/components/CleanShot_2022-11-10_at_10.25.522x_vxiooo.png))
 
-Then select a ******\*\*******Channel******\*\******* you’d like to send the message to, and use the ******\*\*******[Block Kit Builder](https://app.slack.com/block-kit-builder/)******\*\******* to build a message, or just copy the example button blocks below:
+Then select a **\*\***\*\***\*\***Channel**\*\***\*\***\*\*** you’d like to send the message to, and use the **\*\***\*\***\*\***[Block Kit Builder](https://app.slack.com/block-kit-builder/)**\*\***\*\***\*\*** to build a message, or just copy the example button blocks below:
 
 ```jsx
 [
@@ -48,7 +48,7 @@ Then select a ******\*\*******Channel******\*\******* you’d like to send the m
 ];
 ```
 
-Your ********\*\*********Slack - Send Message Using Block Kit********\*\********* should look like this:
+Your **\*\*\*\***\*\***\*\*\*\***Slack - Send Message Using Block Kit**\*\*\*\***\*\***\*\*\*\*** should look like this:
 
 ![Setting up the block kit message with a button block](https://res.cloudinary.com/pipedreamin/image/upload/v1668443887/docs/components/CleanShot_2022-11-10_at_10.29.552x_kvfznm.png)
 
@@ -56,11 +56,11 @@ Your ********\*\*********Slack - Send Message Using Block Kit********\*\********
 
 By default, this source will listen to **\*\***all**\*\*** interactive events from your Slack workspace that your connected Slack account has authorization to view. Please note that only messages created via [Slack - Send Block Kit Message](https://pipedream.com/apps/slack/actions/send-block-kit-message) Action, or via API call from the Pipedream app will emit an interaction event with this trigger. Block kit messages sent directly via the Slack's block kit builder will not trigger an interaction event.
 
-You can filter these events by selecting a specific ******\*\*******channel******\*\******* and/or a specific ****\*\*****action_id.****\*\*****
+You can filter these events by selecting a specific **\*\***\*\***\*\***channel**\*\***\*\***\*\*** and/or a specific \***\*\*\*\*\***action_id.\***\*\*\*\*\***
 
 ### Filtering interactive events by channel
 
-Use the ******\*\*\*\*******Channels******\*\*\*\******* dropdown to search for a specific channel for this source to subscribe to. **\*\*\*\***Only**\*\*\*\*** button clicks, dropdown selects, etc. _in this selected channel_ will trigger the source.
+Use the **\*\***\*\*\*\***\*\***Channels**\*\***\*\*\*\***\*\*** dropdown to search for a specific channel for this source to subscribe to. **\*\*\*\***Only**\*\*\*\*** button clicks, dropdown selects, etc. _in this selected channel_ will trigger the source.
 
 ### Filtering interactive events by `action_id`
 
@@ -78,7 +78,7 @@ If you pass `button_click` as a required `action_id` to this source, then only i
 
 Follow these steps to make sure your source is configured correctly:
 
-1. Make sure that your `action_id` or ******\*\*\*\*******channels******\*\*\*\******* filters apply to that message, remove the filters to make sure that’s not the case.
+1. Make sure that your `action_id` or **\*\***\*\*\*\***\*\***channels**\*\***\*\*\*\***\*\*** filters apply to that message, remove the filters to make sure that’s not the case.
 
 1. Make sure that the message comes from the same Slack account that this source is configured with.
 
