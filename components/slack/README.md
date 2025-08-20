@@ -2,7 +2,7 @@
 
 The Pipedream Slack app enables you to build event-driven workflows that interact with the Slack API. Once you authorize the Pipedream app's access to your workspace, you can use [Pipedream workflows](/workflows/) to perform common Slack [actions](#workflow-actions) or [write your own code](/code/) against the Slack API.
 
-The Pipedream Slack app is not a typical app. You don't interact with it directly as a bot, and it doesn't add custom functionality to your workspace out of the box. It makes it easier to automate anything you'd typically use the Slack API for, using Pipedream workflows. 
+The Pipedream Slack app is not a typical app. You don't interact with it directly as a bot, and it doesn't add custom functionality to your workspace out of the box. It makes it easier to automate anything you'd typically use the Slack API for, using Pipedream workflows.
 
 - Automate posting updates to your team channels
 - Create a bot to answer common questions
@@ -44,7 +44,6 @@ The Slack Bot requires a bot token to allow your Pipedream workflows to authenti
 
 - **Real-time CRM Updates**: Configure a Pipedream workflow to listen for specific trigger words in sales-related Slack channels. When mentioned, the workflow fetches corresponding data from a CRM tool like Salesforce and posts the latest deal status or customer information in the Slack conversation for quick reference.
 
-
 # Troubleshooting
 
 ## Error Responses
@@ -64,6 +63,7 @@ Example of a successful response:
 If the `ok` property is false, Slack will also include an `error` property with a short machine-readable code that describes the error.
 
 Example of a failure:
+
 ```json
 {
   "ok": false,

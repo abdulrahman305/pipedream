@@ -4,14 +4,14 @@
 
 Using Playwright you can perform tasks including:
 
-* Capture Screenshots: Convert webpages into images.
-* Processing PDFs: parse and scan PDFs.
-* Web Scraping: Extract data from websites.
-* UI/UX Testing: Verify user interface and experience.
-* Integration with Test Frameworks: Combine with testing frameworks.
-* Task Automation: Automate web-related tasks like form filling.
-* Functional Testing: Automate user interactions to test web application functionality.
-* Regression Testing: Ensure new code changes don't introduce bugs.
+- Capture Screenshots: Convert webpages into images.
+- Processing PDFs: parse and scan PDFs.
+- Web Scraping: Extract data from websites.
+- UI/UX Testing: Verify user interface and experience.
+- Integration with Test Frameworks: Combine with testing frameworks.
+- Task Automation: Automate web-related tasks like form filling.
+- Functional Testing: Automate user interactions to test web application functionality.
+- Regression Testing: Ensure new code changes don't introduce bugs.
 
 # Getting Started
 
@@ -25,25 +25,25 @@ To get started, import the `@pipedream/browsers` package into your Node.js code 
 
 This package exports a `playwright` module that exposes these methods:
 
-* `browser(opts?)` - method to instantiate a new browser (returns a [Playwright Browser instance](https://playwright.dev/docs/browsers))
-* `launch(opts?)` - an alias to browser()
-* `newPage()` - creates a new [Playwright Page](https://playwright.dev/docs/pages) instance and returns both the page & browser
+- `browser(opts?)` - method to instantiate a new browser (returns a [Playwright Browser instance](https://playwright.dev/docs/browsers))
+- `launch(opts?)` - an alias to browser()
+- `newPage()` - creates a new [Playwright Page](https://playwright.dev/docs/pages) instance and returns both the page & browser
 
 > Note: After awaiting the browser instance, make sure to close the browser at the end of your Node.js code step.
 
 ```javascript
-import { playwright } from '@pipedream/browsers';
+import { playwright } from "@pipedream/browsers";
 
 export default defineComponent({
-  async run({steps, $}) {
+  async run({ steps, $ }) {
     const browser = await playwright.browser();
-    
-    console.log(browser)
+
+    console.log(browser);
     // get page, perform actions, etc.
 
     await browser.close();
   },
-})
+});
 ```
 
 ## Usage in Sources or Actions
@@ -52,7 +52,7 @@ The same `@pipedream/browsers` package can be used in [actions](https://pipedrea
 
 The steps are the same as usage in Node.js code. Open a browser, create a page, and close the browser at the end of the code step.
 
-*Please note*: At this time Source's memory are not configurable and are fixed to 256 mb. This is below the recommened 2 gbs for usage in workflows.
+_Please note_: At this time Source's memory are not configurable and are fixed to 256 mb. This is below the recommened 2 gbs for usage in workflows.
 
 # Troubleshooting
 

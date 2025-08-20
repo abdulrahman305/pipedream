@@ -36,11 +36,10 @@ Open your project, and then click the **New** button for a dropdown to create a 
 
 Helpful hotkeys to speed up your development
 
-* `C then F` creates a new folder.
-* `C then W` creates a new workflow.
+- `C then F` creates a new folder.
+- `C then W` creates a new workflow.
 
 :::
-
 
 Folders can also contain sub-folders, which allows you to create a filing system to organize your workflows.
 
@@ -49,7 +48,6 @@ Folders can also contain sub-folders, which allows you to create a filing system
 To move workflows into folders, simply drag and drop the workflow into the folder.
 
 You can move workflows or folders up a level by dragging and dropping the workflow to the folder icon at the top of the list.
-
 
 ### Importing workflows into workspaces
 
@@ -76,7 +74,6 @@ To move a workflow from one project to another project, first check the workflow
 At this time it's not possible to move workflows out of GitHub Synchronized Projects.
 
 :::
-
 
 ## Frequently Asked Questions
 

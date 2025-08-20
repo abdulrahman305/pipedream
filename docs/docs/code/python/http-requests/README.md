@@ -282,8 +282,8 @@ import requests
 def handler(pd: "pipedream"):
   url = "https://api.github.com/graphql"
   query = """
-query { 
-  viewer { 
+query {
+  viewer {
     login
   }
 }

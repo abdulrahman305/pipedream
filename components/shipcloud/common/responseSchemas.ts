@@ -28,6 +28,4 @@ type Webhook = {
   deactivated: boolean;
 };
 
-export {
-  Address, Shipment, ShipmentQuote, Webhook,
-};
+export { Address, Shipment, ShipmentQuote, Webhook };

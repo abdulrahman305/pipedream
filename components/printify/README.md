@@ -9,4 +9,4 @@ The Printify API, accessible within Pipedream's platform, offers a suite of oper
 - **Product Catalog Sync**: Maintain an up-to-date product catalog across platforms. Whenever a new product is added to your Printify account, Pipedream can capture the event and update your other sales channels, like Shopify or WooCommerce, ensuring consistent product information and pricing across your ecosystem.
 
 - **Inventory Level Monitoring**: Keep tabs on your inventory levels by setting up a Pipedream workflow that checks Printify stock quantities at regular intervals. If stock for a popular item dips below a certain threshold, Pipedream can notify you via email or Slack, and it could even automatically pause ad campaigns for that item on Google Ads to avoid overselling.
-.
+  .

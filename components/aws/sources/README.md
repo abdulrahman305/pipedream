@@ -106,9 +106,7 @@ Below is an example policy with the permissions just mentioned:
         "sns:Subscribe",
         "sns:Unsubscribe"
       ],
-      "Resource": [
-        "arn:aws:sns:*:*:*"
-      ]
+      "Resource": ["arn:aws:sns:*:*:*"]
     }
   ]
 }

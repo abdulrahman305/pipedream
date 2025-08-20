@@ -4,12 +4,14 @@ import { getTweetSummary as getItemSummary } from "../common/getItemSummary";
 import { getTweetFields } from "../../common/methods";
 import { GetUserLikedTweetParams } from "../../common/types/requestParams";
 import {
-  DOCS_LINK, MAX_RESULTS_PER_PAGE,
+  DOCS_LINK,
+  MAX_RESULTS_PER_PAGE,
 } from "../../actions/list-favorites/list-favorites";
 import { Tweet } from "../../common/types/responseSchemas";
 import cacheUserId from "../common/cacheUserId";
 import {
-  getObjIncludes, getTweetIncludeIds,
+  getObjIncludes,
+  getTweetIncludeIds,
 } from "../../common/addObjIncludes";
 
 export default defineSource({
@@ -22,10 +24,7 @@ export default defineSource({
   props: {
     ...common.props,
     userNameOrId: {
-      propDefinition: [
-        common.props.app,
-        "userNameOrId",
-      ],
+      propDefinition: [common.props.app, "userNameOrId"],
     },
   },
   methods: {
@@ -46,10 +45,15 @@ export default defineSource({
         userId,
       };
 
-      const {
-        data, includes,
-      } = await this.app.getUserLikedTweets(params);
-      data.forEach((tweet) => tweet.includes = getObjIncludes(tweet, includes, getTweetIncludeIds));
+      const { data, includes } = await this.app.getUserLikedTweets(params);
+      data.forEach(
+        (tweet) =>
+          (tweet.includes = getObjIncludes(
+            tweet,
+            includes,
+            getTweetIncludeIds,
+          )),
+      );
       return data;
     },
   },

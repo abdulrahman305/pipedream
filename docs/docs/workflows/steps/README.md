@@ -1,6 +1,6 @@
 # Steps
 
-Steps are the building blocks you use to create workflows. You can easily combine multiple steps into a workflow to integrate your apps, data and APIs: 
+Steps are the building blocks you use to create workflows. You can easily combine multiple steps into a workflow to integrate your apps, data and APIs:
 
 - Steps include triggers, code and prebuilt actions.
 
@@ -62,18 +62,19 @@ Step exports allow you to pass data between steps. Any data exported from a step
 
 For examples of supported data types in your steps language, see the examples below.
 
-* [Node.js (Javascript)](/code/nodejs/#sharing-data-between-steps)
-* [Python](/code/python/#sharing-data-between-steps)
-* [Bash](/code/bash/#sharing-data-between-steps)
-* [Go](/code/go/#sharing-data-between-steps)
+- [Node.js (Javascript)](/code/nodejs/#sharing-data-between-steps)
+- [Python](/code/python/#sharing-data-between-steps)
+- [Bash](/code/bash/#sharing-data-between-steps)
+- [Go](/code/go/#sharing-data-between-steps)
 
 ## Step Notes
 
-Pipedream lets you add notes to individual steps in your workflow so you can  include helpful context to other workspace members or even yourself, and you can even write markdown!
+Pipedream lets you add notes to individual steps in your workflow so you can include helpful context to other workspace members or even yourself, and you can even write markdown!
 
 ![Viewing step notes](./images/step-notes-example.png)
 
 ### Adding or editing a note
+
 1. Enter build mode on any workflow
 2. Click into the overflow menu (3 dots) at the top right of any step
 3. Select **Add note** (or **Edit note** if making changes to an existing note)
@@ -84,12 +85,14 @@ Pipedream lets you add notes to individual steps in your workflow so you can  in
 ![Adding step notes](./images/adding-step-note.gif)
 
 ### Showing notes
+
 1. Any step that has a note will indicate this with a special icon (shown below)
 2. Click on the icon to hide or show the note
 
 ![View notes](./images/show-hide-note.gif)
 
 ### Current limitations
+
 - Step notes are only accessible in Edit mode, and not from the Inspector
 
 <Footer />

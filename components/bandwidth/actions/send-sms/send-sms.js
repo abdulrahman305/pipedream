@@ -9,31 +9,19 @@ module.exports = {
   props: {
     bandwidth,
     messageTo: {
-      propDefinition: [
-        bandwidth,
-        "messageTo",
-      ],
+      propDefinition: [bandwidth, "messageTo"],
     },
     from: {
-      propDefinition: [
-        bandwidth,
-        "from",
-      ],
+      propDefinition: [bandwidth, "from"],
     },
     message: {
-      propDefinition: [
-        bandwidth,
-        "message",
-      ],
+      propDefinition: [bandwidth, "message"],
     },
     messagingApplicationId: {
-      propDefinition: [
-        bandwidth,
-        "messagingApplicationId",
-      ],
+      propDefinition: [bandwidth, "messagingApplicationId"],
     },
   },
-  async run () {
+  async run() {
     const response = await this.bandwidth.sendSms(
       this.messageTo,
       this.from,

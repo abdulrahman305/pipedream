@@ -134,7 +134,6 @@ This would result in **1 credit** per execution because the initial free credit 
 
 :::
 
-
 ### Billing Period
 
 Many of the usage statistics for paid users are tied to a **billing period**. Your billing period starts when you sign up for a paid plan, and recurs roughly once a month for the duration of your subscription.

@@ -3,17 +3,15 @@ import xperiencify from "../../app/xperiencify.app";
 
 export default defineAction({
   name: "Add Student to Course",
-  description: "Adds a student to a course. [See docs](https://howto.xperiencify.com/article.php?article=123#1)",
+  description:
+    "Adds a student to a course. [See docs](https://howto.xperiencify.com/article.php?article=123#1)",
   key: "xperiencify-add-student-to-course",
   version: "0.0.1",
   type: "action",
   props: {
     xperiencify,
     courseId: {
-      propDefinition: [
-        xperiencify,
-        "courseId",
-      ],
+      propDefinition: [xperiencify, "courseId"],
     },
     student: {
       // user will input a new email
@@ -49,7 +47,10 @@ export default defineAction({
         password: this.password,
       },
     });
-    $.export("$summary", `Successfully added student ${this.student} to course`);
+    $.export(
+      "$summary",
+      `Successfully added student ${this.student} to course`,
+    );
     return response;
   },
 });

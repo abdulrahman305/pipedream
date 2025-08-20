@@ -3,6 +3,7 @@
 The Facebook Groups API provides a suite of features allowing you to manage group activities, automate content moderation, and engage community members. With this API on Pipedream, you can streamline group management, analyze engagement data, schedule posts, and integrate with other services for extensive automation potential. For instance, you can trigger workflows based on new posts, comments, or member activities, auto-respond to queries, or synchronize group data with CRM platforms, broadening your group's reach and efficacy.
 
 # Getting Started
+
 You need to install the Pipedream app in your Facebook Group in order to make any API calls, or use any prebuilt triggers or actions. To install Pipedream, navigate to the group where you're an administrator, and in the left sidebar, under **Settings** > **Group Settings**, you'll find **Manage Advanced Settings**. Click the Edit button under **Apps**.
 ![Apps](https://res.cloudinary.com/dpenc2lit/image/upload/v1687367319/mycology_fb_bpfmh3.png)
 

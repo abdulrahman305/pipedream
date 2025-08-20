@@ -129,7 +129,7 @@ import time
 def handler(pd: 'pipedream'):
   # delay this step for 30 seconds
   delay = 30
-  
+
   time.sleep(delay)
 ```
 

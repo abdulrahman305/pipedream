@@ -1,6 +1,4 @@
-import {
-  get, isEmpty, isString,
-} from "lodash-es";
+import { get, isEmpty, isString } from "lodash-es";
 import { JSONValue } from "@pipedream/types";
 
 export function sanitize(value: JSONValue) {
@@ -15,16 +13,17 @@ export function sanitize(value: JSONValue) {
       return [];
     }
 
-    return value
-      // Remove square brackets from ends ([ "foo", 5 ] ->  "foo", 5 )
-      .replace(/(^\[)|(]$)/g, "")
-      .trim() // ( "foo", 5  -> "foo", 5)
-      // Remove quotes from ends ("foo", 5  ->  foo", 5)
-      .replace(/^["']|["']$/g, "")
-      // Split on quotes, whitespace, and comma (foo", 5 ->  ["foo","5"])
-      .split(/["']?\s*,\s*["']?/);
+    return (
+      value
+        // Remove square brackets from ends ([ "foo", 5 ] ->  "foo", 5 )
+        .replace(/(^\[)|(]$)/g, "")
+        .trim() // ( "foo", 5  -> "foo", 5)
+        // Remove quotes from ends ("foo", 5  ->  foo", 5)
+        .replace(/^["']|["']$/g, "")
+        // Split on quotes, whitespace, and comma (foo", 5 ->  ["foo","5"])
+        .split(/["']?\s*,\s*["']?/)
+    );
   }
 
   throw new Error(`${value} is not an array or an array-like`);
 }
-

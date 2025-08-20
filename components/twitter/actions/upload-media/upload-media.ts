@@ -6,7 +6,8 @@ import fs from "fs";
 import { axios } from "@pipedream/platform";
 import FormData from "form-data";
 
-const DOCS_LINK = "https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload";
+const DOCS_LINK =
+  "https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/api-reference/post-media-upload";
 
 export default defineAction({
   ...common,
@@ -20,7 +21,8 @@ export default defineAction({
     filePath: {
       type: "string",
       label: "File Path",
-      description: "A file URL or a file path in the `/tmp` directory. [See the documentation on working with files.](https://pipedream.com/docs/code/nodejs/working-with-files/)",
+      description:
+        "A file URL or a file path in the `/tmp` directory. [See the documentation on working with files.](https://pipedream.com/docs/code/nodejs/working-with-files/)",
       optional: false,
     },
     media_category: {
@@ -38,13 +40,12 @@ export default defineAction({
     try {
       content = isLocalFile
         ? fs.createReadStream(this.filePath, {
-          encoding: "base64",
-        })
+            encoding: "base64",
+          })
         : await axios($, {
-          url: this.filePath,
-          responseType: "arraybuffer",
-        });
-
+            url: this.filePath,
+            responseType: "arraybuffer",
+          });
     } catch (err) {
       $.export("error", err);
       throw new Error(ACTION_ERROR_MESSAGE);
@@ -67,7 +68,10 @@ export default defineAction({
       fallbackError: ACTION_ERROR_MESSAGE,
     });
 
-    $.export("$summary", `Successfully uploaded media with ID ${response.media_id}`);
+    $.export(
+      "$summary",
+      `Successfully uploaded media with ID ${response.media_id}`,
+    );
 
     return response;
   },

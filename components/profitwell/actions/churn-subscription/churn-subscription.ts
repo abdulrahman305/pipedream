@@ -14,25 +14,16 @@ export default defineAction({
   props: {
     profitwell,
     subscriptionIdOrAlias: {
-      propDefinition: [
-        profitwell,
-        "subscriptionIdOrAlias",
-      ],
+      propDefinition: [profitwell, "subscriptionIdOrAlias"],
     },
     effectiveDate: {
-      propDefinition: [
-        profitwell,
-        "effectiveDate",
-      ],
+      propDefinition: [profitwell, "effectiveDate"],
       description: EffectiveDateDescription("the subscription churns"),
     },
     churnType: {
       type: "string",
       label: "Churn Type",
-      options: [
-        "voluntary",
-        "delinquent",
-      ],
+      options: ["voluntary", "delinquent"],
       default: "voluntary",
     },
   },

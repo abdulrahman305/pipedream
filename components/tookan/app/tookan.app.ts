@@ -48,7 +48,8 @@ export default defineApp({
     },
     additionalOptions: {
       label: "Additional Options",
-      description: "Any optional parameters to pass to the request [(see the Tookan API docs for available parameters)](https://tookanapi.docs.apiary.io/#reference/task/create-task)",
+      description:
+        "Any optional parameters to pass to the request [(see the Tookan API docs for available parameters)](https://tookanapi.docs.apiary.io/#reference/task/create-task)",
       type: "object",
       optional: true,
     },
@@ -75,7 +76,7 @@ export default defineApp({
         method,
       });
     },
-    async createTask(params: { data: object; }) {
+    async createTask(params: { data: object }) {
       const response: CreateTaskResponse = await this._httpRequest({
         endpoint: "/create_task",
         method: "POST",
@@ -88,13 +89,19 @@ export default defineApp({
 
       return response.data;
     },
-    async createAppointmentTask(params: CreateAppointmentTaskParams): Promise<object> {
+    async createAppointmentTask(
+      params: CreateAppointmentTaskParams,
+    ): Promise<object> {
       return this.createTask(params);
     },
-    async createDeliveryTask(params: CreateDeliveryTaskParams): Promise<object> {
+    async createDeliveryTask(
+      params: CreateDeliveryTaskParams,
+    ): Promise<object> {
       return this.createTask(params);
     },
-    async createFieldWorkforceTask(params: CreateFieldWorkforceTaskParams): Promise<object> {
+    async createFieldWorkforceTask(
+      params: CreateFieldWorkforceTaskParams,
+    ): Promise<object> {
       return this.createTask(params);
     },
     async createPickupAndDeliveryTask(

@@ -5,34 +5,22 @@ export default defineAction({
   name: "Add Customer Note Entry",
   version: "0.0.1",
   key: "waitwhile-add-customer-note-entry",
-  description: "Add a customer note entry. [See the doc here](https://developers.waitwhile.com/reference/postcustomerscustomeridnotes)",
+  description:
+    "Add a customer note entry. [See the doc here](https://developers.waitwhile.com/reference/postcustomerscustomeridnotes)",
   props: {
     waitwhile,
     customerId: {
-      propDefinition: [
-        waitwhile,
-        "customerId",
-      ],
+      propDefinition: [waitwhile, "customerId"],
     },
     locationId: {
-      propDefinition: [
-        waitwhile,
-        "locationId",
-      ],
+      propDefinition: [waitwhile, "locationId"],
     },
     visitId: {
-      propDefinition: [
-        waitwhile,
-        "visitId",
-      ],
+      propDefinition: [waitwhile, "visitId"],
     },
     content: {
-      propDefinition: [
-        waitwhile,
-        "content",
-      ],
+      propDefinition: [waitwhile, "content"],
     },
-
   },
   type: "action",
   methods: {},
@@ -53,8 +41,11 @@ export default defineAction({
       return data;
     } catch (error) {
       const statusCode = error[Object.getOwnPropertySymbols(error)[1]].status;
-      const statusText = error[Object.getOwnPropertySymbols(error)[1]].statusText;
-      throw new Error(`Error status code: ${statusCode}. Error status response: ${statusText}`);
+      const statusText =
+        error[Object.getOwnPropertySymbols(error)[1]].statusText;
+      throw new Error(
+        `Error status code: ${statusCode}. Error status response: ${statusText}`,
+      );
     }
   },
 });

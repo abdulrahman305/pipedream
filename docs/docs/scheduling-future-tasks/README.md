@@ -1,6 +1,6 @@
 # Scheduling future tasks
 
-Pipedream includes an event source which exposes an HTTP API for scheduling one-time tasks. You can schedule tasks at any timestamp, with second-level precision, up to one year in the future. 
+Pipedream includes an event source which exposes an HTTP API for scheduling one-time tasks. You can schedule tasks at any timestamp, with second-level precision, up to one year in the future.
 
 [Click here to create this source](https://pipedream.com/sources?action=create&key=pipedream-new-scheduled-tasks), or visit [https://pipedream.com/sources/new](https://pipedream.com/sources/new), select the **Pipedream** app, and the **New Scheduled Tasks** source.
 
@@ -38,14 +38,15 @@ Use the **Pipedream Task Scheduler - Schedule Task** Helper Functions action to 
 Use the following code in a Node.js code step:
 
 ```javascript
-import { axios } from "@pipedream/platform"
+import { axios } from "@pipedream/platform";
 
 export default defineComponent({
   props: {
     numSeconds: {
       type: "integer",
       label: "Num Seconds",
-      description: "How many seconds in the future would you like to schedule the task?",
+      description:
+        "How many seconds in the future would you like to schedule the task?",
     },
     secret: {
       type: "string",
@@ -54,15 +55,19 @@ export default defineComponent({
     taskSchedulerURL: {
       type: "string",
       label: "Task Scheduler URL",
-      description: "Enter the URL as it appears in the **Endpoint** field of your Task Scheduler source",
+      description:
+        "Enter the URL as it appears in the **Endpoint** field of your Task Scheduler source",
     },
     message: {
       type: "string",
-      description: "The message / payload to send to your task scheduler. Can be any string or JavaScript object. This message will be emitted by the task scheduler at the specified number of seconds in the future.",
+      description:
+        "The message / payload to send to your task scheduler. Can be any string or JavaScript object. This message will be emitted by the task scheduler at the specified number of seconds in the future.",
     },
   },
   async run({ $ }) {
-    const timestamp = (new Date(+new Date() + (this.numSeconds * 1000))).toISOString()
+    const timestamp = new Date(
+      +new Date() + this.numSeconds * 1000,
+    ).toISOString();
 
     const headers = {
       "Content-Type": "application/json",
@@ -81,7 +86,7 @@ export default defineComponent({
       },
     });
   },
-})
+});
 ```
 
 #### `cURL`
@@ -120,7 +125,7 @@ When you schedule a task, you'll receive a unique ID assigned to that task in th
 Cancel tasks using the following code in a Node.js code step:
 
 ```javascript
-import { axios } from "@pipedream/platform"
+import { axios } from "@pipedream/platform";
 
 export default defineComponent({
   props: {
@@ -131,7 +136,8 @@ export default defineComponent({
     taskSchedulerURL: {
       type: "string",
       label: "Task Scheduler URL",
-      description: "Enter the URL as it appears in the **Endpoint** field of your Task Scheduler source",
+      description:
+        "Enter the URL as it appears in the **Endpoint** field of your Task Scheduler source",
     },
     taskId: {
       type: "string",
@@ -155,7 +161,7 @@ export default defineComponent({
       },
     });
   },
-})
+});
 ```
 
 #### `cURL`

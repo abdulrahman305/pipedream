@@ -5,16 +5,14 @@ import constants from "../common/constants";
 export default defineAction({
   key: "nectar_crm-create-sale-opportunity",
   name: "Create Sale Opportunity",
-  description: "Created a sale opportunity. [See docs here](https://nectarcrm.docs.apiary.io/#reference/0/oportunidades/criar)",
+  description:
+    "Created a sale opportunity. [See docs here](https://nectarcrm.docs.apiary.io/#reference/0/oportunidades/criar)",
   version: "0.0.1",
   type: "action",
   props: {
     nectar_crm,
     contactId: {
-      propDefinition: [
-        nectar_crm,
-        "contactId",
-      ],
+      propDefinition: [nectar_crm, "contactId"],
     },
     name: {
       label: "Name",
@@ -23,7 +21,8 @@ export default defineAction({
     },
     dueDate: {
       label: "Due Date",
-      description: "The due date to finish the sale opportunity. E.g. `2022-07-20T00:00:00-03:00`",
+      description:
+        "The due date to finish the sale opportunity. E.g. `2022-07-20T00:00:00-03:00`",
       type: "string",
       optional: true,
     },
@@ -63,7 +62,10 @@ export default defineAction({
       },
     });
 
-    $.export("$summary", `Successfully created sale opportunity with id ${response.id}`);
+    $.export(
+      "$summary",
+      `Successfully created sale opportunity with id ${response.id}`,
+    );
 
     return response;
   },

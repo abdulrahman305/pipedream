@@ -1,7 +1,8 @@
 import {
   DirectMessage,
   List,
-  Tweet, User,
+  Tweet,
+  User,
 } from "../../common/types/responseSchemas";
 
 const SUMMARY_TEXT_MAX_LENGTH = 30;

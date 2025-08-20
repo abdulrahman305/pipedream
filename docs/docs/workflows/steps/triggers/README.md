@@ -197,7 +197,7 @@ import got from "got";
 const pipeline = promisify(stream.pipeline);
 await pipeline(
   got.stream(steps.trigger.event.body.raw_body_url),
-  fs.createWriteStream(`/tmp/raw_body`)
+  fs.createWriteStream(`/tmp/raw_body`),
 );
 ```
 
@@ -258,7 +258,7 @@ import got from "got";
 const pipeline = promisify(stream.pipeline);
 await pipeline(
   got.stream(steps.trigger.event.body.image.url),
-  fs.createWriteStream(`/tmp/${steps.trigger.event.body.image.filename}`)
+  fs.createWriteStream(`/tmp/${steps.trigger.event.body.image.filename}`),
 );
 ```
 
@@ -558,7 +558,7 @@ export default defineComponent({
     const pipeline = promisify(stream.pipeline);
     await pipeline(
       got.stream(steps.trigger.event.mail.content_url),
-      fs.createWriteStream(`/tmp/raw_email`)
+      fs.createWriteStream(`/tmp/raw_email`),
     );
 
     // Now read the file and parse its contents into the `parsed` variable
