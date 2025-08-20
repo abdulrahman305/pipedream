@@ -1,34 +1,26 @@
 import { defineAction } from "@pipedream/types";
 import baserow from "../../app/baserow.app";
 import { DOCS_LINK } from "../../common/constants";
-import {
-  GetRowParams, Row,
-} from "../../common/types";
+import { GetRowParams, Row } from "../../common/types";
 import common from "../common";
 
 export default defineAction({
   ...common,
   name: "Get Row",
-  description:
-    `Get a single row [See docs here](${DOCS_LINK})`,
+  description: `Get a single row [See docs here](${DOCS_LINK})`,
   key: "baserow-get-row",
   version: "0.0.3",
   type: "action",
   props: {
     ...common.props,
     rowId: {
-      propDefinition: [
-        baserow,
-        "rowId",
-      ],
+      propDefinition: [baserow, "rowId"],
     },
   },
   async run({ $ }) {
-    const {
-      tableId, rowId,
-    } = this;
+    const { tableId, rowId } = this;
 
-    const params: GetRowParams  = {
+    const params: GetRowParams = {
       $,
       tableId,
       rowId,

@@ -2,10 +2,7 @@
 // Pipedream project's public and secret keys and access customer credentials.
 // See the browser/ directory for the browser client.
 
-import {
-  AccessToken,
-  ClientCredentials,
-} from "simple-oauth2";
+import { AccessToken, ClientCredentials } from "simple-oauth2";
 
 /**
  * Options for creating a server-side client.
@@ -308,10 +305,7 @@ export class ServerClient {
    * @param opts - The options for configuring the server client.
    * @param oauthClient - An optional OAuth client to use for authentication in tests
    */
-  constructor(
-    opts: CreateServerClientOpts,
-    oauthClient?: ClientCredentials,
-  ) {
+  constructor(opts: CreateServerClientOpts, oauthClient?: ClientCredentials) {
     this.secretKey = opts.secretKey;
     this.publicKey = opts.publicKey;
 
@@ -328,10 +322,7 @@ export class ServerClient {
   }
 
   private configureOauthClient(
-    {
-      oauthClientId: id,
-      oauthClientSecret: secret,
-    }: CreateServerClientOpts,
+    { oauthClientId: id, oauthClientSecret: secret }: CreateServerClientOpts,
     tokenHost: string,
   ) {
     if (!id || !secret) {
@@ -357,7 +348,9 @@ export class ServerClient {
    * @returns The authorization header as a string.
    */
   private connectAuthorizationHeader(): string {
-    const encoded = Buffer.from(`${this.publicKey}:${this.secretKey}`).toString("base64");
+    const encoded = Buffer.from(`${this.publicKey}:${this.secretKey}`).toString(
+      "base64",
+    );
     return `Basic ${encoded}`;
   }
 
@@ -416,10 +409,7 @@ export class ServerClient {
     const url = new URL(`${baseURL}${path}`);
 
     if (params) {
-      for (const [
-        key,
-        value,
-      ] of Object.entries(params)) {
+      for (const [key, value] of Object.entries(params)) {
         if (value !== undefined && value !== null) {
           url.searchParams.append(key, String(value));
         }
@@ -430,10 +420,15 @@ export class ServerClient {
       ...customHeaders,
     };
 
-    let processedBody: string | Buffer | URLSearchParams | FormData | null = null;
+    let processedBody: string | Buffer | URLSearchParams | FormData | null =
+      null;
 
     if (body) {
-      if (body instanceof FormData || body instanceof URLSearchParams || typeof body === "string") {
+      if (
+        body instanceof FormData ||
+        body instanceof URLSearchParams ||
+        typeof body === "string"
+      ) {
         // For FormData, URLSearchParams, or strings, pass the body as-is
         processedBody = body;
       } else {
@@ -450,11 +445,10 @@ export class ServerClient {
       ...fetchOpts,
     };
 
-    if ([
-      "POST",
-      "PUT",
-      "PATCH",
-    ].includes(method.toUpperCase()) && processedBody) {
+    if (
+      ["POST", "PUT", "PATCH"].includes(method.toUpperCase()) &&
+      processedBody
+    ) {
       requestOptions.body = processedBody;
     }
 
@@ -462,16 +456,18 @@ export class ServerClient {
 
     if (!response.ok) {
       const errorBody = await response.text();
-      throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
+      throw new Error(
+        `HTTP error! status: ${response.status}, body: ${errorBody}`,
+      );
     }
 
     // Attempt to parse JSON, fall back to raw text if it fails
     const contentType = response.headers.get("Content-Type");
     if (contentType && contentType.includes("application/json")) {
-      return await response.json() as T;
+      return (await response.json()) as T;
     }
 
-    return await response.text() as unknown as T;
+    return (await response.text()) as unknown as T;
   }
 
   /**
@@ -551,7 +547,9 @@ export class ServerClient {
    * console.log(tokenResponse.token);
    * ```
    */
-  public async connectTokenCreate(opts: ConnectTokenCreateOpts): Promise<ConnectTokenResponse> {
+  public async connectTokenCreate(
+    opts: ConnectTokenCreateOpts,
+  ): Promise<ConnectTokenResponse> {
     const body = {
       ...opts,
       external_id: opts.external_user_id,
@@ -595,7 +593,10 @@ export class ServerClient {
    * console.log(account);
    * ```
    */
-  public async getAccount(accountId: string, params: ConnectParams = {}): Promise<Account> {
+  public async getAccount(
+    accountId: string,
+    params: ConnectParams = {},
+  ): Promise<Account> {
     return this.makeConnectRequest<Account>(`/accounts/${accountId}`, {
       params,
     });
@@ -615,7 +616,10 @@ export class ServerClient {
    * console.log(accounts);
    * ```
    */
-  public async getAccountsByApp(appId: string, params: ConnectParams = {}): Promise<Account[]> {
+  public async getAccountsByApp(
+    appId: string,
+    params: ConnectParams = {},
+  ): Promise<Account[]> {
     return this.makeConnectRequest<Account[]>(`/accounts/app/${appId}`, {
       params,
     });
@@ -635,7 +639,10 @@ export class ServerClient {
    * console.log(accounts);
    * ```
    */
-  public async getAccountsByExternalId(externalId: string, params: ConnectParams = {}): Promise<Account[]> {
+  public async getAccountsByExternalId(
+    externalId: string,
+    params: ConnectParams = {},
+  ): Promise<Account[]> {
     return this.makeConnectRequest<Account[]>(`/users/${externalId}/accounts`, {
       params,
     });
@@ -749,11 +756,11 @@ export class ServerClient {
    * console.log(response);
    * ```
    */
-  public async invokeWorkflow(url: string, opts: RequestOptions = {}): Promise<unknown> {
-    const {
-      body,
-      headers = {},
-    } = opts;
+  public async invokeWorkflow(
+    url: string,
+    opts: RequestOptions = {},
+  ): Promise<unknown> {
+    const { body, headers = {} } = opts;
 
     return this.makeRequest("", {
       ...opts,
@@ -761,7 +768,7 @@ export class ServerClient {
       method: opts.method || "POST", // Default to POST if not specified
       headers: {
         ...headers,
-        "Authorization": await this.oauthAuthorizationHeader(),
+        Authorization: await this.oauthAuthorizationHeader(),
       },
       body,
     });

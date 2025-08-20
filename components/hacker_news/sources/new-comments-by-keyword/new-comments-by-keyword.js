@@ -1,5 +1,7 @@
 const Parser = require("rss-parser");
-const { DEFAULT_POLLING_SOURCE_TIMER_INTERVAL } = require("@pipedream/platform");
+const {
+  DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
+} = require("@pipedream/platform");
 const hacker_news = require("../../hacker_news.app.js");
 
 const parser = new Parser();
@@ -24,7 +26,8 @@ module.exports = {
     keyword: {
       type: "string",
       label: "Keyword",
-      description: "Keyword to watch. Matches comments. Leave blank to get all comments.",
+      description:
+        "Keyword to watch. Matches comments. Leave blank to get all comments.",
       optional: true,
       default: "",
     },
@@ -44,7 +47,9 @@ module.exports = {
     // All elements of an item are optional,
     // however at least one of title or description must be present.
     // should be listed from most recent to least recent
-    const feed = await parser.parseURL(`https://hnrss.org/newcomments?q=${encodeURIComponent(this.keyword)}`);
+    const feed = await parser.parseURL(
+      `https://hnrss.org/newcomments?q=${encodeURIComponent(this.keyword)}`,
+    );
     for (let idx = feed.items.length - 1; idx >= 0; idx--) {
       const item = feed.items[idx];
       const key = this.itemKey(item);

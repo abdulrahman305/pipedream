@@ -2,9 +2,7 @@ import { axios } from "@pipedream/platform";
 import { defineApp } from "@pipedream/types";
 import { ROWS } from "../common/constants";
 import queries from "../common/queries";
-import {
-  clearObj, getUrl,
-} from "../common/utils";
+import { clearObj, getUrl } from "../common/utils";
 
 export default defineApp({
   type: "app",
@@ -42,19 +40,20 @@ export default defineApp({
     },
     company: {
       label: "Company",
-      description: "The user can add a company for the contact from existing companies. If the contact's company is not defined, then the user can quickly add the company.",
+      description:
+        "The user can add a company for the contact from existing companies. If the contact's company is not defined, then the user can quickly add the company.",
       type: "integer",
       async options({ page }) {
-        const { Data: { data } } = await this.listCompanies({
+        const {
+          Data: { data },
+        } = await this.listCompanies({
           params: {
             rows: ROWS,
             from: ROWS * page,
           },
         });
 
-        return data.map(({
-          id: value, name: label,
-        }) => ({
+        return data.map(({ id: value, name: label }) => ({
           label,
           value,
         }));
@@ -65,16 +64,16 @@ export default defineApp({
       description: "The unique identifier of the contact.",
       type: "integer",
       async options({ page }) {
-        const { Data: { data } } = await this.listContacts({
+        const {
+          Data: { data },
+        } = await this.listContacts({
           params: {
             rows: ROWS,
             from: ROWS * page,
           },
         });
 
-        return data.map(({
-          id: value, name: label,
-        }) => ({
+        return data.map(({ id: value, name: label }) => ({
           label,
           value,
         }));
@@ -87,9 +86,7 @@ export default defineApp({
       async options() {
         const { Data } = await this.listCurrencies();
 
-        return Data.map(({
-          code: value, name,
-        }) => ({
+        return Data.map(({ code: value, name }) => ({
           label: `(${value}) - ${name}`,
           value,
         }));
@@ -97,7 +94,8 @@ export default defineApp({
     },
     contactDescription: {
       label: "Description",
-      description: "Description about the contact. It contains an arbitrary string attached to the contact object.",
+      description:
+        "Description about the contact. It contains an arbitrary string attached to the contact object.",
       type: "string",
     },
     designation: {
@@ -157,9 +155,7 @@ export default defineApp({
           },
         });
 
-        return Data.map(({
-          id: value, name: label,
-        }) => ({
+        return Data.map(({ id: value, name: label }) => ({
           label,
           value,
         }));
@@ -182,7 +178,7 @@ export default defineApp({
           },
         });
 
-        return Data.map(({ pipeline }) => (pipeline));
+        return Data.map(({ pipeline }) => pipeline);
       },
     },
     priority: {
@@ -204,7 +200,8 @@ export default defineApp({
     },
     source: {
       label: "Source",
-      description: "The source from where the contact came to know about the user's company or deal's information like ads, internet etc.",
+      description:
+        "The source from where the contact came to know about the user's company or deal's information like ads, internet etc.",
       type: "string",
       async options() {
         const { fieldOptions } = await this.listVisibleFields({
@@ -216,7 +213,8 @@ export default defineApp({
     },
     stage: {
       label: "Stage",
-      description: "The stage for a deal. like new, contacted, qualified, proposal presented or in negotiation.",
+      description:
+        "The stage for a deal. like new, contacted, qualified, proposal presented or in negotiation.",
       type: "string",
       async options({ pipeline }) {
         const { Data } = await this.listStages({
@@ -224,13 +222,15 @@ export default defineApp({
         });
 
         // It removes three additional props that don't represents a stage (dealsForecastAmount, dealsTotalAmount, dealsTotalCount)
-        return Object.keys(Data).map((key) => key)
+        return Object.keys(Data)
+          .map((key) => key)
           .slice(0, -3);
       },
     },
     status: {
       label: "Status",
-      description: "The deal's status like Open, Won or Lost. By default it is Open.",
+      description:
+        "The deal's status like Open, Won or Lost. By default it is Open.",
       type: "string",
       async options() {
         const { fieldOptions } = await this.listVisibleFields({
@@ -252,7 +252,7 @@ export default defineApp({
           },
         });
 
-        return Data.map(({ tag }) => (tag));
+        return Data.map(({ tag }) => tag);
       },
     },
     twitterHandle: {
@@ -276,13 +276,11 @@ export default defineApp({
     _getHeaders() {
       return {
         "Content-Type": "application/json",
-        "accessToken": this.$auth.session_key,
+        accessToken: this.$auth.session_key,
         "x-linkname": this.$auth.linked_name,
       };
     },
-    async _makeRequest({
-      $ = this, path, action, version, ...opts
-    }) {
+    async _makeRequest({ $ = this, path, action, version, ...opts }) {
       const config = {
         url: `${this._apiUrl({
           path,
@@ -309,9 +307,7 @@ export default defineApp({
         path: "deal",
       });
     },
-    listUsers({
-      params, ...args
-    }) {
+    listUsers({ params, ...args }) {
       return this._makeRequest({
         ...args,
         method: "GET",
@@ -366,9 +362,7 @@ export default defineApp({
         version: "v3",
       });
     },
-    async listStages({
-      pipeline, ...args
-    }) {
+    async listStages({ pipeline, ...args }) {
       return this._makeRequest({
         ...args,
         method: "POST",
@@ -385,9 +379,7 @@ export default defineApp({
         version: "v1",
       });
     },
-    async listVisibleFields({
-      $, module, field,
-    }) {
+    async listVisibleFields({ $, module, field }) {
       const { Data } = await this._makeRequest({
         $,
         method: "GET",
@@ -395,11 +387,9 @@ export default defineApp({
         version: "v3",
       });
       const items = Data[module];
-      return items.filter((item) => (item.fieldName === field))[0];
+      return items.filter((item) => item.fieldName === field)[0];
     },
-    updateContact({
-      $, contactId, ...data
-    }) {
+    updateContact({ $, contactId, ...data }) {
       return this._makeRequest({
         $,
         method: "PUT",
@@ -408,9 +398,7 @@ export default defineApp({
         data,
       });
     },
-    async *paginate({
-      fn, maxResults = null,
-    }) {
+    async *paginate({ fn, maxResults = null }) {
       let rows = 0;
       let count = 0;
       let page = 0;
@@ -418,10 +406,7 @@ export default defineApp({
 
       do {
         const {
-          Data: {
-            data,
-            totalRows,
-          },
+          Data: { data, totalRows },
         } = await fn({
           rows: limit,
           from: ++page * limit,

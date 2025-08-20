@@ -1,7 +1,5 @@
 import { defineApp } from "@pipedream/types";
-import {
-  axios, ConfigurationError,
-} from "@pipedream/platform";
+import { axios, ConfigurationError } from "@pipedream/platform";
 import {
   ChurnSubscriptionParams,
   CreateSubscriptionParams,
@@ -10,9 +8,7 @@ import {
   SearchCustomerParams,
   UpdateSubscriptionParams,
 } from "../common/requestParams";
-import {
-  Customer, Subscription,
-} from "../common/responseSchemas";
+import { Customer, Subscription } from "../common/responseSchemas";
 
 export default defineApp({
   type: "app",
@@ -23,9 +19,11 @@ export default defineApp({
       label: "Customer ID",
       description:
         "Search for customers with the email address entered above. You can also provide a custom *Customer ID*.",
-      async options({ email }: {
+      async options({
+        email,
+      }: {
         email: string;
-      }): Promise<{ label: string; value: string; }[]> {
+      }): Promise<{ label: string; value: string }[]> {
         const searchParams: SearchCustomerParams = {
           params: {
             email,
@@ -55,10 +53,7 @@ export default defineApp({
       type: "string",
       label: "Plan Interval",
       description: "The billing cycle for this plan.",
-      options: [
-        "month",
-        "year",
-      ],
+      options: ["month", "year"],
     },
     subscriptionIdOrAlias: {
       type: "string",
@@ -86,7 +81,7 @@ export default defineApp({
         url: this._baseUrl() + endpoint,
         headers: {
           "Content-Type": "application/json",
-          "Authorization": this.$auth.api_token,
+          Authorization: this.$auth.api_token,
         },
         ...args,
       });
@@ -135,19 +130,12 @@ export default defineApp({
         endpoint: `/customers/${customerId}/`,
       });
     },
-    getCustomerLabel({
-      first_name, email, last_name,
-    }: Customer): string {
+    getCustomerLabel({ first_name, email, last_name }: Customer): string {
       let label = "";
-      [
-        first_name,
-        last_name,
-      ].forEach((name) => (label += ` ${name}`));
+      [first_name, last_name].forEach((name) => (label += ` ${name}`));
       label = label.trim();
 
-      label = label
-        ? (label += ` (${email})`)
-        : email;
+      label = label ? (label += ` (${email})`) : email;
 
       return label;
     },

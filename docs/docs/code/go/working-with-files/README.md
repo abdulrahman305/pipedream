@@ -9,7 +9,7 @@ You can also store and read files with Go steps. This means you can upload photo
 
 The `/tmp` directory is accessible from your workflow steps for saving and retrieving files.
 
-You have full access to read and write both files in `/tmp`. 
+You have full access to read and write both files in `/tmp`.
 
 ### Writing a file to `/tmp`
 
@@ -26,7 +26,7 @@ func main() {
   // Define where the file is and where to save it
 	fileUrl := "https://golangcode.com/go-logo.svg"
   filePath := "/tmp/go-logo.svg"
-  
+
 	// Download the file
 	resp, err := http.Get(fileUrl)
 	if err != nil {

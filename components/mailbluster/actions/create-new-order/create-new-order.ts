@@ -3,7 +3,8 @@ import mailbluster from "../../app/mailbluster.app";
 export default {
   key: "mailbluster-create-new-order",
   name: "Create New Order",
-  description: "Create a new order. [See the documentation](https://app.mailbluster.com/api-doc/orders)",
+  description:
+    "Create a new order. [See the documentation](https://app.mailbluster.com/api-doc/orders)",
   type: "action",
   version: "0.0.1",
   props: {
@@ -16,7 +17,8 @@ export default {
     email: {
       type: "string",
       label: "Customer Email",
-      description: "If no lead is found associated to this email, we will create a lead using this email address, otherwise will use the existing one",
+      description:
+        "If no lead is found associated to this email, we will create a lead using this email address, otherwise will use the existing one",
     },
     currency: {
       type: "string",
@@ -29,10 +31,7 @@ export default {
       description: "The total price of the order, eg: 10.64",
     },
     products: {
-      propDefinition: [
-        mailbluster,
-        "productId",
-      ],
+      propDefinition: [mailbluster, "productId"],
       type: "string[]",
       label: "Products",
       description: "The products to include in the order",
@@ -59,9 +58,7 @@ export default {
     return props;
   },
   async run({ $ }) {
-    const items = this.products.map(({
-      label, value,
-    }) => ({
+    const items = this.products.map(({ label, value }) => ({
       id: value,
       name: label,
       price: +this[`price_${value}`],

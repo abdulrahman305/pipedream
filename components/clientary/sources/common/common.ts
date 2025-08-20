@@ -39,14 +39,11 @@ export default {
     for await (const item of resourcesStream) {
       const createdTime = new Date(item.created_at).getTime();
       if (createdTime > this.getLastCreatedTime()) {
-        this.$emit(
-          item,
-          {
-            id: item.id,
-            summary: this.getSummary(item),
-            ts: createdTime,
-          },
-        );
+        this.$emit(item, {
+          id: item.id,
+          summary: this.getSummary(item),
+          ts: createdTime,
+        });
       }
       if (newLastCreatedTime < createdTime) {
         newLastCreatedTime = createdTime;

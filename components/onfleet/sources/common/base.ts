@@ -10,10 +10,7 @@ export default {
       customResponse: true,
     },
     webhookName: {
-      propDefinition: [
-        onfleet,
-        "webhookName",
-      ],
+      propDefinition: [onfleet, "webhookName"],
     },
   },
   hooks: {
@@ -59,11 +56,9 @@ export default {
         resources.push(item);
       }
 
-      resources
-        .reverse()
-        .forEach((resource) => {
-          this.$emit(resource, this.generateMeta(resource));
-        });
+      resources.reverse().forEach((resource) => {
+        this.$emit(resource, this.generateMeta(resource));
+      });
     },
     async createHook() {
       const response = await this.onfleet.createWebhook({

@@ -13,47 +13,29 @@ export default defineAction({
   props: {
     app,
     organizationId: {
-      propDefinition: [
-        app,
-        "organizationId",
-      ],
+      propDefinition: [app, "organizationId"],
     },
     folderId: {
       propDefinition: [
         app,
         "folderId",
-        ({ organizationId }: { organizationId: number; }) => ({
+        ({ organizationId }: { organizationId: number }) => ({
           organizationId,
         }),
       ],
     },
     title: {
-      propDefinition: [
-        app,
-        "title",
-      ],
+      propDefinition: [app, "title"],
     },
     description: {
-      propDefinition: [
-        app,
-        "description",
-      ],
+      propDefinition: [app, "description"],
     },
     tags: {
-      propDefinition: [
-        app,
-        "tags",
-      ],
+      propDefinition: [app, "tags"],
     },
   },
   async run({ $ }) {
-    const {
-      organizationId,
-      folderId,
-      title,
-      description,
-      tags,
-    } = this;
+    const { organizationId, folderId, title, description, tags } = this;
 
     const params: CreateTemplateParams = {
       $,
@@ -68,7 +50,8 @@ export default defineAction({
       },
     };
 
-    const response: CreateAgreementResponse = await this.app.createAgreement(params);
+    const response: CreateAgreementResponse =
+      await this.app.createAgreement(params);
     $.export("$summary", `Successfully created template (ID: ${response.uid})`);
     return response;
   },

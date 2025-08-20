@@ -9,4 +9,4 @@ The Booqable API provides programmatic access to rental shop functions such as i
 - **Scheduled Order Reporting**: Use Pipedream's scheduled triggers to fetch daily rental orders from Booqable and compile a report. Send this report via email with SendGrid or save it to Google Sheets for easy sharing and analysis, helping you keep track of rental performance.
 
 - **New Customer Onboarding**: When a new customer is created in Booqable, kick off a Pipedream workflow to add them to a Mailchimp list for email marketing, create a contact in HubSpot for CRM tracking, and send a personalized welcome message via Twilio SMS, enhancing the customer experience right from the start.
-.
+  .

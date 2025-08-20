@@ -12,10 +12,7 @@ export default defineAction({
   props: {
     infusionsoft,
     orderId: {
-      propDefinition: [
-        infusionsoft,
-        "orderId",
-      ],
+      propDefinition: [infusionsoft, "orderId"],
     },
     paymentAmount: {
       type: "string",

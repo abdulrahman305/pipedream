@@ -1,6 +1,4 @@
-import {
-  ServerClient, createClient,
-} from "../index";
+import { ServerClient, createClient } from "../index";
 import fetchMock from "jest-fetch-mock";
 import { ClientCredentials } from "simple-oauth2";
 
@@ -108,7 +106,9 @@ describe("ServerClient", () => {
         secretKey: "test-secret-key",
       });
 
-      await expect(client.makeRequest("/bad-path")).rejects.toThrow("HTTP error! status: 404, body: Not Found");
+      await expect(client.makeRequest("/bad-path")).rejects.toThrow(
+        "HTTP error! status: 404, body: Not Found",
+      );
       expect(fetchMock).toHaveBeenCalledWith(
         "https://api.pipedream.com/v1/bad-path",
         expect.any(Object),
@@ -160,7 +160,7 @@ describe("ServerClient", () => {
         "https://api.pipedream.com/v1/test-path",
         expect.objectContaining({
           headers: expect.objectContaining({
-            "Authorization": "Bearer mocked-oauth-token",
+            Authorization: "Bearer mocked-oauth-token",
             "Content-Type": "application/json",
           }),
         }),
@@ -169,7 +169,9 @@ describe("ServerClient", () => {
 
     it("should handle OAuth token retrieval failure", async () => {
       // Create a mock oauthClient that fails to get a token
-      const getTokenMock = jest.fn().mockRejectedValue(new Error("Invalid credentials"));
+      const getTokenMock = jest
+        .fn()
+        .mockRejectedValue(new Error("Invalid credentials"));
 
       const oauthClientMock = {
         getToken: getTokenMock,
@@ -185,7 +187,9 @@ describe("ServerClient", () => {
         oauthClientMock,
       );
 
-      await expect(client["makeApiRequest"]("/test-path")).rejects.toThrow("Failed to obtain OAuth token: Invalid credentials");
+      await expect(client["makeApiRequest"]("/test-path")).rejects.toThrow(
+        "Failed to obtain OAuth token: Invalid credentials",
+      );
     });
   });
 
@@ -216,7 +220,7 @@ describe("ServerClient", () => {
         "https://api.pipedream.com/v1/connect/test-path",
         expect.objectContaining({
           headers: expect.objectContaining({
-            "Authorization": expect.stringContaining("Basic "),
+            Authorization: expect.stringContaining("Basic "),
           }),
         }),
       );
@@ -259,7 +263,7 @@ describe("ServerClient", () => {
             external_id: "user-id",
           }),
           headers: expect.objectContaining({
-            "Authorization": expect.any(String),
+            Authorization: expect.any(String),
             "Content-Type": "application/json",
           }),
         }),
@@ -305,7 +309,7 @@ describe("ServerClient", () => {
             external_id: "user-id",
           }),
           headers: expect.objectContaining({
-            "Authorization": expect.any(String),
+            Authorization: expect.any(String),
             "Content-Type": "application/json",
           }),
         }),
@@ -599,11 +603,14 @@ describe("ServerClient", () => {
         },
       );
 
-      const result = await client.invokeWorkflow("https://example.com/workflow", {
-        body: {
-          foo: "bar",
+      const result = await client.invokeWorkflow(
+        "https://example.com/workflow",
+        {
+          body: {
+            foo: "bar",
+          },
         },
-      });
+      );
 
       expect(result).toEqual({
         result: "workflow-response",

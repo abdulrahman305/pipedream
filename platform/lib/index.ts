@@ -3,20 +3,12 @@ import * as t from "io-ts";
 import axios, { transformConfigForOauth } from "./axios";
 import { AxiosRequestConfig as AxiosConfig } from "axios";
 
-export {
-  axios, transformConfigForOauth,
-};
-export {
-  cloneSafe, jsonStringifySafe,
-} from "./utils";
+export { axios, transformConfigForOauth };
+export { cloneSafe, jsonStringifySafe } from "./utils";
 
-export {
-  ConfigurationError,
-} from "./errors";
+export { ConfigurationError } from "./errors";
 
-export {
-  default as sqlProp,
-} from "./sql-prop";
+export { default as sqlProp } from "./sql-prop";
 export type {
   ColumnSchema,
   DbInfo,
@@ -25,19 +17,14 @@ export type {
   TableSchema,
 } from "./sql-prop";
 
-export {
-  default as sqlProxy,
-} from "./sql-proxy";
+export { default as sqlProxy } from "./sql-proxy";
 
 export {
   DEFAULT_POLLING_SOURCE_TIMER_INTERVAL,
   PD_OFFICIAL_GMAIL_OAUTH_CLIENT_ID,
 } from "./constants";
 
-const SendPayload = t.union([
-  t.string,
-  t.object,
-]);
+const SendPayload = t.union([t.string, t.object]);
 type SendPayload = t.TypeOf<typeof SendPayload>;
 
 export const SendConfigEmail = t.partial({
@@ -83,10 +70,12 @@ export const HTTP_METHODS = [
   "PATCH",
 ];
 // HTTP method must be uppercase (for kotlin in coordinator -- i voted to make it case insensitive, but w.e for now)
-const SendConfigHTTPMethod = t.keyof(HTTP_METHODS.reduce((acc, v) => {
-  acc[v] = null;
-  return acc;
-}, {}));
+const SendConfigHTTPMethod = t.keyof(
+  HTTP_METHODS.reduce((acc, v) => {
+    acc[v] = null;
+    return acc;
+  }, {}),
+);
 type SendConfigHTTPMethod = t.TypeOf<typeof SendConfigHTTPMethod>;
 const SendConfigHTTP_required = t.strict({
   method: SendConfigHTTPMethod,
@@ -176,10 +165,7 @@ export let $send: SendFunctionsWrapper;
 
 export const $sendConfigRuntimeTypeChecker = (function () {
   const ret = {};
-  for (const [
-    sendName,
-    sendConfigType,
-  ] of Object.entries(sendTypeMap)) {
+  for (const [sendName, sendConfigType] of Object.entries(sendTypeMap)) {
     ret[sendName] = function (config) {
       const result = sendConfigType.decode(config);
       if (!result) throw new Error("io-ts: unexpected decode output");
@@ -194,7 +180,9 @@ export const $sendConfigRuntimeTypeChecker = (function () {
               if (!isNaN(+ctx.key)) continue;
               keyChunks.push(ctx.key);
             }
-            throw new Error(`$send.${sendName}: invalid value ${err.value} for ${keyChunks.join(".")}`);
+            throw new Error(
+              `$send.${sendName}: invalid value ${err.value} for ${keyChunks.join(".")}`,
+            );
           }
         }
         throw new Error("io-ts: error but could not produce message"); // shouldn't happen...

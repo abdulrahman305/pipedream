@@ -4,17 +4,15 @@ import { ConfigurationError } from "@pipedream/platform";
 
 export default defineAction({
   name: "Add Tag To Student",
-  description: "Add a tag to a student. [See docs](https://howto.xperiencify.com/article.php?article=123#6)",
+  description:
+    "Add a tag to a student. [See docs](https://howto.xperiencify.com/article.php?article=123#6)",
   key: "xperiencify-add-tag-to-student",
   version: "0.0.1",
   type: "action",
   props: {
     xperiencify,
     student: {
-      propDefinition: [
-        xperiencify,
-        "student",
-      ],
+      propDefinition: [xperiencify, "student"],
     },
     tags: {
       // no way to list all tags

@@ -10,11 +10,11 @@ The `$.files` helper is the main module to interact with the Project's File Stor
 
 ### `$.files.open(path)`
 
-*Sync.* Opens a file from the relative `path`. If the file doesn't exist, a new empty file is created.
+_Sync._ Opens a file from the relative `path`. If the file doesn't exist, a new empty file is created.
 
 ### `$.files.openDescriptor(fileDescriptor)`
 
-*Sync.* Creates a new `File` from the JSON friendly descriptor of a file. Useful for recreating a `File` from a step export.
+_Sync._ Creates a new `File` from the JSON friendly descriptor of a file. Useful for recreating a `File` from a step export.
 
 For example, export a `File` as a step export which will render the `File` as JSON:
 
@@ -39,18 +39,17 @@ Then in a downstream step recreate the `File` instance from the step export frie
 export default defineComponent({
   async run({ steps, $ }) {
     // Convert the the descriptor of the file back into a File instance
-    const file = $.files.openDescriptor(steps.create_file.$return_value)
+    const file = $.files.openDescriptor(steps.create_file.$return_value);
     // Download the file to the local /tmp directory
-    await $.file.toFile('/tmp/example.png')
-    console.log("File downloaded to /tmp")
+    await $.file.toFile("/tmp/example.png");
+    console.log("File downloaded to /tmp");
   },
-})
-
+});
 ```
 
 ### `$.files.dir(?path)`
 
-*Sync.* Lists the files & directories at the given `path`. By default it will list the files at the root directory.
+_Sync._ Lists the files & directories at the given `path`. By default it will list the files at the root directory.
 
 Here's an example of how to iterate over the files in the root directory and open them as `File` instances:
 
@@ -61,25 +60,25 @@ export default defineComponent({
     const nodes = $.files.dir();
     let files = [];
 
-    for await(const node of nodes) {
+    for await (const node of nodes) {
       // if this is a file, let's open it
-      if(node.isFile()) {
-        files.push(await $.files.open(node.path))
+      if (node.isFile()) {
+        files.push(await $.files.open(node.path));
       }
     }
 
-    return files
+    return files;
   },
-})
+});
 ```
 
 Each iteratee of `$.files.dir()` will contain the following properties:
 
-* `isDirectory()` - `true` if this instance is a directory.
-* `isFile()` - `true` if this instance is a file.
-* `path` - The path to the file.
-* `size` - The size of the file in bytes.
-* `modifiedAt` - The last modified at timestamp.
+- `isDirectory()` - `true` if this instance is a directory.
+- `isFile()` - `true` if this instance is a file.
+- `path` - The path to the file.
+- `size` - The size of the file in bytes.
+- `modifiedAt` - The last modified at timestamp.
 
 ## `File`
 
@@ -89,18 +88,17 @@ When using `$.files.open` or `$.files.openDescriptor`, you'll create a new insta
 
 ### `File.toUrl()`
 
-*Async.* The pre-signed GET URL to retrieve the file.
+_Async._ The pre-signed GET URL to retrieve the file.
 
 ```javascript
 export default defineComponent({
   async run({ steps, $ }) {
-    // Retrieve the pre-signed GET URL for logo.png 
-    const url = await $.files.open('logo.png').toUrl()
+    // Retrieve the pre-signed GET URL for logo.png
+    const url = await $.files.open("logo.png").toUrl();
 
-    return url
+    return url;
   },
-})
-
+});
 ```
 
 :::tip Pre-signed GET URLs are short lived.
@@ -111,11 +109,11 @@ The `File.toUrl()` will expire after 30 minutes.
 
 ### `File.toFile(path)`
 
-*Async.* Downloads the file to the local path in the current workflow. If the file doesn't exist, a new one will be created at the path specified.
+_Async._ Downloads the file to the local path in the current workflow. If the file doesn't exist, a new one will be created at the path specified.
 
 :::tip Only `/tmp` is writable in workflow environments
 
-Only the `/tmp` directory is writable in your workflow's exection environment. So you must download your file to the `/tmp` directory. 
+Only the `/tmp` directory is writable in your workflow's exection environment. So you must download your file to the `/tmp` directory.
 
 :::
 
@@ -123,62 +121,67 @@ Only the `/tmp` directory is writable in your workflow's exection environment. S
 export default defineComponent({
   async run({ steps, $ }) {
     // Download the file in the File Store to the workflow's /tmp/ directory
-    await $.files.open('logo.png').toFile("/tmp/logo.png")
+    await $.files.open("logo.png").toFile("/tmp/logo.png");
   },
-})
-
+});
 ```
 
 ### `File.toBuffer()`
 
-*Async.* Downloads the file as a Buffer to create readable or writeable streams.
+_Async._ Downloads the file as a Buffer to create readable or writeable streams.
 
 ```javascript
 export default defineComponent({
   async run({ steps, $ }) {
     // opens a file at the path "hello.txt" and downloads it as a Buffer
-    const buffer = await $.files.open('hello.txt').toBuffer()
+    const buffer = await $.files.open("hello.txt").toBuffer();
     // Logs the contents of the Buffer as a string
-    console.log(buffer.toString())
+    console.log(buffer.toString());
   },
-})
+});
 ```
 
 ### `File.fromFile(localFilePath, ?contentType)`
 
-*Async.* Uploads a file from the file at the `/tmp` local path. For example, if `localFilePath` is given `/tmp/recording.mp3`, it will upload that file to the current File Store File instance.
+_Async._ Uploads a file from the file at the `/tmp` local path. For example, if `localFilePath` is given `/tmp/recording.mp3`, it will upload that file to the current File Store File instance.
 
 ```javascript
 export default defineComponent({
   async run({ steps, $ }) {
     // Upload a file to the File Store from the local /tmp/ directory
-    const file = await $.files.open('recording.mp3').fromFile('/tmp/recording.mp3')
+    const file = await $.files
+      .open("recording.mp3")
+      .fromFile("/tmp/recording.mp3");
 
     // retrieve the short lived public URL to the file
     const publicUrl = await file.toUrl();
-    console.log(publicUrl)
+    console.log(publicUrl);
   },
-})
+});
 ```
 
 ### `File.fromUrl(url)`
 
-*Async.* Accepts a `url` to read from. 
+_Async._ Accepts a `url` to read from.
 
 ```javascript
 export default defineComponent({
   async run({ steps, $ }) {
     // Upload a file to the File Store by a URL
-    const file = await $.files.open('pipedream.png').fromUrl('https://res.cloudinary.com/pipedreamin/image/upload/t_logo48x48/v1597038956/docs/HzP2Yhq8_400x400_1_sqhs70.jpg')
+    const file = await $.files
+      .open("pipedream.png")
+      .fromUrl(
+        "https://res.cloudinary.com/pipedreamin/image/upload/t_logo48x48/v1597038956/docs/HzP2Yhq8_400x400_1_sqhs70.jpg",
+      );
 
-    console.log(file.url)
+    console.log(file.url);
   },
-})
+});
 ```
 
 ### `File.createWriteStream(?contentType, ?contentLength)`
 
-*Async.* Creates a write stream to populate the file with.
+_Async._ Creates a write stream to populate the file with.
 
 :::tip Pass the content length if possible
 
@@ -187,23 +190,25 @@ The `contentLength` argument is optional, however we do recommend passing it. Ot
 :::
 
 ```javascript
-import { pipeline } from 'stream/promises';
-import got from 'got'
+import { pipeline } from "stream/promises";
+import got from "got";
 
 export default defineComponent({
   async run({ steps, $ }) {
-    const writeStream = await $.files.open('logo.png').createWriteStream("image/png", 2153)
+    const writeStream = await $.files
+      .open("logo.png")
+      .createWriteStream("image/png", 2153);
 
-    const readStream = got.stream('https://pdrm.co/logo')
+    const readStream = got.stream("https://pdrm.co/logo");
 
     await pipeline(readStream, writeStream);
   },
-})
+});
 ```
 
 ### `File.fromReadableStream(?contentType, ?contentLength)`
 
-*Async.* Populates a file's contents from the `ReadableStream`.
+_Async._ Populates a file's contents from the `ReadableStream`.
 
 :::tip Pass the content length if possible
 
@@ -212,32 +217,34 @@ The `contentLength` argument is optional, however we do recommend passing it. Ot
 :::
 
 ```javascript
-import got from 'got'
+import got from "got";
 
 export default defineComponent({
   async run({ steps, $ }) {
     // Start a new read stream
-    const readStream = got.stream('https://pdrm.co/logo')
+    const readStream = got.stream("https://pdrm.co/logo");
 
     // Populate the file's content from the read stream
-    await $.files.open("logo.png").fromReadableStream(readStream, "image/png", 2153)
+    await $.files
+      .open("logo.png")
+      .fromReadableStream(readStream, "image/png", 2153);
   },
-})
+});
 ```
 
 ### `File.delete()`
 
-*Async.* Deletes the Project File.
+_Async._ Deletes the Project File.
 
 ```javascript
 export default defineComponent({
   async run({ steps, $ }) {
     // Open the Project File and delete it
-    const file = await $.files.open('example.png').delete()
+    const file = await $.files.open("example.png").delete();
 
-    console.log('File deleted.')
+    console.log("File deleted.");
   },
-})
+});
 ```
 
 :::danger Deleting files is irreversible

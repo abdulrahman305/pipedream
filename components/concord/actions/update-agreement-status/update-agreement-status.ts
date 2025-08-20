@@ -13,16 +13,13 @@ export default defineAction({
   props: {
     app,
     organizationId: {
-      propDefinition: [
-        app,
-        "organizationId",
-      ],
+      propDefinition: [app, "organizationId"],
     },
     agreementUid: {
       propDefinition: [
         app,
         "agreementUid",
-        ({ organizationId }: { organizationId: number; }) => ({
+        ({ organizationId }: { organizationId: number }) => ({
           organizationId,
         }),
       ],
@@ -35,11 +32,7 @@ export default defineAction({
     },
   },
   async run({ $ }) {
-    const {
-      organizationId,
-      agreementUid,
-      status,
-    } = this;
+    const { organizationId, agreementUid, status } = this;
 
     const params: PatchAgreementParams = {
       $,

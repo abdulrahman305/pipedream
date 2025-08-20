@@ -5,21 +5,19 @@ module.exports = {
   type: "app",
   app: "ongage",
   methods: {
-    _ongage (client) {
+    _ongage(client) {
       return new Ongage[client](
         this.$auth.x_username,
         this.$auth.x_password,
         this.$auth.x_account_code,
       );
     },
-    async _execute ({
-      body, ...config
-    }) {
+    async _execute({ body, ...config }) {
       if (body) config.data = body;
       const res = await axios(config);
       return res.data;
     },
-    async getLists (page) {
+    async getLists(page) {
       const api = this._ongage("ListsApi");
       const req = api.getAll({
         sort: "name",
@@ -29,24 +27,30 @@ module.exports = {
       });
       return await this._execute(req);
     },
-    async subscribe (listId, email, fields = {}, overwrite = false) {
+    async subscribe(listId, email, fields = {}, overwrite = false) {
       const api = this._ongage("ContactsApi");
-      const req = api.create({
-        email,
-        overwrite,
-        fields,
-      }, listId);
+      const req = api.create(
+        {
+          email,
+          overwrite,
+          fields,
+        },
+        listId,
+      );
       return await this._execute(req);
     },
-    async updateSubscriber (listId, email, fields = {}) {
+    async updateSubscriber(listId, email, fields = {}) {
       const api = this._ongage("ContactsApi");
-      const req = api.update({
-        email,
-        fields,
-      }, listId);
+      const req = api.update(
+        {
+          email,
+          fields,
+        },
+        listId,
+      );
       return await this._execute(req);
     },
-    async findSubscriber (email) {
+    async findSubscriber(email) {
       const api = this._ongage("ContactsApi");
       const req = api.getListsByEmail(email);
       return await this._execute(req);
@@ -56,7 +60,7 @@ module.exports = {
     listId: {
       type: "string",
       label: "List ID",
-      async options ({ page }) {
+      async options({ page }) {
         const { payload } = await this.getLists(page);
         return payload.map((list) => ({
           label: list.name,
@@ -68,7 +72,8 @@ module.exports = {
       type: "boolean",
       label: "Overwrite?",
       default: false,
-      description: "Whether to overwrite the specified fields if the subscriber already exists. Only the fields specified will be overwritten. For more information, see the [Ongage API documentation](https://ongage.atlassian.net/wiki/spaces/HELP/pages/1004175381/Contacts+API+Methods#ContactsAPIMethods-Description.3)",
+      description:
+        "Whether to overwrite the specified fields if the subscriber already exists. Only the fields specified will be overwritten. For more information, see the [Ongage API documentation](https://ongage.atlassian.net/wiki/spaces/HELP/pages/1004175381/Contacts+API+Methods#ContactsAPIMethods-Description.3)",
     },
     haltOnError: {
       type: "boolean",

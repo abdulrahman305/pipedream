@@ -16,17 +16,10 @@ export default defineAction({
   props: {
     app,
     calendarKey: {
-      propDefinition: [
-        app,
-        "calendarKey",
-      ],
+      propDefinition: [app, "calendarKey"],
     },
     subcalendarId: {
-      propDefinition: [
-        app,
-        "subCalendarIds",
-        calendarKeyOptions,
-      ],
+      propDefinition: [app, "subCalendarIds", calendarKeyOptions],
       optional: true,
     },
     query: {
@@ -37,28 +30,20 @@ export default defineAction({
       optional: true,
     },
     startDate: {
-      propDefinition: [
-        app,
-        "startDate",
-      ],
+      propDefinition: [app, "startDate"],
       optional: true,
       description:
         "The start of the date range to list events from, in `YYYY-MM-DD` format. Default is `today`.",
     },
     endDate: {
-      propDefinition: [
-        app,
-        "endDate",
-      ],
+      propDefinition: [app, "endDate"],
       optional: true,
       description:
         "The end of the date range to list events from (inclusive), in `YYYY-MM-DD` format. Default is `today+1day`.",
     },
   },
   async run({ $ }): Promise<ListEventsResponse> {
-    const {
-      calendarKey, subcalendarId, query, startDate, endDate,
-    } = this;
+    const { calendarKey, subcalendarId, query, startDate, endDate } = this;
 
     const params: ListEventsParams = {
       $,

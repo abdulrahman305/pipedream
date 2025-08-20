@@ -5,10 +5,12 @@ import { getTweetFields } from "../../common/methods";
 import { SearchTweetsParams } from "../../common/types/requestParams";
 import { Tweet } from "../../common/types/responseSchemas";
 import {
-  DOCS_LINK, MAX_RESULTS_PER_PAGE,
+  DOCS_LINK,
+  MAX_RESULTS_PER_PAGE,
 } from "../../actions/simple-search/simple-search";
 import {
-  getObjIncludes, getTweetIncludeIds,
+  getObjIncludes,
+  getTweetIncludeIds,
 } from "../../common/addObjIncludes";
 
 export default defineSource({
@@ -21,10 +23,7 @@ export default defineSource({
   props: {
     ...common.props,
     query: {
-      propDefinition: [
-        common.props.app,
-        "query",
-      ],
+      propDefinition: [common.props.app, "query"],
     },
   },
   methods: {
@@ -45,10 +44,15 @@ export default defineSource({
         },
       };
 
-      const {
-        data, includes,
-      } = await this.app.searchTweets(params);
-      data.forEach((tweet) => tweet.includes = getObjIncludes(tweet, includes, getTweetIncludeIds));
+      const { data, includes } = await this.app.searchTweets(params);
+      data.forEach(
+        (tweet) =>
+          (tweet.includes = getObjIncludes(
+            tweet,
+            includes,
+            getTweetIncludeIds,
+          )),
+      );
       return data;
     },
   },

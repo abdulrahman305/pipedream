@@ -2,12 +2,11 @@ import app from "../../app/team_up.app";
 import { defineAction } from "@pipedream/types";
 import { UpdateEventParams } from "../../common/requestParams";
 import { UpdateEventResponse } from "../../common/responseSchemas";
-import {
-  EVENT_PROPS, getEventProps,
-} from "../../common/eventProps";
+import { EVENT_PROPS, getEventProps } from "../../common/eventProps";
 import calendarKeyOptions from "../../common/calendarKeyOptions";
 
-const DOCS_LINK = "https://apidocs.teamup.com/docs/api/8b5d0d1556103-update-an-event";
+const DOCS_LINK =
+  "https://apidocs.teamup.com/docs/api/8b5d0d1556103-update-an-event";
 
 export default defineAction({
   name: "Update Event",
@@ -18,17 +17,10 @@ export default defineAction({
   props: {
     app,
     calendarKey: {
-      propDefinition: [
-        app,
-        "calendarKey",
-      ],
+      propDefinition: [app, "calendarKey"],
     },
     eventId: {
-      propDefinition: [
-        app,
-        "eventId",
-        calendarKeyOptions,
-      ],
+      propDefinition: [app, "eventId", calendarKeyOptions],
     },
     ...EVENT_PROPS,
   },
@@ -36,9 +28,7 @@ export default defineAction({
     getEventProps,
   },
   async run({ $ }) {
-    const {
-      calendarKey, eventId,
-    } = this;
+    const { calendarKey, eventId } = this;
 
     const params: UpdateEventParams = {
       $,
@@ -51,11 +41,14 @@ export default defineAction({
     };
 
     const data: UpdateEventResponse = await this.app.updateEvent(params);
-    const { event: { title } } = data;
+    const {
+      event: { title },
+    } = data;
 
-    $.export("$summary", `Successfully updated event ${title
-      ? `"${title}"`
-      : eventId}`);
+    $.export(
+      "$summary",
+      `Successfully updated event ${title ? `"${title}"` : eventId}`,
+    );
 
     return data;
   },

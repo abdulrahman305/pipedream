@@ -5,21 +5,16 @@ export default defineAction({
   key: "persistiq-add-prospect-to-campaign",
   version: "0.0.1",
   name: "Add Prospect To Campaign",
-  description: "Adds prospect to a campaign. [See docs here](https://apidocs.persistiq.com/#add-lead-to-a-campaign)",
+  description:
+    "Adds prospect to a campaign. [See docs here](https://apidocs.persistiq.com/#add-lead-to-a-campaign)",
   type: "action",
   props: {
     app,
     campaignId: {
-      propDefinition: [
-        app,
-        "campaignId",
-      ],
+      propDefinition: [app, "campaignId"],
     },
     leadId: {
-      propDefinition: [
-        app,
-        "leadId",
-      ],
+      propDefinition: [app, "leadId"],
     },
     mailboxId: {
       type: "string",
@@ -33,13 +28,16 @@ export default defineAction({
       $,
       campaignId: this.campaignId,
       data: {
-        leads: this.leadId.map(( leadId: string ): { id:string; } => ({
+        leads: this.leadId.map((leadId: string): { id: string } => ({
           id: leadId,
         })),
         mailbox_id: this.mailboxId,
       },
     });
-    $.export("$summary", `Successfully added Lead (ID(s): ${this.leadId.join(", ")}) to Campaign (ID: ${this.campaignId})`);
+    $.export(
+      "$summary",
+      `Successfully added Lead (ID(s): ${this.leadId.join(", ")}) to Campaign (ID: ${this.campaignId})`,
+    );
     return response;
   },
 });

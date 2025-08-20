@@ -69,9 +69,7 @@ export default defineApp({
 
       return response.companies;
     },
-    async getCompany({
-      id, ...params
-    }: GetObjectParams): Promise<Company> {
+    async getCompany({ id, ...params }: GetObjectParams): Promise<Company> {
       return this._httpRequest({
         endpoint: `/companies/${id}`,
         ...params,
@@ -93,9 +91,7 @@ export default defineApp({
 
       return response.contacts;
     },
-    async getContact({
-      id, ...params
-    }: GetObjectParams): Promise<Contact> {
+    async getContact({ id, ...params }: GetObjectParams): Promise<Contact> {
       return this._httpRequest({
         endpoint: `/contacts/${id}`,
         ...params,
@@ -108,17 +104,13 @@ export default defineApp({
 
       return response.orders;
     },
-    async getOrder({
-      id, ...params
-    }: GetObjectParams): Promise<Order> {
+    async getOrder({ id, ...params }: GetObjectParams): Promise<Order> {
       return this._httpRequest({
         endpoint: `/orders/${id}`,
         ...params,
       });
     },
-    getOrderSummary({
-      contact, order_items, total,
-    }: Order): string {
+    getOrderSummary({ contact, order_items, total }: Order): string {
       return `${order_items.length} items (total $${total}) by ${contact.first_name}`;
     },
     async listProducts(): Promise<Product[]> {
@@ -159,9 +151,7 @@ export default defineApp({
       async options() {
         const companies: Company[] = await this.listCompanies();
 
-        return companies.map(({
-          company_name, id,
-        }) => ({
+        return companies.map(({ company_name, id }) => ({
           label: company_name,
           value: id,
         }));
@@ -176,9 +166,7 @@ export default defineApp({
       async options() {
         const contacts: Contact[] = await this.listContacts();
 
-        return contacts.map(({
-          given_name, id,
-        }) => ({
+        return contacts.map(({ given_name, id }) => ({
           label: given_name ?? id.toString(),
           value: id,
         }));
@@ -208,9 +196,7 @@ export default defineApp({
       async options() {
         const products: Product[] = await this.listProducts();
 
-        return products.map(({
-          product_name, product_price, id,
-        }) => ({
+        return products.map(({ product_name, product_price, id }) => ({
           label: `${product_name} ($${product_price})`,
           value: id,
         }));

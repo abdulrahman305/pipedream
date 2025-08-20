@@ -188,14 +188,14 @@ The `lodash` library for example will import the entire package if individual mo
 
 ```javascript
 // This style of import will cause the entire lodash package to be installed, not just the pick module
-import { pick } from "lodash"
+import { pick } from "lodash";
 ```
 
 Instead, use the specific package that exports the `pick` module alone:
 
 ```javascript
 // This style imports only the pick module, since the lodash.pick package only contains this module
-import pick from "lodash.pick"
+import pick from "lodash.pick";
 ```
 
 ## Code was still running when the step ended
@@ -203,7 +203,6 @@ import pick from "lodash.pick"
 This error occurs when Promises or asynchronous code is not properly finished before the next step begins execution.
 
 See the [Asynchronous section of the Node.js documentation](/code/nodejs/async/#the-problem) for more details.
-
 
 ## How do I contact Pipedream Support?
 

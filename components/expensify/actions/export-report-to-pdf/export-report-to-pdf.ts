@@ -6,7 +6,8 @@ export default defineAction({
   key: "expensify-export-report-to-pdf",
   version: "0.0.2",
   name: "Export Report To PDF",
-  description: "Export a report to PDF. [See docs here](https://integrations.expensify.com/Integration-Server/doc/#report-exporter)",
+  description:
+    "Export a report to PDF. [See docs here](https://integrations.expensify.com/Integration-Server/doc/#report-exporter)",
   type: "action",
   props: {
     expensify,

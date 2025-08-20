@@ -37,46 +37,56 @@ export default defineApp({
         },
       });
     },
-    async getContacts({
-      $, page,
-    }) {
-      return this._makeRequest("contatos", {
-        params: {
-          page: page ?? 1,
+    async getContacts({ $, page }) {
+      return this._makeRequest(
+        "contatos",
+        {
+          params: {
+            page: page ?? 1,
+          },
         },
-      }, $);
+        $,
+      );
     },
-    async createContact({
-      $, data,
-    }) {
-      return this._makeRequest("contatos", {
-        method: "post",
-        data,
-      }, $);
+    async createContact({ $, data }) {
+      return this._makeRequest(
+        "contatos",
+        {
+          method: "post",
+          data,
+        },
+        $,
+      );
     },
-    async createTask({
-      $, data,
-    }) {
-      return this._makeRequest("tarefas", {
-        method: "post",
-        data,
-      }, $);
+    async createTask({ $, data }) {
+      return this._makeRequest(
+        "tarefas",
+        {
+          method: "post",
+          data,
+        },
+        $,
+      );
     },
-    async createAppointment({
-      $, data,
-    }) {
-      return this._makeRequest("compromissos", {
-        method: "post",
-        data,
-      }, $);
+    async createAppointment({ $, data }) {
+      return this._makeRequest(
+        "compromissos",
+        {
+          method: "post",
+          data,
+        },
+        $,
+      );
     },
-    async createSaleOpportunity({
-      $, data,
-    }) {
-      return this._makeRequest("oportunidades", {
-        method: "post",
-        data,
-      }, $);
+    async createSaleOpportunity({ $, data }) {
+      return this._makeRequest(
+        "oportunidades",
+        {
+          method: "post",
+          data,
+        },
+        $,
+      );
     },
   },
 });

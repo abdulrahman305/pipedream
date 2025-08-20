@@ -3,6 +3,4 @@ type OptionsObject = {
   value: string;
 };
 
-export {
-  OptionsObject,
-};
+export { OptionsObject };

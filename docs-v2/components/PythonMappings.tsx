@@ -1,17 +1,9 @@
-import React, {
-  useState, useEffect,
-} from "react";
+import React, { useState, useEffect } from "react";
 import rawMappings from "./python-mappings.json";
 
 const PythonMappings = () => {
-  const [
-    mappings,
-    setMappings,
-  ] = useState([]);
-  const [
-    query,
-    setQuery,
-  ] = useState("");
+  const [mappings, setMappings] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     setMappings(Object.entries(rawMappings));
@@ -19,16 +11,15 @@ const PythonMappings = () => {
 
   useEffect(() => {
     search(query);
-  }, [
-    query,
-  ]);
+  }, [query]);
 
   const search = (query) => {
     if (query === "") {
       setMappings(Object.entries(rawMappings));
     } else {
       const filteredMappings = mappings.filter((mapping) =>
-        new RegExp(query, "i").test(mapping[0]));
+        new RegExp(query, "i").test(mapping[0]),
+      );
       setMappings(filteredMappings);
     }
   };
@@ -62,7 +53,9 @@ const PythonMappings = () => {
         <thead>
           <tr>
             <th className="text-center align-middle pb-2">PyPI Package Name</th>
-            <th className="text-center align-middle pb-2">Import into Pipedream with</th>
+            <th className="text-center align-middle pb-2">
+              Import into Pipedream with
+            </th>
           </tr>
         </thead>
         <tbody>

@@ -14,19 +14,13 @@ export default defineAction({
   props: {
     ...commonDateTime.props,
     inputDate: {
-      propDefinition: [
-        app,
-        "inputDate",
-      ],
+      propDefinition: [app, "inputDate"],
       label: "Start Date",
       description:
         "Enter start date string, in the format defined in `Input Format`. If the start date is after the end date, these dates will be swapped and in the output `datesSwapped` will be set to `true`.",
     },
     endDate: {
-      propDefinition: [
-        app,
-        "inputDate",
-      ],
+      propDefinition: [app, "inputDate"],
       label: "End Date",
       description:
         "Enter end date string, in the format defined in `Input Format`. Timezone is assumed the same for both dates if not explicitly set.",
@@ -50,15 +44,10 @@ export default defineAction({
         (a, b) => b[1] - a[1],
       );
 
-      for (const [
-        word,
-        unit,
-      ] of arrUnits) {
+      for (const [word, unit] of arrUnits) {
         const amount = Math.floor(remainingValue / unit);
         if (amount) {
-          arrResults.push(`${amount} ${amount === 1
-            ? word
-            : `${word}s`}`);
+          arrResults.push(`${amount} ${amount === 1 ? word : `${word}s`}`);
 
           remainingValue %= unit;
           if (!remainingValue) break;

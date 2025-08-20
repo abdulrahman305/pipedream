@@ -19,24 +19,18 @@ module.exports = {
       opts.headers["user-agent"] = "@PipedreamHQ/pipedream v0.1";
       const { path } = opts;
       delete opts.path;
-      opts.url = `${this._apiUrl()}${path[0] === "/"
-        ? ""
-        : "/"}${path}`;
+      opts.url = `${this._apiUrl()}${path[0] === "/" ? "" : "/"}${path}`;
       return await require("@pipedreamhq/platform").axios(this, opts);
     },
     _subdomain() {
       return this.$auth.subdomain;
     },
     // https://developer.uservoice.com/docs/api/v2/reference/#operation/ListNpsRatings
-    async listNPSRatings({
-      updated_after, numSampleResults,
-    }) {
+    async listNPSRatings({ updated_after, numSampleResults }) {
       const npsRatings = [];
       let cursor;
       do {
-        const {
-          nps_ratings, pagination,
-        } = await this._makeRequest({
+        const { nps_ratings, pagination } = await this._makeRequest({
           path: "/admin/nps_ratings",
           params: {
             per_page: 100, // max allowed by API

@@ -56,7 +56,6 @@ For detailed instructions, follow the steps below.
    ![Click "OAuth consent screen" in the left navigation menu](https://res.cloudinary.com/pipedreamin/image/upload/v1663268506/docs/components/CleanShot_2022-09-15_at_15.01.24_wravfb.png)
 
 2. Set up the OAuth consent screen:
-
    - Select User Type (Internal for Google Workspace users, External for others)
    - Fill in required fields
    - Add scopes: `email`, `profile`, `https://www.googleapis.com/auth/gmail.modify`, `https://www.googleapis.com/auth/gmail.settings.basic`

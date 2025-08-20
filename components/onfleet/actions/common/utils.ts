@@ -1,18 +1,13 @@
 export const clearObj = (obj) => {
   return Object.entries(obj)
-    .filter(([
-      _,
-      v,
-    ]) => (v != null && v != ""))
-    .reduce((acc, [
-      k,
-      v,
-    ]) => ({
-      ...acc,
-      [k]: (!Array.isArray(v) && v === Object(v))
-        ? clearObj(v)
-        : v,
-    }), {});
+    .filter(([_, v]) => v != null && v != "")
+    .reduce(
+      (acc, [k, v]) => ({
+        ...acc,
+        [k]: !Array.isArray(v) && v === Object(v) ? clearObj(v) : v,
+      }),
+      {},
+    );
 };
 
 export const prepareData = ({
@@ -42,10 +37,7 @@ export const prepareData = ({
     },
   };
   if (latitude && longitude) {
-    data.destination.location = [
-      latitude,
-      longitude,
-    ];
+    data.destination.location = [latitude, longitude];
   }
 
   data.recipients = [

@@ -13,15 +13,13 @@ export default defineSource({
   props: {
     ...rssCommon.props,
     url: {
-      propDefinition: [
-        rss,
-        "url",
-      ],
+      propDefinition: [rss, "url"],
     },
     publishedAfter: {
       type: "string",
       label: "Published After",
-      description: "Emit items published after the specified date in ISO 8601 format .e.g `2022-12-07T12:57:10+07:00`",
+      description:
+        "Emit items published after the specified date in ISO 8601 format .e.g `2022-12-07T12:57:10+07:00`",
       default: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(), // default to one day ago
     },
   },
