@@ -4,7 +4,8 @@ import mailbluster from "../../app/mailbluster.app";
 export default {
   key: "mailbluster-get-lead",
   name: "Get Lead",
-  description: "Get a specific lead. [See the documentation](https://app.mailbluster.com/api-doc/leads/read)",
+  description:
+    "Get a specific lead. [See the documentation](https://app.mailbluster.com/api-doc/leads/read)",
   type: "action",
   version: "0.0.2",
   props: {
@@ -16,10 +17,7 @@ export default {
     },
   },
   async run({ $ }) {
-    const {
-      mailbluster,
-      email,
-    } = this;
+    const { mailbluster, email } = this;
 
     const response = await mailbluster.getLead({
       $,

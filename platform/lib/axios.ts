@@ -15,18 +15,17 @@ function cleanObject(o = {}) {
 // remove query params from url and put into config.params
 function removeSearchFromUrl(config: AxiosRequestConfig) {
   if (!config.url) return;
-  const {
-    url, baseURL,
-  } = config;
+  const { url, baseURL } = config;
   const newUrl = new URL((baseURL ?? "") + url);
   const queryString = newUrl.search.substr(1);
   if (queryString) {
     // https://stackoverflow.com/a/8649003/387413
-    const urlParams = JSON.parse("{\"" + queryString.replace(/&/g, "\",\"").replace(/=/g, "\":\"") + "\"}", function (key, value) {
-      return key === ""
-        ? value
-        : decodeURIComponent(value);
-    });
+    const urlParams = JSON.parse(
+      '{"' + queryString.replace(/&/g, '","').replace(/=/g, '":"') + '"}',
+      function (key, value) {
+        return key === "" ? value : decodeURIComponent(value);
+      },
+    );
     for (const k in urlParams) {
       if (!config.params) config.params = {};
       if (k in config.params) continue; // params object > url query params
@@ -39,7 +38,8 @@ function removeSearchFromUrl(config: AxiosRequestConfig) {
 
 // https://github.com/ttezel/twit/blob/master/lib/helpers.js#L11
 function oauth1ParamsSerializer(p: any) {
-  return querystring.stringify(p)
+  return querystring
+    .stringify(p)
     .replace(/!/g, "%21")
     .replace(/'/g, "%27")
     .replace(/\(/g, "%28")
@@ -62,13 +62,21 @@ export function transformConfigForOauth(config: AxiosRequestConfig) {
   for (const k in config.headers || {}) {
     if (/content-type/i.test(k)) {
       hasContentType = true;
-      formEncodedContentType = config.headers?.[k] === "application/x-www-form-urlencoded";
+      formEncodedContentType =
+        config.headers?.[k] === "application/x-www-form-urlencoded";
       break;
     }
   }
-  if (config.data && typeof config.data === "object" && formEncodedContentType) {
+  if (
+    config.data &&
+    typeof config.data === "object" &&
+    formEncodedContentType
+  ) {
     (requestData as any).data = config.data;
-  } else if (typeof config.data === "string" && (!hasContentType || formEncodedContentType)) {
+  } else if (
+    typeof config.data === "string" &&
+    (!hasContentType || formEncodedContentType)
+  ) {
     (requestData as any).data = querystring.parse(config.data);
   }
   config.paramsSerializer = oauth1ParamsSerializer;
@@ -76,9 +84,7 @@ export function transformConfigForOauth(config: AxiosRequestConfig) {
 }
 
 async function getOauthSignature(config: AxiosRequestConfig, signConfig: any) {
-  const {
-    oauthSignerUri, token,
-  } = signConfig;
+  const { oauthSignerUri, token } = signConfig;
 
   const requestData = transformConfigForOauth(config);
   const payload = {
@@ -89,7 +95,11 @@ async function getOauthSignature(config: AxiosRequestConfig, signConfig: any) {
 }
 
 // XXX warn about mutating config object... or clone?
-async function callAxios(step: any, config: AxiosRequestConfig, signConfig?: any) {
+async function callAxios(
+  step: any,
+  config: AxiosRequestConfig,
+  signConfig?: any,
+) {
   cleanObject(config.headers);
   cleanObject(config.params);
   if (typeof config.data === "object") {
@@ -116,9 +126,7 @@ async function callAxios(step: any, config: AxiosRequestConfig, signConfig?: any
       stepExport(step, response.data, "debug_response");
     }
 
-    return config.returnFullResponse
-      ? response
-      : response.data;
+    return config.returnFullResponse ? response : response.data;
   } catch (err) {
     if (err.response) {
       convertAxiosError(err);
@@ -147,8 +155,7 @@ function convertAxiosError(err) {
   err.name = `${err.name} - ${err.message}`;
   try {
     err.message = JSON.stringify(err.response.data);
-  }
-  catch (error) {
+  } catch (error) {
     console.error("Error trying to convert `err.response.data` to string");
   }
   return err;
@@ -178,24 +185,25 @@ function create(config?: AxiosRequestConfig, signConfig?: any) {
     return config;
   });
 
-  axiosInstance.interceptors.response.use((response) => {
-    const config: AxiosRequestConfig = response.config;
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      const config: AxiosRequestConfig = response.config;
 
-    if (config.debug) {
-      stepExport(this, response.data, "debug_response");
-    }
+      if (config.debug) {
+        stepExport(this, response.data, "debug_response");
+      }
 
-    return config.returnFullResponse
-      ? response
-      : response.data;
-  }, (error) => {
-    if (error.response) {
-      convertAxiosError(error);
-      stepExport(this, error.response, "debug");
-    }
+      return config.returnFullResponse ? response : response.data;
+    },
+    (error) => {
+      if (error.response) {
+        convertAxiosError(error);
+        stepExport(this, error.response, "debug");
+      }
 
-    throw error;
-  });
+      throw error;
+    },
+  );
 
   return axiosInstance;
 }

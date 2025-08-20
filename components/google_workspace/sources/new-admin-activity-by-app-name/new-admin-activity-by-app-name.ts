@@ -12,10 +12,7 @@ export default defineSource({
   props: {
     ...common.props,
     applicationName: {
-      propDefinition: [
-        common.props.googleWorkspace,
-        "applicationName",
-      ],
+      propDefinition: [common.props.googleWorkspace, "applicationName"],
     },
   },
   methods: {
@@ -32,4 +29,3 @@ export default defineSource({
     },
   },
 });
-

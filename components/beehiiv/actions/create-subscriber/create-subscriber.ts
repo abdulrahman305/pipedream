@@ -3,41 +3,27 @@ import { defineAction } from "@pipedream/types";
 
 export default defineAction({
   name: "Create Subscriber",
-  description: "Create a new subscriber. [See docs](https://www.beehiiv.com/developers/docs)",
+  description:
+    "Create a new subscriber. [See docs](https://www.beehiiv.com/developers/docs)",
   key: "beehiiv-create-subscriber",
   version: "0.0.2",
   type: "action",
   props: {
     app,
     email: {
-      propDefinition: [
-        app,
-        "email",
-      ],
+      propDefinition: [app, "email"],
     },
     publicationId: {
-      propDefinition: [
-        app,
-        "publicationId",
-      ],
+      propDefinition: [app, "publicationId"],
     },
     reactivateExisting: {
-      propDefinition: [
-        app,
-        "reactivateExisting",
-      ],
+      propDefinition: [app, "reactivateExisting"],
     },
     sendWelcomeEmail: {
-      propDefinition: [
-        app,
-        "sendWelcomeEmail",
-      ],
+      propDefinition: [app, "sendWelcomeEmail"],
     },
     utmSource: {
-      propDefinition: [
-        app,
-        "utmSource",
-      ],
+      propDefinition: [app, "utmSource"],
     },
   },
   async run({ $ }) {
@@ -49,7 +35,10 @@ export default defineAction({
       utm_source: this.utmSource,
     };
     const response = await this.app.createSubscriber($, param);
-    $.export("$summary", `Successfully created a new subscriber with id: ${response.data.id}`);
+    $.export(
+      "$summary",
+      `Successfully created a new subscriber with id: ${response.data.id}`,
+    );
     return response;
   },
 });

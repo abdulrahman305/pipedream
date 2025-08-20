@@ -5,22 +5,17 @@ export default defineAction({
   name: "Retrieve An Order",
   version: "0.0.1",
   key: "lemon_squeezy-retrieve-order",
-  description: "Retrive an existent order. [See docs here](https://docs.lemonsqueezy.com/api/orders#retrieve-an-order)",
+  description:
+    "Retrive an existent order. [See docs here](https://docs.lemonsqueezy.com/api/orders#retrieve-an-order)",
   type: "action",
   props: {
     lemonSqueezy,
     orderId: {
-      propDefinition: [
-        lemonSqueezy,
-        "orderId",
-      ],
+      propDefinition: [lemonSqueezy, "orderId"],
     },
   },
   async run({ $ }) {
-    const {
-      orderId,
-      lemonSqueezy,
-    } = this;
+    const { orderId, lemonSqueezy } = this;
     const response = await lemonSqueezy.retrieveOrder({
       $,
       orderId,

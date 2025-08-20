@@ -73,7 +73,7 @@ import axios from "axios";
 export default defineComponent({
   async run({ steps, $ }) {
     const response = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon/charizard"
+      "https://pokeapi.co/api/v2/pokemon/charizard",
     );
     // Store the response's JSON contents into a variable called "pokemon"
     const pokemon = response.data;
@@ -97,7 +97,7 @@ import axios from "axios";
 export default defineComponent({
   async run({ steps, $ }) {
     const response = await axios.get(
-      "https://pokeapi.co/api/v2/pokemon/charizard"
+      "https://pokeapi.co/api/v2/pokemon/charizard",
     );
     // Store the response's JSON contents into a variable called "pokemon"
     const pokemon = response.data;
@@ -139,7 +139,7 @@ export default defineComponent({
   },
   async run({ steps, $ }) {
     console.log(
-      `Hello ${this.firstName}, congrats on crafting your first prop!`
+      `Hello ${this.firstName}, congrats on crafting your first prop!`,
     );
   },
 });
@@ -380,7 +380,7 @@ export default defineComponent({
   async run({ steps, $ }) {
     return $.flow.exit();
     console.log(
-      "This code will not run, since $.flow.exit() was called above it"
+      "This code will not run, since $.flow.exit() was called above it",
     );
   },
 });

@@ -7,7 +7,8 @@ export default defineApp({
   propDefinitions: {
     automationWorkflowId: {
       label: "Automation Workflow ID",
-      description: "The ID of the automation workflow. E.g. This URL `...sendsmaily.net/workflows/35` the ID will be `35`",
+      description:
+        "The ID of the automation workflow. E.g. This URL `...sendsmaily.net/workflows/35` the ID will be `35`",
       type: "string",
       async options() {
         const workflows = await this.getAutomationWorkflows();
@@ -25,19 +26,19 @@ export default defineApp({
       async options() {
         const segments = await this.getSegments();
 
-        return segments.filter((segment) => segment.subscribers_count > 0).map((segment) => ({
-          label: segment.name,
-          value: segment.id,
-        }));
+        return segments
+          .filter((segment) => segment.subscribers_count > 0)
+          .map((segment) => ({
+            label: segment.name,
+            value: segment.id,
+          }));
       },
     },
     emails: {
       label: "Emails",
       description: "The emails to run",
       type: "string[]",
-      async options({
-        segmentId, page,
-      }) {
+      async options({ segmentId, page }) {
         if (!segmentId) return [];
 
         const subscribers = await this.getSubscribers({
@@ -64,9 +65,7 @@ export default defineApp({
     _apiUrl() {
       return `https://${this._subdomain()}.sendsmaily.net/api`;
     },
-    async _makeRequest({
-      $ = this, path, ...args
-    }) {
+    async _makeRequest({ $ = this, path, ...args }) {
       return axios($, {
         url: `${this._apiUrl()}${path}`,
         auth: {

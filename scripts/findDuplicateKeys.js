@@ -1,22 +1,24 @@
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 const { readdir } = fs.promises;
 
 const rootDir = path.resolve(__dirname, "..");
 const componentsDir = path.join(rootDir, "components");
 
-const excludeDirs = ['node_modules', '.git', 'dist'];
-const includedExtensions = ['.mjs', '.js', '.mts', '.ts'];
+const excludeDirs = ["node_modules", ".git", "dist"];
+const includedExtensions = [".mjs", ".js", ".mts", ".ts"];
 const excludedExtensions = [...includedExtensions.map((ext) => `.app${ext}`)];
 
 function included(dirent) {
   if (dirent.isDirectory()) {
     return !excludeDirs.includes(dirent.name);
   }
-  return includedExtensions.includes(path.extname(dirent.name))
-    && !excludedExtensions.find((ext) => dirent.name.endsWith(ext))
-    && !dirent.name.includes("test-event.mjs")
-    && !dirent.name.includes("common-");
+  return (
+    includedExtensions.includes(path.extname(dirent.name)) &&
+    !excludedExtensions.find((ext) => dirent.name.endsWith(ext)) &&
+    !dirent.name.includes("test-event.mjs") &&
+    !dirent.name.includes("common-")
+  );
 }
 
 async function* getFiles(dir) {
@@ -53,16 +55,19 @@ async function getDuplicateKeys(dir) {
 }
 
 async function main() {
-  const { duplicateKeys, filepathsByKey } = await getDuplicateKeys(componentsDir);
+  const { duplicateKeys, filepathsByKey } =
+    await getDuplicateKeys(componentsDir);
   if (duplicateKeys.size) {
     duplicateKeys.forEach((key) => {
-      console.error(`[!] found duplicate component key '${key}' in files: ${filepathsByKey[key].join(', ')}`);
-    })
+      console.error(
+        `[!] found duplicate component key '${key}' in files: ${filepathsByKey[key].join(", ")}`,
+      );
+    });
     throw new Error("Found duplicate component keys");
   }
 }
 
 main().catch((err) => {
-  const core = require('@actions/core');
+  const core = require("@actions/core");
   core.setFailed(err);
 });

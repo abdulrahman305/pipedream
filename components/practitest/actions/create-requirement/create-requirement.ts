@@ -2,7 +2,8 @@ import practitest from "../../app/practitest.app";
 import { defineAction } from "@pipedream/types";
 import { DOCS } from "../../common/constants";
 import {
-  CreateRequirementParams, CreateRequirementResponse,
+  CreateRequirementParams,
+  CreateRequirementResponse,
 } from "../../common/types";
 
 export default defineAction({
@@ -14,10 +15,7 @@ export default defineAction({
   props: {
     practitest,
     projectId: {
-      propDefinition: [
-        practitest,
-        "project",
-      ],
+      propDefinition: [practitest, "project"],
     },
     name: {
       type: "string",
@@ -25,10 +23,7 @@ export default defineAction({
       description: "Name of the requirement",
     },
     authorId: {
-      propDefinition: [
-        practitest,
-        "user",
-      ],
+      propDefinition: [practitest, "user"],
       label: "Author",
     },
     description: {
@@ -38,18 +33,12 @@ export default defineAction({
       optional: true,
     },
     assignedToId: {
-      propDefinition: [
-        practitest,
-        "user",
-      ],
+      propDefinition: [practitest, "user"],
       label: "Assigned To",
       optional: true,
     },
     version: {
-      propDefinition: [
-        practitest,
-        "version",
-      ],
+      propDefinition: [practitest, "version"],
       description: "String of the requirement's version",
     },
     priority: {
@@ -59,10 +48,7 @@ export default defineAction({
       optional: true,
     },
     customFields: {
-      propDefinition: [
-        practitest,
-        "customFields",
-      ],
+      propDefinition: [practitest, "customFields"],
     },
     parentId: {
       type: "string",
@@ -120,9 +106,13 @@ export default defineAction({
       };
     }
 
-    const response: CreateRequirementResponse = await this.practitest.createRequirement(params);
+    const response: CreateRequirementResponse =
+      await this.practitest.createRequirement(params);
 
-    $.export("$summary", `Successfully created requirement (id ${response.data.id})`);
+    $.export(
+      "$summary",
+      `Successfully created requirement (id ${response.data.id})`,
+    );
 
     return response;
   },

@@ -7,7 +7,8 @@ const constants = require("../../constants");
 module.exports = {
   key: "shortcut-create-story",
   name: "Create Story",
-  description: "Creates a new story in your Shortcut account. See [Create Story](https://shortcut.com/api/rest/v3#Create-Story) in Shortcut Rest API, V3 reference for endpoint documentation.",
+  description:
+    "Creates a new story in your Shortcut account. See [Create Story](https://shortcut.com/api/rest/v3#Create-Story) in Shortcut Rest API, V3 reference for endpoint documentation.",
   version: "0.0.1",
   type: "action",
   props: {
@@ -58,10 +59,7 @@ module.exports = {
       async options() {
         let options = [];
         const epics = await this.shortcut.callWithRetry("listEpics");
-        const isEpicDataAvailable = get(epics, [
-          "data",
-          "length",
-        ]);
+        const isEpicDataAvailable = get(epics, ["data", "length"]);
         if (!isEpicDataAvailable) {
           return options;
         }
@@ -90,7 +88,8 @@ module.exports = {
     externalLinks: {
       type: "string[]",
       label: "External Links",
-      description: "A string array of External Links associated with this story.",
+      description:
+        "A string array of External Links associated with this story.",
       optional: true,
     },
     fileIds: {
@@ -100,10 +99,7 @@ module.exports = {
       async options() {
         let options = [];
         const files = await this.shortcut.callWithRetry("listFiles");
-        const isFileDataAvailable = get(files, [
-          "data",
-          "length",
-        ]);
+        const isFileDataAvailable = get(files, ["data", "length"]);
         if (!isFileDataAvailable) {
           return options;
         }
@@ -131,10 +127,7 @@ module.exports = {
       async options() {
         let options = [];
         const iterations = await this.shortcut.callWithRetry("listIterations");
-        const isIterationDataAvailable = get(iterations, [
-          "data",
-          "length",
-        ]);
+        const isIterationDataAvailable = get(iterations, ["data", "length"]);
         if (!isIterationDataAvailable) {
           return options;
         }
@@ -150,21 +143,18 @@ module.exports = {
       type: "object",
       label: "Label",
       description:
-        "A label object attached to the story. Each label object must have the following structure: `color` which is an string with the hex color to be displayed with the Label i.e. \"#ff0000\", and a string `name` for the name of the Label. See [CreateLabelParams](https://shortcut.com/api/rest/v3#CreateLabelParams) for more info.",
+        'A label object attached to the story. Each label object must have the following structure: `color` which is an string with the hex color to be displayed with the Label i.e. "#ff0000", and a string `name` for the name of the Label. See [CreateLabelParams](https://shortcut.com/api/rest/v3#CreateLabelParams) for more info.',
       optional: true,
     },
     linkedFileIds: {
       type: "integer[]",
       label: "Linked File Ids",
-      description:
-        "An array of IDs of linked files attached to the story.",
+      description: "An array of IDs of linked files attached to the story.",
       async options() {
         let options = [];
-        const linkedFiles = await this.shortcut.callWithRetry("listLinkedFiles");
-        const isLinkedFilesDataAvailable = get(linkedFiles, [
-          "data",
-          "length",
-        ]);
+        const linkedFiles =
+          await this.shortcut.callWithRetry("listLinkedFiles");
+        const isLinkedFilesDataAvailable = get(linkedFiles, ["data", "length"]);
         if (!isLinkedFilesDataAvailable) {
           return options;
         }
@@ -197,10 +187,7 @@ module.exports = {
       async options() {
         let options = [];
         const projects = await this.shortcut.callWithRetry("listProjects");
-        const isProjectDataAvailable = get(projects, [
-          "data",
-          "length",
-        ]);
+        const isProjectDataAvailable = get(projects, ["data", "length"]);
         if (!isProjectDataAvailable) {
           return options;
         }
@@ -261,18 +248,12 @@ module.exports = {
       async options() {
         let options = [];
         const workflows = await this.shortcut.callWithRetry("listWorkflows");
-        const isWorkflowDataAvailable = get(workflows, [
-          "data",
-          "length",
-        ]);
+        const isWorkflowDataAvailable = get(workflows, ["data", "length"]);
         if (!isWorkflowDataAvailable) {
           return options;
         }
         return workflows.data.reduce(function (options, workflow) {
-          const hasState = get(workflow, [
-            "states",
-            "length",
-          ]);
+          const hasState = get(workflow, ["states", "length"]);
           if (!hasState) {
             return options;
           }
@@ -342,27 +323,19 @@ module.exports = {
     };
     const comment = utils.convertEmptyStringToUndefined(this.comment);
     if (comment) {
-      story.comments = [
-        comment,
-      ];
+      story.comments = [comment];
     }
     const label = utils.convertEmptyStringToUndefined(this.label);
     if (label) {
-      story.labels = [
-        label,
-      ];
+      story.labels = [label];
     }
     const storyLink = utils.convertEmptyStringToUndefined(this.storyLink);
     if (storyLink) {
-      story.story_links = [
-        storyLink,
-      ];
+      story.story_links = [storyLink];
     }
     const task = utils.convertEmptyStringToUndefined(this.task);
     if (task) {
-      story.tasks = [
-        task,
-      ];
+      story.tasks = [task];
     }
     const resp = await this.shortcut.callWithRetry("createStory", story);
     return resp.data;

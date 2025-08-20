@@ -12,9 +12,7 @@ export default defineApp({
     _apiUrl() {
       return "https://api.rise.com";
     },
-    async _makeRequest({
-      $ = this, path, ...args
-    }) {
+    async _makeRequest({ $ = this, path, ...args }) {
       return axios($, {
         url: `${this._apiUrl()}${path}`,
         headers: {

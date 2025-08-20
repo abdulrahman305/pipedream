@@ -33,7 +33,7 @@ Pipedream publishes an `axios` wrapper as a part of [the `@pipedream/platform` p
 To use `@pipedream/platform` axios in component actions, import it:
 
 ```javascript
-import { axios } from "@pipedream/platform"
+import { axios } from "@pipedream/platform";
 ```
 
 `@pipedream/platform` axios uses methods [provided by the `$` object](/components/api/#actions), so you'll need to pass that as the first argument to `axios` when making HTTP requests, and pass the [standard `axios` request config](https://github.com/axios/axios#request-config) as the second argument.
@@ -41,7 +41,7 @@ import { axios } from "@pipedream/platform"
 Here's an example action:
 
 ```javascript
-import { axios } from "@pipedream/platform"
+import { axios } from "@pipedream/platform";
 
 export default {
   key: "my-test-component",
@@ -51,7 +51,7 @@ export default {
   async run({ $ }) {
     return await axios($, {
       url: "https://httpstat.us/200",
-    })
-  }
-}
+    });
+  },
+};
 ```

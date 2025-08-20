@@ -2,8 +2,8 @@
 
 The Xero Accounting API offers a powerful gateway to access and manipulate financial data within Xero. Leveraging Pipedream's capabilities, developers can build custom workflows that streamline accounting processes, sync financial data with external systems, and trigger actions based on financial events. This API allows for the automation of tasks such as invoicing, bank reconciliation, bill payments, and reporting, which can lead to significant time savings and enhanced data accuracy.
 
-
 # Getting Started
+
 ## Using Webhooks
 
 Xero supports webhooks for instant notifications of specific event changes.

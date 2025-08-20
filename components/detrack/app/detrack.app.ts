@@ -1,7 +1,9 @@
 import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
-  CreateJobParams, HttpRequestParams, JobResponse,
+  CreateJobParams,
+  HttpRequestParams,
+  JobResponse,
 } from "../common/types";
 
 export default defineApp({

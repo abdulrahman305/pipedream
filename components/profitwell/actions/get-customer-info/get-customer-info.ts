@@ -21,7 +21,7 @@ export default defineAction({
       propDefinition: [
         profitwell,
         "customerId",
-        ({ email }: {email: string;}) => ({
+        ({ email }: { email: string }) => ({
           email,
         }),
       ],
@@ -34,7 +34,10 @@ export default defineAction({
     };
     const data: Customer = await this.profitwell.getCustomerInfo(params);
 
-    $.export("$summary", `Successfully obtained customer info for ${data.email}`);
+    $.export(
+      "$summary",
+      `Successfully obtained customer info for ${data.email}`,
+    );
 
     return data;
   },

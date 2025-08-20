@@ -7,7 +7,9 @@
     "pipedream",
     "oxford_dictionaries"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/oxford_dictionaries",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

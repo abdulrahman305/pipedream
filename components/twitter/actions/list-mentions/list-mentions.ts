@@ -28,16 +28,10 @@ export default defineAction({
   props: {
     ...common.props,
     userNameOrId: {
-      propDefinition: [
-        common.props.app,
-        "userNameOrId",
-      ],
+      propDefinition: [common.props.app, "userNameOrId"],
     },
     maxResults: {
-      propDefinition: [
-        common.props.app,
-        "maxResults",
-      ],
+      propDefinition: [common.props.app, "maxResults"],
       min: MIN_RESULTS,
       description: `Maximum amount of items to return. Each request can return up to ${MAX_RESULTS_PER_PAGE} items.`,
       default: DEFAULT_RESULTS,

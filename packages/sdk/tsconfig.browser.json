@@ -12,10 +12,6 @@
     "skipLibCheck": true,
     "types": []
   },
-  "include": [
-    "src/browser/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/browser/**/*"],
+  "exclude": ["node_modules"]
 }

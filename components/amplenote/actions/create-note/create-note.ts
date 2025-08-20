@@ -6,7 +6,8 @@ export default defineAction({
   name: "Create Note",
   version: "0.0.1",
   key: "amplenote-create-note",
-  description: "Creates a new note. [See docs here](https://www.amplenote.com/api_documentation#post-/notes)",
+  description:
+    "Creates a new note. [See docs here](https://www.amplenote.com/api_documentation#post-/notes)",
   type: "action",
   props: {
     amplenote,
@@ -17,7 +18,8 @@ export default defineAction({
     },
     tags: {
       label: "Tags",
-      description: "Tags to create the task. E.g `{ \"text\": \"string\", \"color\": \"string\" }`",
+      description:
+        'Tags to create the task. E.g `{ "text": "string", "color": "string" }`',
       type: "string[]",
     },
   },
@@ -27,9 +29,7 @@ export default defineAction({
     }
 
     this.tags = this.tags.map((tag) => {
-      return typeof tag === "string"
-        ? JSON.parse(tag)
-        : tag;
+      return typeof tag === "string" ? JSON.parse(tag) : tag;
     });
 
     const response = await this.amplenote.createNote({

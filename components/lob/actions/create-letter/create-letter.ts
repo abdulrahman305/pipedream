@@ -6,18 +6,17 @@ import { Letter } from "@lob/lob-typescript-sdk";
 export default defineAction({
   key: "lob-create-letter",
   name: "Create Letter",
-  description: "Creates a new letter. [See docs here](https://docs.lob.com/#tag/Letters/operation/letter_create).",
+  description:
+    "Creates a new letter. [See docs here](https://docs.lob.com/#tag/Letters/operation/letter_create).",
   version: "0.0.1",
   type: "action",
   props: {
     lob,
     to: {
-      propDefinition: [
-        lob,
-        "addressId",
-      ],
+      propDefinition: [lob, "addressId"],
       label: "To",
-      description: "Must either be an `addressId` or an inline object with correct address parameters",
+      description:
+        "Must either be an `addressId` or an inline object with correct address parameters",
     },
     description: {
       type: "string",
@@ -25,12 +24,10 @@ export default defineAction({
       description: "An internal description that identifies this resource",
     },
     from: {
-      propDefinition: [
-        lob,
-        "addressId",
-      ],
+      propDefinition: [lob, "addressId"],
       label: "From",
-      description: "Required if `to` address is international. Must either be an `addressId` or an inline object with correct address parameters",
+      description:
+        "Required if `to` address is international. Must either be an `addressId` or an inline object with correct address parameters",
     },
     name: {
       type: "string",
@@ -100,12 +97,14 @@ export default defineAction({
     color: {
       type: "boolean",
       label: "Color",
-      description: "Set to true if you want to print in color; set to false for black and white.",
+      description:
+        "Set to true if you want to print in color; set to false for black and white.",
     },
     useType: {
       type: "string",
       label: "Use Type",
-      description: "The use type of the mail. It can only be null if an account default use_type is selected).",
+      description:
+        "The use type of the mail. It can only be null if an account default use_type is selected).",
       options: constants.USE_TYPES,
     },
     mailType: {
@@ -118,7 +117,8 @@ export default defineAction({
     sendDate: {
       type: "string",
       label: "Send Date",
-      description: "Specifies the date to send the letter off for production (ISO 8601 format, up to 180 days in the future).",
+      description:
+        "Specifies the date to send the letter off for production (ISO 8601 format, up to 180 days in the future).",
       optional: true,
     },
   },

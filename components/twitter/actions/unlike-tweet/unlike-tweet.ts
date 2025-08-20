@@ -16,10 +16,7 @@ export default defineAction({
   props: {
     ...common.props,
     tweetId: {
-      propDefinition: [
-        common.props.app,
-        "tweetId",
-      ],
+      propDefinition: [common.props.app, "tweetId"],
     },
   },
   async run({ $ }): Promise<object> {

@@ -22,9 +22,7 @@ export default defineAction({
     },
   },
   async run({ $ }): Promise<string> {
-    const {
-      input, defaultValue,
-    } = this;
+    const { input, defaultValue } = this;
 
     const result = input || defaultValue;
 

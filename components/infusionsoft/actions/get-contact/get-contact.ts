@@ -13,10 +13,7 @@ export default defineAction({
   props: {
     infusionsoft,
     contactId: {
-      propDefinition: [
-        infusionsoft,
-        "contactId",
-      ],
+      propDefinition: [infusionsoft, "contactId"],
     },
   },
   async run({ $ }): Promise<Contact> {

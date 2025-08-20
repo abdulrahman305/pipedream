@@ -15,32 +15,21 @@ export default defineAction({
   props: {
     yelp,
     businessIdOrAlias: {
-      propDefinition: [
-        yelp,
-        "businessIdOrAlias",
-      ],
+      propDefinition: [yelp, "businessIdOrAlias"],
     },
     locale: {
-      propDefinition: [
-        yelp,
-        "locale",
-      ],
+      propDefinition: [yelp, "locale"],
     },
     sortBy: {
       label: "Sort By",
       description: "Sort reviews by Yelp's default sorting or newest first.",
       type: "string",
-      options: [
-        "yelp_sort",
-        "newest",
-      ],
+      options: ["yelp_sort", "newest"],
       optional: true,
     },
   },
   async run({ $ }) {
-    const {
-      businessIdOrAlias, locale, sortBy: sort_by,
-    } = this;
+    const { businessIdOrAlias, locale, sortBy: sort_by } = this;
 
     const params: ListBusinessReviewsParams = {
       $,

@@ -7,7 +7,9 @@
     "pipedream",
     "cdc_national_environmental_public_health_tracking"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/cdc_national_environmental_public_health_tracking",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

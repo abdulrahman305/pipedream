@@ -6,7 +6,8 @@ export default defineAction({
   key: "clientary-create-estimate",
   version: "0.0.1",
   name: "Create Estimate",
-  description: "Creates a new estimate. [See docs here](https://www.clientary.com/api/estimates)",
+  description:
+    "Creates a new estimate. [See docs here](https://www.clientary.com/api/estimates)",
   type: "action",
   props: {
     app,
@@ -29,7 +30,8 @@ export default defineAction({
     estimateItemsAttributes: {
       type: "string",
       label: "Estimate Items Attributes",
-      description: "Estimate items attributes. Must be a valid JSON Array string, e.g. `[ { \"title\": \"foo\", \"quantity\": 1, \"price\": 100 }, { \"title\": \"bar\", \"quantity\": 2, \"price\": 200 } ]`",
+      description:
+        'Estimate items attributes. Must be a valid JSON Array string, e.g. `[ { "title": "foo", "quantity": 1, "price": 100 }, { "title": "bar", "quantity": 2, "price": 200 } ]`',
       optional: true,
     },
   },
@@ -39,7 +41,9 @@ export default defineAction({
       try {
         estimateItemsAttributes = JSON.parse(this.estimateItemsAttributes);
       } catch (err) {
-        throw new ConfigurationError("`Estimate Items Attributes` must be a valid JSON Array string");
+        throw new ConfigurationError(
+          "`Estimate Items Attributes` must be a valid JSON Array string",
+        );
       }
     }
     const response = await this.app.getRequestMethod("createEstimate")({
@@ -51,7 +55,10 @@ export default defineAction({
         estimate_items_attributes: estimateItemsAttributes,
       },
     });
-    $.export("$summary", `Successfully created an estimate (ID: ${response.id})`);
+    $.export(
+      "$summary",
+      `Successfully created an estimate (ID: ${response.id})`,
+    );
     return response;
   },
 });

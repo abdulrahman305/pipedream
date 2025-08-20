@@ -5,14 +5,12 @@ export default defineAction({
   name: "Delete Customer Note Entry",
   version: "0.0.1",
   key: "waitwhile-delete-customer-note-entry",
-  description: "Delete a customer note entry. [See the doc here](https://developers.waitwhile.com/reference/deletecustomerscustomeridnotesnoteid)",
+  description:
+    "Delete a customer note entry. [See the doc here](https://developers.waitwhile.com/reference/deletecustomerscustomeridnotesnoteid)",
   props: {
     waitwhile,
     customerId: {
-      propDefinition: [
-        waitwhile,
-        "customerId",
-      ],
+      propDefinition: [waitwhile, "customerId"],
     },
     noteId: {
       propDefinition: [
@@ -23,7 +21,6 @@ export default defineAction({
         }),
       ],
     },
-
   },
   type: "action",
   methods: {},
@@ -40,8 +37,11 @@ export default defineAction({
       return data;
     } catch (error) {
       const statusCode = error[Object.getOwnPropertySymbols(error)[1]].status;
-      const statusText = error[Object.getOwnPropertySymbols(error)[1]].statusText;
-      throw new Error(`Error status code: ${statusCode}. Error status response: ${statusText}`);
+      const statusText =
+        error[Object.getOwnPropertySymbols(error)[1]].statusText;
+      throw new Error(
+        `Error status code: ${statusCode}. Error status response: ${statusText}`,
+      );
     }
   },
 });

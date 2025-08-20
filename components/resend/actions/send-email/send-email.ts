@@ -58,9 +58,7 @@ export default defineAction({
     },
   },
   async run({ $ }) {
-    const {
-      from, to, subject, html, text, cc, bcc, replyTo,
-    } = this;
+    const { from, to, subject, html, text, cc, bcc, replyTo } = this;
 
     const params = {
       $,

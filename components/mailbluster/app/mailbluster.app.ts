@@ -16,9 +16,7 @@ export default defineApp({
           },
         });
 
-        return products.map(({
-          id: value, name: label,
-        }) => ({
+        return products.map(({ id: value, name: label }) => ({
           label,
           value,
         }));
@@ -31,12 +29,10 @@ export default defineApp({
     },
     _getHeaders() {
       return {
-        "Authorization": this.$auth.api_key,
+        Authorization: this.$auth.api_key,
       };
     },
-    async _makeRequest({
-      $ = this, path, ...opts
-    }) {
+    async _makeRequest({ $ = this, path, ...opts }) {
       const config = {
         url: `${this._apiUrl()}/${path}`,
         headers: this._getHeaders(),
@@ -65,18 +61,14 @@ export default defineApp({
         path: "orders",
       });
     },
-    getLead({
-      $, leadHash,
-    }) {
+    getLead({ $, leadHash }) {
       return this._makeRequest({
         $,
         method: "GET",
         path: `leads/${leadHash}`,
       });
     },
-    getProduct({
-      $, productId,
-    }) {
+    getProduct({ $, productId }) {
       return this._makeRequest({
         $,
         method: "GET",
@@ -97,9 +89,7 @@ export default defineApp({
         path: "products",
       });
     },
-    async *paginate({
-      fn, params = {}, maxResults = null, field,
-    }) {
+    async *paginate({ fn, params = {}, maxResults = null, field }) {
       let lastPage = false;
       let count = 0;
       let page = 0;
@@ -112,9 +102,7 @@ export default defineApp({
           },
         });
         const {
-          meta: {
-            pageNo, totalPage,
-          },
+          meta: { pageNo, totalPage },
         } = response;
         const items = response[field];
 
@@ -126,8 +114,7 @@ export default defineApp({
           }
         }
 
-        lastPage = (pageNo == totalPage);
-
+        lastPage = pageNo == totalPage;
       } while (!lastPage);
     },
   },

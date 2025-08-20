@@ -4,7 +4,11 @@ import {
   CreateRowParams,
   DeleteRowParams,
   GetRowParams,
-  HttpRequestParams, ListRowsParams, PaginatedResponse, Row, UpdateRowParams,
+  HttpRequestParams,
+  ListRowsParams,
+  PaginatedResponse,
+  Row,
+  UpdateRowParams,
 } from "../common/types";
 
 export default defineApp({
@@ -30,7 +34,8 @@ export default defineApp({
       });
     },
     async _paginatedRequest({
-      params, ...args
+      params,
+      ...args
     }: HttpRequestParams): Promise<object[]> {
       const requestParams = {
         ...params,
@@ -54,9 +59,7 @@ export default defineApp({
 
       return result;
     },
-    async createRow({
-      tableId, ...args
-    }: CreateRowParams): Promise<Row> {
+    async createRow({ tableId, ...args }: CreateRowParams): Promise<Row> {
       return this._httpRequest({
         method: "POST",
         url: `/database/rows/table/${tableId}/`,
@@ -64,7 +67,9 @@ export default defineApp({
       });
     },
     async deleteRow({
-      rowId, tableId, ...args
+      rowId,
+      tableId,
+      ...args
     }: DeleteRowParams): Promise<Row> {
       return this._httpRequest({
         method: "DELETE",
@@ -72,24 +77,22 @@ export default defineApp({
         ...args,
       });
     },
-    async getRow({
-      rowId, tableId, ...args
-    }: GetRowParams): Promise<Row> {
+    async getRow({ rowId, tableId, ...args }: GetRowParams): Promise<Row> {
       return this._httpRequest({
         url: `/database/rows/table/${tableId}/${rowId}/`,
         ...args,
       });
     },
-    async listRows({
-      tableId, ...args
-    }: ListRowsParams): Promise<Row[]> {
+    async listRows({ tableId, ...args }: ListRowsParams): Promise<Row[]> {
       return this._paginatedRequest({
         url: `/database/rows/table/${tableId}/`,
         ...args,
       });
     },
     async updateRow({
-      rowId, tableId, ...args
+      rowId,
+      tableId,
+      ...args
     }: UpdateRowParams): Promise<Row> {
       return this._httpRequest({
         method: "PATCH",
@@ -106,8 +109,7 @@ export default defineApp({
     },
     rowId: {
       label: "Row ID",
-      description:
-        "The id of the **row** on which to perform this action.",
+      description: "The id of the **row** on which to perform this action.",
       type: "integer",
     },
     tableId: {
