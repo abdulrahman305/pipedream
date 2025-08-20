@@ -5,10 +5,12 @@ import { getMessageFields } from "../../common/methods";
 import { GetDirectMessagesParams } from "../../common/types/requestParams";
 import { DirectMessage } from "../../common/types/responseSchemas";
 import {
-  getDirectMessageIncludeIds, getObjIncludes,
+  getDirectMessageIncludeIds,
+  getObjIncludes,
 } from "../../common/addObjIncludes";
 
-const DOCS_LINK = "https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_events";
+const DOCS_LINK =
+  "https://developer.twitter.com/en/docs/twitter-api/direct-messages/lookup/api-reference/get-dm_events";
 const MAX_RESULTS_PER_PAGE = 100;
 
 export default defineSource({
@@ -36,10 +38,15 @@ export default defineSource({
         },
       };
 
-      const {
-        data, includes,
-      } = await this.app.getDirectMessages(params);
-      data.forEach((msg) => msg.includes = getObjIncludes(msg, includes, getDirectMessageIncludeIds));
+      const { data, includes } = await this.app.getDirectMessages(params);
+      data.forEach(
+        (msg) =>
+          (msg.includes = getObjIncludes(
+            msg,
+            includes,
+            getDirectMessageIncludeIds,
+          )),
+      );
       return data;
     },
   },

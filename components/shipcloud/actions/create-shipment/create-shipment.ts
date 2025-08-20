@@ -13,35 +13,20 @@ export default defineAction({
   props: {
     shipcloud,
     carrier: {
-      propDefinition: [
-        shipcloud,
-        "carrier",
-      ],
+      propDefinition: [shipcloud, "carrier"],
     },
     service: {
-      propDefinition: [
-        shipcloud,
-        "service",
-      ],
+      propDefinition: [shipcloud, "service"],
     },
     toAddress: {
-      propDefinition: [
-        shipcloud,
-        "address",
-      ],
+      propDefinition: [shipcloud, "address"],
     },
     fromAddress: {
-      propDefinition: [
-        shipcloud,
-        "address",
-      ],
+      propDefinition: [shipcloud, "address"],
       label: "Sender Address",
     },
     package: {
-      propDefinition: [
-        shipcloud,
-        "package",
-      ],
+      propDefinition: [shipcloud, "package"],
     },
     additionalOptions: {
       type: "object",

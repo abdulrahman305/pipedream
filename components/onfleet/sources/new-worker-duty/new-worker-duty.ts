@@ -14,9 +14,7 @@ export default {
     getTrigger() {
       return 3;
     },
-    generateMeta({
-      id, workerId, time, timeCreated,
-    }) {
+    generateMeta({ id, workerId, time, timeCreated }) {
       return {
         id: `${workerId || id}${time || timeCreated}`,
         summary: `New worker status changed: ${workerId || id}`,

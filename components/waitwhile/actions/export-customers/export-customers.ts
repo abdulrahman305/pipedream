@@ -5,55 +5,38 @@ export default defineAction({
   name: "Export Customers",
   version: "0.0.1",
   key: "waitwhile-export-customers",
-  description: "Export Customers to CSV or JSON format. [See the doc here](https://developers.waitwhile.com/reference/getcustomersexport)",
+  description:
+    "Export Customers to CSV or JSON format. [See the doc here](https://developers.waitwhile.com/reference/getcustomersexport)",
   props: {
     waitwhile,
     format: {
       label: "Format",
       type: "string",
-      options: [
-        "CSV",
-        "JSON",
-      ],
+      options: ["CSV", "JSON"],
       description: "Export format, CSV or JSON",
     },
     locationId: {
-      propDefinition: [
-        waitwhile,
-        "locationId",
-      ],
+      propDefinition: [waitwhile, "locationId"],
     },
     fromDate: {
-      propDefinition: [
-        waitwhile,
-        "fromDate",
-      ],
+      propDefinition: [waitwhile, "fromDate"],
     },
     toDate: {
-      propDefinition: [
-        waitwhile,
-        "toDate",
-      ],
+      propDefinition: [waitwhile, "toDate"],
     },
     dateRangeField: {
       label: "Date Range Field",
       type: "string",
       optional: true,
-      description: "The type of date to filter customer on. The create date or the last date it was updated (created or updated).",
+      description:
+        "The type of date to filter customer on. The create date or the last date it was updated (created or updated).",
     },
     fromTime: {
-      propDefinition: [
-        waitwhile,
-        "fromTime",
-      ],
+      propDefinition: [waitwhile, "fromTime"],
     },
     toTime: {
-      propDefinition: [
-        waitwhile,
-        "toTime",
-      ],
+      propDefinition: [waitwhile, "toTime"],
     },
-
   },
   type: "action",
   methods: {},
@@ -74,8 +57,11 @@ export default defineAction({
       return data;
     } catch (error) {
       const statusCode = error[Object.getOwnPropertySymbols(error)[1]].status;
-      const statusText = error[Object.getOwnPropertySymbols(error)[1]].statusText;
-      throw new Error(`Error status code: ${statusCode}. Error status response: ${statusText}. You might need a Waitwhile Paid Plan to use this action`);
+      const statusText =
+        error[Object.getOwnPropertySymbols(error)[1]].statusText;
+      throw new Error(
+        `Error status code: ${statusCode}. Error status response: ${statusText}. You might need a Waitwhile Paid Plan to use this action`,
+      );
     }
   },
 });

@@ -135,12 +135,12 @@ export default {
     name: {
       type: "string",
       label: "Name",
-    }
+    },
   },
   async run() {
-    return `hello ${this.name}!`
+    return `hello ${this.name}!`;
   },
-}
+};
 ```
 
 You can find the code for all pre-built actions in [the `components` directory](https://github.com/PipedreamHQ/pipedream/tree/master/components). If you find a bug or want to contribute a feature, [see our contribution guide](https://pipedream.com/docs/components/guidelines/#process).
@@ -190,7 +190,7 @@ You can import any package from the languages' package managers by declaring the
 
 ```javascript
 // Node.js
-import axios from 'axios'
+import axios from "axios";
 ```
 
 ```python
@@ -209,24 +209,24 @@ import (
 You can also [connect to any Pipedream connected app in custom code steps](https://pipedream.com/docs/code/nodejs/auth/). For example, you can connect your Slack account and send a message to a channel:
 
 ```javascript
-import { WebClient } from '@slack/web-api'
+import { WebClient } from "@slack/web-api";
 
 export default defineComponent({
   props: {
     // This creates a connection called "slack" that connects a Slack account.
     slack: {
-      type: 'app',
-      app: 'slack'
-    }
+      type: "app",
+      app: "slack",
+    },
   },
   async run({ steps, $ }) {
-    const web = new WebClient(this.slack.$auth.oauth_access_token)
+    const web = new WebClient(this.slack.$auth.oauth_access_token);
 
     return await web.chat.postMessage({
       text: "Hello, world!",
       channel: "#general",
-    })
-  }
+    });
+  },
 });
 ```
 
@@ -291,11 +291,12 @@ Please [reach out](https://pipedream.com/support/) to the Pipedream team with an
 # Getting Started
 
 ## Github Triggers: Webhooks vs. Polling
+
 The Github triggers in Pipedream enable you to get notified immediately via a webhook if you have `admin` rights on the repo you're watching. Otherwise you can still poll for updates at a regular interval for any other repo where you might not have `admin` rights.
 
 **Example: New or Updated Issue**
 If you are an admin on the repo, this trigger will be configured as a webhook — so any time there is a new or updated issue in the repo, an event will immediately get emitted.
-<img src="https://res.cloudinary.com/dpenc2lit/image/upload/v1710954167/Screenshot_2024-03-20_at_9.58.01_AM_s1yych.png" width=600> 
+<img src="https://res.cloudinary.com/dpenc2lit/image/upload/v1710954167/Screenshot_2024-03-20_at_9.58.01_AM_s1yych.png" width=600>
 
 If you do not have `admin` rights on the repo you're watching, you can configure the Pipedream trigger to poll for updates on a regular interval.
 <img src="https://res.cloudinary.com/dpenc2lit/image/upload/v1710954167/Screenshot_2024-03-20_at_9.58.39_AM_xu5r2t.png" width=600>

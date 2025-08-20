@@ -13,10 +13,7 @@ export default defineAction({
   props: {
     shipcloud,
     shipmentId: {
-      propDefinition: [
-        shipcloud,
-        "shipmentId",
-      ],
+      propDefinition: [shipcloud, "shipmentId"],
     },
   },
   async run({ $ }): Promise<Shipment> {
@@ -26,10 +23,7 @@ export default defineAction({
     };
     const data: Shipment = await this.shipcloud.getShipment(params);
 
-    $.export(
-      "$summary",
-      "Retrieved shipment info successfully",
-    );
+    $.export("$summary", "Retrieved shipment info successfully");
 
     return data;
   },

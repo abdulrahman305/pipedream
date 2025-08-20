@@ -45,18 +45,14 @@ export default {
         }
       }
 
-      if (lastId != tempLastId)
-        this.setLastId(tempLastId);
+      if (lastId != tempLastId) this.setLastId(tempLastId);
 
       for (const responseItem of responseArray.reverse()) {
-        this.$emit(
-          responseItem,
-          {
-            id: responseItem.id,
-            summary: this.getSummary(responseItem),
-            ts: responseItem.createdAt,
-          },
-        );
+        this.$emit(responseItem, {
+          id: responseItem.id,
+          summary: this.getSummary(responseItem),
+          ts: responseItem.createdAt,
+        });
       }
     },
   },

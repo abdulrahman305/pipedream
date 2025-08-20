@@ -5,14 +5,12 @@ export default defineAction({
   name: "Search Customers",
   version: "0.0.1",
   key: "waitwhile-search-customers",
-  description: "Search for customers. [See the doc here](https://developers.waitwhile.com/reference/searchcustomers)",
+  description:
+    "Search for customers. [See the doc here](https://developers.waitwhile.com/reference/searchcustomers)",
   props: {
     waitwhile,
     locationId: {
-      propDefinition: [
-        waitwhile,
-        "locationId",
-      ],
+      propDefinition: [waitwhile, "locationId"],
     },
     state: {
       label: "State",
@@ -21,22 +19,17 @@ export default defineAction({
       description: "State of visit",
     },
     tag: {
-      propDefinition: [
-        waitwhile,
-        "tag",
-      ],
+      propDefinition: [waitwhile, "tag"],
     },
     q: {
       label: "Query",
       type: "string",
       optional: true,
-      description: "Search query, prefix match on name, phone, email or customer identifier",
+      description:
+        "Search query, prefix match on name, phone, email or customer identifier",
     },
     limit: {
-      propDefinition: [
-        waitwhile,
-        "limit",
-      ],
+      propDefinition: [waitwhile, "limit"],
     },
     page: {
       label: "Page",
@@ -45,28 +38,16 @@ export default defineAction({
       description: "Page in results",
     },
     fromDate: {
-      propDefinition: [
-        waitwhile,
-        "fromDate",
-      ],
+      propDefinition: [waitwhile, "fromDate"],
     },
     toDate: {
-      propDefinition: [
-        waitwhile,
-        "toDate",
-      ],
+      propDefinition: [waitwhile, "toDate"],
     },
     fromTime: {
-      propDefinition: [
-        waitwhile,
-        "fromTime",
-      ],
+      propDefinition: [waitwhile, "fromTime"],
     },
     toTime: {
-      propDefinition: [
-        waitwhile,
-        "toTime",
-      ],
+      propDefinition: [waitwhile, "toTime"],
     },
   },
   type: "action",

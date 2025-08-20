@@ -7,4 +7,3 @@ export interface CreateTaskResponse {
   status: number;
   data: TaskData;
 }
-

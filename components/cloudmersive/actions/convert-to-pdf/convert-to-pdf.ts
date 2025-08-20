@@ -16,8 +16,7 @@ export default defineAction({
     filePath: {
       type: "string",
       label: "File Path",
-      description:
-        `Path to the input .docx file, such as \`/tmp/file.docx\`. [See the docs on working with files](${DOCS.pdFilesTutorial})`,
+      description: `Path to the input .docx file, such as \`/tmp/file.docx\`. [See the docs on working with files](${DOCS.pdFilesTutorial})`,
     },
   },
   async run({ $ }) {

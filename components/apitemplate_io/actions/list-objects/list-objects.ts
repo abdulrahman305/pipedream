@@ -3,43 +3,29 @@ import { defineAction } from "@pipedream/types";
 
 export default defineAction({
   name: "List Generated Objects",
-  description: "Retrieves all the generated PDFs and images. [See the docs](https://apitemplate.io/apiv2/#tag/API-Integration/operation/list-objects) for more information",
+  description:
+    "Retrieves all the generated PDFs and images. [See the docs](https://apitemplate.io/apiv2/#tag/API-Integration/operation/list-objects) for more information",
   key: "apitemplate_io-list-objects",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     apiEndpoints: {
-      propDefinition: [
-        app,
-        "apiEndpoints",
-      ],
+      propDefinition: [app, "apiEndpoints"],
     },
     templateId: {
-      propDefinition: [
-        app,
-        "templateId",
-      ],
+      propDefinition: [app, "templateId"],
       description: "Filtered by template id",
       optional: true,
     },
     transactionType: {
-      propDefinition: [
-        app,
-        "transactionType",
-      ],
+      propDefinition: [app, "transactionType"],
     },
     limit: {
-      propDefinition: [
-        app,
-        "limit",
-      ],
+      propDefinition: [app, "limit"],
     },
     offset: {
-      propDefinition: [
-        app,
-        "offset",
-      ],
+      propDefinition: [app, "offset"],
     },
   },
   async run({ $ }) {
@@ -51,7 +37,10 @@ export default defineAction({
     };
 
     const response = await this.app.listObjects($, this.apiEndpoints, params);
-    $.export("$summary", `Successfully found ${response?.objects?.length} objects`);
+    $.export(
+      "$summary",
+      `Successfully found ${response?.objects?.length} objects`,
+    );
     return response;
   },
 });

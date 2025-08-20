@@ -3,17 +3,15 @@ import xperiencify from "../../app/xperiencify.app";
 
 export default defineAction({
   name: "Remove Student from Course",
-  description: "Remove a student from a course. [See docs](https://howto.xperiencify.com/article.php?article=123#3)",
+  description:
+    "Remove a student from a course. [See docs](https://howto.xperiencify.com/article.php?article=123#3)",
   key: "xperiencify-remove-student-from-course",
   version: "0.0.1",
   type: "action",
   props: {
     xperiencify,
     courseId: {
-      propDefinition: [
-        xperiencify,
-        "courseId",
-      ],
+      propDefinition: [xperiencify, "courseId"],
     },
     student: {
       propDefinition: [
@@ -33,7 +31,10 @@ export default defineAction({
         student_email: this.student,
       },
     });
-    $.export("$summary", `Successfully removed student ${this.student} from course`);
+    $.export(
+      "$summary",
+      `Successfully removed student ${this.student} from course`,
+    );
     return response;
   },
 });

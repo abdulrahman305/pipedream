@@ -2,18 +2,17 @@
 
 The Stripe API is a powerful tool for managing online payments, subscriptions, and invoices. With Pipedream, you can leverage this API to automate payment processing, monitor transactions, and sync billing data with other services. Pipedream's no-code platform allows for quick integration and creation of serverless workflows that react to Stripe events in real-time. For instance, you might automatically update customer records, send personalized emails after successful payments, or escalate failed transactions to your support team.
 
-
 # Getting Started
 
 To connect your Stripe account to Pipedream, you'll need to generate a new Stripe API key and save it in Pipedream.
 
 1. Open the [Stripe API keys dashboard](https://dashboard.stripe.com/apikeys)
 
-2. Create a new Restricted Key 
+2. Create a new Restricted Key
 
 3. Connect your Restricted API key
 
-Once your Restricted API key is created, copy and paste it into Pipedream, and click *Save*
+Once your Restricted API key is created, copy and paste it into Pipedream, and click _Save_
 
 That's it, now you're able to use your Stripe API key within your Pipedream workflows with no-code actions or with Node.js/Python.
 

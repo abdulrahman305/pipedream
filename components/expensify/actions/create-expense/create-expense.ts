@@ -5,7 +5,8 @@ export default defineAction({
   key: "expensify-create-expense",
   version: "0.0.2",
   name: "Create Expense",
-  description: "Creates a new expense. [See docs here](https://integrations.expensify.com/Integration-Server/doc/#expense-creator)",
+  description:
+    "Creates a new expense. [See docs here](https://integrations.expensify.com/Integration-Server/doc/#expense-creator)",
   type: "action",
   props: {
     expensify,
@@ -21,7 +22,8 @@ export default defineAction({
     },
     amount: {
       label: "Amount",
-      description: "The amount of the expense, in cents. E.g. `2215` will be `$22.15`",
+      description:
+        "The amount of the expense, in cents. E.g. `2215` will be `$22.15`",
       type: "integer",
     },
     merchant: {
@@ -31,7 +33,8 @@ export default defineAction({
     },
     created: {
       label: "Created Date",
-      description: "The date of the expense (format yyyy-mm-dd). E.g. 2022-07-12",
+      description:
+        "The date of the expense (format yyyy-mm-dd). E.g. 2022-07-12",
       type: "string",
     },
     comment: {
@@ -59,7 +62,10 @@ export default defineAction({
     });
 
     if (response.responseCode >= 200 && response.responseCode < 300) {
-      $.export("$summary", `Successfully created expense with id ${response.id}`);
+      $.export(
+        "$summary",
+        `Successfully created expense with id ${response.id}`,
+      );
     }
 
     return response;

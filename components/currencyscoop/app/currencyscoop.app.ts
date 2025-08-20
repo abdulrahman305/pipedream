@@ -1,7 +1,13 @@
 import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
-  ConvertCurrencyParams, ConvertCurrencyResponse, CurrencyScoopResponse, GetHistoricalRatesParams, GetLatestRatesParams, GetRatesResponse, HttpRequestParams,
+  ConvertCurrencyParams,
+  ConvertCurrencyResponse,
+  CurrencyScoopResponse,
+  GetHistoricalRatesParams,
+  GetLatestRatesParams,
+  GetRatesResponse,
+  HttpRequestParams,
 } from "../common/types";
 import { CURRENCIES } from "../common/constants";
 
@@ -18,19 +24,22 @@ export default defineApp({
     targetCurrency: {
       type: "string",
       label: "Target Currency",
-      description: "The currency you would like to see the rates for. [See all supported currencies here.](https://currencybeacon.com/supported-currencies)",
+      description:
+        "The currency you would like to see the rates for. [See all supported currencies here.](https://currencybeacon.com/supported-currencies)",
       options: CURRENCIES,
     },
     targetCurrencies: {
       type: "string[]",
       label: "Target Currencies",
-      description: "A list of currencies to see the rates for. [See all supported currencies here.](https://currencybeacon.com/supported-currencies)",
+      description:
+        "A list of currencies to see the rates for. [See all supported currencies here.](https://currencybeacon.com/supported-currencies)",
       options: CURRENCIES,
     },
     date: {
       type: "string",
       label: "Date",
-      description: "The historical date you would like to access, in the `YYYY-MM-DD` format.",
+      description:
+        "The historical date you would like to access, in the `YYYY-MM-DD` format.",
     },
   },
   methods: {
@@ -49,19 +58,25 @@ export default defineApp({
         ...args,
       });
     },
-    async getLatestRates(args: GetLatestRatesParams): Promise<CurrencyScoopResponse<GetRatesResponse>> {
+    async getLatestRates(
+      args: GetLatestRatesParams,
+    ): Promise<CurrencyScoopResponse<GetRatesResponse>> {
       return this._httpRequest({
         url: "/latest",
         ...args,
       });
     },
-    async getHistoricalRates(args: GetHistoricalRatesParams): Promise<CurrencyScoopResponse<GetRatesResponse>> {
+    async getHistoricalRates(
+      args: GetHistoricalRatesParams,
+    ): Promise<CurrencyScoopResponse<GetRatesResponse>> {
       return this._httpRequest({
         url: "/historical",
         ...args,
       });
     },
-    async convertCurrency(args: ConvertCurrencyParams): Promise<CurrencyScoopResponse<ConvertCurrencyResponse>> {
+    async convertCurrency(
+      args: ConvertCurrencyParams,
+    ): Promise<CurrencyScoopResponse<ConvertCurrencyResponse>> {
       return this._httpRequest({
         url: "/convert",
         ...args,

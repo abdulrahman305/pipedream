@@ -9,9 +9,7 @@ function Search() {
       indexName={process.env.ALGOLIA_INDEX_NAME}
       apiKey={process.env.ALGOLIA_SEARCH_API_KEY}
       searchParameters={{
-        facetFilters: [
-          "version:latest",
-        ],
+        facetFilters: ["version:latest"],
       }}
     />
   );

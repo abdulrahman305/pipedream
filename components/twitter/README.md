@@ -2,18 +2,21 @@
 
 The Twitter API on Pipedream enables you to automate interactions with Twitter, from posting tweets to analyzing social media trends. Pipedream's serverless platform provides the tools to create workflows that trigger on specific Twitter activities, process data, and connect with countless other apps for extensive automation scenarios. With Pipedream's integration, you can listen for events such as new tweets, mentions, or followers, and execute actions like tweeting, retweeting, or even leveraging sentiment analysis to gauge public perception.
 
-
 # Getting Started
+
 In order to connect your Twitter account to Pipedream, you'll need to create a developer project and app.
+
 1. First, visit Twitter's [developer dashboard](https://developer.twitter.com/en/portal/dashboard) and sign in
 2. Next, [create a new project](https://developer.twitter.com/en/portal/projects/new) and give it a name, select a use case, and provide a description
 
 ## Creating a Project and App
+
 1. Provide a name for your app
 2. Note the API Key and API Key Secret that are displayed (the setup isn't done yet, but note these down)
 3. Click "App settings" at the bottom right of the screen
 
 ## Configuring Authentication Settings
+
 1. In the bottom of your app's settings, in the "User Authentication Settings", choose "Set Up"
 2. Select the appropriate app permissions based on your use case
 3. Select "**Web App, Automated App or Bot** (Confidential client)" in the "Type of App" section
@@ -33,14 +36,18 @@ In order to connect your Twitter account to Pipedream, you'll need to create a d
 - **Customer Support Ticketing:** Develop a workflow that starts when your company's Twitter account receives a direct message. Automatically create a ticket in a customer support platform like Zendesk or HubSpot, ensuring that your team promptly addresses customer inquiries and issues mentioned on Twitter.
 
 # Troubleshooting
+
 Below are some of the most common issues we see.
 
 ## Issues Connecting Twitter
+
 If you run into an error during the app connection process, make sure to doublecheck the below configurations:
+
 1. Ensure that you've entered the correct `developer_consumer_key` and `developer_consumer_secret` in Pipedream. These map to Twitter's "API Key" and "API Key Secret" in the "Keys & Tokens" section in their dashboard.
 2. Make sure the "Callback URI / Redirect URL" that you configure within the "User Authentication settings" for your app in Twitter's developer console exactly matches: `https://api.pipedream.com/connect/oauth/oa_gk6iBa/callback`
 
 ## Errors from Twitter's API or Twitter Sources and Actions
+
 1. Free Twitter developer accounts only have access to **write** endpoints (for example, actions like "Create Tweet" and "Create Retweet")
 2. Twitter developer accounts on their Basic plan have access to **write** and **read** endpoints (for example, actions like "Create Tweet" and "Search Tweets", as well as sources like "New Post Matching Query")
 3. If you are getting errors from the Twitter sources or actions, please consult the developer plan to confirm if you have access to those endpoints.

@@ -5,15 +5,13 @@ export default defineAction({
   name: "Create Task",
   version: "0.0.1",
   key: "workast-create-task",
-  description: "Creates a task. [See docs here](https://developers.workast.com/#/method/createTask)",
+  description:
+    "Creates a task. [See docs here](https://developers.workast.com/#/method/createTask)",
   type: "action",
   props: {
     workast,
     listId: {
-      propDefinition: [
-        workast,
-        "listId",
-      ],
+      propDefinition: [workast, "listId"],
     },
     text: {
       label: "Text",
@@ -29,10 +27,7 @@ export default defineAction({
     userId: {
       label: "Assigned To",
       description: "The user ID to assigne to the task",
-      propDefinition: [
-        workast,
-        "userId",
-      ],
+      propDefinition: [workast, "userId"],
       optional: true,
     },
     startDate: {
@@ -61,11 +56,7 @@ export default defineAction({
       data: {
         text: this.text,
         description: this.description,
-        assignedTo: this.userId
-          ? [
-            this.userId,
-          ]
-          : undefined,
+        assignedTo: this.userId ? [this.userId] : undefined,
         startDate: this.startDate,
         dueDate: this.dueDate,
         listPosition: this.listPosition,

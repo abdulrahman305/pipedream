@@ -2,7 +2,7 @@
 
 The [Shopify Admin REST & GraphQL API](https://shopify.dev/docs/api/admin) unleashes a myriad of possibilities to automate and enhance online store operations. It provides programmatic access to Shopify functionalities, allowing users to manage products, customers, orders, and more. Leveraging the Shopify Admin API within Pipedream, developers can create custom workflows that automate repetitive tasks, sync data across platforms, and respond dynamically to events in Shopify.
 
-This integration can be used as a custom app on your store, or for automating actions on behalf of merchants through your Shopify app. 
+This integration can be used as a custom app on your store, or for automating actions on behalf of merchants through your Shopify app.
 
 Looking for integrating into the Shopify Partner API for your apps, themes or referrals? Check out our [Shopify Partner API integration](https://pipedream.com/apps/shopify-partner).
 
@@ -15,22 +15,25 @@ By creating a custom app on Shopify, you will be able to configure the exact sco
 To get started, you will need to create a custom Shopify app in the Shopify Admin UI. The steps are outlined below:
 
 ### Create a Shopify app
-1. Sign in to your Shopify admin account, and navigate to the store that you are managing. 
+
+1. Sign in to your Shopify admin account, and navigate to the store that you are managing.
 2. Click **Develop apps**.
 3. Click **Allow custom app development**.
 4. Click **Create an App**, and name the app "Pipedream"
 
-  ![Create an App](https://res.cloudinary.com/dpenc2lit/image/upload/v1688060015/Screenshot_2023-06-29_at_10.11.43_AM_unkom4.png)
+![Create an App](https://res.cloudinary.com/dpenc2lit/image/upload/v1688060015/Screenshot_2023-06-29_at_10.11.43_AM_unkom4.png)
 
 ### Configure Admin API scopes
+
 1. In the new app you have created, under the **API Credentials** tab, click **Configure Admin API scopes**
 2. Select the scopes that you require for your use case. You may modify your scopes at any time by returning to the app configuration page.
 
 ### Generate the Admin API access token
+
 1. Under API credentials, click **Install app**.
 2. Click **Reveal token once** and save it in a secure location (we recommend using a password manager such as 1Password) -- you will need it when setting up authentication on Pipedream, and it is only revealed once. If you happen to lose this, you will need to uninstall the app, and reinstall it on Shopify to generate a new access token.
 
-  ![API Credentials](https://res.cloudinary.com/dpenc2lit/image/upload/v1688061470/Screenshot_2023-06-29_at_10.54.53_AM_jta5gc.png)
+![API Credentials](https://res.cloudinary.com/dpenc2lit/image/upload/v1688061470/Screenshot_2023-06-29_at_10.54.53_AM_jta5gc.png)
 
 ### Connect your Shopify app with Pipedream using your access token
 
@@ -47,11 +50,11 @@ As a Shopify App Developer, you can use Pipedream to automate actions on behalf 
 
 First, you'll need to connect your app's database to Pipedream. Pipedream connects to SQL and No-SQL databases. Here's a list of popular options in Pipedream:
 
-* [PostgreSQL](https://pipedream.com/apps/postgresql)
-* [MySQL](https://pipedream.com/apps/mysql)
-* [Supabase](https://pipedream.com/apps/supabase)
-* [Firebase](https://pipedream.com/apps/firebase)
-* [MongoDB](https://pipedream.com/apps/mongodb)
+- [PostgreSQL](https://pipedream.com/apps/postgresql)
+- [MySQL](https://pipedream.com/apps/mysql)
+- [Supabase](https://pipedream.com/apps/supabase)
+- [Firebase](https://pipedream.com/apps/firebase)
+- [MongoDB](https://pipedream.com/apps/mongodb)
 
 Once your database is connected to Pipedream, you'll be able to query the database for a specific merchant's token.
 
@@ -65,7 +68,7 @@ Pass the shop ID to your database query step to retrieve the corresponding recor
 
 Then pass the shop's access token to a no-code Shopify Developer App action, or use Node.js/Python code to perform a raw HTTP request against the Shopify Admin GraphQL or REST API.
 
-For example, in a pre-built action like *Add Tags*, click _use external authentication_ to pass in your database stored access token:
+For example, in a pre-built action like _Add Tags_, click _use external authentication_ to pass in your database stored access token:
 
 ![Use external account to pass in your database managed Shopify store oauth access tokens to perform actions on behalf of merchants](https://res.cloudinary.com/pipedreamin/image/upload/v1714495695/marketplace/apps/shopify_developer_a/CleanShot_2024-04-30_at_12.47.21_cewyzb.png)
 

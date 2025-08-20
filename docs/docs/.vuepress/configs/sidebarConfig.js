@@ -12,7 +12,7 @@ const docsNav = [
         title: "Use GitHub Sync",
         path: "/quickstart/github-sync/",
       },
-    ]
+    ],
   },
   "/workspaces/",
   {
@@ -23,9 +23,15 @@ const docsNav = [
       {
         title: "File Stores",
         type: "group",
-        children: [{ title: "File Stores", path: "/projects/file-stores/" }, { title: "Node.js Reference", path: "/projects/file-stores/reference/" }],
+        children: [
+          { title: "File Stores", path: "/projects/file-stores/" },
+          {
+            title: "Node.js Reference",
+            path: "/projects/file-stores/reference/",
+          },
+        ],
       },
-    ]
+    ],
   },
   {
     title: "Workflows",
@@ -82,8 +88,8 @@ const docsNav = [
           "/code/nodejs/browser-automation/",
           {
             title: "Reference",
-            path: "/components/api/#run"
-          }
+            path: "/components/api/#run",
+          },
         ],
       },
       {

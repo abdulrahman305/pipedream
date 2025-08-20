@@ -1,9 +1,7 @@
 import { defineAction } from "@pipedream/types";
 import baserow from "../../app/baserow.app";
 import { DOCS_LINK } from "../../common/constants";
-import {
-  CreateRowParams, Row,
-} from "../../common/types";
+import { CreateRowParams, Row } from "../../common/types";
 import common from "../common";
 
 export default defineAction({
@@ -16,16 +14,11 @@ export default defineAction({
   props: {
     ...common.props,
     rowData: {
-      propDefinition: [
-        baserow,
-        "rowData",
-      ],
+      propDefinition: [baserow, "rowData"],
     },
   },
   async run({ $ }) {
-    const {
-      rowData, tableId,
-    } = this;
+    const { rowData, tableId } = this;
 
     const params: CreateRowParams = {
       $,

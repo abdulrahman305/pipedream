@@ -16,22 +16,9 @@ export default {
       path: "/subscriptions/contact",
     },
   },
-  SMS_EVENT_DIRECTIONS: [
-    "inbound",
-    "outbound",
-    "all",
-  ],
-  CONTACT_EVENT_TYPE: [
-    "shared",
-  ],
-  CALL_STATES: [
-    "calling",
-    "hangup",
-  ],
+  SMS_EVENT_DIRECTIONS: ["inbound", "outbound", "all"],
+  CONTACT_EVENT_TYPE: ["shared"],
+  CALL_STATES: ["calling", "hangup"],
   PAGE_SIZE: 100,
-  retriableStatusCodes: [
-    408,
-    429,
-    500,
-  ],
+  retriableStatusCodes: [408, 429, 500],
 };

@@ -3,35 +3,25 @@ import app from "../../app/currencyscoop.app";
 
 export default defineAction({
   name: "Get Historical Rates",
-  description: "Get historical rates for a currency [See the documentation](https://currencybeacon.com/api-documentation)",
+  description:
+    "Get historical rates for a currency [See the documentation](https://currencybeacon.com/api-documentation)",
   key: "currencyscoop-get-historical-rates",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     base: {
-      propDefinition: [
-        app,
-        "currency",
-      ],
+      propDefinition: [app, "currency"],
     },
     symbols: {
-      propDefinition: [
-        app,
-        "targetCurrencies",
-      ],
+      propDefinition: [app, "targetCurrencies"],
     },
     date: {
-      propDefinition: [
-        app,
-        "date",
-      ],
+      propDefinition: [app, "date"],
     },
   },
   async run({ $ }) {
-    const {
-      base, date, symbols,
-    } = this;
+    const { base, date, symbols } = this;
 
     const params = {
       $,

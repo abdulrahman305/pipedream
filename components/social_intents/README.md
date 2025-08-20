@@ -11,6 +11,7 @@ The Social Intents API enables seamless integration of live chat, customer feedb
 - **Automated Contact Segmentation**: Integrate Social Intents with email marketing platforms like Mailchimp or Constant Contact. When a visitor subscribes to your list via a Social Intents widget, automatically add their contact information to segmented lists based on their inquiries or interests, to tailor future marketing campaigns.
 
 # Getting Started
+
 ## How to use webhooks
 
 ### Copy the URL on your created source

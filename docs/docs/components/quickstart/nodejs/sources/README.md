@@ -63,6 +63,7 @@ For example, if you're building a new source at `components/sources/my-source.mj
 ```bash
 pd dev components/sources/my-source.mjs
 ```
+
 If you need to update a deployed instance of a source, pass it's ID to the `dc` argument to update it with new source code:
 
 ```bash
@@ -135,7 +136,7 @@ this.$emit(
   { message: "hello world!" },
   {
     summary: `Execution #${count}`,
-  }
+  },
 );
 
 this.db.set("count", ++count);
@@ -157,7 +158,7 @@ export default {
       { message: "hello world!" },
       {
         summary: `Execution #${count}`,
-      }
+      },
     );
 
     this.db.set("count", ++count);
@@ -204,7 +205,7 @@ export default {
       { message: "hello world!" },
       {
         summary: `Execution #${count}`,
-      }
+      },
     );
 
     this.db.set("count", ++count);

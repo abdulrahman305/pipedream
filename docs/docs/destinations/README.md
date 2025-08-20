@@ -33,7 +33,7 @@ Create a new HTTP endpoint URL (try creating a new Pipedream workflow and adding
 
 ```javascript
 export default defineComponent({
-  async run({ steps, $}) {
+  async run({ steps, $ }) {
     $.send.http({
       method: "POST",
       url: "[YOUR URL HERE]",
@@ -41,8 +41,8 @@ export default defineComponent({
         name: "Luke Skywalker",
       },
     });
-  }
-})
+  },
+});
 ```
 
 See the docs for the [HTTP destination](/destinations/http/) to learn more about all the options you can pass to the `$.send.http()` function.
@@ -51,7 +51,7 @@ Again, it's important to remember that **Destination delivery is asynchronous**.
 
 ```javascript
 export default defineComponent({
-  async run({ steps, $}) {
+  async run({ steps, $ }) {
     const names = ["Luke", "Han", "Leia", "Obi Wan"];
     for (const name of names) {
       $.send.http({
@@ -62,8 +62,8 @@ export default defineComponent({
         },
       });
     }
-  }
-})
+  },
+});
 ```
 
 you won't have to `await` the execution of the HTTP requests in your workflow. We'll collect every `$.send.http()` call and defer those HTTP requests, sending them after your workflow finishes.
@@ -86,8 +86,8 @@ export default {
         name: "Luke Skywalker",
       },
     });
-  }
-}
+  },
+};
 ```
 
 [See the component action API docs](/components/api/#actions) for more details.

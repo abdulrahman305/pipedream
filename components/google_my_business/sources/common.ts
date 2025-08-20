@@ -13,16 +13,13 @@ export default {
     },
     db: "$.service.db",
     account: {
-      propDefinition: [
-        app,
-        "account",
-      ],
+      propDefinition: [app, "account"],
     },
     location: {
       propDefinition: [
         app,
         "location",
-        ({ account }: { account: string; }) => ({
+        ({ account }: { account: string }) => ({
           account,
         }),
       ],
@@ -39,9 +36,7 @@ export default {
     },
     getLastRun() {
       const lastRun: number = this.db.get("lastRun");
-      return lastRun
-        ? new Date(lastRun)
-        : null;
+      return lastRun ? new Date(lastRun) : null;
     },
     getItems() {
       throw new Error("getItems() not implemented in component");

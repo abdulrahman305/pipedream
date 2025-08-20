@@ -55,9 +55,7 @@ module.exports = {
       description:
         "Select the project to watch for changes in. Leave blank for company-level resources (eg. Projects).",
       optional: true,
-      async options({
-        prevContext, company,
-      }) {
+      async options({ prevContext, company }) {
         const limit = 100;
         const { offset = 0 } = prevContext;
         const results = await this.listProjects(company, limit, offset);
@@ -162,11 +160,11 @@ module.exports = {
     async deleteHook(id, companyId, projectId) {
       const params = projectId
         ? {
-          project_id: projectId,
-        }
+            project_id: projectId,
+          }
         : {
-          company_id: companyId,
-        };
+            company_id: companyId,
+          };
       return await this._makeRequest(
         "DELETE",
         `webhooks/hooks/${id}`,
@@ -177,11 +175,11 @@ module.exports = {
     async deleteHookTrigger(hookId, triggerId, companyId, projectId) {
       const params = projectId
         ? {
-          project_id: projectId,
-        }
+            project_id: projectId,
+          }
         : {
-          company_id: companyId,
-        };
+            company_id: companyId,
+          };
       return await this._makeRequest(
         "DELETE",
         `webhooks/hooks/${hookId}/triggers/${triggerId}`,

@@ -1,6 +1,4 @@
-export const LIST_EXPANSION_OPTIONS = [
-  "owner_id",
-];
+export const LIST_EXPANSION_OPTIONS = ["owner_id"];
 
 export const MESSAGE_EXPANSION_OPTIONS = [
   "attachments.media_keys",
@@ -21,6 +19,4 @@ export const TWEET_EXPANSION_OPTIONS = [
   "referenced_tweets.id.author_id",
 ];
 
-export const USER_EXPANSION_OPTIONS = [
-  "pinned_tweet_id",
-];
+export const USER_EXPANSION_OPTIONS = ["pinned_tweet_id"];

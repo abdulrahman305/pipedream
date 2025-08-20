@@ -8,9 +8,7 @@ import {
 import { User } from "../../common/types/responseSchemas";
 import { GetUserFollowersParams } from "../../common/types/requestParams";
 import cacheUserId from "../common/cacheUserId";
-import {
-  getObjIncludes, getUserIncludeIds,
-} from "../../common/addObjIncludes";
+import { getObjIncludes, getUserIncludeIds } from "../../common/addObjIncludes";
 
 export default defineSource({
   ...common,
@@ -22,10 +20,7 @@ export default defineSource({
   props: {
     ...common.props,
     userNameOrId: {
-      propDefinition: [
-        common.props.app,
-        "userNameOrId",
-      ],
+      propDefinition: [common.props.app, "userNameOrId"],
     },
   },
   methods: {
@@ -50,10 +45,11 @@ export default defineSource({
         userId,
       };
 
-      const {
-        data, includes,
-      } = await this.app.getUserFollowers(params);
-      data.forEach((user) => user.includes = getObjIncludes(user, includes, getUserIncludeIds));
+      const { data, includes } = await this.app.getUserFollowers(params);
+      data.forEach(
+        (user) =>
+          (user.includes = getObjIncludes(user, includes, getUserIncludeIds)),
+      );
       return data;
     },
     async getAndProcessData(emit = false) {
@@ -79,12 +75,12 @@ export default defineSource({
             });
         }
 
-        this.setSavedUsers(data.map(({
-          id, username,
-        }) => ({
-          id,
-          username,
-        })));
+        this.setSavedUsers(
+          data.map(({ id, username }) => ({
+            id,
+            username,
+          })),
+        );
       }
     },
   },
