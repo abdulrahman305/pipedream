@@ -49,9 +49,11 @@ You MUST add this metadata to the component code you generate."""
 
 # ---------------------------- action metadata ---------------------------- #
 action_metadata = component_metadata.format(
-    example=action_example, component_type='"type": "action"')
+    example=action_example, component_type='"type": "action"'
+)
 
 
 # ---------------------------- source metadata ---------------------------- #
 source_metadata = component_metadata.format(
-    example=source_example, component_type='"type": "source" and "dedupe": "unique"')
+    example=source_example, component_type='"type": "source" and "dedupe": "unique"'
+)

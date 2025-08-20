@@ -23,7 +23,7 @@ echo $WEATHER
 ::: tip
 Use the `--silent` flag with `curl` to suppress extra extra diagnostic information that `curl` produces when making requests.
 
-This enables you to only worry about the body of the response so you can visualize it with tools like `echo` or `jq`. 
+This enables you to only worry about the body of the response so you can visualize it with tools like `echo` or `jq`.
 :::
 
 ## Making a `POST` request

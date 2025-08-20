@@ -5,9 +5,7 @@ interface ArcadeEmbedProps {
   title?: string;
 }
 
-const ArcadeEmbed: React.FC<ArcadeEmbedProps> = ({
-  src, title,
-}) => {
+const ArcadeEmbed: React.FC<ArcadeEmbedProps> = ({ src, title }) => {
   return (
     <div className="relative pb-[calc(56.25%+41px)] h-0 w-full">
       <iframe

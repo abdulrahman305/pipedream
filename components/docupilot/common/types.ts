@@ -1,6 +1,4 @@
-import {
-  JSONValue, Pipedream,
-} from "@pipedream/types";
+import { JSONValue, Pipedream } from "@pipedream/types";
 
 export interface HttpRequestParams {
   $: Pipedream;

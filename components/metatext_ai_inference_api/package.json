@@ -7,7 +7,9 @@
     "pipedream",
     "metatext_ai_inference_api"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/metatext_ai_inference_api",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

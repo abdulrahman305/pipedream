@@ -13,8 +13,7 @@ export default defineAction({
     niftyimages,
     timerApiKey: {
       label: "Timer API Key",
-      description:
-        `The API Key for the Timer you want to update.
+      description: `The API Key for the Timer you want to update.
         \\
         To find this, choose a timer image, click on **More Options**, scroll to **Target Date Automation** and click on **"Show API Key"**.`,
       type: "string",
@@ -77,7 +76,8 @@ export default defineAction({
       },
     };
 
-    const response: object = await this.niftyimages.updateTimerTargetDate(params);
+    const response: object =
+      await this.niftyimages.updateTimerTargetDate(params);
 
     $.export("$summary", "Updated timer target date successfully");
 

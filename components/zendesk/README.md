@@ -19,7 +19,7 @@ First, log in to your [Pipedream workspace](https://pipedream.com), then connect
 
 You'll first be prompted to enter your Zendesk subdomain. You can find this in the URL after logging into Zendesk.
 
-The subdomain is the portion of the URL *before* `zendesk.com`. 
+The subdomain is the portion of the URL _before_ `zendesk.com`.
 
 For example, if the subdomain is `pipedream1903`, that's what you would enter in Pipedream.
 
@@ -32,12 +32,15 @@ And that's it! You can now automate Zendesk actions from within Pipedream workfl
 # Troubleshooting
 
 ## Status Codes
+
 Responses may have the status codes described in the following sections.
 
 ### 200 range
+
 The request was successful. The status is 200 for successful GET and PUT requests, 201 for most POST requests, and 204 for DELETE requests.
 
 ### 400 range
+
 The request was not successful. The content type of the response may be text/plain for API-level error messages such as trying to call the API without SSL. The content type is application/json for business-level error messages because the response includes a JSON object with information about the error:
 
 ```json

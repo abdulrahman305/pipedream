@@ -6,16 +6,14 @@ export default defineSource({
   ...common,
   name: "New Streams By Streamer (Instant)",
   key: "twitch_developer_app-streams-by-streamer",
-  description: "Emit new event when a live stream starts from the streamers you specify.",
+  description:
+    "Emit new event when a live stream starts from the streamers you specify.",
   version: "0.0.2",
   type: "source",
   props: {
     ...common.props,
     streamerLoginNames: {
-      propDefinition: [
-        common.props.twitch,
-        "streamerLoginNames",
-      ],
+      propDefinition: [common.props.twitch, "streamerLoginNames"],
     },
   },
   methods: {
@@ -26,7 +24,7 @@ export default defineSource({
       for (const item of data) {
         if (item.id != undefined) {
           conditions.push({
-            "broadcaster_user_id": item.id,
+            broadcaster_user_id: item.id,
           });
         }
       }
@@ -52,5 +50,4 @@ export default defineSource({
       };
     },
   },
-
 });

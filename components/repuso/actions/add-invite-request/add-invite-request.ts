@@ -1,8 +1,6 @@
 import repuso from "../../app/repuso.app";
 import { defineAction } from "@pipedream/types";
-import {
-  AddInviteRequestParams, InviteRequest,
-} from "../../common/types";
+import { AddInviteRequestParams, InviteRequest } from "../../common/types";
 
 export default defineAction({
   name: "Add Invite Request",
@@ -20,7 +18,8 @@ export default defineAction({
     schedule: {
       type: "string",
       label: "Schedule",
-      description: "Use a date/time string such as `2021-08-30 16:00:00`, or leave empty for the default settings",
+      description:
+        "Use a date/time string such as `2021-08-30 16:00:00`, or leave empty for the default settings",
       optional: true,
     },
     name: {

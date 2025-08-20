@@ -4,7 +4,8 @@ import lob from "../../app/lob.app";
 export default defineAction({
   key: "lob-list-postcards",
   name: "List Postcards",
-  description: "Returns a list of your postcards. [See docs here](https://docs.lob.com/#tag/Postcards/operation/postcards_list).",
+  description:
+    "Returns a list of your postcards. [See docs here](https://docs.lob.com/#tag/Postcards/operation/postcards_list).",
   version: "0.0.2",
   type: "action",
   props: {
@@ -12,10 +13,11 @@ export default defineAction({
   },
   async run({ $ }) {
     const response = await this.lob.listAllPostcards();
-    const suffix = response.length === 1
-      ? ""
-      : "s";
-    $.export("$summary", `Successfully listed ${response.length} postcard${suffix}`);
+    const suffix = response.length === 1 ? "" : "s";
+    $.export(
+      "$summary",
+      `Successfully listed ${response.length} postcard${suffix}`,
+    );
     return response;
   },
 });

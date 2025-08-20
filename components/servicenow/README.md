@@ -31,7 +31,7 @@ First, sign into your [ServiceNow Developer Portal](https://developer.servicenow
 ### Create the OAuth Validator app
 
 1. Copy the client ID and secret from the `Pipedream` app you created above.
-2. Name this app `Pipedream OAuth Validator` and add the previously copied client ID and secret. 
+2. Name this app `Pipedream OAuth Validator` and add the previously copied client ID and secret.
 3. Set the grant type to **Authorization Code** and the **Token URL** to `oauth_token.do`.
 4. Use the same **Redirect URL** as before.
 
@@ -47,8 +47,8 @@ First, sign into your [ServiceNow Developer Portal](https://developer.servicenow
 
 The standard instructions may not apply perfectly to customized or hardened ServiceNow instances. If you face a **504 Gateway Time-out** error or similar, consider these tips:
 
-* Assign a dedicated role and service account for this integration.
-* Ensure the role has ACLs configured for the `oauth_credential` table and other necessary tables.
+- Assign a dedicated role and service account for this integration.
+- Ensure the role has ACLs configured for the `oauth_credential` table and other necessary tables.
 
 # Example Use Cases
 

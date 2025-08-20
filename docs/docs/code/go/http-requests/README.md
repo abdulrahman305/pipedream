@@ -38,7 +38,7 @@ func main() {
 
   // The response is logged in your Pipedream step results:
   sb := string(body)
-  log.Println(sb) 
+  log.Println(sb)
 }
 ```
 

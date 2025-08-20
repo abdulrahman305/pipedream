@@ -27,7 +27,8 @@ export const LOCAL_POST_ALERT_TYPES = [
     value: "ALERT_TYPE_UNSPECIFIED",
   },
   {
-    label: "Alerts related to the 2019 Coronavirus Disease pandemic. Covid posts only support a summary field and a call to action field. When these alerts are no longer relevant, new Alert post creation for type COVID-19 will be disabled. However, merchant will still be able to manage their existing COVID-19 posts.",
+    label:
+      "Alerts related to the 2019 Coronavirus Disease pandemic. Covid posts only support a summary field and a call to action field. When these alerts are no longer relevant, new Alert post creation for type COVID-19 will be disabled. However, merchant will still be able to manage their existing COVID-19 posts.",
     value: "COVID_19",
   },
 ];

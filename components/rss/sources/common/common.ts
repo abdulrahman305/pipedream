@@ -4,10 +4,7 @@ export default {
   props: {
     rss,
     timer: {
-      propDefinition: [
-        rss,
-        "timer",
-      ],
+      propDefinition: [rss, "timer"],
     },
   },
   methods: {
@@ -20,4 +17,3 @@ export default {
     },
   },
 };
-

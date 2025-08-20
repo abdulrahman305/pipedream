@@ -1,5 +1,7 @@
 import os
+
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -14,7 +16,8 @@ def get_env_var(var_name, required=False, default=None):
 
 openai_api_type = get_env_var("OPENAI_API_TYPE", default="openai")
 openai_embeddings_model = get_env_var(
-    "OPENAI_EMBEDDINGS_MODEL", default="text-embedding-3-small")
+    "OPENAI_EMBEDDINGS_MODEL", default="text-embedding-3-small"
+)
 
 config = {
     "temperature": get_env_var("OPENAI_TEMPERATURE", default=0.5),
@@ -25,8 +28,12 @@ config = {
         "model": get_env_var("OPENAI_MODEL", default="gpt-4-0125-preview"),
     },
     "azure": {
-        "deployment_name": get_env_var("OPENAI_DEPLOYMENT_NAME", required=openai_api_type == "azure"),
-        "embeddings_deployment_name": get_env_var("OPENAI_EMBEDDINGS_DEPLOYMENT_NAME", required=openai_api_type == "azure"),
+        "deployment_name": get_env_var(
+            "OPENAI_DEPLOYMENT_NAME", required=openai_api_type == "azure"
+        ),
+        "embeddings_deployment_name": get_env_var(
+            "OPENAI_EMBEDDINGS_DEPLOYMENT_NAME", required=openai_api_type == "azure"
+        ),
         "api_version": get_env_var("OPENAI_API_VERSION", default="2024-03-01-preview"),
         "api_base": get_env_var("OPENAI_API_BASE", required=openai_api_type == "azure"),
         "api_key": get_env_var("OPENAI_API_KEY", required=openai_api_type == "azure"),

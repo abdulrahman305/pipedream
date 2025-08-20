@@ -1,97 +1,70 @@
 import onfleet from "../../app/onfleet.app";
-import {
-  clearObj, prepareData
-} from "../common/utils";
+import { clearObj, prepareData } from "../common/utils";
 
 export default {
   key: "onfleet-create-pickup-dropoff-task",
   name: "Create Linked Pickup & Dropoff Tasks",
-  description: "Create a pickup task and dropoff task linked with each other. [See the docs here](https://docs.onfleet.com/reference/create-task)",
+  description:
+    "Create a pickup task and dropoff task linked with each other. [See the docs here](https://docs.onfleet.com/reference/create-task)",
   type: "action",
   version: "0.0.1",
   props: {
     onfleet,
     merchant: {
-      propDefinition: [
-        onfleet,
-        "merchant",
-      ],
+      propDefinition: [onfleet, "merchant"],
     },
     executor: {
-      propDefinition: [
-        onfleet,
-        "merchant",
-      ],
+      propDefinition: [onfleet, "merchant"],
       label: "Executor",
-      description: "The ID of the organization that will be responsible for fulfilling the task. Defaults to the creating organization. If you delegate your deliveries to a third party, provide their organization ID.",
+      description:
+        "The ID of the organization that will be responsible for fulfilling the task. Defaults to the creating organization. If you delegate your deliveries to a third party, provide their organization ID.",
     },
     hasPickupRecipient: {
       type: "boolean",
       label: "Has A Pickup Recipient",
-      description: "If the pickup have a recipient who should be notified of task status changes.",
+      description:
+        "If the pickup have a recipient who should be notified of task status changes.",
       reloadProps: true,
     },
     hasDropoffRecipient: {
       type: "boolean",
       label: "Has A Dropoff Recipient",
-      description: "If the dropoff have a recipient who should be notified of task status changes.",
+      description:
+        "If the dropoff have a recipient who should be notified of task status changes.",
       reloadProps: true,
     },
     latitude: {
-      propDefinition: [
-        onfleet,
-        "latitude",
-      ],
+      propDefinition: [onfleet, "latitude"],
       optional: true,
     },
     longitude: {
-      propDefinition: [
-        onfleet,
-        "longitude",
-      ],
+      propDefinition: [onfleet, "longitude"],
       optional: true,
     },
     street: {
-      propDefinition: [
-        onfleet,
-        "street",
-      ],
+      propDefinition: [onfleet, "street"],
     },
     apartment: {
-      propDefinition: [
-        onfleet,
-        "apartment",
-      ],
+      propDefinition: [onfleet, "apartment"],
       optional: true,
     },
     city: {
-      propDefinition: [
-        onfleet,
-        "city",
-      ],
+      propDefinition: [onfleet, "city"],
     },
     state: {
-      propDefinition: [
-        onfleet,
-        "state",
-      ],
+      propDefinition: [onfleet, "state"],
     },
     postalCode: {
-      propDefinition: [
-        onfleet,
-        "postalCode",
-      ],
+      propDefinition: [onfleet, "postalCode"],
     },
     country: {
-      propDefinition: [
-        onfleet,
-        "country",
-      ],
+      propDefinition: [onfleet, "country"],
     },
     taskLinkOrder: {
       type: "integer",
       label: "Task Link Order",
-      description: "The order in which to create the linked task relationship. By default, the pickup is created as the prerequisite to the dropoff. Choose \"Dropoff first\" to reverse this order, requiring completion of the dropoff before the pickup.",
+      description:
+        'The order in which to create the linked task relationship. By default, the pickup is created as the prerequisite to the dropoff. Choose "Dropoff first" to reverse this order, requiring completion of the dropoff before the pickup.',
       default: 1,
       options: [
         {
@@ -105,77 +78,44 @@ export default {
       ],
     },
     autoAssign: {
-      propDefinition: [
-        onfleet,
-        "autoAssign",
-      ],
+      propDefinition: [onfleet, "autoAssign"],
       reloadProps: true,
     },
     quantity: {
-      propDefinition: [
-        onfleet,
-        "quantity",
-      ],
+      propDefinition: [onfleet, "quantity"],
       optional: true,
     },
     serviceTime: {
-      propDefinition: [
-        onfleet,
-        "serviceTime",
-      ],
+      propDefinition: [onfleet, "serviceTime"],
       optional: true,
     },
     signatureRequirement: {
-      propDefinition: [
-        onfleet,
-        "signatureRequirement",
-      ],
+      propDefinition: [onfleet, "signatureRequirement"],
     },
     photoRequirement: {
-      propDefinition: [
-        onfleet,
-        "photoRequirement",
-      ],
+      propDefinition: [onfleet, "photoRequirement"],
     },
     notesRequirement: {
-      propDefinition: [
-        onfleet,
-        "notesRequirement",
-      ],
+      propDefinition: [onfleet, "notesRequirement"],
     },
     minimumAgeRequirement: {
-      propDefinition: [
-        onfleet,
-        "minimumAgeRequirement",
-      ],
+      propDefinition: [onfleet, "minimumAgeRequirement"],
       optional: true,
     },
     completeAfter: {
-      propDefinition: [
-        onfleet,
-        "completeAfter",
-      ],
+      propDefinition: [onfleet, "completeAfter"],
       optional: true,
     },
     completeBefore: {
-      propDefinition: [
-        onfleet,
-        "completeBefore",
-      ],
+      propDefinition: [onfleet, "completeBefore"],
       optional: true,
     },
     notes: {
-      propDefinition: [
-        onfleet,
-        "notes",
-      ],
+      propDefinition: [onfleet, "notes"],
       optional: true,
     },
     appearance: {
-      propDefinition: [
-        onfleet,
-        "appearance",
-      ],
+      propDefinition: [onfleet, "appearance"],
       optional: true,
     },
   },
@@ -187,7 +127,8 @@ export default {
         pickupRecipientName: {
           type: "string",
           label: "Pickup Recipient Name",
-          description: "The person to be notified that the pickup is occurring.",
+          description:
+            "The person to be notified that the pickup is occurring.",
         },
         pickupRecipientPhone: {
           type: "string",
@@ -197,7 +138,8 @@ export default {
         pickupRecipientNotes: {
           type: "string",
           label: "Pickup Recipient Notes",
-          description: "Notes related the recipient or the destination like door codes, beware of dog, etc.",
+          description:
+            "Notes related the recipient or the destination like door codes, beware of dog, etc.",
           optional: true,
         },
       };
@@ -208,7 +150,8 @@ export default {
         dropoffRecipientName: {
           type: "string",
           label: "Dropoff Recipient Name",
-          description: "The person to be notified that the pickup is occurring.",
+          description:
+            "The person to be notified that the pickup is occurring.",
         },
         dropoffRecipientPhone: {
           type: "string",
@@ -218,7 +161,8 @@ export default {
         dropoffRecipientNotes: {
           type: "string",
           label: "Dropoff Recipient Notes",
-          description: "Notes related the recipient or the destination like door codes, beware of dog, etc.",
+          description:
+            "Notes related the recipient or the destination like door codes, beware of dog, etc.",
           optional: true,
         },
       };
@@ -231,13 +175,10 @@ export default {
             type: "string",
             label: "Team Id",
             description: "The team's Id",
-            options: async () =>  {
+            options: async () => {
               const teams = await this.onfleet.listTeams();
 
-              return teams.map(({
-                id: value,
-                name: label,
-              }) => ({
+              return teams.map(({ id: value, name: label }) => ({
                 label,
                 value,
               }));
@@ -253,15 +194,12 @@ export default {
             type: "string",
             label: "Driver",
             description: "The driver's Id",
-            options: async () =>  {
+            options: async () => {
               const drivers = await this.onfleet.listWorkers({
                 teamId: this.team,
               });
 
-              return drivers.map(({
-                id: value,
-                name: label,
-              }) => ({
+              return drivers.map(({ id: value, name: label }) => ({
                 label,
                 value,
               }));
@@ -330,9 +268,7 @@ export default {
         ...pickupObject,
       });
       dropoffResponse = await this.createTask(onfleet, {
-        dependencies: [
-          pickupResponse.id,
-        ],
+        dependencies: [pickupResponse.id],
         ...dropoffObject,
       });
       summary = `A new pickup task with id ${pickupResponse.id} was successfully created, then a new dropff task with id ${dropoffResponse.id} was successfully created!`;
@@ -341,9 +277,7 @@ export default {
         ...dropoffObject,
       });
       pickupResponse = await this.createTask(onfleet, {
-        dependencies: [
-          dropoffResponse.id,
-        ],
+        dependencies: [dropoffResponse.id],
         ...pickupObject,
       });
       summary = `A new dropff task with id ${dropoffResponse.id} was successfully created, then a new pickup task with id ${pickupResponse.id} was successfully created!`;

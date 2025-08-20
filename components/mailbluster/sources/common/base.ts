@@ -51,14 +51,11 @@ export default {
       this.setLastKey(tempLastKey);
 
       for (const responseItem of responseArray.reverse()) {
-        this.$emit(
-          responseItem,
-          {
-            id: responseItem.id,
-            summary: `A new order with id ${responseItem.id} was created!`,
-            ts: responseItem.createdAt,
-          },
-        );
+        this.$emit(responseItem, {
+          id: responseItem.id,
+          summary: `A new order with id ${responseItem.id} was created!`,
+          ts: responseItem.createdAt,
+        });
       }
     },
   },

@@ -1,9 +1,7 @@
 import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import utils from "../common/utils";
-import {
-  MakeRequestParams, AuthParams, RequestMethod,
-} from "../common/types";
+import { MakeRequestParams, AuthParams, RequestMethod } from "../common/types";
 import { requestMethodParams } from "../common/constants";
 
 export default defineApp({
@@ -75,7 +73,7 @@ export default defineApp({
     _getHeaders(headers: object = {}): object {
       return {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         "User-Agent": "@PipedreamHQ/pipedream v0.1",
         ...headers,
       };
@@ -87,7 +85,10 @@ export default defineApp({
       };
     },
     async _makeRequest({
-      $ = this, path, headers, ...otherConfig
+      $ = this,
+      path,
+      headers,
+      ...otherConfig
     }: MakeRequestParams): Promise<object> {
       return axios($, {
         url: this._getUrl(path),

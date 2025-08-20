@@ -1,7 +1,9 @@
 import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
-  CreateDocumentParams, DocumentResponse, HttpRequestParams,
+  CreateDocumentParams,
+  DocumentResponse,
+  HttpRequestParams,
 } from "../common/types";
 
 export default defineApp({
@@ -17,13 +19,15 @@ export default defineApp({
     }: HttpRequestParams): Promise<object> {
       return axios($, {
         headers: {
-          "apikey": this.$auth.api_key,
+          apikey: this.$auth.api_key,
           "Content-Type": "application/json",
         },
         ...args,
       });
     },
-    async createDocument(params: CreateDocumentParams): Promise<DocumentResponse> {
+    async createDocument(
+      params: CreateDocumentParams,
+    ): Promise<DocumentResponse> {
       return this._httpRequest({
         method: "POST",
         ...params,
