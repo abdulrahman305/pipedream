@@ -50,10 +50,10 @@ Finally modify the body of the request to specify the `channel` and `message` fo
 
 HTTP Request actions can be used to quickly scaffold API requests, but are not as flexible as code for a few reasons:
 
-* Conditionally sending requests - The HTTP request action will always request, to send requests conditionally you'll need to use code.
-* Workflow execution halts - if an HTTP request fails, the entire workflow cancels
-* Automatically retrying - `$.flow.retry` isn't available in the HTTP Request action to retry automatically if the request fails
-* Error handling - It's not possible to set up a secondary action if an HTTP request fails.
+- Conditionally sending requests - The HTTP request action will always request, to send requests conditionally you'll need to use code.
+- Workflow execution halts - if an HTTP request fails, the entire workflow cancels
+- Automatically retrying - `$.flow.retry` isn't available in the HTTP Request action to retry automatically if the request fails
+- Error handling - It's not possible to set up a secondary action if an HTTP request fails.
 
 ## HTTP Requests in code
 
@@ -63,26 +63,26 @@ This gives you the flexibility to catch errors, use retries, or send multiple AP
 
 First, connect your account to the code step:
 
-* [Connecting any account to a Node.js step](/code/nodejs/auth/#accessing-connected-account-data-with-this-appname-auth)
-* [Connecting any account to a Python step](/code/python/auth/)
+- [Connecting any account to a Node.js step](/code/nodejs/auth/#accessing-connected-account-data-with-this-appname-auth)
+- [Connecting any account to a Python step](/code/python/auth/)
 
 ### Conditionally sending an API Request
 
 You may only want to send a Slack message on a certain condition, in this example we'll only send a Slack message if the HTTP request triggering the workflow passes a special variable: `steps.trigger.event.body.send_message`
 
 ```javascript
-import { axios } from "@pipedream/platform"
+import { axios } from "@pipedream/platform";
 
 export default defineComponent({
   props: {
     slack: {
       type: "app",
       app: "slack",
-    }
+    },
   },
-  async run({steps, $}) {
+  async run({ steps, $ }) {
     // only send the Slack message if the HTTP request has a `send_message` property in the body
-    if(steps.trigger.body.send_message) {
+    if (steps.trigger.body.send_message) {
       return await axios($, {
         headers: {
           Authorization: `Bearer ${this.slack.$auth.oauth_access_token}`,
@@ -90,16 +90,15 @@ export default defineComponent({
 
         url: `https://slack.com/api/chat.postMessage`,
 
-        method: 'post',
+        method: "post",
         data: {
-          channel: 'C123456',
-          text: 'Hi from a Pipedream Node.js code step'
-        }
-      })
+          channel: "C123456",
+          text: "Hi from a Pipedream Node.js code step",
+        },
+      });
     }
   },
-})
-
+});
 ```
 
 ### Error Handling
@@ -107,49 +106,49 @@ export default defineComponent({
 The other advantage of using code is handling error messages using `try...catch` blocks. In this example, we'll only send a Slack message if another API request fails:
 
 ```javascript
-import { axios } from "@pipedream/platform"
+import { axios } from "@pipedream/platform";
 
 export default defineComponent({
   props: {
     openai: {
       type: "app",
-      app: "openai"
+      app: "openai",
     },
     slack: {
       type: "app",
       app: "slack",
-    }
+    },
   },
-  async run({steps, $}) {
+  async run({ steps, $ }) {
     try {
       return await axios($, {
         url: `https://api.openai.com/v1/completions`,
-        method: 'post',
+        method: "post",
         headers: {
           Authorization: `Bearer ${this.openai.$auth.api_key}`,
         },
         data: {
-          "model": "text-davinci-003",
-          "prompt": "Say this is a test",
-          "max_tokens": 7,
-          "temperature": 0
-        }
-      })
-    } catch(error) {
+          model: "text-davinci-003",
+          prompt: "Say this is a test",
+          max_tokens: 7,
+          temperature: 0,
+        },
+      });
+    } catch (error) {
       return await axios($, {
         url: `https://slack.com/api/chat.postMessage`,
-        method: 'post',
+        method: "post",
         headers: {
           Authorization: `Bearer ${this.slack.$auth.oauth_access_token}`,
         },
         data: {
-          channel: 'C123456',
-          text: `OpenAI returned an error: ${error}`
-        }
-      })
+          channel: "C123456",
+          text: `OpenAI returned an error: ${error}`,
+        },
+      });
     }
   },
-})
+});
 ```
 
 ::: tip Subscribing to all errors

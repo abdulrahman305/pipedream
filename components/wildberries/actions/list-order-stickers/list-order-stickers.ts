@@ -4,17 +4,15 @@ import { defineAction } from "@pipedream/types";
 
 export default defineAction({
   name: "List Order Stickers",
-  description: "List order stickers. [See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/post_api_v2_orders_stickers)",
+  description:
+    "List order stickers. [See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/post_api_v2_orders_stickers)",
   key: "wildberries-list-order-stickers",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     orderIds: {
-      propDefinition: [
-        app,
-        "orderIds",
-      ],
+      propDefinition: [app, "orderIds"],
     },
     type: {
       label: "Type",
@@ -26,7 +24,8 @@ export default defineAction({
     asPdf: {
       type: "boolean",
       label: "List as PDF",
-      description: "Set true for use the PDF API [See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/post_api_v2_orders_stickers_pdf).",
+      description:
+        "Set true for use the PDF API [See docs here](https://suppliers-api.wildberries.ru/swagger/index.html#/Marketplace/post_api_v2_orders_stickers_pdf).",
       default: false,
     },
   },
@@ -36,7 +35,10 @@ export default defineAction({
       type: this.type,
     };
     const response = await this.app.listOrderStickers($, params, this.asPdf);
-    $.export("$summary", `Successfully listed stickers for ${this.orderIds.length} orders.`);
+    $.export(
+      "$summary",
+      `Successfully listed stickers for ${this.orderIds.length} orders.`,
+    );
     return response;
   },
 });

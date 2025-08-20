@@ -20,6 +20,7 @@ Pipedream provides two ways to share code across workflows:
 You can publish any of your Node.js code steps into a reusable action. This enables you to write a Node.js code step once, and reuse it across many workflows without rewriting it.
 
 To convert a Node.js code step into an publishable action, make sure to include the below properties in your Node.js step:
+
 - `version`
 - `name`
 - `key`
@@ -69,7 +70,7 @@ The `steps` variable contains the _workflows_ step exports.
 
 When you publish a Node.js code step as an action, it becomes reusable across many workflows.
 
-This means that the step exports available vary depending on the workflow it's running on. 
+This means that the step exports available vary depending on the workflow it's running on.
 
 Defining props is a way to map inputs to actions and allow individual workflows to define which exports should be used.
 

@@ -2,7 +2,9 @@ import app from "../app/team_up.app";
 import { DEFAULT_POLLING_SOURCE_TIMER_INTERVAL } from "@pipedream/platform";
 import { ListEventsParams } from "../common/requestParams";
 import {
-  Event, EventTimestamps, ListEventsResponse,
+  Event,
+  EventTimestamps,
+  ListEventsResponse,
 } from "../common/responseSchemas";
 
 export default {
@@ -16,10 +18,7 @@ export default {
       },
     },
     calendarKey: {
-      propDefinition: [
-        app,
-        "calendarKey",
-      ],
+      propDefinition: [app, "calendarKey"],
     },
   },
   hooks: {
@@ -41,9 +40,7 @@ export default {
       this.db.set("timestamp", data);
     },
     emitEvent(data: Event, ts: number) {
-      const {
-        id, title,
-      } = data;
+      const { id, title } = data;
       this.$emit(data, {
         id,
         summary: `New event ${this.getEntityName()}: "${title ?? id}"`,
@@ -60,9 +57,7 @@ export default {
       },
     };
 
-    const {
-      events, timestamp: ts,
-    }: ListEventsResponse =
+    const { events, timestamp: ts }: ListEventsResponse =
       await this.app.listEvents(params);
 
     events

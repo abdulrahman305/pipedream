@@ -14,10 +14,7 @@ export default {
       },
     },
     projectId: {
-      propDefinition: [
-        practitest,
-        "project",
-      ],
+      propDefinition: [practitest, "project"],
     },
   },
   hooks: {
@@ -43,9 +40,7 @@ export default {
       data.sort(this.sortByTimestamp).forEach(this.emitEvent);
     },
     emitEvent(data: PractiTestEntity) {
-      const {
-        id, attributes,
-      } = data;
+      const { id, attributes } = data;
 
       this.$emit(data, {
         id,

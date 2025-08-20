@@ -10,7 +10,8 @@ export default defineApp({
     streamerLoginNames: {
       type: "string[]",
       label: "Streamer Login Names",
-      description: "Enter the login names of the streamers whose streams you want to watch.",
+      description:
+        "Enter the login names of the streamers whose streams you want to watch.",
     },
   },
   methods: {
@@ -19,12 +20,17 @@ export default defineApp({
     },
     _getHeaders() {
       return {
-        "Authorization": `Bearer ${this.$auth.oauth_access_token}`,
+        Authorization: `Bearer ${this.$auth.oauth_access_token}`,
         "client-id": this.$auth.client_id,
         "Content-Type": "application/json",
       };
     },
-    async _makeRequest(method:string, endpoint:string, options = {}, $:Pipedream = this) {
+    async _makeRequest(
+      method: string,
+      endpoint: string,
+      options = {},
+      $: Pipedream = this,
+    ) {
       const config = {
         method,
         url: `${this._getBaseUrl()}/${endpoint}`,
@@ -42,38 +48,53 @@ export default defineApp({
         params,
       });
     },
-    async createWebHook(type:string, condition = {}, url:string, secretToken:string) {
+    async createWebHook(
+      type: string,
+      condition = {},
+      url: string,
+      secretToken: string,
+    ) {
       const endpoint = "eventsub/subscriptions";
       const data = {
-        "type": type,
-        "version": "1",
-        "condition": condition,
-        "transport": {
-          "method": "webhook",
-          "callback": url,
-          "secret": secretToken,
+        type: type,
+        version: "1",
+        condition: condition,
+        transport: {
+          method: "webhook",
+          callback: url,
+          secret: secretToken,
         },
       };
       return await this._makeRequest("POST", endpoint, {
         data,
       });
     },
-    async getWebHooks(url:string) {
+    async getWebHooks(url: string) {
       const endpoint = "eventsub/subscriptions";
       const allWebHooks = (await this._makeRequest("GET", endpoint)).data;
-      return allWebHooks.filter((item: { transport: { callback: string; }; }) => item.transport.callback === url);
+      return allWebHooks.filter(
+        (item: { transport: { callback: string } }) =>
+          item.transport.callback === url,
+      );
     },
-    verifyWebhookRequest(message:string, secretToken:string, verifySignature:string) {
+    verifyWebhookRequest(
+      message: string,
+      secretToken: string,
+      verifySignature: string,
+    ) {
       const HMAC_PREFIX = "sha256=";
-      const hmac = HMAC_PREFIX + crypto.createHmac("sha256", secretToken)
-        .update(message)
-        .digest("hex");
-      return crypto.timingSafeEqual(Buffer.from(hmac), Buffer.from(verifySignature));
+      const hmac =
+        HMAC_PREFIX +
+        crypto.createHmac("sha256", secretToken).update(message).digest("hex");
+      return crypto.timingSafeEqual(
+        Buffer.from(hmac),
+        Buffer.from(verifySignature),
+      );
     },
-    async deleteEventSub(subID:string) {
+    async deleteEventSub(subID: string) {
       const endpoint = "eventsub/subscriptions";
       const data = {
-        "id": subID,
+        id: subID,
       };
       return await this._makeRequest("DELETE", endpoint, {
         data,

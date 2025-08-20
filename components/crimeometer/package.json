@@ -4,8 +4,8 @@
   "description": "Pipedream Crimeometer Components",
   "main": "crimeometer.app.mjs",
   "keywords": [
-		"pipedream",
-		"crimeometer"
+    "pipedream",
+    "crimeometer"
   ],
   "homepage": "https://pipedream.com/apps/crimeometer",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",

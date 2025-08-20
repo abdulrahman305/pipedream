@@ -7,7 +7,9 @@
     "pipedream",
     "firmalyzer_iotvas"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/firmalyzer_iotvas",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

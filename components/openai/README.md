@@ -22,7 +22,7 @@ Significantly reduce response times and free up human agents to tackle more comp
 
 ### **Content Creation and Management**
 
-Utilize AI to generate high-quality content for blogs, articles, product descriptions, and marketing material. 
+Utilize AI to generate high-quality content for blogs, articles, product descriptions, and marketing material.
 
 ### **Personalized Marketing and Advertising**
 

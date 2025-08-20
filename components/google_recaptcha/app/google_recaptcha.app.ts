@@ -6,13 +6,12 @@ export default defineApp({
   app: "google_recaptcha",
   propDefinitions: {},
   methods: {
-    async validateRecaptcha({
-      $,
-      params,
-    } = {
-      params: {},
-      $: this,
-    }) {
+    async validateRecaptcha(
+      { $, params } = {
+        params: {},
+        $: this,
+      },
+    ) {
       return axios($, {
         url: "https://www.google.com/recaptcha/api/siteverify",
         params: {

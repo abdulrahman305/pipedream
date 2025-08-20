@@ -29,18 +29,8 @@ export default {
       value: "https://rest-alt-us.apitemplate.io",
     },
   ],
-  EXPORT_TYPE_OPTS: [
-    "json",
-    "file",
-  ],
-  TRANSACTION_TYPE_OPTS: [
-    "PDF",
-    "JPEG",
-    "MERGE",
-  ],
-  OUTPUT_FORMAT_OPTS: [
-    "pdf",
-    "html",
-  ],
+  EXPORT_TYPE_OPTS: ["json", "file"],
+  TRANSACTION_TYPE_OPTS: ["PDF", "JPEG", "MERGE"],
+  OUTPUT_FORMAT_OPTS: ["pdf", "html"],
   DEFAULT_LIMIT: 300,
 };

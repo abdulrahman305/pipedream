@@ -4,8 +4,8 @@
   "description": "Pipedream Bulkgate Components",
   "main": "bulkgate.app.mjs",
   "keywords": [
-		"pipedream",
-		"bulkgate"
+    "pipedream",
+    "bulkgate"
   ],
   "homepage": "https://pipedream.com/apps/bulkgate",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",

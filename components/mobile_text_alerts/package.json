@@ -7,7 +7,9 @@
     "pipedream",
     "mobile_text_alerts"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/mobile_text_alerts",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

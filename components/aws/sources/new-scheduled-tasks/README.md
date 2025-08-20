@@ -47,6 +47,7 @@ you'd like.
 ![High-Level Overview](./images/overview.png)
 
 <!--ts-->
+
 - [Quickstart](#quickstart)
 - [Prerequisites](#prerequisites)
   - [An AWS account](#an-aws-account)
@@ -122,25 +123,14 @@ and create IAM policies:
     {
       "Sid": "IAMRoleManagement",
       "Effect": "Allow",
-      "Action": [
-        "iam:CreateRole",
-        "iam:PassRole",
-        "iam:PutRolePolicy"
-      ],
-      "Resource": [
-        "arn:aws:iam::[YOUR AWS ACCOUNT ID]:role/*"
-      ]
+      "Action": ["iam:CreateRole", "iam:PassRole", "iam:PutRolePolicy"],
+      "Resource": ["arn:aws:iam::[YOUR AWS ACCOUNT ID]:role/*"]
     },
     {
       "Sid": "StateMachineManagement",
       "Effect": "Allow",
-      "Action": [
-        "states:CreateStateMachine",
-        "states:StartExecution"
-      ],
-      "Resource": [
-        "arn:aws:states:*:*:stateMachine:*"
-      ]
+      "Action": ["states:CreateStateMachine", "states:StartExecution"],
+      "Resource": ["arn:aws:states:*:*:stateMachine:*"]
     }
   ]
 }
@@ -170,9 +160,7 @@ delete the resources after deleting the event source.
         "iam:PassRole",
         "iam:PutRolePolicy"
       ],
-      "Resource": [
-        "arn:aws:iam::[YOUR AWS ACCOUNT ID]:role/*"
-      ]
+      "Resource": ["arn:aws:iam::[YOUR AWS ACCOUNT ID]:role/*"]
     },
     {
       "Sid": "StateMachineManagement",
@@ -182,9 +170,7 @@ delete the resources after deleting the event source.
         "states:DeleteStateMachine",
         "states:StartExecution"
       ],
-      "Resource": [
-        "arn:aws:states:*:*:stateMachine:*"
-      ]
+      "Resource": ["arn:aws:states:*:*:stateMachine:*"]
     }
   ]
 }

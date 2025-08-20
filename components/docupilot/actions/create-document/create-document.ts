@@ -1,9 +1,7 @@
 import docupilot from "../../app/docupilot.app";
 import { defineAction } from "@pipedream/types";
 import { ConfigurationError } from "@pipedream/platform";
-import {
-  CreateDocumentParams, DocumentResponse,
-} from "../../common/types";
+import { CreateDocumentParams, DocumentResponse } from "../../common/types";
 
 export default defineAction({
   name: "Create Document",
@@ -41,13 +39,10 @@ export default defineAction({
     }
 
     const data = {};
-    const tokens: {[key: string]: string;} = this.tokens;
+    const tokens: { [key: string]: string } = this.tokens;
 
     if (tokens) {
-      Object.entries(tokens).forEach(([
-        key,
-        value,
-      ]) => {
+      Object.entries(tokens).forEach(([key, value]) => {
         try {
           if (!key.startsWith("$") && value.match(/({[^}]*})|(\[[^\]]*\])/)) {
             value = JSON.parse(value);
@@ -58,9 +53,7 @@ export default defineAction({
             If this is not a JSON string for an object or array, prefix the key with \`$\` as in \`$${key}\``);
         }
 
-        data[key.startsWith("$")
-          ? key.slice(1)
-          : key] = value;
+        data[key.startsWith("$") ? key.slice(1) : key] = value;
       });
     }
 
@@ -70,7 +63,8 @@ export default defineAction({
       data,
     };
 
-    const response: DocumentResponse = await this.docupilot.createDocument(params);
+    const response: DocumentResponse =
+      await this.docupilot.createDocument(params);
 
     $.export("$summary", "Created document successfully");
 

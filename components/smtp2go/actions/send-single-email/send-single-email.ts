@@ -5,7 +5,8 @@ export default {
   ...common,
   key: "smtp2go-send-single-email",
   name: "Send Single Email",
-  description: "Send a single email with SMTP2GO [(See docs here)](https://apidoc.smtp2go.com/documentation/#/POST%20/email/send)",
+  description:
+    "Send a single email with SMTP2GO [(See docs here)](https://apidoc.smtp2go.com/documentation/#/POST%20/email/send)",
   version: "0.0.2",
   type: "action",
   props: {
@@ -18,8 +19,7 @@ export default {
     htmlBody: {
       type: "string",
       label: "HTML Body",
-      description:
-        `HTML email message.
+      description: `HTML email message.
         \\
         **Required** if no \`Text Body\` is specified.`,
       optional: true,
@@ -27,8 +27,7 @@ export default {
     textBody: {
       type: "string",
       label: "Text Body",
-      description:
-        `Plain text email message.
+      description: `Plain text email message.
         \\
         **Required** if no \`HTML Body\` is specified.`,
       optional: true,
@@ -44,10 +43,19 @@ export default {
       text_body: this.textBody,
     };
     if (!data.html_body && !data.text_body) {
-      throw new Error("You must have EITHER a text body or an html body. Neither were provided.");
+      throw new Error(
+        "You must have EITHER a text body or an html body. Neither were provided.",
+      );
     }
-    const response = await this.smtp2go.sendSingleEmail($, data, this.ignoreFailures);
-    $.export("$summary", `Sent email successfully with email ID ${response.data.email_id}`);
+    const response = await this.smtp2go.sendSingleEmail(
+      $,
+      data,
+      this.ignoreFailures,
+    );
+    $.export(
+      "$summary",
+      `Sent email successfully with email ID ${response.data.email_id}`,
+    );
     return response;
   },
 };

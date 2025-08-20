@@ -6,36 +6,26 @@ import { MODERATION_MODE_OPTIONS } from "../../common/constants";
 export default defineAction({
   key: "zoho_catalyst-perform-image-moderation",
   name: "Perform Image Moderation",
-  description: "Perform image moderation on an image. [See the documentation](https://catalyst.zoho.com/help/api/zia/image-moderation.html)",
+  description:
+    "Perform image moderation on an image. [See the documentation](https://catalyst.zoho.com/help/api/zia/image-moderation.html)",
   version: "0.0.1",
   type: "action",
   props: {
     app,
     projectId: {
-      propDefinition: [
-        app,
-        "projectId",
-      ],
+      propDefinition: [app, "projectId"],
     },
     imagePath: {
-      propDefinition: [
-        app,
-        "imagePath",
-      ],
+      propDefinition: [app, "imagePath"],
     },
     mode: {
-      propDefinition: [
-        app,
-        "mode",
-      ],
+      propDefinition: [app, "mode"],
       description: "Denotes the moderation mode.",
       options: MODERATION_MODE_OPTIONS,
     },
   },
   async run({ $ }): Promise<object> {
-    const {
-      imagePath, projectId, mode,
-    } = this;
+    const { imagePath, projectId, mode } = this;
 
     const data = getImageFormData(imagePath);
     if (mode) data.append("mode", mode);

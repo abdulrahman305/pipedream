@@ -4,7 +4,7 @@ Zoho Books API unlocks the potential to automate and streamline accounting tasks
 
 # Getting Started
 
-1. First, sign up for Pipedream at [https://pipedream.com](https://pipedream.com). 
+1. First, sign up for Pipedream at [https://pipedream.com](https://pipedream.com).
 2. [Create a new workflow](https://pipedream.com/new).
 3. Select a [trigger](/workflows/steps/triggers/) for your workflow (for example, HTTP or Cron).
 4. [Add a new step](/workflows/steps/) and search for "Zoho Books". This will display [actions](/components#actions) associated with the Zoho Books app. You can choose to either "Run Node.js code with Zoho Books" or select one of the prebuilt actions for performing common API operations.
@@ -19,7 +19,6 @@ Once you've connected your account, you can run your workflow and fetch data fro
 - **Expense Tracking**: Connect Zoho Books to your expense management app like Expensify. Whenever a new expense report is approved in Expensify, create a corresponding expense record in Zoho Books, keeping your accounts up to date.
 
 - **Customer Synchronization**: Sync new customer data from a CRM like Salesforce to Zoho Books. When a new contact is added in Salesforce, automatically create or update the customer information in Zoho Books, ensuring accurate and consistent customer data across business tools.
-
 
 # Troubleshooting
 

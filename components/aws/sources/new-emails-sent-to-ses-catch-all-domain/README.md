@@ -14,7 +14,6 @@ docs](https://docs.pipedream.com/event-sources/) for more information.
 1. [Verify your domain in
    SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/receiving-email-getting-started-verify.html).
    As a part of this process, ensure you do two things:
-
    - Once you select the option to **Verify a New Domain** in SES and enter your
      domain name, check the **Generate DKIM Settings** box and create the
      associated DNS records for validating DKIM.
@@ -42,14 +41,8 @@ docs](https://docs.pipedream.com/event-sources/) for more information.
        {
          "Sid": "SNS",
          "Effect": "Allow",
-         "Action": [
-           "sns:DeleteTopic",
-           "sns:CreateTopic",
-           "sns:Subscribe"
-         ],
-         "Resource": [
-           "arn:aws:sns:*:*:*"
-         ]
+         "Action": ["sns:DeleteTopic", "sns:CreateTopic", "sns:Subscribe"],
+         "Resource": ["arn:aws:sns:*:*:*"]
        },
        {
          "Sid": "S3",

@@ -17,15 +17,14 @@ To use the Discord Bot integration, you'll need to create a Discord bot and add 
 7. Copy and paste the URL into a new window
 8. Accept the permissions to install the bot on your server
 
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IaKs8oA1-5g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Not sure if you need to use the Discord or the Discord Bot integration for your workflow? Here's are the general similarities and differences:
 
 Discord and Discord Bot actions and triggers _can_ both:
 
-* Listen to events on Discord channels, guilds, etc.
-* Perform actions like sending messages, managing channels, and members
+- Listen to events on Discord channels, guilds, etc.
+- Perform actions like sending messages, managing channels, and members
 
 However the Discord integration will perform actions with the official Pipedream Discord bot.
 
@@ -74,6 +73,7 @@ Make sure your bot has the required privileges:
 If you have issues with this integration, please join our public Slack and ask for help.
 
 ## Limitations of the Bot integration on Pipedream
+
 Right now, the Discord Bot integration cannot utilize the [Discord Gateway](https://discordapp.com/developers/docs/topics/gateway) to receive events via websockets or make API requests that require an initial connection to the gateway.
 
 [Please reach out](https://github.com/PipedreamHQ/pipedream/issues/new/choose) if prevents you from building a workflow. We're happy to prioritize support for this in the future.

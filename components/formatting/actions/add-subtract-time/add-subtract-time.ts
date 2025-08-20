@@ -3,7 +3,8 @@ import { ConfigurationError } from "@pipedream/platform";
 import app from "../../app/formatting.app";
 import commonDateTime from "../../common/date-time/commonDateTime";
 import {
-  DATE_FORMAT_PARSE_MAP, DEFAULT_FORMAT_VALUE,
+  DATE_FORMAT_PARSE_MAP,
+  DEFAULT_FORMAT_VALUE,
 } from "../../common/date-time/dateFormats";
 import { DATE_TIME_UNITS } from "../../common/date-time/dateTimeUnits";
 import sugar from "sugar";
@@ -35,10 +36,7 @@ export default defineAction({
       type: "string",
     },
     outputFormat: {
-      propDefinition: [
-        app,
-        "outputFormat",
-      ],
+      propDefinition: [app, "outputFormat"],
     },
   },
   methods: {
@@ -46,9 +44,7 @@ export default defineAction({
     getOperationMilliseconds(str: string) {
       let result = 0;
 
-      const {
-        second, minute, hour, day, week, year,
-      } = DATE_TIME_UNITS;
+      const { second, minute, hour, day, week, year } = DATE_TIME_UNITS;
       Object.entries({
         s: second,
         m: minute,
@@ -56,10 +52,7 @@ export default defineAction({
         d: day,
         w: week,
         y: year,
-      }).forEach(([
-        identifier,
-        multiplier,
-      ]) => {
+      }).forEach(([identifier, multiplier]) => {
         const substr = str.match(new RegExp(`[0-9]+\\s*${identifier}`))?.[0];
         if (substr) {
           const value = Number(substr.match(/[0-9]+/));
@@ -71,9 +64,7 @@ export default defineAction({
     },
   },
   async run({ $ }): Promise<string | number> {
-    const {
-      operation, duration, outputFormat,
-    } = this;
+    const { operation, duration, outputFormat } = this;
 
     const dateObj = this.getDateFromInput();
 
@@ -90,15 +81,16 @@ export default defineAction({
 
       $.export(
         "$summary",
-        `Successfully ${operation === OPERATION_OPTIONS.SUBTRACT
-          ? "subtracted"
-          : "added"
+        `Successfully ${
+          operation === OPERATION_OPTIONS.SUBTRACT ? "subtracted" : "added"
         } time`,
       );
       return output;
     } catch (err) {
       console.log("Error parsing date", err);
-      throw new ConfigurationError("**Parse error** - check your input and if the selected format is correct.");
+      throw new ConfigurationError(
+        "**Parse error** - check your input and if the selected format is correct.",
+      );
     }
   },
 });

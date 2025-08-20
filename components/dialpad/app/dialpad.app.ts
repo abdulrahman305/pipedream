@@ -23,25 +23,15 @@ export default defineApp({
     _getHeaders() {
       return {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.$auth.oauth_access_token}`,
+        Authorization: `Bearer ${this.$auth.oauth_access_token}`,
       };
     },
     _getUrl(path) {
-      const {
-        BASE_URL,
-        HTTP_PROTOCOL,
-        VERSION_PATH,
-      } = constants;
+      const { BASE_URL, HTTP_PROTOCOL, VERSION_PATH } = constants;
       return `${HTTP_PROTOCOL}${BASE_URL}${VERSION_PATH}${path}`;
     },
     async _makeRequest(args) {
-      const {
-        $,
-        method = "get",
-        path,
-        params,
-        data,
-      } = args;
+      const { $, method = "get", path, params, data } = args;
       const config = {
         method,
         url: this._getUrl(path),
@@ -51,9 +41,7 @@ export default defineApp({
       };
       return axios($ ?? this, config);
     },
-    async createWebhook({
-      path, hook_url, data,
-    }) {
+    async createWebhook({ path, hook_url, data }) {
       // get webhook ID
       const webhook = await this._makeRequest({
         path: "/webhooks",
@@ -79,9 +67,7 @@ export default defineApp({
         eventId: event.id,
       };
     },
-    async removeWebhook({
-      path, ids,
-    }) {
+    async removeWebhook({ path, ids }) {
       await this._makeRequest({
         path: `/webhooks/${ids.webhookId}`,
         method: "delete",

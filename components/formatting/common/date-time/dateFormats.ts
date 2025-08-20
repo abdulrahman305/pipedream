@@ -99,11 +99,7 @@ const DATE_FORMATS: DateFormat[] = [
   {
     value: "22-01-2006",
     inputFn(str) {
-      const [
-        day,
-        month,
-        year,
-      ] = str.split("-");
+      const [day, month, year] = str.split("-");
       return sugar.Date.create(`${year}-${month}-${day}`, {
         fromUTC: true,
       });
@@ -116,11 +112,7 @@ const DATE_FORMATS: DateFormat[] = [
   {
     value: "22/01/2006",
     inputFn(str) {
-      const [
-        day,
-        month,
-        year,
-      ] = str.split("/");
+      const [day, month, year] = str.split("/");
       return sugar.Date.create(`${year}-${month}-${day}`, {
         fromUTC: true,
       });
@@ -132,11 +124,7 @@ const DATE_FORMATS: DateFormat[] = [
   {
     value: "22/01/06",
     inputFn(str) {
-      const [
-        day,
-        month,
-        year,
-      ] = str.split("/");
+      const [day, month, year] = str.split("/");
       return sugar.Date.create(`${Number(year) + 2000}-${month}-${day}`, {
         fromUTC: true,
       });
@@ -167,10 +155,8 @@ const DATE_FORMATS: DateFormat[] = [
 
 const mapData: [
   DateFormat["value"],
-  Pick<DateFormat, "inputFn" | "outputFn">
-][] = DATE_FORMATS.map(({
-  value, inputFn, outputFn,
-}) => {
+  Pick<DateFormat, "inputFn" | "outputFn">,
+][] = DATE_FORMATS.map(({ value, inputFn, outputFn }) => {
   return [
     value,
     {

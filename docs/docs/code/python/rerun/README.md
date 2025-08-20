@@ -5,7 +5,7 @@ thumbnail: https://res.cloudinary.com/pipedreamin/image/upload/v1646841376/docs/
 
 # Pause, resume, and rerun a workflow
 
-You can use `pd.flow.suspend` and `pd.flow.rerun` to pause a workflow and resume it later. 
+You can use `pd.flow.suspend` and `pd.flow.rerun` to pause a workflow and resume it later.
 
 This is useful when you want to:
 
@@ -56,7 +56,7 @@ If you resume a workflow, any data sent in the HTTP request is passed to the wor
   <img src="https://res.cloudinary.com/pipedreamin/image/upload/v1655271815/docs/resume_data_lafhxr.png" alt="resume data step export" width="350px"/>
 </div>
 
-### Default timeout of 24 hours 
+### Default timeout of 24 hours
 
 By default, `pd.flow.suspend` will automatically resume the workflow after 24 hours. You can set your own timeout (in milliseconds) as the first argument:
 
@@ -88,10 +88,10 @@ def handler(pd: 'pipedream'):
   if run['runs'] == 1:
     # pd.flow.rerun(delay, context (discussed below), max retries)
     pd.flow.rerun(DELAY, None, MAX_RETRIES)
-  
+
   elif run['runs'] == MAX_RETRIES + 1:
     raise Exception("Max retries exceeded")
-  
+
   else:
     # Poll external API for status
     response = requests.get("https://example.com/status")
@@ -131,7 +131,7 @@ def handler(pd: 'pipedream'):
     # Send resume_url to external service
     await request.post("your callback URL", json=links)
 
-  # When the external service calls back into the resume_url, you have access to 
+  # When the external service calls back into the resume_url, you have access to
   # the callback data within pd.context.run['callback_request']
   elif 'callback_request' in run:
     return run['callback_request']

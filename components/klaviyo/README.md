@@ -14,7 +14,7 @@ The Klaviyo API grants you the power to automate and personalize your email mark
 
 To get started using Klaviyo with Pipedream, you’ll need to create a new Klaviyo API key.
 
-First, log in to your Klaviyo account, then open *Settings* in the bottom left-hand corner:
+First, log in to your Klaviyo account, then open _Settings_ in the bottom left-hand corner:
 
 ![Open the drawer in the bottom left-hand drawer to open your Klaviyo account settings](https://res.cloudinary.com/pipedreamin/image/upload/v1715178061/marketplace/apps/klayvio/CleanShot_2024-05-08_at_10.11.15_2x_cusdgp.png)
 

@@ -27,11 +27,7 @@ export default defineSource({
       description:
         "Which events to emit. If not specified, all events will be emitted.",
       optional: true,
-      options: [
-        EventType.Create,
-        EventType.Update,
-        EventType.Delete,
-      ],
+      options: [EventType.Create, EventType.Update, EventType.Delete],
     },
   },
   hooks: {
@@ -53,9 +49,7 @@ export default defineSource({
       this.db.set("savedData", JSON.stringify(data));
     },
     async getAndProcessData() {
-      const {
-        baserow, tableId, eventTypes,
-      } = this;
+      const { baserow, tableId, eventTypes } = this;
       const savedTableId = this._getTableId();
       const data: Row[] = await baserow.listRows({
         tableId,
@@ -95,15 +89,11 @@ export default defineSource({
 
         if (emitDelete) {
           Object.entries(savedData)
-            .filter(([
-              id,
-            ]) => {
+            .filter(([id]) => {
               const numId = Number(id);
               return !data.some((row) => row.id === numId);
             })
-            .forEach(([
-              , savedRow,
-            ]) => {
+            .forEach(([, savedRow]) => {
               this.emitEvent(EventType.Delete, savedRow);
             });
         }
@@ -119,14 +109,17 @@ export default defineSource({
     emitEvent(eventType: EventType, rowData: Row) {
       const ts = Date.now();
       const { id } = rowData;
-      this.$emit({
-        eventType,
-        rowData,
-      }, {
-        id,
-        summary: `${eventType}: ${id}`,
-        ts,
-      });
+      this.$emit(
+        {
+          eventType,
+          rowData,
+        },
+        {
+          id,
+          summary: `${eventType}: ${id}`,
+          ts,
+        },
+      );
     },
   },
   async run() {

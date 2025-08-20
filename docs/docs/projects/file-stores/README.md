@@ -20,13 +20,13 @@ Unlike files stored within a workflow's `/tmp` directory which are subject to de
 
 ## Managing File Stores from the Dashboard
 
-You can access a File Store by opening the Project and selecting the *File Store* on the left hand navigation menu.
+You can access a File Store by opening the Project and selecting the _File Store_ on the left hand navigation menu.
 
 ![Opening a project's file store in the Pipedream Dashboard.](https://res.cloudinary.com/pipedreamin/image/upload/v1698934897/docs/docs/Project%20Files/CleanShot_2023-11-02_at_10.21.15_2x_z5q5nt.png)
 
 ### Uploading files to the File Store
 
-To upload a file, select *New* then select *File*:
+To upload a file, select _New_ then select _File_:
 
 ![Opening the new file pop-up in a Project's File Store](https://res.cloudinary.com/pipedreamin/image/upload/v1698934655/docs/docs/Project%20Files/CleanShot_2023-11-02_at_10.16.13_fqjuv4.gif)
 
@@ -34,11 +34,11 @@ Then in the new pop-up, you can either drag and drop or browser your computer to
 
 ![Choose to either drag and drop a file to upload or browse your local filesystem to upload the file](https://res.cloudinary.com/pipedreamin/image/upload/v1698934655/docs/docs/Project%20Files/CleanShot_2023-11-02_at_10.16.19_2x_w7z8wv.png)
 
-Now that the file(s) are staged for uploaded. Click *Upload* to upload them:
+Now that the file(s) are staged for uploaded. Click _Upload_ to upload them:
 
 ![Confirm the upload to the file store](https://res.cloudinary.com/pipedreamin/image/upload/v1698934657/docs/docs/Project%20Files/CleanShot_2023-11-02_at_10.16.49_2x_ha4scn.png)
 
-Finally, click *Done* to close the upload pop-up:
+Finally, click _Done_ to close the upload pop-up:
 
 ![Closing the file store upload modal](https://res.cloudinary.com/pipedreamin/image/upload/v1698934659/docs/docs/Project%20Files/CleanShot_2023-11-02_at_10.17.01_2x_xmfqfi.png)
 
@@ -48,7 +48,7 @@ You should now see your file is uploaded and available for use within your Proje
 
 ### Deleting files from the File Store
 
-You can delete individual files from a File Store by clicking the three dot menu on the far right of the file and selecting *Delete*.
+You can delete individual files from a File Store by clicking the three dot menu on the far right of the file and selecting _Delete_.
 
 ![Deleting a Project File from the Dashboard](https://res.cloudinary.com/pipedreamin/image/upload/v1698855610/docs/docs/Project%20Files/CleanShot_2023-11-01_at_12.19.20_lb4ddt.png)
 
@@ -65,7 +65,6 @@ Once a file is deleted, it's not possible to recover it. Please take care when d
 Files uploaded to a File Store are accessible by workflows within that same project.
 
 You can access these files programmatically using the `$.files` helper within Node.js code steps.
-
 
 :::tip File Stores are scoped to Projects
 
@@ -86,16 +85,16 @@ export default defineComponent({
     const dirs = $.files.dir();
     let files = [];
 
-    for await(const dir of dirs) {
+    for await (const dir of dirs) {
       // if this is a file, let's open it
-      if(dir.isFile()) {
-        files.push(dir.path)
+      if (dir.isFile()) {
+        files.push(dir.path);
       }
     }
 
-    return files
+    return files;
   },
-})
+});
 ```
 
 ### Opening files
@@ -108,11 +107,11 @@ Given there's a file in the File Store called `example.png`, you can open it usi
 export default defineComponent({
   async run({ steps, $ }) {
     // Open the file by it's path in the File Store
-    const file = $.files.open('example.png')
+    const file = $.files.open("example.png");
     // Log the S3 url to access the file publicly
-    return await file.toUrl()
+    return await file.toUrl();
   },
-})
+});
 ```
 
 Once the file has been opened, you can [read, write, delete the file and more](/projects/file-stores/reference/).
@@ -131,12 +130,16 @@ First open a new file at a specific path in the File Store, and then pass a URL 
 export default defineComponent({
   async run({ steps, $ }) {
     // Upload a file to the File Store by a URL
-    const file = await $.files.open('pipedream.png').fromUrl('https://res.cloudinary.com/pipedreamin/image/upload/t_logo48x48/v1597038956/docs/HzP2Yhq8_400x400_1_sqhs70.jpg')
+    const file = await $.files
+      .open("pipedream.png")
+      .fromUrl(
+        "https://res.cloudinary.com/pipedreamin/image/upload/t_logo48x48/v1597038956/docs/HzP2Yhq8_400x400_1_sqhs70.jpg",
+      );
 
     // display the uploaded file's URL from the File Store:
-    console.log(await file.toUrl())
+    console.log(await file.toUrl());
   },
-})
+});
 ```
 
 #### Uploading files from the workflow's `/tmp` directory
@@ -149,12 +152,14 @@ First open a new file at a specific path in the File Store, and then pass a URL 
 export default defineComponent({
   async run({ steps, $ }) {
     // Upload a file to the File Store from the local /tmp/ directory
-    const file = await $.files.open('recording.mp3').fromFile('/tmp/recording.mp3')
+    const file = await $.files
+      .open("recording.mp3")
+      .fromFile("/tmp/recording.mp3");
 
     // Display the URL to the File Store hosted file
-    console.log(await file.toUrl())
+    console.log(await file.toUrl());
   },
-})
+});
 ```
 
 #### Uploading files using streams
@@ -162,34 +167,34 @@ export default defineComponent({
 File Stores also support streaming to write large files. `File.createWriteStream()` creates a write stream for the file to upload to. Then you can pair this stream with a download stream from another remote location:
 
 ```javascript
-import { pipeline } from 'stream/promises';
-import got from 'got'
+import { pipeline } from "stream/promises";
+import got from "got";
 
 export default defineComponent({
   async run({ steps, $ }) {
-    const writeStream = await $.files.open('logo.png').createWriteStream()
+    const writeStream = await $.files.open("logo.png").createWriteStream();
 
-    const readStream = got.stream('https://pdrm.co/logo')
+    const readStream = got.stream("https://pdrm.co/logo");
 
     await pipeline(readStream, writeStream);
   },
-})
+});
 ```
 
 Additionally, you can pass a `ReadableStream` instance directly to a File instance:
 
 ```javascript
-import got from 'got'
+import got from "got";
 
 export default defineComponent({
   async run({ steps, $ }) {
     // Start a new read stream
-    const readStream = got.stream('https://pdrm.co/logo')
+    const readStream = got.stream("https://pdrm.co/logo");
 
     // Populate the file's content from the read stream
-    await $.files.open("logo.png").fromReadableStream(readStream)
+    await $.files.open("logo.png").fromReadableStream(readStream);
   },
-})
+});
 ```
 
 :::tip (Recommended) Pass the contentLength if possible
@@ -197,7 +202,6 @@ export default defineComponent({
 If possible, pass a `contentLength` argument, then File Store will be able to efficiently stream to use less memory. Without a `contentLength` argument, the entire file will need to be downloaded to `/tmp/` until it can be uploaded to the File store.
 
 :::
-
 
 ### Downloading files
 
@@ -208,22 +212,22 @@ File Stores live in cloud storage by default, but files can be downloaded to you
 First open a new file at a specific path in the File Store, and then call the `toFile()` method to download the file to the given path:
 
 ```javascript
-import fs from 'fs';
+import fs from "fs";
 
 export default defineComponent({
   async run({ steps, $ }) {
     // Download a file from the File Store to the local /tmp/ directory
-    const file = await $.files.open('recording.mp3').toFile('/tmp/README.md')
+    const file = await $.files.open("recording.mp3").toFile("/tmp/README.md");
 
     // read the file version of the file stored in /tmp
-    return (await fs.promises.readFile('/tmp/README.md')).toString()
+    return (await fs.promises.readFile("/tmp/README.md")).toString();
   },
-})
+});
 ```
 
 :::tip Only the `/tmp/` directory is readable and writable
 
-Make sure that your path to `toFile(path)` includes 
+Make sure that your path to `toFile(path)` includes
 
 :::
 
@@ -238,11 +242,11 @@ For example, if you have a file stored at the path `logo.png` within your File S
 export default defineComponent({
   async run({ steps, $ }) {
     // Return data to use it in future steps
-    const file = $.files.open('logo.png')
+    const file = $.files.open("logo.png");
 
-    return file
+    return file;
   },
-})
+});
 ```
 
 Then in a downstream code step, you can use it via the `steps` path:
@@ -252,9 +256,9 @@ Then in a downstream code step, you can use it via the `steps` path:
 export default defineComponent({
   async run({ steps, $ }) {
     // steps.open_file.$return_value is automatically parsed back into a File instance:
-    return await steps.open_file.$return_value.toUrl()
+    return await steps.open_file.$return_value.toUrl();
   },
-})
+});
 ```
 
 :::tip Files descriptions are compatible with other workflow helpers
@@ -274,12 +278,12 @@ For example, if you have a step that returns an array of `File` instances:
 export default defineComponent({
   async run({ steps, $ }) {
     // Return data to use it in future steps
-    const file1 = $.files.open('vue-logo.svg')
-    const file2 = $.files.open('react-logo.svg')
+    const file1 = $.files.open("vue-logo.svg");
+    const file2 = $.files.open("react-logo.svg");
 
-    return [file1, file]
+    return [file1, file];
   },
-})
+});
 ```
 
 Then you'll need to use `$.files.openDescriptor` to parse the JSON definition of the files back into `File` instances:
@@ -288,12 +292,14 @@ Then you'll need to use `$.files.openDescriptor` to parse the JSON definition of
 // "parse_files" Node.js code step
 export default defineComponent({
   async run({ steps, $ }) {
-    const files = steps.open_files.$return_value.map(object => $.files.openDescriptor(object))
+    const files = steps.open_files.$return_value.map((object) =>
+      $.files.openDescriptor(object),
+    );
 
     // log the URL to the first File
     console.log(await files[0].toUrl());
   },
-})
+});
 ```
 
 ### Deleting files
@@ -304,10 +310,10 @@ You can call `delete()` on the file to delete it from the File Store.
 export default defineComponent({
   async run({ steps, $ }) {
     // Open the file and delete it
-    const file = await $.files.open('example.png').delete()
-    console.log('File deleted.')
+    const file = await $.files.open("example.png").delete();
+    console.log("File deleted.");
   },
-})
+});
 ```
 
 :::danger Deleting files is irreversible

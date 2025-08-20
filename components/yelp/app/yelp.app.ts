@@ -36,12 +36,8 @@ export default defineApp({
         ...args,
       });
     },
-    async _paginatedRequest({
-      params, ...args
-    }: SearchBusinessesParams) {
-      const {
-        maxResults, ...requestParams
-      } = params;
+    async _paginatedRequest({ params, ...args }: SearchBusinessesParams) {
+      const { maxResults, ...requestParams } = params;
 
       const result: Business[] = [];
       let offset = 0;
@@ -91,21 +87,19 @@ export default defineApp({
         ...args,
       });
     },
-    async getBusinessDetails(
-      {
-        businessIdOrAlias, ...args
-      }: GetBusinessDetailsParams,
-    ): Promise<Business> {
+    async getBusinessDetails({
+      businessIdOrAlias,
+      ...args
+    }: GetBusinessDetailsParams): Promise<Business> {
       return this._httpRequest({
         url: `/businesses/${businessIdOrAlias}`,
         ...args,
       });
     },
-    async listBusinessReviews(
-      {
-        businessIdOrAlias, ...args
-      }: ListBusinessReviewsParams,
-    ): Promise<ListBusinessReviewsResponse> {
+    async listBusinessReviews({
+      businessIdOrAlias,
+      ...args
+    }: ListBusinessReviewsParams): Promise<ListBusinessReviewsResponse> {
       return this._httpRequest({
         url: `/businesses/${businessIdOrAlias}/reviews`,
         ...args,

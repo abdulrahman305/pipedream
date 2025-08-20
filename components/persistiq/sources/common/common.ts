@@ -39,14 +39,11 @@ export default {
     });
     for await (const item of resourcesStream) {
       if (!oldExistingIds.includes(item.id)) {
-        this.$emit(
-          item,
-          {
-            id: Date.now() + Math.ceil( Math.random() * 1000000000 ), //item id is not number
-            ts: Date.now(), //no info about item creation time
-            summary: this.getSummary(item),
-          },
-        );
+        this.$emit(item, {
+          id: Date.now() + Math.ceil(Math.random() * 1000000000), //item id is not number
+          ts: Date.now(), //no info about item creation time
+          summary: this.getSummary(item),
+        });
       }
       newExitstingIds.push(item.id);
     }

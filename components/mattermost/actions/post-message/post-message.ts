@@ -1,8 +1,6 @@
 import mattermost from "../../app/mattermost.app";
 import { defineAction } from "@pipedream/types";
-import {
-  PostMessageParams, PostMessageResponse,
-} from "../../common/types";
+import { PostMessageParams, PostMessageResponse } from "../../common/types";
 
 export default defineAction({
   name: "Post Message",
@@ -14,10 +12,7 @@ export default defineAction({
   props: {
     mattermost,
     channelId: {
-      propDefinition: [
-        mattermost,
-        "channelId",
-      ],
+      propDefinition: [mattermost, "channelId"],
     },
     message: {
       label: "Message",
@@ -26,13 +21,15 @@ export default defineAction({
     },
     rootId: {
       label: "Root ID",
-      description: "The post ID to comment on. You can use the ID of a previously created post, or get it by copying the link to a post on Mattermost's interface.",
+      description:
+        "The post ID to comment on. You can use the ID of a previously created post, or get it by copying the link to a post on Mattermost's interface.",
       type: "string",
       optional: true,
     },
     fileIds: {
       label: "File IDs",
-      description: "A list of file IDs to associate with the post. Note that posts are limited to 5 files maximum. Please use additional posts for more files.",
+      description:
+        "A list of file IDs to associate with the post. Note that posts are limited to 5 files maximum. Please use additional posts for more files.",
       type: "string[]",
       optional: true,
     },

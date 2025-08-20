@@ -1,8 +1,6 @@
 import { defineAction } from "@pipedream/types";
 import { ConfigurationError } from "@pipedream/platform";
-import {
-  CASE_OPTIONS, CASE_OPTIONS_PROP,
-} from "../../common/text/caseOptions";
+import { CASE_OPTIONS, CASE_OPTIONS_PROP } from "../../common/text/caseOptions";
 import app from "../../app/formatting.app";
 
 export default defineAction({
@@ -26,19 +24,21 @@ export default defineAction({
     },
   },
   async run({ $ }): Promise<string> {
-    const {
-      input, operation,
-    } = this;
+    const { input, operation } = this;
 
     try {
-      const { outputFn } = CASE_OPTIONS.find(({ value }) => value === operation);
+      const { outputFn } = CASE_OPTIONS.find(
+        ({ value }) => value === operation,
+      );
 
       const result = outputFn(input);
 
       $.export("$summary", "Successfully transformed text case");
       return result;
     } catch (err) {
-      throw new ConfigurationError("**Parse error** - check your input and if the selected operation is correct.");
+      throw new ConfigurationError(
+        "**Parse error** - check your input and if the selected operation is correct.",
+      );
     }
   },
 });

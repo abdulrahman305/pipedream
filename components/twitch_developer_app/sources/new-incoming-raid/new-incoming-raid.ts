@@ -6,16 +6,14 @@ export default defineSource({
   ...common,
   name: "New Incoming Raid (Instant)",
   key: "twitch_developer_app-new-incoming-raid",
-  description: "Emit new event when a specific broadcaster is raided by another broadcaster.",
+  description:
+    "Emit new event when a specific broadcaster is raided by another broadcaster.",
   version: "0.0.1",
   type: "source",
   props: {
     ...common.props,
     streamerLoginNames: {
-      propDefinition: [
-        common.props.twitch,
-        "streamerLoginNames",
-      ],
+      propDefinition: [common.props.twitch, "streamerLoginNames"],
     },
   },
   methods: {
@@ -26,7 +24,7 @@ export default defineSource({
       for (const item of data) {
         if (item.id != undefined) {
           conditions.push({
-            "to_broadcaster_user_id": item.id,
+            to_broadcaster_user_id: item.id,
           });
         }
       }
@@ -55,5 +53,4 @@ export default defineSource({
       };
     },
   },
-
 });

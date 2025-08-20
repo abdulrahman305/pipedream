@@ -7,7 +7,9 @@
     "pipedream",
     "chatfuel_dashboard_api_"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/chatfuel_dashboard_api_",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {
