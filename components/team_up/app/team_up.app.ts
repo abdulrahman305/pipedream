@@ -2,12 +2,18 @@ import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
   CreateEventParams,
-  DeleteEventParams, HttpRequestParams, ListEventsParams, ListSubCalendarsParams, UpdateEventParams,
+  DeleteEventParams,
+  HttpRequestParams,
+  ListEventsParams,
+  ListSubCalendarsParams,
+  UpdateEventParams,
 } from "../common/requestParams";
 import {
   CreateEventResponse,
   DeleteEventResponse,
-  ListEventsResponse, SubCalendar, UpdateEventResponse,
+  ListEventsResponse,
+  SubCalendar,
+  UpdateEventResponse,
 } from "../common/responseSchemas";
 
 export default defineApp({
@@ -17,19 +23,19 @@ export default defineApp({
     calendarKey: {
       type: "string",
       label: "Calendar Key",
-      description: "The Calendar Key to use. [See the TeamUp API Docs for more information.](https://apidocs.teamup.com/docs/api/ZG9jOjI4Mzk0ODA4-teamup-com-api-overview#calendar-key)",
+      description:
+        "The Calendar Key to use. [See the TeamUp API Docs for more information.](https://apidocs.teamup.com/docs/api/ZG9jOjI4Mzk0ODA4-teamup-com-api-overview#calendar-key)",
     },
     eventId: {
       type: "string",
       label: "Event",
-      description: "By default, only events from the current day are listed. You can use the **List Events** action to obtain other events and use their *Event ID* here.",
+      description:
+        "By default, only events from the current day are listed. You can use the **List Events** action to obtain other events and use their *Event ID* here.",
       async options({ calendarKey }: Record<string, string>) {
         const response: ListEventsResponse = await this.listEvents({
           calendarKey,
         });
-        return response?.events.map(({
-          id, title,
-        }) => ({
+        return response?.events.map(({ id, title }) => ({
           label: title ?? id,
           value: id,
         }));
@@ -38,14 +44,13 @@ export default defineApp({
     subCalendarIds: {
       type: "string[]",
       label: "Sub-calendar IDs",
-      description: "A list of ids of sub-calendars to which the event is assigned.",
+      description:
+        "A list of ids of sub-calendars to which the event is assigned.",
       async options({ calendarKey }: Record<string, string>) {
         const items: SubCalendar[] = await this.listSubCalendars({
           calendarKey,
         });
-        return items?.map(({
-          id, name,
-        }) => ({
+        return items?.map(({ id, name }) => ({
           label: name ?? id,
           value: id,
         }));
@@ -54,12 +59,14 @@ export default defineApp({
     startDate: {
       type: "string",
       label: "Start Date",
-      description: "Start date/time of the event in ISO format, e.g. `2023-04-15T14:00:00Z`",
+      description:
+        "Start date/time of the event in ISO format, e.g. `2023-04-15T14:00:00Z`",
     },
     endDate: {
       type: "string",
       label: "End Date",
-      description: "End date/time of the event in ISO format, e.g. `2023-04-15T14:00:00Z`",
+      description:
+        "End date/time of the event in ISO format, e.g. `2023-04-15T14:00:00Z`",
     },
   },
   methods: {
@@ -83,7 +90,8 @@ export default defineApp({
       });
     },
     async createEvent({
-      calendarKey, ...args
+      calendarKey,
+      ...args
     }: CreateEventParams): Promise<CreateEventResponse> {
       return this._httpRequest({
         method: "POST",
@@ -92,7 +100,9 @@ export default defineApp({
       });
     },
     async deleteEvent({
-      calendarKey, eventId, ...args
+      calendarKey,
+      eventId,
+      ...args
     }: DeleteEventParams): Promise<DeleteEventResponse> {
       return this._httpRequest({
         method: "DELETE",
@@ -101,7 +111,8 @@ export default defineApp({
       });
     },
     async listEvents({
-      calendarKey, ...args
+      calendarKey,
+      ...args
     }: ListEventsParams): Promise<ListEventsResponse> {
       const response = await this._httpRequest({
         url: `/${calendarKey}/events`,
@@ -110,7 +121,9 @@ export default defineApp({
       return response;
     },
     async updateEvent({
-      calendarKey, eventId, ...args
+      calendarKey,
+      eventId,
+      ...args
     }: UpdateEventParams): Promise<UpdateEventResponse> {
       return this._httpRequest({
         method: "PUT",
@@ -119,7 +132,8 @@ export default defineApp({
       });
     },
     async listSubCalendars({
-      calendarKey, ...args
+      calendarKey,
+      ...args
     }: ListSubCalendarsParams): Promise<SubCalendar[]> {
       const response = await this._httpRequest({
         url: `/${calendarKey}/subcalendars`,

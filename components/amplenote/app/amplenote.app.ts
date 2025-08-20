@@ -36,27 +36,35 @@ export default defineApp({
       });
     },
     async getNotes({ $ = this } = {}) {
-      const response = await this._makeRequest("notes", {
-        method: "GET",
-      }, $);
+      const response = await this._makeRequest(
+        "notes",
+        {
+          method: "GET",
+        },
+        $,
+      );
 
       return response.notes;
     },
-    async createNote({
-      $, data,
-    }) {
-      return this._makeRequest("notes", {
-        method: "POST",
-        data,
-      }, $);
+    async createNote({ $, data }) {
+      return this._makeRequest(
+        "notes",
+        {
+          method: "POST",
+          data,
+        },
+        $,
+      );
     },
-    async createTask({
-      $, noteId, data,
-    }) {
-      return this._makeRequest(`notes/${noteId}/actions`, {
-        method: "POST",
-        data,
-      }, $);
+    async createTask({ $, noteId, data }) {
+      return this._makeRequest(
+        `notes/${noteId}/actions`,
+        {
+          method: "POST",
+          data,
+        },
+        $,
+      );
     },
   },
 });

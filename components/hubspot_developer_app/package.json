@@ -7,7 +7,9 @@
     "pipedream",
     "hubspot_developer_app"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/hubspot_developer_app",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

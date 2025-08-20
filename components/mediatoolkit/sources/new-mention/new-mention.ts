@@ -19,10 +19,7 @@ export default defineSource({
       },
     },
     organizationId: {
-      propDefinition: [
-        mediatoolkit,
-        "organizationId",
-      ],
+      propDefinition: [mediatoolkit, "organizationId"],
     },
     groupId: {
       propDefinition: [

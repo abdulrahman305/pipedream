@@ -142,22 +142,22 @@ class BrowserClient {
       }
 
       switch (e.data?.type) {
-      case "verify-domain":
-        this.handleVerifyDomain(e);
-        break;
-      case "success":
-        opts.onSuccess?.({
-          id: e.data?.authProvisionId,
-        });
-        break;
-      case "error":
-        opts.onError?.(new ConnectError(e.data.error));
-        break;
-      case "close":
-        this.cleanup(onMessage);
-        break;
-      default:
-        break;
+        case "verify-domain":
+          this.handleVerifyDomain(e);
+          break;
+        case "success":
+          opts.onSuccess?.({
+            id: e.data?.authProvisionId,
+          });
+          break;
+        case "error":
+          opts.onError?.(new ConnectError(e.data.error));
+          break;
+        case "close":
+          this.cleanup(onMessage);
+          break;
+        default:
+          break;
       }
     };
 

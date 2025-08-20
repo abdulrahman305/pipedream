@@ -14,35 +14,20 @@ export default defineAction({
   props: {
     profitwell,
     subscriptionIdOrAlias: {
-      propDefinition: [
-        profitwell,
-        "subscriptionIdOrAlias",
-      ],
+      propDefinition: [profitwell, "subscriptionIdOrAlias"],
     },
     effectiveDate: {
-      propDefinition: [
-        profitwell,
-        "effectiveDate",
-      ],
+      propDefinition: [profitwell, "effectiveDate"],
       description: EffectiveDateDescription("this update takes effect"),
     },
     planId: {
-      propDefinition: [
-        profitwell,
-        "planId",
-      ],
+      propDefinition: [profitwell, "planId"],
     },
     planInterval: {
-      propDefinition: [
-        profitwell,
-        "planInterval",
-      ],
+      propDefinition: [profitwell, "planInterval"],
     },
     value: {
-      propDefinition: [
-        profitwell,
-        "value",
-      ],
+      propDefinition: [profitwell, "value"],
     },
   },
   async run({ $ }): Promise<Subscription> {

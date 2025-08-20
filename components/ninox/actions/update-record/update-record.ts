@@ -5,7 +5,8 @@ export default defineAction({
   name: "Update Record",
   version: "0.0.1",
   key: "ninox-update-record",
-  description: "Updates a record. [See docs here](https://docs.ninox.com/en/api/private-cloud-apis#create-update-multiple-records-with-post)",
+  description:
+    "Updates a record. [See docs here](https://docs.ninox.com/en/api/private-cloud-apis#create-update-multiple-records-with-post)",
   type: "action",
   props: {
     ninox,
@@ -15,10 +16,7 @@ export default defineAction({
       type: "string",
     },
     teamId: {
-      propDefinition: [
-        ninox,
-        "teamId",
-      ],
+      propDefinition: [ninox, "teamId"],
     },
     databaseId: {
       propDefinition: [
@@ -41,7 +39,8 @@ export default defineAction({
     },
     fields: {
       label: "Fields",
-      description: "Object to create an row in the table. E.g. `{ \"name\": \"Lucas Caresia\", \"age\": 23 }`",
+      description:
+        'Object to create an row in the table. E.g. `{ "name": "Lucas Caresia", "age": 23 }`',
       type: "object",
     },
   },
@@ -54,15 +53,19 @@ export default defineAction({
       data: [
         {
           id: this.recordId,
-          fields: typeof this.fields === "string"
-            ? JSON.parse(this.fields)
-            : this.fields,
+          fields:
+            typeof this.fields === "string"
+              ? JSON.parse(this.fields)
+              : this.fields,
         },
       ],
     });
 
     if (response) {
-      $.export("$summary", `Successfully updated record with id ${response[0].id}`);
+      $.export(
+        "$summary",
+        `Successfully updated record with id ${response[0].id}`,
+      );
     }
 
     return response;

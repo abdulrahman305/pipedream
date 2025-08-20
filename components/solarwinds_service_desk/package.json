@@ -7,7 +7,9 @@
     "pipedream",
     "solarwinds_service_desk"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://pipedream.com/apps/solarwinds_service_desk",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
   "publishConfig": {

@@ -4,23 +4,13 @@ import calendarKeyOptions from "./calendarKeyOptions";
 
 export const EVENT_PROPS = {
   subCalendarIds: {
-    propDefinition: [
-      app,
-      "subCalendarIds",
-      calendarKeyOptions,
-    ],
+    propDefinition: [app, "subCalendarIds", calendarKeyOptions],
   },
   startDate: {
-    propDefinition: [
-      app,
-      "startDate",
-    ],
+    propDefinition: [app, "startDate"],
   },
   endDate: {
-    propDefinition: [
-      app,
-      "endDate",
-    ],
+    propDefinition: [app, "endDate"],
   },
   title: {
     type: "string",
@@ -66,10 +56,7 @@ export function getEventProps() {
   if (additionalOptionsAsJson) {
     try {
       additionalOptions = Object.fromEntries(
-        Object.entries(additionalOptions).map(([
-          key,
-          value,
-        ]) => [
+        Object.entries(additionalOptions).map(([key, value]) => [
           key,
           JSON.parse(value),
         ]),

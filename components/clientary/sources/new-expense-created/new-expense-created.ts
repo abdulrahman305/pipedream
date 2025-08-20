@@ -5,7 +5,8 @@ export default defineSource({
   ...common,
   key: "clientary-new-expense-created",
   name: "New Expense Created",
-  description: "Emit new events when a new expense was created. [See the docs](https://www.clientary.com/api/expenses)",
+  description:
+    "Emit new events when a new expense was created. [See the docs](https://www.clientary.com/api/expenses)",
   version: "0.0.1",
   type: "source",
   dedupe: "unique",

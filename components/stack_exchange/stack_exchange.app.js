@@ -25,9 +25,7 @@ module.exports = {
           label: site.name,
           value: site.api_site_parameter,
         }));
-        const options = _.sortBy(rawOptions, [
-          "label",
-        ]);
+        const options = _.sortBy(rawOptions, ["label"]);
         return {
           options,
         };
@@ -52,9 +50,11 @@ module.exports = {
           q,
         };
         const url = this._advancedSearchUrl();
-        const {
-          items, hasMore,
-        } = await this._propDefinitionsOptions(url, searchParams, context);
+        const { items, hasMore } = await this._propDefinitionsOptions(
+          url,
+          searchParams,
+          context,
+        );
 
         const options = items.map((question) => ({
           label: he.decode(question.title),
@@ -81,9 +81,11 @@ module.exports = {
           inname,
         };
         const url = this._usersUrl();
-        const {
-          items, hasMore,
-        } = await this._propDefinitionsOptions(url, searchParams, context);
+        const { items, hasMore } = await this._propDefinitionsOptions(
+          url,
+          searchParams,
+          context,
+        );
 
         const options = items.map((user) => ({
           label: user.display_name,
@@ -128,11 +130,7 @@ module.exports = {
       return this.$auth.oauth_access_token;
     },
     async _propDefinitionsOptions(url, baseSearchParams, context) {
-      const {
-        hasMore = true,
-        page,
-        siteId,
-      } = context;
+      const { hasMore = true, page, siteId } = context;
       if (!hasMore) {
         return {
           items: [],
@@ -144,11 +142,12 @@ module.exports = {
         ...baseSearchParams,
         site: siteId,
       };
-      const searchPage = page + 1;  // The StackExchange API pages are 1-indexed
-      const {
-        items,
-        has_more: nextPageHasMore,
-      } = await this.getItemsForPage(url, searchParams, searchPage);
+      const searchPage = page + 1; // The StackExchange API pages are 1-indexed
+      const { items, has_more: nextPageHasMore } = await this.getItemsForPage(
+        url,
+        searchParams,
+        searchPage,
+      );
 
       return {
         items,
@@ -158,7 +157,7 @@ module.exports = {
     _makeRequestConfig() {
       const authToken = this._authToken();
       const headers = {
-        "Authorization": `Bearer ${authToken}`,
+        Authorization: `Bearer ${authToken}`,
         "User-Agent": "@PipedreamHQ/pipedream v0.1",
       };
       return {

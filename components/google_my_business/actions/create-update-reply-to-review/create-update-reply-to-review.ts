@@ -2,7 +2,8 @@ import { defineAction } from "@pipedream/types";
 import app from "../../app/google_my_business.app";
 import { UpdateReplyParams } from "../../common/requestParams";
 
-const DOCS_LINK = "https://developers.google.com/my-business/reference/rest/v4/accounts.locations.reviews/updateReply";
+const DOCS_LINK =
+  "https://developers.google.com/my-business/reference/rest/v4/accounts.locations.reviews/updateReply";
 
 export default defineAction({
   key: "google_my_business-create-update-reply-to-review",
@@ -13,16 +14,13 @@ export default defineAction({
   props: {
     app,
     account: {
-      propDefinition: [
-        app,
-        "account",
-      ],
+      propDefinition: [app, "account"],
     },
     location: {
       propDefinition: [
         app,
         "location",
-        ({ account }: { account: string; }) => ({
+        ({ account }: { account: string }) => ({
           account,
         }),
       ],
@@ -31,9 +29,7 @@ export default defineAction({
       propDefinition: [
         app,
         "review",
-        ({
-          account, location,
-        }: Record<string, string>) => ({
+        ({ account, location }: Record<string, string>) => ({
           account,
           location,
         }),
@@ -42,13 +38,12 @@ export default defineAction({
     comment: {
       type: "string",
       label: "Comment",
-      description: "The body of the reply as plain text with markups. The maximum length is 4096 bytes.",
+      description:
+        "The body of the reply as plain text with markups. The maximum length is 4096 bytes.",
     },
   },
   async run({ $ }) {
-    const {
-      account, location, review, comment,
-    } = this;
+    const { account, location, review, comment } = this;
 
     const params: UpdateReplyParams = {
       $,

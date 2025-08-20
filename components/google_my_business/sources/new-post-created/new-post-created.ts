@@ -3,7 +3,8 @@ import { ListPostsParams } from "../../common/requestParams";
 import { LocalPost } from "../../common/responseSchemas";
 import common from "../common";
 
-const DOCS_LINK = "https://developers.google.com/my-business/reference/rest/v4/accounts.locations.localPosts/list";
+const DOCS_LINK =
+  "https://developers.google.com/my-business/reference/rest/v4/accounts.locations.localPosts/list";
 
 export default defineSource({
   ...common,
@@ -16,9 +17,7 @@ export default defineSource({
   methods: {
     ...common.methods,
     async getItems(): Promise<LocalPost[]> {
-      const {
-        account, location,
-      } = this;
+      const { account, location } = this;
 
       const params: ListPostsParams = {
         account,
@@ -28,11 +27,13 @@ export default defineSource({
       return this.app.listPosts(params, false);
     },
     getSummary({ summary }: LocalPost) {
-      return `New Post${summary
-        ? `: "${summary.length > 50
-          ? summary.slice(0, 45) + "[...]"
-          : summary}"`
-        : ""}`;
+      return `New Post${
+        summary
+          ? `: "${
+              summary.length > 50 ? summary.slice(0, 45) + "[...]" : summary
+            }"`
+          : ""
+      }`;
     },
   },
 });

@@ -7,26 +7,20 @@ import common from "../common";
 export default defineAction({
   ...common,
   name: "Delete Row",
-  description:
-    `Delete a row [See docs here](${DOCS_LINK})`,
+  description: `Delete a row [See docs here](${DOCS_LINK})`,
   key: "baserow-delete-row",
   version: "0.0.3",
   type: "action",
   props: {
     ...common.props,
     rowId: {
-      propDefinition: [
-        baserow,
-        "rowId",
-      ],
+      propDefinition: [baserow, "rowId"],
     },
   },
   async run({ $ }) {
-    const {
-      tableId, rowId,
-    } = this;
+    const { tableId, rowId } = this;
 
-    const params: DeleteRowParams  = {
+    const params: DeleteRowParams = {
       $,
       tableId,
       rowId,

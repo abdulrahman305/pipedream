@@ -9,33 +9,21 @@ module.exports = {
   props: {
     ongage,
     listId: {
-      propDefinition: [
-        ongage,
-        "listId",
-      ],
+      propDefinition: [ongage, "listId"],
       optional: true,
     },
     email: {
-      propDefinition: [
-        ongage,
-        "email",
-      ],
+      propDefinition: [ongage, "email"],
     },
     fields: {
-      propDefinition: [
-        ongage,
-        "fields",
-      ],
+      propDefinition: [ongage, "fields"],
       optional: true,
     },
     haltOnError: {
-      propDefinition: [
-        ongage,
-        "haltOnError",
-      ],
+      propDefinition: [ongage, "haltOnError"],
     },
   },
-  async run () {
+  async run() {
     try {
       return await this.ongage.updateSubscriber(
         this.listId,

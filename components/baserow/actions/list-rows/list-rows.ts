@@ -1,15 +1,12 @@
 import { defineAction } from "@pipedream/types";
 import { DOCS_LINK } from "../../common/constants";
-import {
-  ListRowsParams, Row,
-} from "../../common/types";
+import { ListRowsParams, Row } from "../../common/types";
 import common from "../common";
 
 export default defineAction({
   ...common,
   name: "List Rows",
-  description:
-    `List a table's rows [See docs here](${DOCS_LINK})`,
+  description: `List a table's rows [See docs here](${DOCS_LINK})`,
   key: "baserow-list-rows",
   version: "0.0.3",
   type: "action",

@@ -1,13 +1,9 @@
 import common from "../../common/appValidation";
 import { ACTION_ERROR_MESSAGE } from "../../common/errorMessage";
 import { defineAction } from "@pipedream/types";
-import {
-  getUserId, getUserFields,
-} from "../../common/methods";
+import { getUserId, getUserFields } from "../../common/methods";
 import { GetUserParams } from "../../common/types/requestParams";
-import {
-  ResponseObject, User,
-} from "../../common/types/responseSchemas";
+import { ResponseObject, User } from "../../common/types/responseSchemas";
 
 const DOCS_LINK =
   "https://developer.twitter.com/en/docs/twitter-api/users/lookup/api-reference/get-users-id";
@@ -22,10 +18,7 @@ export default defineAction({
   props: {
     ...common.props,
     userNameOrId: {
-      propDefinition: [
-        common.props.app,
-        "userNameOrId",
-      ],
+      propDefinition: [common.props.app, "userNameOrId"],
     },
   },
   methods: {

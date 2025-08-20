@@ -10,11 +10,7 @@ module.exports = {
       return new ShortcutClient(this.$auth.api_key);
     },
     _isRetriableStatusCode(statusCode) {
-      return [
-        408,
-        429,
-        500,
-      ].includes(statusCode);
+      return [408, 429, 500].includes(statusCode);
     },
     async _withRetries(apiCall) {
       const retryOpts = {
@@ -25,10 +21,7 @@ module.exports = {
         try {
           return await apiCall();
         } catch (err) {
-          const statusCode = get(err, [
-            "response",
-            "status",
-          ]);
+          const statusCode = get(err, ["response", "status"]);
           if (!this._isRetriableStatusCode(statusCode)) {
             bail(`
               Unexpected error (status code: ${statusCode}):
@@ -41,9 +34,7 @@ module.exports = {
       }, retryOpts);
     },
     callWithRetry(method, ...args) {
-      return this._withRetries(
-        () => this.api()[method](...args),
-      );
+      return this._withRetries(() => this.api()[method](...args));
     },
     /**
      * Returns a list of all Members as options to use as dynamically populated prop's options.
@@ -54,10 +45,7 @@ module.exports = {
     async listMembersAsOptions() {
       let options = [];
       const members = await this.callWithRetry("listMembers");
-      const isMembersDataAvailable = get(members, [
-        "data",
-        "length",
-      ]);
+      const isMembersDataAvailable = get(members, ["data", "length"]);
       if (!isMembersDataAvailable) {
         return options;
       }
@@ -89,12 +77,9 @@ module.exports = {
             query,
             page_size: pageSize,
             next,
-          }));
-        const isStoryDataAvailable = get(results, [
-          "data",
-          "data",
-          "length",
-        ]);
+          }),
+        );
+        const isStoryDataAvailable = get(results, ["data", "data", "length"]);
         if (!isStoryDataAvailable) {
           break;
         }

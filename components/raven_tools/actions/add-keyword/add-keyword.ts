@@ -1,8 +1,6 @@
 import app from "../../app/raven_tools.app";
 import { defineAction } from "@pipedream/types";
-import {
-  AddKeywordParams, RavenToolsResponse,
-} from "../../common/types";
+import { AddKeywordParams, RavenToolsResponse } from "../../common/types";
 
 const DOCS = "https://api.raventools.com/docs/#add_keyword";
 
@@ -15,10 +13,7 @@ export default defineAction({
   props: {
     app,
     domain: {
-      propDefinition: [
-        app,
-        "domain",
-      ],
+      propDefinition: [app, "domain"],
       description: "The domain to add the keyword to.",
     },
     keyword: {
@@ -28,9 +23,7 @@ export default defineAction({
     },
   },
   async run({ $ }): Promise<RavenToolsResponse> {
-    const {
-      domain, keyword,
-    } = this;
+    const { domain, keyword } = this;
     const params: AddKeywordParams = {
       $,
       params: {

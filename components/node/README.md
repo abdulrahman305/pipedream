@@ -29,9 +29,9 @@ On the right, you'll see the default code provided by Pipedream:
 export default defineComponent({
   async run({ steps, $ }) {
     // Reference previous step data using the steps object and return data to use it in future steps
-    return steps.trigger.event
+    return steps.trigger.event;
   },
-})
+});
 ```
 
 You can write your custom code within the `run` function. `run` is called when this step executes in your workflow.
@@ -65,8 +65,8 @@ Components can be deployed to your workspace by using the Pipedream CLI, or with
 To get started:
 
 - Learn about Pipedream Node.js powered [Components](https://pipedream.com/docs/components)
-    - [Build a custom action](https://pipedream.com/docs/components/actions-quickstart)
-    - [Build a custom trigger](https://pipedream.com/docs/components/sources-quickstart)
+  - [Build a custom action](https://pipedream.com/docs/components/actions-quickstart)
+  - [Build a custom trigger](https://pipedream.com/docs/components/sources-quickstart)
 - [Integrate your app into Pipedream](https://pipedream.com/docs/apps/contributing#contribution-process)
 
 ## AI code generation
@@ -95,11 +95,11 @@ Traces across all of your workflows are also available within the [Event History
 
 ## Pipedream Specific Errors
 
-If there’s an issue with a specific Pipedream level construct, you’ll see specific error messages within the step itself. 
+If there’s an issue with a specific Pipedream level construct, you’ll see specific error messages within the step itself.
 
 ### Configuration Error
 
-A `ConfigurationError` can occur if the props for the code step are invalid. For example, if you’re attempting to update a Google Calendar event, but the `end_date` is *before* the `start_date`, then the action may throw a specific `ConfigurationError` to signal this action isn’t possible.
+A `ConfigurationError` can occur if the props for the code step are invalid. For example, if you’re attempting to update a Google Calendar event, but the `end_date` is _before_ the `start_date`, then the action may throw a specific `ConfigurationError` to signal this action isn’t possible.
 
 As a Pipedream action or source developer, you can also leverage `ConfigurationErrors` to guide users of your action or source to pass appropriate data to props in order for the component to function properly.
 
@@ -109,7 +109,7 @@ For more details, visit the [Configuration Error documentation](https://pipedrea
 
 If your code is performing an asynchronous action that is not properly awaited, you may see an error.
 
-This error means that *control* has moved onto the next step, but there were unresolved promises within your Node.js code.
+This error means that _control_ has moved onto the next step, but there were unresolved promises within your Node.js code.
 
 To keep Pipedream from moving onto the next step, use `await` on your promises to hold execution until the promise finishes.
 

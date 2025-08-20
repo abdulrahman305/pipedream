@@ -3,7 +3,9 @@ import { axios } from "@pipedream/platform";
 import FormData from "form-data";
 import {
   ConvertToPDFParams,
-  HttpRequestParams, ScreenshotWebsiteParams, ValidateEmailAddressParams,
+  HttpRequestParams,
+  ScreenshotWebsiteParams,
+  ValidateEmailAddressParams,
 } from "../common/types";
 
 export default defineApp({
@@ -31,7 +33,8 @@ export default defineApp({
       });
     },
     async validateEmailAddress({
-      email, ...args
+      email,
+      ...args
     }: ValidateEmailAddressParams): Promise<object> {
       return this._httpRequest({
         method: "POST",
@@ -47,9 +50,7 @@ export default defineApp({
         ...args,
       });
     },
-    async convertToPDF({
-      file, ...args
-    }: ConvertToPDFParams): Promise<Buffer> {
+    async convertToPDF({ file, ...args }: ConvertToPDFParams): Promise<Buffer> {
       const data = new FormData();
       data.append("InputFile", file);
       return this._httpRequest({

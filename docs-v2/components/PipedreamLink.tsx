@@ -6,11 +6,14 @@ interface PipedreamLinkProps {
   children: React.ReactNode;
 }
 
-const PipedreamLink = ({
-  href, children,
-}: PipedreamLinkProps) => {
+const PipedreamLink = ({ href, children }: PipedreamLinkProps) => {
   return (
-    <Link className="underline underline-offset-4 hover:decoration-2 font-medium decoration-brand/50 text-black dark:text-white" href={href}>{children}</Link>
+    <Link
+      className="underline underline-offset-4 hover:decoration-2 font-medium decoration-brand/50 text-black dark:text-white"
+      href={href}
+    >
+      {children}
+    </Link>
   );
 };
 

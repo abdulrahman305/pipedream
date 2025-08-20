@@ -7,10 +7,7 @@ module.exports = {
     db: "$.service.db",
     http: "$.interface.http",
     company: {
-      propDefinition: [
-        procore,
-        "company",
-      ],
+      propDefinition: [procore, "company"],
     },
     project: {
       propDefinition: [

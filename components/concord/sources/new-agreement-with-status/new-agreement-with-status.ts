@@ -7,7 +7,8 @@ import { AGREEMENT_LIST_STATUSES } from "../../common/constants";
 export default defineSource({
   key: "concord-new-agreement-with-status",
   name: "New Agreement with Status",
-  description: "Emit new event for new agreements with the specified status(es) [See the documentation](https://api.doc.concordnow.com/#tag/Agreement/operation/ListAgreements)",
+  description:
+    "Emit new event for new agreements with the specified status(es) [See the documentation](https://api.doc.concordnow.com/#tag/Agreement/operation/ListAgreements)",
   version: "0.0.1",
   type: "source",
   props: {
@@ -20,21 +21,20 @@ export default defineSource({
       },
     },
     organizationId: {
-      propDefinition: [
-        app,
-        "organizationId",
-      ],
+      propDefinition: [app, "organizationId"],
     },
     statuses: {
       label: "Status(es)",
-      description: "One or more statuses to emit events for. If none are selected, events will be emitted for all statuses.",
+      description:
+        "One or more statuses to emit events for. If none are selected, events will be emitted for all statuses.",
       type: "string[]",
       options: AGREEMENT_LIST_STATUSES,
       optional: true,
     },
     search: {
       label: "Filter by search pattern",
-      description: "If set, events will only be emitted for agreement matching the specified pattern",
+      description:
+        "If set, events will only be emitted for agreement matching the specified pattern",
       type: "string",
       optional: true,
     },
@@ -52,9 +52,7 @@ export default defineSource({
       this.db.set("savedIds", data);
     },
     async getAndProcessData() {
-      const {
-        organizationId, search, statuses,
-      } = this;
+      const { organizationId, search, statuses } = this;
       const data: Agreement[] = await this.app.listAgreements({
         organizationId,
         search,

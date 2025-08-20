@@ -3,7 +3,8 @@ import { ListReviewsParams } from "../../common/requestParams";
 import { Review } from "../../common/responseSchemas";
 import common from "../common";
 
-const DOCS_LINK = "https://developers.google.com/my-business/reference/rest/v4/accounts.locations.reviews/list";
+const DOCS_LINK =
+  "https://developers.google.com/my-business/reference/rest/v4/accounts.locations.reviews/list";
 
 export default defineSource({
   ...common,
@@ -16,9 +17,7 @@ export default defineSource({
   methods: {
     ...common.methods,
     async getItems(): Promise<Review[]> {
-      const {
-        account, location,
-      } = this;
+      const { account, location } = this;
 
       const params: ListReviewsParams = {
         account,
@@ -28,11 +27,13 @@ export default defineSource({
       return this.app.listReviews(params);
     },
     getSummary({ comment }: Review) {
-      return `New Review${comment
-        ? `: "${comment.length > 50
-          ? comment.slice(0, 45) + "[...]"
-          : comment}"`
-        : ""}`;
+      return `New Review${
+        comment
+          ? `: "${
+              comment.length > 50 ? comment.slice(0, 45) + "[...]" : comment
+            }"`
+          : ""
+      }`;
     },
   },
 });

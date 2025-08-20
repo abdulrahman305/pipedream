@@ -5,7 +5,8 @@ export default defineSource({
   ...common,
   key: "clientary-new-staff-created",
   name: "New Staff Created",
-  description: "Emit new events when a new staff was created. [See the docs](https://www.clientary.com/api/staff)",
+  description:
+    "Emit new events when a new staff was created. [See the docs](https://www.clientary.com/api/staff)",
   version: "0.0.1",
   type: "source",
   dedupe: "unique",

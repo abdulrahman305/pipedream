@@ -1,7 +1,5 @@
 import shipcloud from "../../app/shipcloud.app";
-import {
-  defineSource, SourceHttpRunOptions,
-} from "@pipedream/types";
+import { defineSource, SourceHttpRunOptions } from "@pipedream/types";
 import { CreateHookParams } from "../../common/requestParams";
 import { Webhook } from "../../common/responseSchemas";
 import { WEBHOOK_EVENT_TYPES } from "../../common/constants";
@@ -64,9 +62,7 @@ export default defineSource({
     }
 
     const date = body.occured_at;
-    const ts = typeof date === "string"
-      ? new Date(date).valueOf()
-      : Date.now();
+    const ts = typeof date === "string" ? new Date(date).valueOf() : Date.now();
 
     this.$emit(body, {
       id,

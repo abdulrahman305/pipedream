@@ -44,13 +44,16 @@ export default defineApp({
       return {
         "x-api-key": this.$auth.api_key,
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         "User-Agent": "@PipedreamHQ/pipedream v0.1",
         ...headers,
       };
     },
     async _makeRequest({
-      $ = this, path, headers, ...otherConfig
+      $ = this,
+      path,
+      headers,
+      ...otherConfig
     }: MakeRequestParams): Promise<object> {
       return axios($, {
         url: this._getUrl(path),
@@ -77,12 +80,11 @@ export default defineApp({
         ...args,
       });
     },
-    async addLeadToCampaign({
-      campaignId,
-      ...args
-    }: { campaignId: string; } = {
-      campaignId: "",
-    }): Promise<object> {
+    async addLeadToCampaign(
+      { campaignId, ...args }: { campaignId: string } = {
+        campaignId: "",
+      },
+    ): Promise<object> {
       return this._makeRequest({
         path: `/campaigns/${campaignId}/leads`,
         method: "POST",
