@@ -2,7 +2,9 @@ import { defineApp } from "@pipedream/types";
 import { axios } from "@pipedream/platform";
 import {
   HttpRequestParams,
-  PostMessageParams, PostMessageResponse, Team,
+  PostMessageParams,
+  PostMessageResponse,
+  Team,
 } from "../common/types";
 import { Channel } from "../common/types";
 
@@ -17,12 +19,11 @@ export default defineApp({
       async options() {
         const channels: Channel[] = await this.listChannels();
 
-        return channels.map(({
-          id, name, display_name,
-        }) => {
-          const label = name && display_name && (name !== display_name)
-            ? `${display_name} (${name})`
-            : (display_name || name);
+        return channels.map(({ id, name, display_name }) => {
+          const label =
+            name && display_name && name !== display_name
+              ? `${display_name} (${name})`
+              : display_name || name;
 
           return {
             label,
@@ -38,12 +39,11 @@ export default defineApp({
       async options({ teamId }) {
         const channels: Channel[] = await this.listTeamChannels(teamId);
 
-        return channels.map(({
-          id, name, display_name,
-        }) => {
-          const label = name && display_name && (name !== display_name)
-            ? `${display_name} (${name})`
-            : (display_name || name);
+        return channels.map(({ id, name, display_name }) => {
+          const label =
+            name && display_name && name !== display_name
+              ? `${display_name} (${name})`
+              : display_name || name;
 
           return {
             label,
@@ -59,12 +59,11 @@ export default defineApp({
       async options() {
         const teams: Team[] = await this.listTeams();
 
-        return teams.map(({
-          id, name, display_name,
-        }) => {
-          const label = name && display_name && (name !== display_name)
-            ? `${display_name} (${name})`
-            : (display_name || name);
+        return teams.map(({ id, name, display_name }) => {
+          const label =
+            name && display_name && name !== display_name
+              ? `${display_name} (${name})`
+              : display_name || name;
 
           return {
             label,
@@ -89,9 +88,7 @@ export default defineApp({
       endpoint,
       ...args
     }: HttpRequestParams): Promise<object> {
-      const {
-        domain, token,
-      } = this._getAuth();
+      const { domain, token } = this._getAuth();
       return axios($, {
         url: this._baseUrl(domain) + endpoint,
         headers: {

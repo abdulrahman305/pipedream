@@ -2,10 +2,9 @@
 
 <VideoPlayer url="https://www.youtube.com/embed/RW9FBVuHDHQ" />
 
-Props are fields that can be added to code steps in a workflow to abstract data from the code and improve reusability. Most actions use props to capture user input (e.g., to allow users to customize the URL, method and payload for the Send HTTP Request action). Props support the entry of simple values (e.g., `hello world` or `123`) or expressions in <ClientOnly><code v-pre>{{...}}</code></ClientOnly> that can reference objects in scope (e.g., <ClientOnly><code v-pre>{{event.foo}}</code></ClientOnly>) or run basic Node.js code (e.g., <ClientOnly><code v-pre>{{JSON.stringify(event.foo)}}</code></ClientOnly>). 
+Props are fields that can be added to code steps in a workflow to abstract data from the code and improve reusability. Most actions use props to capture user input (e.g., to allow users to customize the URL, method and payload for the Send HTTP Request action). Props support the entry of simple values (e.g., `hello world` or `123`) or expressions in <ClientOnly><code v-pre>{{...}}</code></ClientOnly> that can reference objects in scope (e.g., <ClientOnly><code v-pre>{{event.foo}}</code></ClientOnly>) or run basic Node.js code (e.g., <ClientOnly><code v-pre>{{JSON.stringify(event.foo)}}</code></ClientOnly>).
 
 [[toc]]
-
 
 ## Entering Expressions
 
@@ -16,6 +15,7 @@ While the data expected by each input depends on the data type (e.g., string, in
 There are three ways to enter expressions in a prop field — you can use the object explorer, enter it manually, or paste a reference from a step export.
 
 ### Use the object explorer
+
 When you click into a prop field, an object explorer expands below the input. You can explore all the objects in scope, filter for keywords (e.g., a key name), and then select the element to insert into the form as an expression.
 
 ![Using the object explorer to select data from the step exports](https://res.cloudinary.com/pipedreamin/image/upload/v1649169376/docs/components/CleanShot_2022-04-05_at_10.35.37_nxykkx.gif)

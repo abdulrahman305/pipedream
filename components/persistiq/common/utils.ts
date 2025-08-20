@@ -1,11 +1,11 @@
-import {
-  ResourceGeneratorParams, AsyncOptionsParams,
-} from "../common/types";
+import { ResourceGeneratorParams, AsyncOptionsParams } from "../common/types";
 
 export default {
   async *getResourcesStream({
-    resourceFn, resourceName, hasPaging,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resourceFn,
+    resourceName,
+    hasPaging,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }: ResourceGeneratorParams): AsyncGenerator<any> {
     let page = 0;
     do {
@@ -32,8 +32,12 @@ export default {
     } while (hasPaging);
   },
   async getAsyncOptions({
-    resourceFn, page, resourceKey, labelKey, valueKey,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resourceFn,
+    page,
+    resourceKey,
+    labelKey,
+    valueKey,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }: AsyncOptionsParams): Promise<any> {
     const resources = await resourceFn({
       params: {

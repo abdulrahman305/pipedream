@@ -14,9 +14,9 @@ All that's required is importing the [`@pipedream/browsers`](https://www.npmjs.c
 
 The `@pipedream/browsers` package exports two modules: `puppeteer` & `playwright`. Both modules share the same interface:
 
-* `browser(opts?)` - method to instantiate a new browser (returns a browser instance)
-* `launch(opts?)` - an alias to browser()
-* `newPage()` - creates a new page instance and returns both the page & browser
+- `browser(opts?)` - method to instantiate a new browser (returns a browser instance)
+- `launch(opts?)` - an alias to browser()
+- `newPage()` - creates a new page instance and returns both the page & browser
 
 ### Puppeteer
 
@@ -25,28 +25,28 @@ First import the `puppeteer` module from `@pipedream/browsers` and use `browser(
 Then using this browser you can open new [Pages](https://pptr.dev/api/puppeteer.page), which have individual controls to open URLs:
 
 ```javascript
- import { puppeteer } from '@pipedream/browsers';
+import { puppeteer } from "@pipedream/browsers";
 
 export default defineComponent({
-  async run({steps, $}) {
+  async run({ steps, $ }) {
     const browser = await puppeteer.browser();
-    
+
     // Interact with the web page programmatically
     // See Puppeeter's Page documentation for available methods:
     // https://pptr.dev/api/puppeteer.page
     const page = await browser.newPage();
 
-    await page.goto('https://pipedream.com/');
+    await page.goto("https://pipedream.com/");
     const title = await page.title();
     const content = await page.content();
 
-    $.export('title', title);
-    $.export('content', content);
+    $.export("title", title);
+    $.export("content", content);
 
     // The browser needs to be closed, otherwise the step will hang
     await browser.close();
   },
-})
+});
 ```
 
 #### Screenshot a webpage
@@ -58,20 +58,21 @@ Puppeteer can take a full screenshot of a webpage rendered with Chromium. For fu
 ::: tab "Save screenshot to /tmp"
 
 Save a screenshot within the local `/tmp` directory:
+
 ```javascript
-import { puppeteer } from '@pipedreamhq/platform';
+import { puppeteer } from "@pipedreamhq/platform";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
-    await page.screenshot({ path: '/tmp/screenshot.png' });
+    await page.goto("https://pipedream.com");
+    await page.screenshot({ path: "/tmp/screenshot.png" });
     await browser.close();
   },
 });
-
 ```
+
 :::
 
 ::: tab "Return screenshot as a base64 encoded string"
@@ -79,14 +80,14 @@ export default defineComponent({
 Save the screenshot as a base 64 encoded string:
 
 ```javascript
-import { puppeteer } from '@pipedream/browsers';
+import { puppeteer } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await puppeteer.browser();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com/');
-    const screenshot = await page.screenshot({ encoding: 'base64' });
+    await page.goto("https://pipedream.com/");
+    const screenshot = await page.screenshot({ encoding: "base64" });
     await browser.close();
     return screenshot;
   },
@@ -108,19 +109,19 @@ Puppeteer can render a PDF of a webpage. For full options [see the Puppeteer Scr
 Save the PDF locally to `/tmp`:
 
 ```javascript
-import { puppeteer } from '@pipedreamhq/platform';
+import { puppeteer } from "@pipedreamhq/platform";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
-    await page.pdf({ path: '/tmp/screenshot.pdf' });
+    await page.goto("https://pipedream.com");
+    await page.pdf({ path: "/tmp/screenshot.pdf" });
     await browser.close();
   },
 });
-
 ```
+
 :::
 
 ::: tab "Return the PDF as a base64 encoded string"
@@ -128,15 +129,15 @@ export default defineComponent({
 Save the PDF as a base 64 encoded string:
 
 ```javascript
-import { puppeteer } from '@pipedream/browsers';
+import { puppeteer } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await puppeteer.browser();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
+    await page.goto("https://pipedream.com");
     const pdfBuffer = await page.pdf();
-    const pdfBase64 = pdfBuffer.toString('base64');
+    const pdfBase64 = pdfBuffer.toString("base64");
     await browser.close();
     return pdfBase64;
   },
@@ -158,20 +159,20 @@ Puppeteer can scrape individual elements or return all content of a webpage.
 Extract individual elements with a CSS selector:
 
 ```javascript
-import { puppeteer } from '@pipedream/browsers';
+import { puppeteer } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await puppeteer.browser();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
-    const h1Content = await page.$eval('h1', el => el.textContent);
+    await page.goto("https://pipedream.com");
+    const h1Content = await page.$eval("h1", (el) => el.textContent);
     await browser.close();
     return h1Content;
   },
 });
-
 ```
+
 :::
 
 ::: tab "Retrieve all HTML content from a webpage"
@@ -179,13 +180,13 @@ export default defineComponent({
 Extract all HTML content form a webpage:
 
 ```javascript
-import { puppeteer } from '@pipedream/browsers';
+import { puppeteer } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await puppeteer.browser();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
+    await page.goto("https://pipedream.com");
     const content = await page.content();
     await browser.close();
     return content;
@@ -208,23 +209,27 @@ Puppeteer can also programmatically click and type on a webpage.
 `Page.type` accepts a CSS selector and a string to type into the field.
 
 ```javascript
-import { puppeteer } from '@pipedream/browsers';
+import { puppeteer } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ steps, $ }) {
     const browser = await puppeteer.browser();
     const page = await browser.newPage();
 
-    await page.goto('https://example.com/contact');
-    await page.type('input[name=email]', 'pierce@pipedream.com');
-    await page.type('input[name=name]', 'Dylan Pierce');
-    await page.type('textarea[name=message]', "Hello, from a Pipedream workflow.");
-    await page.click('input[type=submit]');
+    await page.goto("https://example.com/contact");
+    await page.type("input[name=email]", "pierce@pipedream.com");
+    await page.type("input[name=name]", "Dylan Pierce");
+    await page.type(
+      "textarea[name=message]",
+      "Hello, from a Pipedream workflow.",
+    );
+    await page.click("input[type=submit]");
 
     await browser.close();
   },
 });
 ```
+
 :::
 
 ::: tab "With Page.click and Page.keyboard.type"
@@ -232,32 +237,30 @@ export default defineComponent({
 `Page.click` will click on the element to focus on it, then `Page.keyboard.type` emulates keyboard keystrokes.
 
 ```javascript
-import { puppeteer } from '@pipedream/browsers';
+import { puppeteer } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ steps, $ }) {
     const browser = await puppeteer.browser();
     const page = await browser.newPage();
 
-    await page.goto('https://example.com/contact');
-    await page.click('input[name=email]')
-    await page.keyboard.type('pierce@pipedream.com');
-    await page.click('input[name=name]')
-    await page.keyboard.type('Dylan Pierce');
-    await page.click('textarea[name=message]')
+    await page.goto("https://example.com/contact");
+    await page.click("input[name=email]");
+    await page.keyboard.type("pierce@pipedream.com");
+    await page.click("input[name=name]");
+    await page.keyboard.type("Dylan Pierce");
+    await page.click("textarea[name=message]");
     await page.keyboard.type("Hello, from a Pipedream workflow.");
-    await page.click('input[type=submit]');
+    await page.click("input[type=submit]");
 
     await browser.close();
   },
 });
 ```
+
 :::
 
 ::::
-
-
-
 
 ### Playwright
 
@@ -266,29 +269,29 @@ First import the `playwright` module from `@pipedream/browsers` and use `browser
 Then using this browser you can open new [Pages](https://playwright.dev/docs/api/class-page), which have individual controls to open URLs, click elements, generate screenshots and type and more:
 
 ```javascript
-import { playwright } from '@pipedream/browsers';
+import { playwright } from "@pipedream/browsers";
 
 export default defineComponent({
-  async run({steps, $}) {
+  async run({ steps, $ }) {
     const browser = await playwright.browser();
-    
+
     // Interact with the web page programmatically
     // See Playwright's Page documentation for available methods:
     // https://playwright.dev/docs/api/class-page
     const page = await browser.newPage();
 
-    await page.goto('https://pipedream.com/');
+    await page.goto("https://pipedream.com/");
     const title = await page.title();
     const content = await page.content();
 
-    $.export('title', title);
-    $.export('content', content);
+    $.export("title", title);
+    $.export("content", content);
 
     // The browser context and browser needs to be closed, otherwise the step will hang
     await page.context().close();
     await browser.close();
   },
-})
+});
 ```
 
 ::: tip Don't forget to close the Browser Context
@@ -315,21 +318,21 @@ Playwright can take a full screenshot of a webpage rendered with Chromium. For f
 Save a screenshot within the local `/tmp` directory:
 
 ```javascript
-import { playwright } from '@pipedreamhq/platform';
+import { playwright } from "@pipedreamhq/platform";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await playwright.launch();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
-    await page.screenshot({ path: '/tmp/screenshot.png' });
+    await page.goto("https://pipedream.com");
+    await page.screenshot({ path: "/tmp/screenshot.png" });
 
     await page.context().close();
     await browser.close();
   },
 });
-
 ```
+
 :::
 
 ::: tab "Return screenshot as a base64 encoded string"
@@ -337,16 +340,16 @@ export default defineComponent({
 Save the screenshot as a base 64 encoded string:
 
 ```javascript
-import { playwright } from '@pipedream/browsers';
+import { playwright } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await playwright.launch();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com/');
+    await page.goto("https://pipedream.com/");
 
     const screenshotBuffer = await page.screenshot();
-    const screenshotBase64 = screenshotBuffer.toString('base64');
+    const screenshotBase64 = screenshotBuffer.toString("base64");
 
     await page.context().close();
     await browser.close();
@@ -371,21 +374,21 @@ Playwright can render a PDF of a webpage. For full options [see the Playwright S
 Save a PDF locally to `/tmp`:
 
 ```javascript
-import { playwright } from '@pipedreamhq/platform';
+import { playwright } from "@pipedreamhq/platform";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await playwright.launch();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
-    await page.pdf({ path: '/tmp/screenshot.pdf' });
+    await page.goto("https://pipedream.com");
+    await page.pdf({ path: "/tmp/screenshot.pdf" });
 
     await page.context().close();
     await browser.close();
   },
 });
-
 ```
+
 :::
 
 ::: tab "Return screenshot as a base64 encoded string"
@@ -393,16 +396,16 @@ export default defineComponent({
 Save the screenshot as a base 64 encoded string:
 
 ```javascript
-import { playwright } from '@pipedream/browsers';
+import { playwright } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await playwright.launch();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com/');
+    await page.goto("https://pipedream.com/");
 
     const screenshotBuffer = await page.pdf();
-    const screenshotBase64 = screenshotBuffer.toString('base64');
+    const screenshotBase64 = screenshotBuffer.toString("base64");
 
     await page.context().close();
     await browser.close();
@@ -427,14 +430,14 @@ Playwright can scrape individual elements or return all content of a webpage.
 Extract individual HTML elements using a CSS Selector:
 
 ```javascript
-import { playwright } from '@pipedream/browsers';
+import { playwright } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await playwright.browser();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
-    const h1Content = await page.$eval('h1', el => el.textContent);
+    await page.goto("https://pipedream.com");
+    const h1Content = await page.$eval("h1", (el) => el.textContent);
 
     await page.context().close();
     await browser.close();
@@ -442,8 +445,8 @@ export default defineComponent({
     return h1Content;
   },
 });
-
 ```
+
 :::
 
 ::: tab "Retrieve all HTML content from a webpage"
@@ -451,13 +454,13 @@ export default defineComponent({
 Extract all HTML content from a webpage with `Page.content`:
 
 ```javascript
-import { playwright } from '@pipedream/browsers';
+import { playwright } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ $ }) {
     const browser = await playwright.browser();
     const page = await browser.newPage();
-    await page.goto('https://pipedream.com');
+    await page.goto("https://pipedream.com");
     const content = await page.content();
 
     await page.context().close();
@@ -483,24 +486,28 @@ Playwright can also programmatically click and type on a webpage.
 `Page.type` accepts a CSS selector and a string to type into the selected element.
 
 ```javascript
-import { playwright } from '@pipedream/browsers';
+import { playwright } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ steps, $ }) {
     const browser = await playwright.browser();
     const page = await browser.newPage();
 
-    await page.goto('https://example.com/contact');
-    await page.type('input[name=email]', 'pierce@pipedream.com');
-    await page.type('input[name=name]', 'Dylan Pierce');
-    await page.type('textarea[name=message]', "Hello, from a Pipedream workflow.");
-    await page.click('input[type=submit]');
+    await page.goto("https://example.com/contact");
+    await page.type("input[name=email]", "pierce@pipedream.com");
+    await page.type("input[name=name]", "Dylan Pierce");
+    await page.type(
+      "textarea[name=message]",
+      "Hello, from a Pipedream workflow.",
+    );
+    await page.click("input[type=submit]");
 
     await page.context().close();
     await browser.close();
   },
 });
 ```
+
 :::
 
 ::: tab "With Page.click and Page.keyboard.type"
@@ -508,32 +515,31 @@ export default defineComponent({
 `Page.click` will click on the element to focus on it, then `Page.keyboard.type` emulates keyboard keystrokes.
 
 ```javascript
-import { playwright } from '@pipedream/browsers';
+import { playwright } from "@pipedream/browsers";
 
 export default defineComponent({
   async run({ steps, $ }) {
     const browser = await playwright.browser();
     const page = await browser.newPage();
 
-    await page.goto('https://example.com/contact');
-    await page.click('input[name=email]')
-    await page.keyboard.type('pierce@pipedream.com');
-    await page.click('input[name=name]')
-    await page.keyboard.type('Dylan Pierce');
-    await page.click('textarea[name=message]')
+    await page.goto("https://example.com/contact");
+    await page.click("input[name=email]");
+    await page.keyboard.type("pierce@pipedream.com");
+    await page.click("input[name=name]");
+    await page.keyboard.type("Dylan Pierce");
+    await page.click("textarea[name=message]");
     await page.keyboard.type("Hello, from a Pipedream workflow.");
-    await page.click('input[type=submit]');
+    await page.click("input[type=submit]");
 
     await page.context().close();
     await browser.close();
   },
 });
 ```
+
 :::
 
 ::::
-
-
 
 ## Frequently Asked Questions
 
@@ -570,16 +576,15 @@ To pass arguments to `puppeteer.launch()` to customize the browser instance, you
 For example, you can alter the `protocolTimeout` length just by passing it as an argument:
 
 ```javascript
-import { puppeteer } from '@pipedream/browsers';
+import { puppeteer } from "@pipedream/browsers";
 
 export default defineComponent({
-  async run({steps, $}) {
+  async run({ steps, $ }) {
     // passing a `protocolTimeout` argument to increase the timeout length for a puppeteer instance
     const browser = await puppeteer.browser({ protocolTimeout: 480000 });
     // rest of code
   },
-})
-
+});
 ```
 
 Please see the [`@pipedream/browsers` source code](https://github.com/PipedreamHQ/pipedream/blob/17888e631857259a6535f9bd13c23a1e7ff95381/packages/browsers/index.mjs#L14) for the default arguments that Pipedream provides.

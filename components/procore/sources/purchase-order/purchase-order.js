@@ -25,12 +25,8 @@ module.exports = {
         resource,
       };
     },
-    getMeta({
-      id, event_type, timestamp, resource,
-    }) {
-      const {
-        title, id: purchaseOrderId,
-      } = resource;
+    getMeta({ id, event_type, timestamp, resource }) {
+      const { title, id: purchaseOrderId } = resource;
       const eventType = event_type;
       const summary = title
         ? `${eventType} ${title}`

@@ -5,7 +5,8 @@ export default defineAction({
   key: "clientary-create-client",
   version: "0.0.1",
   name: "Create Client",
-  description: "Creates a new client. [See docs here](https://www.clientary.com/api/clients)",
+  description:
+    "Creates a new client. [See docs here](https://www.clientary.com/api/clients)",
   type: "action",
   props: {
     app,

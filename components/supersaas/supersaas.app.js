@@ -23,7 +23,7 @@ module.exports = {
         params: {
           account: this.$auth.account,
           api_key: this.$auth.api_key,
-          ...opts.params || {},
+          ...(opts.params || {}),
         },
       });
     },
@@ -39,12 +39,14 @@ module.exports = {
 
       console.log("Creating hooks:", hookParams);
 
-      return await Promise.all(hookParams.map(
-        (x) => axios("/api/hooks", {
-          method: "POST",
-          params: x,
-        }),
-      ));
+      return await Promise.all(
+        hookParams.map((x) =>
+          axios("/api/hooks", {
+            method: "POST",
+            params: x,
+          }),
+        ),
+      );
     },
     // TODO: Better error handling. Dylan suggested retries with a backoff
     // algorithm, but that sounds a little overkill to me; but I guess we
@@ -59,13 +61,17 @@ module.exports = {
         return;
       }
 
-      return await Promise.all(activeHooks.map((x) => axios("/api/hooks", {
-        method: "DELETE",
-        params: {
-          id: x.id,
-          parent_id: x.parent_id,
-        },
-      })));
+      return await Promise.all(
+        activeHooks.map((x) =>
+          axios("/api/hooks", {
+            method: "DELETE",
+            params: {
+              id: x.id,
+              parent_id: x.parent_id,
+            },
+          }),
+        ),
+      );
     },
   },
 };

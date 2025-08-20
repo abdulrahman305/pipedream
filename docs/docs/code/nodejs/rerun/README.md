@@ -5,7 +5,7 @@ thumbnail: https://res.cloudinary.com/pipedreamin/image/upload/v1646841376/docs/
 
 # Pause, resume, and rerun a workflow
 
-You can use `$.flow.suspend` and `$.flow.rerun` to pause a workflow and resume it later. 
+You can use `$.flow.suspend` and `$.flow.rerun` to pause a workflow and resume it later.
 
 This is useful when you want to:
 
@@ -26,14 +26,14 @@ For example, you can suspend a workflow and send yourself a link to manually res
 ```javascript
 export default defineComponent({
   async run({ $ }) {
-    const { resume_url, cancel_url } = $.flow.suspend()
+    const { resume_url, cancel_url } = $.flow.suspend();
     $.send.email({
       subject: "Please approve this important workflow",
       text: `Click here to approve the workflow: ${resume_url}, and cancel here: ${cancel_url}`,
-    })
+    });
     // Pipedream suspends your workflow at the end of the step
   },
-})
+});
 ```
 
 You'll receive an email like this:
@@ -61,7 +61,7 @@ If you resume a workflow, any data sent in the HTTP request is passed to the wor
 
 Requests to the `resume_url` have [the same limits as any HTTP request to Pipedream](/limits/#http-request-body-size), but you can send larger payloads using our [large payload](/workflows/steps/triggers/#sending-large-payloads) or [large file](/workflows/steps/triggers/#large-file-support) interfaces.
 
-### Default timeout of 24 hours 
+### Default timeout of 24 hours
 
 By default, `$.flow.suspend` will automatically resume the workflow after 24 hours. You can set your own timeout (in milliseconds) as the first argument:
 
@@ -69,10 +69,10 @@ By default, `$.flow.suspend` will automatically resume the workflow after 24 hou
 export default defineComponent({
   async run({ $ }) {
     // 7 days
-    const TIMEOUT = 1000 * 60 * 60 * 24 * 7
-    $.flow.suspend(TIMEOUT)
+    const TIMEOUT = 1000 * 60 * 60 * 24 * 7;
+    $.flow.suspend(TIMEOUT);
   },
-})
+});
 ```
 
 ## `$.flow.rerun`
@@ -86,77 +86,74 @@ Use `$.flow.rerun` when you want to run a specific step of a workflow multiple t
 `$.flow.rerun` can be used to conditionally retry a failed API request due to a service outage or rate limit reached. Place the `$.flow.rerun` call within a `catch` block to only retry the API request if an error is thrown:
 
 ```javascript
-import { axios } from "@pipedream/platform"
+import { axios } from "@pipedream/platform";
 
 export default defineComponent({
   props: {
     openai: {
       type: "app",
-      app: "openai"
-    }
+      app: "openai",
+    },
   },
-  async run({steps, $}) {
+  async run({ steps, $ }) {
     try {
       return await axios($, {
         url: `https://api.openai.com/v1/completions`,
-        method: 'post',
+        method: "post",
         headers: {
           Authorization: `Bearer ${this.openai.$auth.api_key}`,
         },
         data: {
-          "model": "text-davinci-003",
-          "prompt": "Say this is a test",
-          "max_tokens": 7,
-          "temperature": 0
-        }
-      })
-    } catch(error) {
-      const MAX_RETRIES = 3
-      const DELAY = 1000 * 30
+          model: "text-davinci-003",
+          prompt: "Say this is a test",
+          max_tokens: 7,
+          temperature: 0,
+        },
+      });
+    } catch (error) {
+      const MAX_RETRIES = 3;
+      const DELAY = 1000 * 30;
 
       // Retry the request every 30 seconds, for up to 3 times
-      $.flow.rerun(DELAY, null, MAX_RETRIES)
+      $.flow.rerun(DELAY, null, MAX_RETRIES);
     }
   },
-})
+});
 ```
-
 
 ### Polling for the status of an external job
 
 Sometimes you need to poll for the status of an external job until it completes. `$.flow.rerun` lets you rerun a specific step multiple times:
 
 ```javascript
-import axios from 'axios'
+import axios from "axios";
 
 export default defineComponent({
   async run({ $ }) {
-    const MAX_RETRIES = 3
+    const MAX_RETRIES = 3;
     // 10 seconds
-    const DELAY = 1000 * 10
-    const { run } = $.context
+    const DELAY = 1000 * 10;
+    const { run } = $.context;
     // $.context.run.runs starts at 1 and increments when the step is rerun
     if (run.runs === 1) {
       // $.flow.rerun(delay, context (discussed below), max retries)
-      $.flow.rerun(DELAY, null, MAX_RETRIES)
-    }
-    else if (run.runs === MAX_RETRIES + 1) {
-      throw new Error("Max retries exceeded")
-    }
-    else {
+      $.flow.rerun(DELAY, null, MAX_RETRIES);
+    } else if (run.runs === MAX_RETRIES + 1) {
+      throw new Error("Max retries exceeded");
+    } else {
       // Poll external API for status
       const { data } = await axios({
         method: "GET",
-        url: "https://example.com/status"
-      })
+        url: "https://example.com/status",
+      });
       // If we're done, continue with the rest of the workflow
-      if (data.status === "DONE") return data
+      if (data.status === "DONE") return data;
 
       // Else retry later
-      $.flow.rerun(DELAY, null, MAX_RETRIES)
+      $.flow.rerun(DELAY, null, MAX_RETRIES);
     }
   },
-})
+});
 ```
 
 `$.flow.rerun` accepts the following arguments:
@@ -166,7 +163,7 @@ $.flow.rerun(
   delay, // The number of milliseconds until the step will be rerun
   context, // JSON-serializable data you need to pass between runs
   maxRetries, // The total number of times the step will rerun. Defaults to 10
-)
+);
 ```
 
 ### Accept an HTTP callback from an external service
@@ -174,15 +171,15 @@ $.flow.rerun(
 When you trigger a job in an external service, and that service can send back data in an HTTP callback to Pipedream, you can process that data within the same step using `$.flow.rerun`:
 
 ```javascript
-import axios from 'axios'
+import axios from "axios";
 
 export default defineComponent({
   async run({ steps, $ }) {
-    const TIMEOUT = 86400 * 1000
-    const { run } = $.context
+    const TIMEOUT = 86400 * 1000;
+    const { run } = $.context;
     // $.context.run.runs starts at 1 and increments when the step is rerun
     if (run.runs === 1) {
-      const { cancel_url, resume_url } = $.flow.rerun(TIMEOUT, null, 1)
+      const { cancel_url, resume_url } = $.flow.rerun(TIMEOUT, null, 1);
 
       // Send resume_url to external service
       await axios({
@@ -191,17 +188,17 @@ export default defineComponent({
         data: {
           resume_url,
           cancel_url,
-        }
-      })
+        },
+      });
     }
 
-    // When the external service calls back into the resume_url, you have access to 
+    // When the external service calls back into the resume_url, you have access to
     // the callback data within $.context.run.callback_request
-    else if(run.callback_request) {
-      return run.callback_request
+    else if (run.callback_request) {
+      return run.callback_request;
     }
   },
-})
+});
 ```
 
 ### Passing `context` to `$.flow.rerun`
@@ -209,7 +206,7 @@ export default defineComponent({
 Within a Node.js code step, `$.context.run.context` contains the `context` passed from the prior call to `rerun`. This lets you pass data from one run to another. For example, if you call:
 
 ```javascript
-$.flow.rerun(1000, { hello: "world" })
+$.flow.rerun(1000, { hello: "world" });
 ```
 
 `$.context.run.context` will contain:
@@ -227,16 +224,15 @@ When you exceed `maxRetries`, the workflow proceeds to the next step. If you nee
 ```javascript
 export default defineComponent({
   async run({ $ }) {
-    const MAX_RETRIES = 3
-    const { run } = $.context
+    const MAX_RETRIES = 3;
+    const { run } = $.context;
     if (run.runs === 1) {
-      $.flow.rerun(1000, null, MAX_RETRIES)
-    }
-    else if (run.runs === MAX_RETRIES + 1) {
-      throw new Error("Max retries exceeded")
+      $.flow.rerun(1000, null, MAX_RETRIES);
+    } else if (run.runs === MAX_RETRIES + 1) {
+      throw new Error("Max retries exceeded");
     }
   },
-})
+});
 ```
 
 ## Behavior when testing

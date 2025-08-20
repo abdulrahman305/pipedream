@@ -236,14 +236,14 @@ and `c`), there are more records that fall within the search query parameters.
 Finally, the current event source execution will:
 
 1. Emit an event for each one of these 2 records, ordered by `created_at` in
-    ascending order.
+   ascending order.
 2. Keep track of their ID's so that they can be excluded from subsequent
-    searches.
+   searches.
 3. The lower bound will maintain the same value, since adjusting it will
-    imply looking for records way in the past (which is not something we want
-    to achieve in this event source).
+   imply looking for records way in the past (which is not something we want
+   to achieve in this event source).
 4. The upper bound will also remain the same, since there
-    are enough records to retrieve next so that we can emit enough events.
+   are enough records to retrieve next so that we can emit enough events.
 
 **2nd execution:**
 
@@ -301,17 +301,17 @@ There's a couple of things to notice here:
 Keeping all this in mind, the current event source execution will:
 
 1. Emit an event for each one of these 2 records, ordered by `created_at` in
-    ascending order (just like before).
+   ascending order (just like before).
 2. Keep track of their ID's so that they can be excluded from subsequent
-    searches. The new ID list is `["a", "b", "c", "d"]`.
+   searches. The new ID list is `["a", "b", "c", "d"]`.
 3. The lower bound will maintain the same value, since adjusting it will
-    imply looking for records way in the past (which is not something we want
-    to achieve in this event source).
+   imply looking for records way in the past (which is not something we want
+   to achieve in this event source).
 4. The upper bound will now be adjusted. This is because if we keep the same
-    time range we're likely to retrieve only 1 contact the next time we do a
-    search query (although, like mentioned before, this is not guaranteed). To
-    make an attempt to retrieve more contacts, we set the upper limit of the
-    next time range to `t = 75` (which is the current execution time).
+   time range we're likely to retrieve only 1 contact the next time we do a
+   search query (although, like mentioned before, this is not guaranteed). To
+   make an attempt to retrieve more contacts, we set the upper limit of the
+   next time range to `t = 75` (which is the current execution time).
 
 **3rd execution:**
 
@@ -362,13 +362,13 @@ processing them.
 So the event source will now do the following:
 
 1. Emit an event for each one of these 2 records, ordered by `created_at` in
-    ascending order (just like before).
+   ascending order (just like before).
 2. Keep track of their ID's so that they can be excluded from subsequent
-    searches. The new ID list is `["a", "b", "c", "d", "e", "f"]`.
+   searches. The new ID list is `["a", "b", "c", "d", "e", "f"]`.
 3. In this case, we adjust the lower bound of the search time range to the
-    timestamp of the earliest processed record (i.e. `t = 65` in this case, which
-    corresponds to record `f`) minus the 30 minute offset. The new lower
-    bound would be `t = 35`.
+   timestamp of the earliest processed record (i.e. `t = 65` in this case, which
+   corresponds to record `f`) minus the 30 minute offset. The new lower
+   bound would be `t = 35`.
 4. The upper bound will be adjusted just like in the previous execution. The
-    new upper limit of the next time range to `t = 90` (which is the current
-    execution time).
+   new upper limit of the next time range to `t = 90` (which is the current
+   execution time).

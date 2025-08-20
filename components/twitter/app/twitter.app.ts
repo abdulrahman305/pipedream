@@ -2,7 +2,9 @@ import OAuth from "oauth-1.0a";
 import crypto from "crypto";
 import { defineApp } from "@pipedream/types";
 import {
-  axios, transformConfigForOauth, ConfigurationError,
+  axios,
+  transformConfigForOauth,
+  ConfigurationError,
 } from "@pipedream/platform";
 import {
   AddUserToListParams,
@@ -58,18 +60,18 @@ export default defineApp({
       label: "List ID",
       description:
         "Select a **List** owned by the authenticated user, or use a custom *List ID*.",
-      async options(): Promise<{ label: string; value: string; }[]> {
+      async options(): Promise<{ label: string; value: string }[]> {
         const userId = await this.getAuthenticatedUserId();
         const lists = await this.getUserOwnedLists({
           userId,
         });
 
-        return lists.data?.map(({
-          id, name,
-        }: List) => ({
-          label: name,
-          value: id,
-        })) ?? [];
+        return (
+          lists.data?.map(({ id, name }: List) => ({
+            label: name,
+            value: id,
+          })) ?? []
+        );
       },
     },
     userNameOrId: {
@@ -148,7 +150,12 @@ export default defineApp({
       return "https://api.twitter.com/2";
     },
     async _httpRequest({
-      $ = this, headers, specialAuth = false, throwError = true, fallbackError, ...args
+      $ = this,
+      headers,
+      specialAuth = false,
+      throwError = true,
+      fallbackError,
+      ...args
     }: HttpRequestParams): Promise<ResponseObject<TwitterEntity>> {
       const maxRetries = 3;
       let response: ResponseObject<TwitterEntity>;
@@ -161,10 +168,10 @@ export default defineApp({
 
       const authConfig = specialAuth
         ? {
-          ...config,
-          params: {},
-          data: {},
-        }
+            ...config,
+            params: {},
+            data: {},
+          }
         : config;
 
       const axiosConfig = {
@@ -179,7 +186,6 @@ export default defineApp({
       do {
         try {
           response = await axios($, axiosConfig);
-
         } catch (err) {
           console.log(`Request error on attempt #${counter}: `, err);
           if (counter === maxRetries) {
@@ -228,27 +234,16 @@ export default defineApp({
         });
 
         if (data) {
-          totalData.push(...(Array.isArray(data)
-            ? data
-            : [
-              data,
-            ]));
+          totalData.push(...(Array.isArray(data) ? data : [data]));
         }
 
         if (errors) {
-          totalErrors.push(...(Array.isArray(errors)
-            ? errors
-            : [
-              errors,
-            ]));
+          totalErrors.push(...(Array.isArray(errors) ? errors : [errors]));
         }
 
         if (includes) {
           Object.entries(includes).forEach(
-            ([
-              key,
-              value]: [string, TwitterEntity[]
-              ]) => {
+            ([key, value]: [string, TwitterEntity[]]) => {
               if (!totalIncludes[key]) totalIncludes[key] = [];
               totalIncludes[key].push(...value);
             },
@@ -440,10 +435,7 @@ export default defineApp({
         ...args,
       });
     },
-    async sendMessage({
-      userId,
-      ...args
-    }: SendMessageParams): Promise<object> {
+    async sendMessage({ userId, ...args }: SendMessageParams): Promise<object> {
       return this._httpRequest({
         method: "POST",
         url: `/dm_conversations/with/${userId}/messages`,

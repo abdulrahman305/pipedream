@@ -25,8 +25,8 @@ export default defineApp({
         const students = !courseId
           ? await this.listAllStudents()
           : await this.getStudentsForCourse({
-            courseId,
-          });
+              courseId,
+            });
         return students.map((student) => ({
           label: student.first_name,
           value: student.email,
@@ -48,9 +48,7 @@ export default defineApp({
     },
   },
   methods: {
-    async _makeRequest({
-      $ = this, path, params, ...opts
-    }) {
+    async _makeRequest({ $ = this, path, params, ...opts }) {
       try {
         return await axios($, {
           url: `https://api.xperiencify.io/api/public${path}`,
@@ -73,9 +71,11 @@ export default defineApp({
     },
     async listAllStudents() {
       const courses = await this.listCourses();
-      const promises = courses.map(async (course) => this.getStudentsForCourse({
-        courseId: course.id,
-      }));
+      const promises = courses.map(async (course) =>
+        this.getStudentsForCourse({
+          courseId: course.id,
+        }),
+      );
       return (await Promise.all(promises)).flat().sort();
     },
     async listStudentTags(opts = {}) {
@@ -107,9 +107,7 @@ export default defineApp({
     },
     async getStudentsForCourse({ courseId }) {
       const courses = await this.listCourses();
-      const [
-        course,
-      ] = courses.filter((course) => course.id === courseId) || [];
+      const [course] = courses.filter((course) => course.id === courseId) || [];
 
       if (!course) {
         throw new Error(`Course ${courseId} not found`);

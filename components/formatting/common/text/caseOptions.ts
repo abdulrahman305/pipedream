@@ -49,9 +49,7 @@ export const CASE_OPTIONS: CaseOption[] = [
   },
 ];
 
-export const CASE_OPTIONS_PROP = CASE_OPTIONS.map(({
-  label, value,
-}) => ({
+export const CASE_OPTIONS_PROP = CASE_OPTIONS.map(({ label, value }) => ({
   label,
   value,
 }));

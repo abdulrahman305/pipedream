@@ -8,9 +8,7 @@ interface PipedreamImgProps {
   height: number;
 }
 
-const PipedreamImg = ({
-  src, alt, width, height,
-}: PipedreamImgProps) => {
+const PipedreamImg = ({ src, alt, width, height }: PipedreamImgProps) => {
   return (
     <div className="mt-4 mb-4">
       <Image src={src} alt={alt} width={width} height={height} />

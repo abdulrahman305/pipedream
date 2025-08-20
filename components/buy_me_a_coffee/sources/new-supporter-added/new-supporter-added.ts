@@ -5,7 +5,8 @@ export default defineSource({
   ...common,
   key: "buy_me_a_coffee-new-supporter-added",
   name: "New Supporter Added",
-  description: "Emit new events when a new supporter was added. [See the docs](https://developers.buymeacoffee.com/#/apireference?id=onetime-supporters-v1supporters)",
+  description:
+    "Emit new events when a new supporter was added. [See the docs](https://developers.buymeacoffee.com/#/apireference?id=onetime-supporters-v1supporters)",
   version: "0.0.3",
   type: "source",
   dedupe: "unique",
@@ -15,7 +16,9 @@ export default defineSource({
       return this.app.getSupporters;
     },
     compareFn(item: any): boolean {
-      return this.getLastCreatedTime() < new Date(item.support_created_on).getTime();
+      return (
+        this.getLastCreatedTime() < new Date(item.support_created_on).getTime()
+      );
     },
     getSummary(item: any): string {
       return `New supporter ${item.payer_name} note(${item.support_note})`;

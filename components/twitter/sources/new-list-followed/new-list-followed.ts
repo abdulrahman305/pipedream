@@ -5,11 +5,10 @@ import { List } from "../../common/types/responseSchemas";
 import { getListFields } from "../../common/methods";
 import { GetUserFollowedListsParams } from "../../common/types/requestParams";
 import cacheUserId from "../common/cacheUserId";
-import {
-  getListIncludeIds, getObjIncludes,
-} from "../../common/addObjIncludes";
+import { getListIncludeIds, getObjIncludes } from "../../common/addObjIncludes";
 
-const DOCS_LINK = "https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-users-id-followed_lists";
+const DOCS_LINK =
+  "https://developer.twitter.com/en/docs/twitter-api/lists/list-follows/api-reference/get-users-id-followed_lists";
 const MAX_RESULTS_PER_PAGE = 100;
 
 export default defineSource({
@@ -22,10 +21,7 @@ export default defineSource({
   props: {
     ...common.props,
     userNameOrId: {
-      propDefinition: [
-        common.props.app,
-        "userNameOrId",
-      ],
+      propDefinition: [common.props.app, "userNameOrId"],
     },
   },
   methods: {
@@ -46,10 +42,11 @@ export default defineSource({
         userId,
       };
 
-      const {
-        data, includes,
-      } = await this.app.getUserFollowedLists(params);
-      data.forEach((list) => list.includes = getObjIncludes(list, includes, getListIncludeIds));
+      const { data, includes } = await this.app.getUserFollowedLists(params);
+      data.forEach(
+        (list) =>
+          (list.includes = getObjIncludes(list, includes, getListIncludeIds)),
+      );
       return data;
     },
   },

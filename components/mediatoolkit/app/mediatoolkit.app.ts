@@ -41,9 +41,7 @@ export default defineApp({
     _apiUrl() {
       return "https://api.mediatoolkit.com";
     },
-    async _makeRequest({
-      $ = this, path, ...args
-    }) {
+    async _makeRequest({ $ = this, path, ...args }) {
       return axios($, {
         url: `${this._apiUrl()}${path}`,
         ...args,
@@ -61,9 +59,7 @@ export default defineApp({
 
       return response?.data?.organizations ?? [];
     },
-    async getGroups({
-      organizationId, ...args
-    }) {
+    async getGroups({ organizationId, ...args }) {
       const response = await this._makeRequest({
         path: `/organizations/${organizationId}/groups`,
         ...args,
@@ -71,9 +67,7 @@ export default defineApp({
 
       return response?.data?.groups ?? [];
     },
-    async getMentions({
-      organizationId, groupId, ...args
-    }) {
+    async getMentions({ organizationId, groupId, ...args }) {
       const response = await this._makeRequest({
         path: `/organizations/${organizationId}/groups/${groupId}/mentions`,
         ...args,

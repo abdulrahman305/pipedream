@@ -1,5 +1,7 @@
 import os
+
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -14,7 +16,8 @@ def get_env_var(var_name, required=False, default=None):
 
 openai_api_type = get_env_var("OPENAI_API_TYPE", default="openai")
 openai_embeddings_model = get_env_var(
-    "OPENAI_EMBEDDINGS_MODEL", default="text-embedding-3-small")
+    "OPENAI_EMBEDDINGS_MODEL", default="text-embedding-3-small"
+)
 
 config = {
     "temperature": get_env_var("OPENAI_TEMPERATURE", default=0.5),

@@ -142,19 +142,19 @@ class BrowserClient {
   connectAccount(opts: StartConnectOpts) {
     const onMessage = (e: MessageEvent) => {
       switch (e.data?.type) {
-      case "success":
-        opts.onSuccess?.({
-          id: e.data?.authProvisionId,
-        });
-        break;
-      case "error":
-        opts.onError?.(new ConnectError(e.data.error));
-        break;
-      case "close":
-        this.cleanup(onMessage);
-        break;
-      default:
-        break;
+        case "success":
+          opts.onSuccess?.({
+            id: e.data?.authProvisionId,
+          });
+          break;
+        case "error":
+          opts.onError?.(new ConnectError(e.data.error));
+          break;
+        case "close":
+          this.cleanup(onMessage);
+          break;
+        default:
+          break;
       }
     };
 

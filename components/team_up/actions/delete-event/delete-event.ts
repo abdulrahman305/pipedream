@@ -4,7 +4,8 @@ import { DeleteEventParams } from "../../common/requestParams";
 import calendarKeyOptions from "../../common/calendarKeyOptions";
 import { DeleteEventResponse } from "../../common/responseSchemas";
 
-const DOCS_LINK = "https://apidocs.teamup.com/docs/api/260f3631bec7b-delete-an-event";
+const DOCS_LINK =
+  "https://apidocs.teamup.com/docs/api/260f3631bec7b-delete-an-event";
 
 export default defineAction({
   name: "Delete Event",
@@ -15,23 +16,14 @@ export default defineAction({
   props: {
     app,
     calendarKey: {
-      propDefinition: [
-        app,
-        "calendarKey",
-      ],
+      propDefinition: [app, "calendarKey"],
     },
     eventId: {
-      propDefinition: [
-        app,
-        "eventId",
-        calendarKeyOptions,
-      ],
+      propDefinition: [app, "eventId", calendarKeyOptions],
     },
   },
   async run({ $ }) {
-    const {
-      calendarKey, eventId,
-    } = this;
+    const { calendarKey, eventId } = this;
 
     const params: DeleteEventParams = {
       $,

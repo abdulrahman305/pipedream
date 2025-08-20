@@ -101,15 +101,15 @@ export default {
 
 Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. You can reference these properties in component code using `this` (e.g., `this.propName`).
 
-| Prop Type                       | Description                                                                                   |
-| ------------------------------- | --------------------------------------------------------------------------------------------- |
-| [User Input](#user-input-props) | Enable components to accept input on deploy                                                   |
-| [Interface](#interface-props)   | Attaches a Pipedream interface to your component (e.g., an HTTP interface or timer)           |
-| [Service](#service-props)       | Attaches a Pipedream service to your component (e.g., a key-value database to maintain state) |
-| [App](#app-props)               | Enables managed auth for a component                                                          |
-| [Data Store](/data-stores/#using-data-stores-in-code-steps) | Provides access to a Pipedream [data store](/data-stores/)        |
-| [HTTP Request](#http-request-prop)| Enables components to execute HTTP requests based on user input                             |
-| [Alert](#alert-prop)| Renders an informational alert in the prop form to help users configure the source or action                             |
+| Prop Type                                                   | Description                                                                                   |
+| ----------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [User Input](#user-input-props)                             | Enable components to accept input on deploy                                                   |
+| [Interface](#interface-props)                               | Attaches a Pipedream interface to your component (e.g., an HTTP interface or timer)           |
+| [Service](#service-props)                                   | Attaches a Pipedream service to your component (e.g., a key-value database to maintain state) |
+| [App](#app-props)                                           | Enables managed auth for a component                                                          |
+| [Data Store](/data-stores/#using-data-stores-in-code-steps) | Provides access to a Pipedream [data store](/data-stores/)                                    |
+| [HTTP Request](#http-request-prop)                          | Enables components to execute HTTP requests based on user input                               |
+| [Alert](#alert-prop)                                        | Renders an informational alert in the prop form to help users configure the source or action  |
 
 #### User Input Props
 
@@ -151,12 +151,12 @@ props: {
 | `secret`         | `boolean`                            | optional  | If set to `true`, this field will hide your input in the browser like a password field, and its value will be encrypted in Pipedream's database. The value will be decrypted when the component is run in [the execution environment](/privacy-and-security/#execution-environment). Defaults to `false`. Only allowed for `string` props.                                                                                                                                     |
 | `min`            | `integer`                            | optional  | Minimum allowed integer value. Only allowed for `integer` props..                                                                                                                                                                                                                                                                                                                                                                                                              |
 | `max`            | `integer`                            | optional  | Maximum allowed integer value . Only allowed for `integer` props.                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `disabled`       | `boolean`                            | optional  | Set to `true` to disable usage of this prop. Defaults to `false`.   |
-| `hidden`         | `boolean`                            | optional  | Set to `true` to hide this field. Defaults to `false`.              |
+| `disabled`       | `boolean`                            | optional  | Set to `true` to disable usage of this prop. Defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `hidden`         | `boolean`                            | optional  | Set to `true` to hide this field. Defaults to `false`.                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 **Prop Types**
 
-| Prop Type          | Array Supported | Supported in Sources? | Supported in Actions? | Custom properties                                                                                           |
+| Prop Type           | Array Supported | Supported in Sources? | Supported in Actions? | Custom properties                                                                                           |
 | ------------------- | --------------- | --------------------- | --------------------- | :---------------------------------------------------------------------------------------------------------- |
 | `app`               |                 | ✓                     | ✓                     | See [App Props](#app-props) below                                                                           |
 | `boolean`           | ✓               | ✓                     | ✓                     |
@@ -169,7 +169,7 @@ props: {
 | `$.service.db`      |                 | ✓                     |                       |
 | `data_store`        |                 |                       | ✓                     |
 | `http_request`      |                 |                       | ✓                     |
-| `alert`      |                 | ✓                     | ✓                     | See [Alert Prop](#alert-prop) below
+| `alert`             |                 | ✓                     | ✓                     | See [Alert Prop](#alert-prop) below                                                                         |
 
 **Usage**
 
@@ -469,9 +469,9 @@ props: {
 }
 ```
 
-| Property  | Type     | Required? | Description                                                                                                                                  |
-| --------- | -------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`    | `string` | required  | Must be set to `$.interface.timer`                                                                                                           |
+| Property  | Type     | Required? | Description                                                                                                                                 |
+| --------- | -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`    | `string` | required  | Must be set to `$.interface.timer`                                                                                                          |
 | `default` | `object` | optional  | **Define a default interval**<br>`{ intervalSeconds: 60, },`<br>&nbsp;<br>**Define a default cron expression**<br>`{ cron: "0 0 * * *", },` |
 
 **Usage**
@@ -667,9 +667,9 @@ props: {
 
 **Usage**
 
-| Code                              | Description                                                                                      | Read Scope                                      | Write Scope |
-| --------------------------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------- | ----------- |
-| `this.myPropName.execute()`       | Execute an HTTP request as configured                                                            | n/a                                             | `run()` `methods` |
+| Code                        | Description                           | Read Scope | Write Scope       |
+| --------------------------- | ------------------------------------- | ---------- | ----------------- |
+| `this.myPropName.execute()` | Execute an HTTP request as configured | n/a        | `run()` `methods` |
 
 **Example**
 
@@ -686,7 +686,7 @@ export default {
       default: {
         method: "GET",
         url: "https://jsonplaceholder.typicode.com/posts",
-      }
+      },
     },
   },
   async run() {
@@ -698,18 +698,17 @@ export default {
 
 For more examples, see the [docs on making HTTP requests with Node.js](/code/nodejs/http-requests/#send-a-get-request-to-fetch-data).
 
-
 #### Alert Prop
 
 Sometimes you may need to surface contextual information to users within the prop form. This might be information that's not directly related to a specific prop, so it doesn't make sense to include in a prop description, but rather, it may be related to the overall configuration of the prop form.
 
 **Usage**
 
-| Property | Type | Required? | Description |
-| - | - | - | - |
-| `type` | `string` | required | Set to `alert` |
-| `alertType` | `string` | required | Determines the color and UI presentation of the alert prop. Can be one of `info`, `neutral`, `warning`, `error`. |
-| `content` | `string` | required | Determines the text that is rendered in the alert. Both plain text and markdown are supported. |
+| Property    | Type     | Required? | Description                                                                                                      |
+| ----------- | -------- | --------- | ---------------------------------------------------------------------------------------------------------------- |
+| `type`      | `string` | required  | Set to `alert`                                                                                                   |
+| `alertType` | `string` | required  | Determines the color and UI presentation of the alert prop. Can be one of `info`, `neutral`, `warning`, `error`. |
+| `content`   | `string` | required  | Determines the text that is rendered in the alert. Both plain text and markdown are supported.                   |
 
 ```javascript
 export default defineComponent({
@@ -717,10 +716,11 @@ export default defineComponent({
     alert: {
       type: "alert",
       alertType: "info",
-      content: "Admin rights on the repo are required in order to register webhooks. In order to continue setting up your source, configure a polling interval below to check for new events.",
-    }
+      content:
+        "Admin rights on the repo are required in order to register webhooks. In order to continue setting up your source, configure a polling interval below to check for new events.",
+    },
   },
-})
+});
 ```
 
 Refer to GitHub's component sources in the `pipedream` repo for an [example implementation](https://github.com/PipedreamHQ/pipedream/blob/b447d71f658d10d6a7432e8f5153bbda56ba9810/components/github/sources/common/common-flex.mjs#L27).
@@ -922,7 +922,7 @@ $.export(
   "$summary",
   `Successfully added ${data.length} ${
     data.length == 1 ? "item" : "items"
-  } to "${playlistName}"`
+  } to "${playlistName}"`,
 );
 ```
 

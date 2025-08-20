@@ -43,7 +43,8 @@ export default defineApp({
       });
     },
     async createRequirement({
-      projectId, ...args
+      projectId,
+      ...args
     }: CreateRequirementParams): Promise<CreateRequirementResponse> {
       return this._httpRequest({
         method: "POST",
@@ -57,7 +58,8 @@ export default defineApp({
       });
     },
     async createRun({
-      projectId, ...args
+      projectId,
+      ...args
     }: CreateRunParams): Promise<CreateRunResponse> {
       return this._httpRequest({
         method: "POST",
@@ -120,9 +122,7 @@ export default defineApp({
         "Choose a **Project** from the list, or provide a custom *Project ID*.",
       async options() {
         const projects: Project[] = await this.getProjects();
-        return projects.map(({
-          attributes: { name: label }, id: value,
-        }) => ({
+        return projects.map(({ attributes: { name: label }, id: value }) => ({
           label,
           value,
         }));
@@ -136,9 +136,7 @@ export default defineApp({
       async options() {
         const user: User[] = await this.getUsers();
         return user.map(
-          ({
-            attributes: { "display-name": label }, id: value,
-          }) => ({
+          ({ attributes: { "display-name": label }, id: value }) => ({
             label,
             value,
           }),
@@ -150,16 +148,12 @@ export default defineApp({
       label: "Instance",
       description:
         "Choose an **Instance** from the list, or provide a custom *Instance ID*.",
-      async options({ projectId }: { projectId: number; }) {
+      async options({ projectId }: { projectId: number }) {
         const instance: Instance[] = await this.getInstances(projectId);
-        return instance.map(
-          ({
-            attributes: { "name": label }, id: value,
-          }) => ({
-            label,
-            value,
-          }),
-        );
+        return instance.map(({ attributes: { name: label }, id: value }) => ({
+          label,
+          value,
+        }));
       },
     },
   },

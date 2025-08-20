@@ -4,8 +4,8 @@
   "description": "Pipedream Quentn Components",
   "main": "quentn.app.mjs",
   "keywords": [
-		"pipedream",
-		"quentn"
+    "pipedream",
+    "quentn"
   ],
   "homepage": "https://pipedream.com/apps/quentn",
   "author": "Pipedream <support@pipedream.com> (https://pipedream.com/)",
