@@ -11185,6 +11185,9 @@ importers:
         specifier: ^1.5.1
         version: 1.6.6
 
+  components/pulumi:
+    specifiers: {}
+
   components/pumble:
     dependencies:
       '@pipedream/platform':
@@ -13618,6 +13621,9 @@ importers:
         specifier: ^1.5.1
         version: 1.6.6
 
+  components/strapi:
+    specifiers: {}
+
   components/strava:
     dependencies:
       '@pipedream/platform':
@@ -15985,6 +15991,9 @@ importers:
         version: 3.0.3
 
   components/zagomail: {}
+
+  components/zammad:
+    specifiers: {}
 
   components/zamzar:
     dependencies:
