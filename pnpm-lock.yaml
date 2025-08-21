@@ -3217,6 +3217,9 @@ importers:
         specifier: ^3.0.0
         version: 3.0.3
 
+  components/cortex:
+    specifiers: {}
+
   components/countdown_api:
     dependencies:
       '@pipedream/platform':
@@ -12010,7 +12013,11 @@ importers:
         specifier: ^0.10.0
         version: 0.10.0
 
-  components/rocketskip: {}
+  components/rocketskip:
+    dependencies:
+      '@pipedream/platform':
+        specifier: ^3.1.0
+        version: 3.1.0
 
   components/rockset:
     dependencies:
