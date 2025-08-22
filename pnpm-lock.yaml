@@ -1340,6 +1340,9 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
 
+  components/azure_devops_microsoft_entra_id_oauth:
+    specifiers: {}
+
   components/azure_openai_service:
     dependencies:
       '@pipedream/platform':
@@ -8808,6 +8811,9 @@ importers:
 
   components/mindbody: {}
 
+  components/mindee:
+    specifiers: {}
+
   components/mindmeister: {}
 
   components/mindstudio: {}
@@ -10795,6 +10801,9 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
 
+  components/plentyone:
+    specifiers: {}
+
   components/plisio: {}
 
   components/plivo:
@@ -11187,8 +11196,7 @@ importers:
         specifier: ^1.5.1
         version: 1.6.6
 
-  components/pulumi:
-    specifiers: {}
+  components/pulumi: {}
 
   components/pumble:
     dependencies:
@@ -13896,6 +13904,9 @@ importers:
 
   components/taggun: {}
 
+  components/taiga:
+    specifiers: {}
+
   components/tailscale: {}
 
   components/taleez:
@@ -15475,6 +15486,9 @@ importers:
         specifier: ^1.5.1
         version: 1.6.6
 
+  components/wekan:
+    specifiers: {}
+
   components/welcome:
     dependencies:
       '@pipedream/platform':
@@ -15998,8 +16012,7 @@ importers:
 
   components/zagomail: {}
 
-  components/zammad:
-    specifiers: {}
+  components/zammad: {}
 
   components/zamzar:
     dependencies:
@@ -16009,6 +16022,9 @@ importers:
       form-data:
         specifier: ^4.0.0
         version: 4.0.1
+
+  components/zapr_link:
+    specifiers: {}
 
   components/zendesk:
     dependencies:
