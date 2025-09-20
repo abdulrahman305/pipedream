@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@pipedream/platform": "^3.0.0",
-    "@slack/web-api": "^5.15.0",
+    "@slack/web-api": "^6.9.1",
     "@pipedream/slack": "^0.10.2"
   }
 }
