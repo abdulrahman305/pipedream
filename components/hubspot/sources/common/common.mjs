@@ -52,7 +52,7 @@ export default {
       return results.flat();
     },
     async processEvents(resources, after) {
-      let maxTs = after;
+      let maxTs = after || 0;
       for (const result of resources) {
         if (await this.isRelevant(result, after)) {
           this.emitEvent(result);
@@ -140,8 +140,10 @@ export default {
         }
       }
     },
-    async getPaginatedItems(resourceFn, params) {
+    async getPaginatedItems(resourceFn, params, after = null) {
       const items = [];
+      const maxPages = 10;
+      let page = 0;
       do {
         const {
           results, paging,
@@ -149,10 +151,11 @@ export default {
         items.push(...results);
         if (paging) {
           params.after = paging.next.after;
+          page++;
         } else {
           delete params.after;
         }
-      } while (params.after);
+      } while (params.after && after && page < maxPages);
       return items;
     },
     emitEvent(result) {
