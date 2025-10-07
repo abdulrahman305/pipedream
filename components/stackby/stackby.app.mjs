@@ -1,6 +1,6 @@
 export default {
   type: "app",
-  app: "kudosity",
+  app: "stackby",
   propDefinitions: {},
   methods: {
     // this.$auth contains connected account data
