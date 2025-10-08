@@ -1,6 +1,6 @@
 export default {
   type: "app",
-  app: "screenshotbase",
+  app: "apollo_io_oauth",
   propDefinitions: {},
   methods: {
     // this.$auth contains connected account data

@@ -1,6 +1,6 @@
 export default {
   type: "app",
-  app: "screenshotbase",
+  app: "openthesaurus",
   propDefinitions: {},
   methods: {
     // this.$auth contains connected account data

@@ -1,6 +1,6 @@
 export default {
   type: "app",
-  app: "screenshotbase",
+  app: "lightspeed_x",
   propDefinitions: {},
   methods: {
     // this.$auth contains connected account data

@@ -1,6 +1,6 @@
 export default {
   type: "app",
-  app: "screenshotbase",
+  app: "curated_letters",
   propDefinitions: {},
   methods: {
     // this.$auth contains connected account data
