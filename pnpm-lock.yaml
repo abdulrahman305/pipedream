@@ -1367,6 +1367,9 @@ importers:
 
   components/azure_api_for_fhir: {}
 
+  components/azure_cosmos_db:
+    specifiers: {}
+
   components/azure_devops:
     dependencies:
       '@pipedream/platform':
@@ -1932,6 +1935,9 @@ importers:
       '@pipedream/platform':
         specifier: ^1.5.1
         version: 1.6.6
+
+  components/brainbase_labs:
+    specifiers: {}
 
   components/brainshop: {}
 
@@ -6061,6 +6067,9 @@ importers:
         specifier: ^8.8.0
         version: 8.9.0
 
+  components/google_perspective:
+    specifiers: {}
+
   components/google_photos:
     dependencies:
       '@pipedream/platform':
@@ -9270,6 +9279,9 @@ importers:
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
+
+  components/n1n:
+    specifiers: {}
 
   components/n8n_io: {}
 
