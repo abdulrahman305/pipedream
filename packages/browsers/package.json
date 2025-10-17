@@ -18,6 +18,6 @@
   "dependencies": {
     "@sparticuz/chromium": "121.0.0",
     "puppeteer-core": "21.11.0",
-    "playwright-core": "1.41.2"
+    "playwright-core": "1.55.1"
   }
 }
