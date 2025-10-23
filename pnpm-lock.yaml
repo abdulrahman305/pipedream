@@ -2870,6 +2870,9 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
 
+  components/cloud_66:
+    specifiers: {}
+
   components/cloud_convert:
     dependencies:
       '@pipedream/platform':
@@ -3003,8 +3006,7 @@ importers:
 
   components/codeberg: {}
 
-  components/codefresh:
-    specifiers: {}
+  components/codefresh: {}
 
   components/codegpt: {}
 
@@ -3120,8 +3122,7 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6
 
-  components/cometapi:
-    specifiers: {}
+  components/cometapi: {}
 
   components/cometly:
     dependencies:
@@ -3179,6 +3180,9 @@ importers:
       '@pipedream/platform':
         specifier: ^1.4.0
         version: 1.6.6
+
+  components/configcat:
+    specifiers: {}
 
   components/confluence:
     dependencies:
@@ -3822,6 +3826,9 @@ importers:
       form-data:
         specifier: ^4.0.4
         version: 4.0.4
+
+  components/devolens:
+    specifiers: {}
 
   components/devrev:
     dependencies:
@@ -10308,7 +10315,11 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
 
-  components/paddle: {}
+  components/paddle:
+    dependencies:
+      '@pipedream/platform':
+        specifier: ^3.1.0
+        version: 3.1.0
 
   components/page_x:
     dependencies:
@@ -10928,8 +10939,7 @@ importers:
         specifier: ^1.3.0
         version: 1.6.6
 
-  components/piwik_pro:
-    specifiers: {}
+  components/piwik_pro: {}
 
   components/pixelbin:
     dependencies:
@@ -13411,6 +13421,21 @@ importers:
   components/slack_demo_app: {}
 
   components/slack_demo_app_1: {}
+
+  components/slack_v2:
+    dependencies:
+      '@pipedream/platform':
+        specifier: ^3.1.0
+        version: 3.1.0
+      '@slack/web-api':
+        specifier: ^7.9.0
+        version: 7.9.1
+      async-retry:
+        specifier: ^1.3.3
+        version: 1.3.3
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
 
   components/slicktext:
     dependencies:
